@@ -1,0 +1,8 @@
+@use '@styles/config/variables' as v;
+
+@mixin flexGap($gap: v.$padding, $ali: normal, $dir: column) {
+  display: flex;
+  flex-direction: $dir;
+  align-items: $ali;
+  gap: $gap;
+}

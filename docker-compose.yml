@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  jeli_meet_db:
+    image: mysql:8.4
+    restart: always
+    container_name: smartPro_db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: smartPro
+      MYSQL_DATABASE: smartDatabase
+      MYSQL_USER: juli
+      MYSQL_PASSWORD: 123
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_unicode_ci
+    volumes:
+      - mysql:/var/lib/mysql
+
+volumes:
+  mysql:

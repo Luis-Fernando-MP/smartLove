@@ -1,0 +1,135 @@
+@use '@styles/utils/scrollbar';
+@use '@styles/config/vars' as *;
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+body {
+  width: 100vw;
+  overflow: hidden auto;
+  height: 100vh;
+  font-size: $family-size;
+  background-color: $bg1;
+  font-family: $family;
+  color: $fn1;
+  @extend %scroll-hidden;
+  position: relative;
+  line-height: 1.25;
+}
+
+$listOfFontsSize: (
+  '.title': $fXl,
+  'h1': $fH1,
+  'h2': $fH2,
+  'h3': $fH3,
+  'h4': $fH4,
+  'h5': $fH5,
+  'p': $fP,
+  'span': $fSpan,
+  'small': $fSmall
+);
+
+@each $tag, $value in $listOfFontsSize {
+  #{$tag} {
+    font-size: $value;
+  }
+}
+
+h1,
+h2,
+h3 {
+  color: $fn1;
+}
+
+h4,
+h5,
+p,
+a,
+span,
+small,
+input,
+textarea,
+button {
+  color: $fn2;
+  font-family: $family;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+h2 {
+  font-weight: 800;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+h4,
+h5 {
+  font-weight: 600;
+}
+
+p,
+input,
+textarea,
+button {
+  font-weight: 500;
+}
+
+span,
+small {
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  text-wrap: balance;
+}
+
+p,
+a,
+span,
+small,
+input,
+textarea,
+button {
+  text-wrap: pretty;
+}
+
+textarea {
+  resize: none;
+  @extend %scroll-hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  border: none;
+}
+
+small {
+  font-style: italic;
+}
