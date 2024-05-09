@@ -1,0 +1,7 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.resume {
+  @include d.flex;
+  padding: 0 v.$padding;
+}

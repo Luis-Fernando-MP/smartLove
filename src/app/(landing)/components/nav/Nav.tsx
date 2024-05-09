@@ -15,8 +15,6 @@ const Nav = (): JSX.Element => {
       {paths.map(path => {
         const { name, link, Icon } = path
         const isActive = pathname === link ? 'active' : ''
-        console.log(link, '---', pathname)
-
         return (
           <Link
             href={link}

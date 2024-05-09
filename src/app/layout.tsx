@@ -7,7 +7,7 @@ import { Toaster } from 'react-hot-toast'
 
 const robotoFlex = Roboto_Flex({
   subsets: ['latin'],
-  weight: ['900', '800', '700', '600', '500', '400'],
+  weight: ['900', '800', '700', '600', '500', '400', '300'],
   variable: '--roboto-flex'
 })
 

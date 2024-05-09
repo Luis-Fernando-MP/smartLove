@@ -1,0 +1,26 @@
+[
+  {
+    "title": "100% Responsable",
+    "icon": "Check"
+  },
+  {
+    "title": "Se aceptan mascotas",
+    "icon": "PawPrint"
+  },
+  {
+    "title": "Estacionamiento gratis",
+    "icon": "Car"
+  },
+  {
+    "title": "Wifi gratis",
+    "icon": "Wifi"
+  },
+  {
+    "title": "Bar personalizado",
+    "icon": "Beer"
+  },
+  {
+    "title": "Recepción las 24 horas/semana",
+    "icon": "CalendarClock"
+  }
+]

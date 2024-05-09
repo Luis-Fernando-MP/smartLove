@@ -1,0 +1,21 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.characteristics {
+  width: 100%;
+  @include d.flex($dir: row);
+  flex-wrap: wrap;
+  &-item {
+    @include d.flex($dir: row, $ali: center);
+    justify-content: center;
+    background-color: v.$bg2;
+    border: 1px solid v.$dis2;
+    border-radius: 15px;
+    padding: 3px 10px;
+    user-select: none;
+  }
+  &-link {
+    @include d.flex($dir: row, $ali: center);
+    color: v.$tn1;
+  }
+}
