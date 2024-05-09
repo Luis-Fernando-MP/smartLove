@@ -1,0 +1,10 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/media' as m;
+
+@include m.smallScreen() {
+  .headerApp {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+}
