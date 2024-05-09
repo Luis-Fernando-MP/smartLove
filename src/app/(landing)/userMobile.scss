@@ -1,0 +1,15 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/media' as m;
+
+@include m.mediumScreen() {
+  .backgroundNav {
+    border-radius: 0;
+    padding-top: 20px;
+    height: auto;
+    &-container {
+      padding: 0;
+      justify-content: flex-end;
+      height: 100%;
+    }
+  }
+}

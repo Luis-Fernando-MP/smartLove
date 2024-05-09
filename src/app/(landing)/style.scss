@@ -1,0 +1,56 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.home {
+  max-width: 1200px;
+  height: auto;
+  margin: auto;
+  @include d.flex;
+}
+
+.backgroundNav {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: v.$radius;
+  position: relative;
+  &-image {
+    z-index: -1;
+    position: relative;
+    object-fit: cover;
+  }
+  &-container {
+    @include d.flex($ali: center);
+    justify-content: center;
+    width: 100%;
+    padding: v.$padding;
+    height: 100%;
+    h1,
+    h4 {
+      color: v.$bg1;
+      text-align: center;
+    }
+    h1 {
+      text-transform: capitalize;
+      font-size: v.$fXl;
+    }
+    h1 b {
+      background-color: v.$tn1;
+    }
+    h1 span {
+      text-shadow: 0 0 10px #00000079;
+      color: v.$bg1;
+    }
+    h4 {
+      font-weight: 400;
+      text-shadow: 0 0 10px black;
+    }
+  }
+}

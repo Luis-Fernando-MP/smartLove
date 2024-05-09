@@ -26,7 +26,7 @@ function RootLayout({ children }: TRootLayout): JSX.Element {
   return (
     <html lang='es'>
       <body className={robotoFlex.className}>
-        <NextTopLoader height={5} />
+        <NextTopLoader height={5} color='#f55a61' />
         {children}
         <Toaster
           position='top-center'

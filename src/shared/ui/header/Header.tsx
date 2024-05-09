@@ -29,8 +29,8 @@ function Header(): JSX.Element {
         </div>
       </Link>
       <article className='headerApp-account'>
-        <button>Regístrate</button>
-        <button>Inicia sección</button>
+        <button className='btn'>Regístrate</button>
+        <button className='btn'>Ingresar</button>
       </article>
     </header>
   )

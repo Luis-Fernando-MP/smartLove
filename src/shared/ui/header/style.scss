@@ -16,12 +16,12 @@
       text-align: center;
     }
     h2 {
-      font-size: 1.5rem;
+      font-size: 2.3em;
       line-height: 0.8;
     }
     h5 {
       text-transform: uppercase;
-      font-size: 0.65rem;
+      font-size: 1em;
     }
     path,
     rect {
@@ -39,12 +39,10 @@
   &-account {
     @include d.flex($dir: row, $ali: center);
     button {
-      height: 40px;
-      padding: 0 v.$padding;
-      border-radius: v.$radius;
-      font-size: 0.9rem;
       &:first-child {
+        background-color: transparent;
         color: v.$tn1;
+        border: 1px solid v.$tn2;
       }
       &:last-child {
         font-weight: 700;

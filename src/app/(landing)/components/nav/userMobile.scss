@@ -1,0 +1,21 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/media' as m;
+
+@include m.largeScreen() {
+  .landingNav {
+    width: auto;
+    background-color: v.$bg1;
+    padding: v.$padding - 5px v.$padding;
+    margin-top: 30px;
+  }
+}
+
+@include m.mediumScreen() {
+  .landingNav {
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: v.$padding;
+    border-radius: 10px 10px 0 0;
+    padding: 20px v.$padding;
+  }
+}

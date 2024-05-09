@@ -1,5 +1,6 @@
 @use '@styles/utils/scrollbar';
 @use '@styles/config/vars' as *;
+@use '@styles/utils/media' as m;
 
 *,
 ::before,
@@ -121,7 +122,6 @@ a {
 }
 
 button {
-  background-color: $bg2;
   border: none;
   cursor: pointer;
 }
@@ -133,4 +133,15 @@ textarea {
 
 small {
   font-style: italic;
+}
+
+.btn {
+  padding: 8px 10px;
+  border-radius: $radius;
+}
+
+@include m.smallerScreen() {
+  body {
+    font-size: 10px;
+  }
 }

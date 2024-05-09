@@ -1,0 +1,26 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.landingNav {
+  margin-top: 50px;
+  width: 80%;
+  background-color: v.$bg1;
+  padding: v.$padding - 5px 0;
+  border-radius: v.$radius;
+  &,
+  &-link {
+    @include d.flex($dir: row, $ali: center);
+    justify-content: center;
+  }
+  &-link {
+    background-color: v.$bg2;
+    border-radius: 5px;
+    &.active {
+      background-color: v.$tn1;
+      &,
+      p {
+        color: v.$bg1;
+      }
+    }
+  }
+}
