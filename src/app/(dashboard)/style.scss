@@ -1,0 +1,55 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.dashboard {
+  @include d.flex($gap: 0, $ali: stretch);
+  background-color: v.$bg2;
+  height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+// international main styles
+.dashboard-main {
+  @include d.flex($dir: row);
+  height: 100%;
+  left: 0;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  width: 100%;
+}
+
+// international nav styles
+
+.dashboard-nav {
+  // min-width: 250px; <-- one nav have an different width and height
+  // max-width: 250px; <--
+  position: relative;
+  padding: v.$padding;
+
+  &.show-menu .dashboard-menu {
+    display: grid;
+  }
+}
+
+.dashboard-menu {
+  background-color: v.$tn1;
+  border-radius: 50%;
+  bottom: 20px;
+  display: none;
+  height: 50px;
+  place-content: center;
+  position: absolute;
+  right: calc(
+    -50px - v.$padding - 20px
+  ); // <-- it's calculate (size - padding - gap)
+  width: 50px;
+}
+
+//international body styles
+.dashboard-body {
+  background-color: v.$bg1;
+  border-top-left-radius: v.$radius * 2.5;
+  padding: v.$padding;
+  width: 100%;
+}

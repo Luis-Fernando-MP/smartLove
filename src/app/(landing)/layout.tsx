@@ -4,8 +4,8 @@ import Marquee from 'react-fast-marquee'
 import { getCharacteristics } from 'services/getCharacteristics'
 import Characteristic from 'shared/ui/characteristic/Characteristics'
 import Footer from 'shared/ui/footer/Footer'
-import Header from 'shared/ui/header/Header'
 
+import Header from './components/header/Header'
 import Nav from './components/nav/Nav'
 import './style.scss'
 import './userMobile.scss'
@@ -16,8 +16,6 @@ interface TRootLayout {
 
 async function RootLayout({ children }: TRootLayout): Promise<JSX.Element> {
   const characteristics = await getCharacteristics()
-
-  console.log(characteristics)
 
   return (
     <>

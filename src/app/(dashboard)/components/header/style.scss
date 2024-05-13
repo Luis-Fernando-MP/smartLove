@@ -1,0 +1,30 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.header {
+  width: 100%;
+  height: 50px;
+  justify-content: space-between;
+  padding: 0 v.$padding * 2;
+  &,
+  &-account {
+    @include d.flex($dir: row, $ali: center);
+  }
+  &-brand {
+    text-align: center;
+    span {
+      text-transform: uppercase;
+      font-size: 0.8em;
+    }
+  }
+  &-account button {
+    &:first-child {
+      background-color: transparent;
+    }
+    &:last-child {
+      font-weight: 700;
+      background-color: v.$tn1;
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+@use '../../setCalculateMainSize' as calculate;
+
+$navSize: 250px; //<-- important
+
+.dashboard-nav {
+  min-width: $navSize;
+  max-width: $navSize;
+}
+
+.dashboard-main {
+  @include calculate.setCalculateMainSize($navSize);
+}

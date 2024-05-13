@@ -1,9 +1,10 @@
-import '@styles/config/_global.scss'
 import type { Metadata } from 'next'
 import NextTopLoader from 'nextjs-toploader'
 import type { JSX, ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { robotoFlex } from 'shared/fonts'
+
+import './layout.scss'
 
 export const metadata: Metadata = {
   title: 'SmartPro',
