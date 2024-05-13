@@ -2,12 +2,13 @@
 
 - [ ]: mejorar el componente Characteristic
 - [ ]: completar el diseño del home:
+- [ ]: completar el responsive del home:
 
   - [ ]: nosotros
   - [ ]: Fundamentos de accesos
   - [ ]: Encuentranos en
 
-- [ ]: realizar el componente footer
+- [x]: realizar el componente footer 45 min
 
 ### Dashboard
 
