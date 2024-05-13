@@ -1,0 +1,16 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/media' as m;
+
+@include m.smallScreen() {
+  .footer {
+    &-container {
+      flex-direction: column;
+      justify-content: center;
+    }
+    span,
+    &-paths,
+    &-description {
+      text-align: center;
+    }
+  }
+}

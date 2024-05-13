@@ -1,0 +1,20 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.footer {
+  width: 100%;
+  min-height: 150px;
+  padding: v.$padding v.$padding * 2;
+  background-color: v.$bg2;
+  @include d.flex();
+  justify-content: center;
+  &-container {
+    width: 100%;
+    @include d.flex($dir: row, $ali: center);
+    justify-content: space-between;
+  }
+  &-paths {
+    @include d.flex($ali: right, $gap: 5px);
+    text-align: right;
+  }
+}

@@ -1,25 +1,59 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
+@use '@styles/config/index' as i;
 
 .landingNav {
-  margin-top: 50px;
   width: 80%;
-  background-color: v.$bg1;
-  padding: v.$padding - 5px 0;
-  border-radius: v.$radius;
+  margin: auto;
+  height: 50px;
+  justify-content: space-between;
+  backdrop-filter: blur(50px);
+  position: sticky;
+  top: 0;
+  z-index: i.$nav;
+  &-menu {
+    user-select: none;
+    pointer-events: none;
+    display: none;
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: i.$nav-menu;
+    background-color: v.$tn1;
+    border-radius: v.$radius;
+    padding: 5px;
+  }
   &,
-  &-link {
+  &-link,
+  &-paths,
+  &-account {
     @include d.flex($dir: row, $ali: center);
-    justify-content: center;
+  }
+  &-brand {
+    text-align: center;
+    span {
+      text-transform: uppercase;
+      font-size: 0.8em;
+    }
+  }
+  &-account button {
+    &:first-child {
+      background-color: transparent;
+    }
+    &:last-child {
+      font-weight: 700;
+      background-color: v.$bg1;
+    }
   }
   &-link {
-    background-color: v.$bg2;
+    justify-content: center;
     border-radius: 5px;
+    background-color: transparent;
     &.active {
-      background-color: v.$tn1;
+      border-bottom: 1px solid v.$tn1;
       &,
       p {
-        color: v.$bg1;
+        color: v.$tn1;
       }
     }
   }

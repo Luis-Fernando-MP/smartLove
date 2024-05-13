@@ -1,56 +1,77 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
 
-body {
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 .home {
-  max-width: 1200px;
-  height: auto;
-  margin: auto;
-  @include d.flex;
-}
-
-.backgroundNav {
   width: 100%;
-  height: 300px;
-  overflow: hidden;
-  border-radius: v.$radius;
+  height: auto;
   position: relative;
-  &-image {
-    z-index: -1;
-    position: relative;
-    object-fit: cover;
+  background-color: transparent;
+  &-content {
+    height: 100vh;
+    padding: 50px v.$padding;
   }
-  &-container {
-    @include d.flex($ali: center);
-    justify-content: center;
+  &-speed {
+    display: grid;
+    height: 30px;
+    place-content: center;
     width: 100%;
-    padding: v.$padding;
-    height: 100%;
-    h1,
-    h4 {
-      color: v.$bg1;
-      text-align: center;
+    background-color: v.$tn1;
+    color: v.$bg1;
+    text-align: center;
+  }
+  &-static-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    height: 80vh;
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(to top, v.$bg1, transparent 20%);
+
+    &::before {
+      content: '';
+      z-index: -2;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(to right, v.$bg2 1px, transparent 1px),
+        linear-gradient(to bottom, v.$bg2 1px, transparent 1px);
+      background-size: 6rem 4rem;
+      height: 100vh;
     }
-    h1 {
-      text-transform: capitalize;
-      font-size: v.$fXl;
+    &::after {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      animation: rotateAfterElement 1s ease-in-out infinite alternate;
+      background: radial-gradient(
+        circle 500px at 100% 100px,
+        rgb(112, 61, 230) 0%,
+        v.$tn2 50%,
+        transparent
+      );
+      @keyframes rotateAfterElement {
+        from {
+          transform: translateY(0);
+        }
+        from {
+          transform: translateY(-50px);
+        }
+      }
     }
-    h1 b {
-      background-color: v.$tn1;
-    }
-    h1 span {
-      text-shadow: 0 0 10px #00000079;
-      color: v.$bg1;
-    }
-    h4 {
-      font-weight: 400;
-      text-shadow: 0 0 10px black;
-    }
+  }
+  &-background {
+    display: block;
+    margin: auto;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
   }
 }

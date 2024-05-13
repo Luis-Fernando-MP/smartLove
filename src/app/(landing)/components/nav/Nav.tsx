@@ -1,32 +1,70 @@
 'use client'
 
+import { Menu } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import type { JSX } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { type JSX, useState } from 'react'
+import { mada, yesevaOne } from 'shared/fonts'
 
 import { paths } from './paths'
 import './style.scss'
 import './userMobile.scss'
 
 const Nav = (): JSX.Element => {
+  const [show, setShow] = useState(false)
   const pathname = usePathname()
+
+  const router = useRouter()
+
+  const handleShowMenu = (): void => {
+    setShow(!show)
+  }
+
+  const handleNavigate = (path: string) => {
+    setShow(!show)
+    router.push(path)
+    const targetElement = document.querySelector('section.home-content')
+    if (targetElement && targetElement instanceof HTMLElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop,
+        behavior: 'smooth'
+      })
+    }
+  }
+
   return (
-    <nav className='landingNav'>
-      {paths.map(path => {
-        const { name, link, Icon } = path
-        const isActive = pathname === link ? 'active' : ''
-        return (
-          <Link
-            href={link}
-            key={name}
-            className={`btn landingNav-link ${isActive}`}
-          >
-            <Icon />
-            <p>{name}</p>
-          </Link>
-        )
-      })}
-    </nav>
+    <>
+      <button className='landingNav-menu' onClick={handleShowMenu}>
+        <Menu stroke='#fff' />
+      </button>
+      <nav className={`landingNav ${show ? 'show-menu' : ''}`}>
+        <Link href='/' className='landingNav-brand'>
+          <h2 className={yesevaOne.className}>Smart Pro</h2>
+          <span className={mada.className}>Hotel sauna rooftop bar</span>
+        </Link>
+        <ul className='landingNav-paths'>
+          {paths.map(path => {
+            const { name, link, Icon } = path
+            const isActive = pathname === link ? 'active' : ''
+            return (
+              <li key={name}>
+                <button
+                  className={`btn landingNav-link ${isActive}`}
+                  onClick={() => handleNavigate(link)}
+                >
+                  <Icon />
+                  <p>{name}</p>
+                </button>
+              </li>
+            )
+          })}
+        </ul>
+        <article className='landingNav-account'>
+          <button className='btn'>Regístrate</button>
+          <button className='btn'>Ingresar</button>
+        </article>
+      </nav>
+    </>
   )
 }
 

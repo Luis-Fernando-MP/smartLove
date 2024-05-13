@@ -1,15 +1,9 @@
 import '@styles/config/_global.scss'
 import type { Metadata } from 'next'
-import { Roboto_Flex } from 'next/font/google'
 import NextTopLoader from 'nextjs-toploader'
 import type { JSX, ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
-
-const robotoFlex = Roboto_Flex({
-  subsets: ['latin'],
-  weight: ['900', '800', '700', '600', '500', '400', '300'],
-  variable: '--roboto-flex'
-})
+import { robotoFlex } from 'shared/fonts'
 
 export const metadata: Metadata = {
   title: 'SmartPro',
@@ -26,7 +20,7 @@ function RootLayout({ children }: TRootLayout): JSX.Element {
   return (
     <html lang='es'>
       <body className={robotoFlex.className}>
-        <NextTopLoader height={5} color='#f55a61' />
+        <NextTopLoader height={5} color='#9296ff' />
         {children}
         <Toaster
           position='top-center'

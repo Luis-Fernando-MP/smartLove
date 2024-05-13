@@ -1,37 +1,39 @@
-import { Hotel } from 'lucide-react'
-import { Mada, Yeseva_One } from 'next/font/google'
+import { Star } from 'lucide-react'
 import Link from 'next/link'
 import type { JSX } from 'react'
+import { sansitaSwashed } from 'shared/fonts'
 
 import './style.scss'
 import './userMobile.scss'
 
-const yesevaOne = Yeseva_One({
-  subsets: ['latin'],
-  weight: ['400']
-})
-
-const mada = Mada({
-  subsets: ['latin'],
-  weight: ['300']
-})
-
 function Header(): JSX.Element {
   return (
     <header className='headerApp'>
-      <Link href='/' className='headerApp-brand'>
-        <div className='headerApp-brand__hotel'>
-          <Hotel size={30} />
-        </div>
-        <div className='headerApp-brand__titleBox'>
-          <h2 className={yesevaOne.className}>Smart Pro</h2>
-          <h5 className={mada.className}>Hotel sauna rooftop bar</h5>
-        </div>
+      <p>
+        Hotel de lujo con habitaciones LED, sensores,
+        <br />
+        Rooftop, Bar y mucho más…
+      </p>
+      <h1 className={sansitaSwashed.className}>
+        reserva tu estancia
+        <br />
+        con SmartPro
+      </h1>
+      <h4>
+        +1000 usuarios registrados y +35 habitaciones
+        <br />
+        disponibles esperando por ti!
+      </h4>
+      <Link href='/dashboard' className='headerApp-go'>
+        Reservar ahora
       </Link>
-      <article className='headerApp-account'>
-        <button className='btn'>Regístrate</button>
-        <button className='btn'>Ingresar</button>
-      </article>
+      <section className='headerApp-starts'>
+        <Star className='active' />
+        <Star className='active' />
+        <Star className='active' />
+        <Star />
+        <Star />
+      </section>
     </header>
   )
 }
