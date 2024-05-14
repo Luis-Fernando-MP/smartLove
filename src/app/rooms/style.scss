@@ -1,34 +1,48 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
+@use '@styles/utils/scrollbar' as *;
+
+$navTransition: all 0.3s cubic-bezier(0.25, 0.75, 0.5, 1.25);
+$dashboardMenuSize: 40px;
 
 .dashboard {
   @include d.flex($gap: 0, $ali: stretch);
   background-color: v.$bg2;
   height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
   width: 100%;
 }
 
 // international main styles
 .dashboard-main {
-  @include d.flex($dir: row);
-  height: 100%;
+  @include d.flex($dir: row, $gap: 5px);
+  height: calc(100% - 50px);
   left: 0;
   position: relative;
-  transition: all 0.5s ease-in-out;
+  transition: $navTransition;
   width: 100%;
 }
 
 // international nav styles
 
 .dashboard-nav {
+  &__container {
+    @include d.flex();
+    overflow: auto;
+    height: 100%;
+    justify-content: flex-start;
+    @extend %scroll-hidden;
+  }
   // min-width: 250px; <-- one nav have an different width and height
   // max-width: 250px; <--
   position: relative;
   padding: v.$padding;
+  height: 100%;
 
   &.show-menu .dashboard-menu {
-    display: grid;
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
   }
 }
 
@@ -36,14 +50,18 @@
   background-color: v.$tn1;
   border-radius: 50%;
   bottom: 20px;
-  display: none;
-  height: 50px;
+  transform: scale(0);
+  display: grid;
+  visibility: hidden;
+  opacity: 0;
+  height: $dashboardMenuSize;
   place-content: center;
   position: absolute;
+  transition: $navTransition;
   right: calc(
-    -50px - v.$padding - 20px
+    -1 * $dashboardMenuSize - v.$padding - 5px
   ); // <-- it's calculate (size - padding - gap)
-  width: 50px;
+  width: $dashboardMenuSize;
 }
 
 //international body styles

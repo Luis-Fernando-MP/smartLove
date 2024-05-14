@@ -1,6 +1,6 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
-@use '../../setCalculateMainSize' as calculate;
+@use '../setCalculateMainSize' as calculate;
 
 $navSize: 250px; //<-- important
 

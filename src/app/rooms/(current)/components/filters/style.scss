@@ -1,0 +1,86 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.roomFilters {
+  height: auto;
+  background-color: v.$bg1;
+  padding: v.$padding v.$padding * 0.8;
+  border-radius: v.$radius;
+  @include d.flex($ali: flex-start);
+
+  &-reset {
+    background-color: transparent;
+    text-decoration: underline;
+    color: v.$fn2;
+  }
+  &-submit {
+    background-color: v.$info;
+    color: v.$info_dark;
+  }
+  &-form {
+    @include d.flex();
+    width: 100%;
+  }
+  &-section {
+    padding: v.$padding * 0.5;
+    border-radius: v.$radius;
+    border: 1px solid transparent;
+    &.error {
+      background-color: rgba(v.$danger, 0.5);
+      border-color: v.$danger_dark;
+    }
+    &__error {
+      color: v.$danger_dark;
+    }
+    &__option {
+      @include d.flex($dir: row, $ali: center);
+      padding: 0 v.$padding;
+    }
+    i {
+      display: block;
+      background: v.$bg2;
+      width: 25px;
+      height: 20px;
+      border-radius: v.$radius;
+      position: relative;
+      &::before {
+        content: '\27BB';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.1s ease;
+        opacity: 0;
+        scale: 0.5;
+        font-size: v.$fP;
+        font-style: normal;
+      }
+    }
+    label {
+      cursor: pointer;
+      padding: v.$padding * 0.6;
+      width: 100%;
+      display: block;
+      height: 100%;
+    }
+    input[type='radio'] {
+      display: none;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    input[type='radio']:checked {
+      + i + label {
+        color: v.$tn1;
+      }
+      + i {
+        border: 1px solid v.$tn1;
+        &:before {
+          opacity: 1;
+          color: v.$tn1;
+          scale: 1;
+        }
+      }
+    }
+  }
+}

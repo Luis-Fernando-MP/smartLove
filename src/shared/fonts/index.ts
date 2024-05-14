@@ -2,6 +2,7 @@ import {
   Mada,
   Roboto_Flex,
   Sansita_Swashed,
+  Whisper,
   Yeseva_One
 } from 'next/font/google'
 
@@ -24,4 +25,9 @@ export const robotoFlex = Roboto_Flex({
 export const sansitaSwashed = Sansita_Swashed({
   subsets: ['latin'],
   weight: ['900']
+})
+
+export const whisper = Whisper({
+  subsets: ['latin'],
+  weight: ['400']
 })

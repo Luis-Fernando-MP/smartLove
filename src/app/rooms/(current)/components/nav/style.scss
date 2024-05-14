@@ -1,0 +1,64 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.dashboard-nav__container {
+  padding-bottom: 50px;
+}
+
+.roomNav {
+  &-static-menu {
+    background-color: transparent;
+    text-align: right;
+  }
+  &-details {
+    padding: v.$padding v.$padding * 0.5;
+    border-radius: v.$radius;
+    transition: all 0.2s linear;
+    user-select: none;
+    &[open],
+    &:hover {
+      background: v.$bg1;
+    }
+  }
+  &-summary {
+    cursor: pointer;
+    list-style-position: inside;
+    list-style-type: '⬐ ';
+    &::marker {
+      color: v.$fn1;
+      font-size: v.$fP;
+    }
+    &__path {
+      margin-bottom: v.$padding;
+      @include d.flex($dir: row, $ali: center);
+      justify-content: center;
+      &.active,
+      &:hover {
+        svg,
+        p {
+          color: v.$tn1;
+        }
+      }
+    }
+  }
+  &-details[open] &-summary {
+    list-style-type: '⬑ ';
+  }
+  &-consulting {
+    @include d.flex;
+    &__go,
+    &__social {
+      @include d.flex($dir: row, $ali: center);
+    }
+    &__go {
+      justify-content: center;
+      background-color: v.$bg1;
+      border-radius: v.$radius;
+      text-align: center;
+      padding: v.$padding 0;
+    }
+    &__social {
+      justify-content: space-evenly;
+    }
+  }
+}
