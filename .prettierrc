@@ -3,10 +3,7 @@
   "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "plugins": [
-    "@trivago/prettier-plugin-sort-imports",
-    "prettier-plugin-tailwindcss"
-  ],
+  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
   "overrides": [
     {
       "files": ["*.json", "*.md", "*.toml", "*.yml"],
@@ -27,7 +24,7 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "none",
-  "printWidth": 80,
+  "printWidth": 100,
   "jsxSingleQuote": true,
   "endOfLine": "lf",
   "useTabs": false
