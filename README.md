@@ -4,10 +4,10 @@
 
 Para levantar la aplicación sigue los siguientes pasos.
 
-1. Instala [nodeJS v20](http://localhost:3000), ademas verifica tener al menos un sistema de gestor de paquetes:
+1. Instala [nodeJS v20](https://nodejs.org/en/), ademas verifica tener al menos un sistema de gestor de paquetes:
 
-- [npm v10.7.0](http://localhost:3000)
-- [pnpm v20.12.2](http://localhost:3000)
+- [npm v10.7.0](https://www.npmjs.com/)
+- [pnpm v20.12.2](https://pnpm.io/installation)
 
 2. clona el repositorio o realiza un fork
 3. Crea un archivo .env en la raíz del proyecto y agrega la URL:
