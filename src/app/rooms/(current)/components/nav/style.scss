@@ -1,19 +1,16 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
+@use '@styles/utils/transitions' as t;
 
 .dashboard-nav__container {
   padding-bottom: 50px;
 }
 
 .roomNav {
-  &-static-menu {
-    background-color: transparent;
-    text-align: right;
-  }
   &-details {
     padding: v.$padding v.$padding * 0.5;
     border-radius: v.$radius;
-    transition: all 0.2s linear;
+    transition: t.$pong;
     user-select: none;
     &[open],
     &:hover {

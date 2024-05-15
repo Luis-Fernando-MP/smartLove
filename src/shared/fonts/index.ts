@@ -1,10 +1,4 @@
-import {
-  Mada,
-  Roboto_Flex,
-  Sansita_Swashed,
-  Whisper,
-  Yeseva_One
-} from 'next/font/google'
+import { Mada, Roboto_Flex, Sansita_Swashed, Whisper, Yeseva_One } from 'next/font/google'
 
 export const yesevaOne = Yeseva_One({
   subsets: ['latin'],

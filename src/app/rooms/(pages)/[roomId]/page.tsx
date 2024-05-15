@@ -1,7 +1,14 @@
 import type { JSX } from 'react'
 
-const roomDetails = (): JSX.Element => {
-  return <section>roomDetails</section>
-}
+import Nav from './components/nav/Nav'
+import './style.scss'
 
-export default roomDetails
+const Room = (): JSX.Element => {
+  return (
+    <main className='dashboard-main room'>
+      <Nav />
+      <article className='dashboard-body'>Nav content</article>
+    </main>
+  )
+}
+export default Room

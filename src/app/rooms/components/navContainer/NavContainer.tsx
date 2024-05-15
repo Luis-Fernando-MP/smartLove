@@ -1,0 +1,32 @@
+import { Menu, PanelLeftClose } from 'lucide-react'
+import { type JSX, type ReactNode } from 'react'
+import useNav from 'shared/hooks/_useNav'
+
+import './style.scss'
+
+interface INavContainer {
+  children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
+  className: string
+}
+
+const NavContainer = ({ children, className }: INavContainer): JSX.Element => {
+  const { toggleShow, getClass } = useNav()
+
+  return (
+    <nav className={`dashboard-nav ${getClass()} ${className}`}>
+      <section className='dashboard-nav__container'>
+        <button className='dashboard-nav-static-menu' onClick={toggleShow}>
+          <PanelLeftClose />
+        </button>
+
+        {children}
+
+        <button className='dashboard-menu' onClick={toggleShow}>
+          <Menu stroke='#fff' />
+        </button>
+      </section>
+    </nav>
+  )
+}
+
+export default NavContainer

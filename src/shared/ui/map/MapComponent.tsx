@@ -34,13 +34,9 @@ function MapComponent({ position = defaultPosition }: IMap): JSX.Element {
           mapId: 'SmartProID'
         }
 
-        const map = new mapLibrary.Map(
-          mapRef.current as HTMLDivElement,
-          mapOptions
-        )
+        const map = new mapLibrary.Map(mapRef.current as HTMLDivElement, mapOptions)
 
-        const Marker = (await loader.importLibrary('marker'))
-          .AdvancedMarkerElement
+        const Marker = (await loader.importLibrary('marker')).AdvancedMarkerElement
 
         const marker = new Marker({
           map,

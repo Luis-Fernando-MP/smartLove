@@ -80,7 +80,8 @@ span,
 small,
 input,
 textarea,
-button {
+button,
+select {
   color: $fn2;
   font-family: $family;
 }
@@ -105,8 +106,10 @@ h5 {
 p,
 input,
 textarea,
-button {
+button,
+select {
   font-weight: 400;
+  font-size: $fP;
 }
 
 span,
@@ -128,7 +131,8 @@ span,
 small,
 input,
 textarea,
-button {
+button,
+select {
   text-wrap: pretty;
 }
 
@@ -151,8 +155,12 @@ button {
 }
 
 input,
-textarea {
+textarea,
+select {
   border: none;
+  &:focus {
+    box-shadow: 0 0 0 2px $tn2;
+  }
 }
 
 small {

@@ -1,6 +1,7 @@
 import { Star } from 'lucide-react'
 import Link from 'next/link'
 import type { JSX } from 'react'
+import { DASHBOARD_PATHS } from 'shared/constants'
 import { sansitaSwashed } from 'shared/fonts'
 
 import './style.scss'
@@ -24,7 +25,7 @@ function Header(): JSX.Element {
         <br />
         disponibles esperando por ti!
       </h4>
-      <Link href='/dashboard' className='headerApp-go'>
+      <Link href={`/rooms/${DASHBOARD_PATHS[1].link}`} className='headerApp-go'>
         Reservar ahora
       </Link>
       <section className='headerApp-starts'>

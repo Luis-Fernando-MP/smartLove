@@ -4,9 +4,9 @@ import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { type JSX, useState } from 'react'
+import { HOME_PATHS } from 'shared/constants'
 import { mada, yesevaOne } from 'shared/fonts'
 
-import { paths } from './paths'
 import './style.scss'
 import './userMobile.scss'
 
@@ -38,12 +38,12 @@ const Nav = (): JSX.Element => {
         <Menu stroke='#fff' />
       </button>
       <nav className={`landingNav ${show ? 'show-menu' : ''}`}>
-        <Link href='/' className='landingNav-brand'>
+        <Link href={HOME_PATHS[0].link} className='landingNav-brand'>
           <h2 className={yesevaOne.className}>Smart Pro</h2>
           <span className={mada.className}>Hotel sauna rooftop bar</span>
         </Link>
         <ul className='landingNav-paths'>
-          {paths.map(path => {
+          {HOME_PATHS.map(path => {
             const { name, link, Icon } = path
             const isActive = pathname === link ? 'active' : ''
             return (

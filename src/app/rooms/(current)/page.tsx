@@ -6,7 +6,7 @@ import './userMobile.scss'
 
 const Rooms = (): JSX.Element => {
   return (
-    <main className='dashboard-main'>
+    <main className='dashboard-main rooms'>
       <Nav />
       <article className='dashboard-body'>content</article>
     </main>

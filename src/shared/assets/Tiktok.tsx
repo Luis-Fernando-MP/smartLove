@@ -19,12 +19,7 @@ const Tiktok = (): JSX.Element => {
       </g>
       <defs>
         <clipPath id='clip0_430_665'>
-          <rect
-            width='17.6552'
-            height='20'
-            fill='white'
-            transform='translate(0.949219)'
-          />
+          <rect width='17.6552' height='20' fill='white' transform='translate(0.949219)' />
         </clipPath>
       </defs>
     </svg>

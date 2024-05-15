@@ -13,35 +13,28 @@ const Resume = async (): Promise<JSX.Element> => {
     <article className='resume'>
       <div className='resume-title'>
         <h2>HOTEL SMART PRO</h2>
-        <p>
-          Hotel de lujo con habitaciones LED, sensores, Rooftop, Bar y mucho
-          más…
-        </p>
+        <p>Hotel de lujo con habitaciones LED, sensores, Rooftop, Bar y mucho más…</p>
       </div>
       <Characteristics characteristics={characteristics} />
       <section className='resume-about'>
         <h3>Acerca de Nosotros</h3>
         <p>
-          Nos ubicamos en San Juan Miraflores, en el sector Alipio Ponce lote 6,
-          somos un centro de encanto tecnológico, el cual cuenta con
-          habitaciones luminosas equipadas con tecnología LED y sensores; que
-          permiten controlar la iluminación según las preferencias del huésped,
-          y con conectividad gratuita a servicios de streaming como: HBO,
-          Netflix y Prime video. Además, contamos con una terraza Rooftop, el
-          cual es nuestro escenario celestial donde la música se fusiona con la
-          noche y las luces bailan al ritmo de la diversión. Nuestro espacio
-          está diseñado para eventos inolvidables, donde cada detalle, desde la
-          iluminación hasta el sonido, crean una atmósfera única de celebración
-          y alegría.
+          Nos ubicamos en San Juan Miraflores, en el sector Alipio Ponce lote 6, somos un centro de
+          encanto tecnológico, el cual cuenta con habitaciones luminosas equipadas con tecnología
+          LED y sensores; que permiten controlar la iluminación según las preferencias del huésped,
+          y con conectividad gratuita a servicios de streaming como: HBO, Netflix y Prime video.
+          Además, contamos con una terraza Rooftop, el cual es nuestro escenario celestial donde la
+          música se fusiona con la noche y las luces bailan al ritmo de la diversión. Nuestro
+          espacio está diseñado para eventos inolvidables, donde cada detalle, desde la iluminación
+          hasta el sonido, crean una atmósfera única de celebración y alegría.
         </p>
       </section>
       <section className='resume-moreDetails'>
         <section className='resume-facilities'>
           <h3>Facilidades de acceso</h3>
           <h5>
-            Si tienes solicitudes de acceso especial, contactados mediante
-            nuestras redes sociales: puedes emplear WhatsApp, Facebook o Tik
-            tok, estaremos al pendiente de ti.
+            Si tienes solicitudes de acceso especial, contactados mediante nuestras redes sociales:
+            puedes emplear WhatsApp, Facebook o Tik tok, estaremos al pendiente de ti.
           </h5>
           <ul>
             <li>Accesible en silla de ruedas (puede tener limitaciones)</li>
@@ -66,10 +59,7 @@ const Resume = async (): Promise<JSX.Element> => {
           <aside className='resume-map__information'>
             <div>
               <MapPinned />
-              <h4>
-                SMART LOVE, San Juan de Miraflores 15058, en el sector Alipio
-                Ponce lote 6
-              </h4>
+              <h4>SMART LOVE, San Juan de Miraflores 15058, en el sector Alipio Ponce lote 6</h4>
             </div>
             <ul className='resume-map__social'>
               <li>WhatsApp</li>

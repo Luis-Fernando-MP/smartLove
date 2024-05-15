@@ -26,12 +26,7 @@ const Facebook = (): JSX.Element => {
           <stop offset='1' stopColor='#2E7BF9' />
         </linearGradient>
         <clipPath id='clip0_430_662'>
-          <rect
-            width='20'
-            height='20'
-            fill='white'
-            transform='translate(0.949219)'
-          />
+          <rect width='20' height='20' fill='white' transform='translate(0.949219)' />
         </clipPath>
       </defs>
     </svg>

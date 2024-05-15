@@ -8,8 +8,7 @@ import './layout.scss'
 
 export const metadata: Metadata = {
   title: 'SmartPro',
-  description:
-    'Sistema de gestión de reservas para la empresa de hotel "Smart Love"',
+  description: 'Sistema de gestión de reservas para la empresa de hotel "Smart Love"',
   icons: '/logo.png'
 }
 
@@ -23,11 +22,7 @@ function RootLayout({ children }: TRootLayout): JSX.Element {
       <body className={robotoFlex.className}>
         <NextTopLoader height={5} color='#9296ff' />
         {children}
-        <Toaster
-          position='top-center'
-          reverseOrder={false}
-          toastOptions={{ className: 'toast' }}
-        />
+        <Toaster position='top-center' reverseOrder={false} toastOptions={{ className: 'toast' }} />
       </body>
     </html>
   )

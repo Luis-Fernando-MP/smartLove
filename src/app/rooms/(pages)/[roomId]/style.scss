@@ -1,14 +1,14 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
-@use '../setCalculateMainSize' as calculate;
+@use '../../setCalculateMainSize' as calculate;
 
-$navSize: 250px; //<-- important
+$navSize: 300px; //<-- important
 
-.roomsNav {
+.roomNav {
   min-width: $navSize;
   max-width: $navSize;
 }
 
-.dashboard-main.rooms {
+.dashboard-main.room {
   @include calculate.setCalculateMainSize($navSize);
 }

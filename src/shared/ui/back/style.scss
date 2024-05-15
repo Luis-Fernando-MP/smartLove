@@ -1,0 +1,13 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+@use '@styles/utils/transitions' as t;
+
+.back {
+  &-action {
+    @include d.flex($ali: flex-start);
+    background-color: transparent;
+  }
+  svg {
+    display: block;
+  }
+}
