@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Proyecto Smart Pro
 
-## Getting Started
+![alt text](./assets/imagef.png)
 
-First, run the development server:
+Para levantar la aplicación sigue los siguientes pasos.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. Instala [nodeJS v20](http://localhost:3000), ademas verifica tener al menos un sistema de gestor de paquetes:
+
+- [npm v10.7.0](http://localhost:3000)
+- [pnpm v20.12.2](http://localhost:3000)
+
+2. clona el repositorio o realiza un fork
+3. Crea un archivo .env en la raíz del proyecto y agrega la URL:
+
+![Raíz del proyecto](./assets/image.png)
+
+```env
+  NEXT_PUBLIC_API_URL="http..."
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. dentro del proyecto instala las dependencias:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  npm i
+  # or
+  pnpm i
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+5. Ejecuta el proyecto en modo desarrollo
 
-## Learn More
+```bash
+  npm run turbo
+  # or
+  pnpm turbo
+```
 
-To learn more about Next.js, take a look at the following resources:
+# Paginas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Todas las rutas se encuentran dentro de la carpeta /src/app
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![alt text](./assets/image2.png)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-La conexión a los servicios de la api se encuentran dentro de la carpeta /src/service y los estilos se crean por cada componente, se empleo el formato "style.scss"
+![alt text](./assets/image3.png)
