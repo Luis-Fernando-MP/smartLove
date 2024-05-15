@@ -41,4 +41,5 @@ Para levantar la aplicación sigue los siguientes pasos.
 ![alt text](./assets/image2.png)
 
 -La conexión a los servicios de la api se encuentran dentro de la carpeta /src/service y los estilos se crean por cada componente, se empleo el formato "style.scss"
+
 ![alt text](./assets/image3.png)
