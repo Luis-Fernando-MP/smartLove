@@ -12,3 +12,8 @@ $navSize: 250px; //<-- important
 .dashboard-main.rooms {
   @include calculate.setCalculateMainSize($navSize);
 }
+
+.room-container {
+  @include d.flex($dir: row);
+  flex-wrap: wrap;
+}

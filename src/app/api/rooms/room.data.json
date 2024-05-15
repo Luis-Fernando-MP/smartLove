@@ -1,0 +1,220 @@
+[
+  {
+    "codigo": "lodfsdfksmdfjiaskasdns",
+    "nombre": "EStandar para todos",
+    "precio": 300.0,
+    "estado": true,
+    "usrcreacion": "admin",
+    "usredicion": "admin",
+    "serviciosHabitacion": [
+      {
+        "idServHabitacion": 5,
+        "nombreServicio": "Sencilla",
+        "urlImagen": "img/sencilla.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:08:24",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:08:24"
+      },
+      {
+        "idServHabitacion": 7,
+        "nombreServicio": "No reembolsable",
+        "urlImagen": "img/noreembolsable.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:08:24",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:08:24"
+      },
+      {
+        "idServHabitacion": 3,
+        "nombreServicio": "Wifi gratis",
+        "urlImagen": "img/wifi.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:08:24",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:08:24"
+      },
+      {
+        "idServHabitacion": 4,
+        "nombreServicio": "Vista a la ciudad",
+        "urlImagen": "img/vistaciudad.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:08:24",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:08:24"
+      }
+    ],
+    "imagenesHabitacion": [
+      {
+        "idImgHabitacion": 4,
+        "urlImagen": "https://www.hotelsantamariacusco.com/wp-content/uploads/2022/01/habitacion-triple-hotel-Santa-Maria-Cusco-peru01.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:07:41",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:07:41"
+      },
+      {
+        "idImgHabitacion": 2,
+        "urlImagen": "https://www.hotelsantamariacusco.com/wp-content/uploads/2022/01/habitacion-doble-hotel-Santa-Maria-Cusco-peru01.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:07:41",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:07:41"
+      },
+      {
+        "idImgHabitacion": 3,
+        "urlImagen": "https://www.hotelsantamariacusco.com/wp-content/uploads/2022/01/habitacion-simple-hotel-Santa-Maria-Cusco-peru.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:07:41",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:07:41"
+      }
+    ]
+  },
+  {
+    "codigo": "kijduansjjvdmksodijf",
+    "nombre": "Space between in the universe",
+    "precio": 200.0,
+    "estado": true,
+    "usrcreacion": "admin",
+    "usredicion": "admin",
+    "serviciosHabitacion": [
+      {
+        "idServHabitacion": 4,
+        "nombreServicio": "Vista a la ciudad",
+        "urlImagen": "img/vistaciudad.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:08:24",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:08:24"
+      },
+      {
+        "idServHabitacion": 5,
+        "nombreServicio": "Sencilla",
+        "urlImagen": "img/sencilla.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:08:24",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:08:24"
+      },
+      {
+        "idServHabitacion": 7,
+        "nombreServicio": "No reembolsable",
+        "urlImagen": "img/noreembolsable.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:08:24",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:08:24"
+      }
+    ],
+    "imagenesHabitacion": [
+      {
+        "idImgHabitacion": 3,
+        "urlImagen": "https://www.hotelsantamariacusco.com/wp-content/uploads/2022/01/habitacion-simple-hotel-Santa-Maria-Cusco-peru.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:07:41",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:07:41"
+      },
+      {
+        "idImgHabitacion": 4,
+        "urlImagen": "https://www.hotelsantamariacusco.com/wp-content/uploads/2022/01/habitacion-triple-hotel-Santa-Maria-Cusco-peru01.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:07:41",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:07:41"
+      }
+    ]
+  },
+  {
+    "codigo": "lkoijkodlfkjeimaodkmjas",
+    "nombre": "Habitación 1",
+    "precio": 150.0,
+    "estado": false,
+    "usrcreacion": "admin",
+    "usredicion": "admin",
+    "serviciosHabitacion": [
+      {
+        "idServHabitacion": 3,
+        "nombreServicio": "Wifi gratis",
+        "urlImagen": "img/wifi.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:08:24",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:08:24"
+      },
+      {
+        "idServHabitacion": 4,
+        "nombreServicio": "Vista a la ciudad",
+        "urlImagen": "img/vistaciudad.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:08:24",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:08:24"
+      },
+      {
+        "idServHabitacion": 5,
+        "nombreServicio": "Sencilla",
+        "urlImagen": "img/sencilla.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:08:24",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:08:24"
+      },
+      {
+        "idServHabitacion": 7,
+        "nombreServicio": "No reembolsable",
+        "urlImagen": "img/noreembolsable.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:08:24",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:08:24"
+      }
+    ],
+    "imagenesHabitacion": [
+      {
+        "idImgHabitacion": 2,
+        "urlImagen": "https://www.hotelsantamariacusco.com/wp-content/uploads/2022/01/habitacion-doble-hotel-Santa-Maria-Cusco-peru01.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:07:41",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:07:41"
+      },
+      {
+        "idImgHabitacion": 3,
+        "urlImagen": "https://www.hotelsantamariacusco.com/wp-content/uploads/2022/01/habitacion-simple-hotel-Santa-Maria-Cusco-peru.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:07:41",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:07:41"
+      },
+      {
+        "idImgHabitacion": 4,
+        "urlImagen": "https://www.hotelsantamariacusco.com/wp-content/uploads/2022/01/habitacion-triple-hotel-Santa-Maria-Cusco-peru01.jpg",
+        "estado": true,
+        "usrCreacion": "admin",
+        "fechCreacion": "2024-05-15 12:07:41",
+        "usrEdicion": "admin",
+        "fechEdicion": "2024-05-15 12:07:41"
+      }
+    ]
+  }
+]

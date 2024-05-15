@@ -26,4 +26,5 @@
   border-top-left-radius: v.$radius * 2.5;
   padding: v.$padding;
   width: 100%;
+  overflow: auto;
 }

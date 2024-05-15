@@ -1,0 +1,14 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+.cardRoom {
+  background-color: v.$bg2;
+  width: 250px;
+  height: 300px;
+  border-radius: v.$radius;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+  }
+}
