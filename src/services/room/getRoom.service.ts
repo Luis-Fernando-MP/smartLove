@@ -1,21 +1,25 @@
+import axios from 'axios'
 import { API_URL } from 'shared/constants'
 
 import { IRoom } from './room.service.types'
 
-export const getAllRooms = async (): Promise<IRoom[]> => {
-  const response = await fetch(`${API_URL}/rooms/`, {
-    cache: 'no-cache'
-  })
-  const data = await response.json()
+const axiosRoom = axios.create({
+  baseURL: `${API_URL}/rooms`
+})
 
-  return [...data.rooms, ...data.rooms, ...data.rooms]
+export const getAllRooms = async (): Promise<IRoom[]> => {
+  const response = await axiosRoom('/')
+  return response.data.rooms
 }
 
 export const getRoomById = async (id: string): Promise<IRoom> => {
-  const response = await fetch(`${API_URL}/rooms/${id}`, {
-    cache: 'no-cache'
+  await new Promise(resolve => {
+    setTimeout(() => {
+      resolve()
+    }, 2000)
   })
-  const data = await response.json()
+  console.log('no cache')
 
-  return data
+  const response = await axiosRoom(`/${id}`)
+  return response.data.room
 }

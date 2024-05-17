@@ -1,12 +1,12 @@
 'use client'
 
 import NavContainer from 'app/rooms/components/navContainer/NavContainer'
+import useNav from 'hooks/useNav'
 import { CircleHelp } from 'lucide-react'
 import Link from 'next/link'
 import { type JSX } from 'react'
 import { DASHBOARD_PATHS, HOME_PATHS, WHATSAPP_URL } from 'shared/constants'
 import { whisper } from 'shared/fonts'
-import useNav from 'shared/hooks/_useNav'
 import Social from 'shared/ui/social/Social'
 
 import Filters from '../filters/Filters'

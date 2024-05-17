@@ -1,6 +1,6 @@
+import useNav from 'hooks/useNav'
 import { Menu, PanelLeftClose } from 'lucide-react'
 import { type JSX, type ReactNode } from 'react'
-import useNav from 'shared/hooks/_useNav'
 
 import './style.scss'
 
