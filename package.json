@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "turbo": "rm -rf .next && pnpm store prune && pnpm dev"
+    "turbo": "rimraf .next && pnpm store prune && pnpm dev"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "1.16.6",
@@ -27,7 +27,7 @@
     "react-fast-marquee": "1.6.4",
     "react-hook-form": "7.51.4",
     "react-hot-toast": "2.4.1",
-    "rimraf": "^5.0.7",
+    "rimraf": "5.0.7",
     "zod": "3.23.8",
     "zustand": "4.5.2"
   },
