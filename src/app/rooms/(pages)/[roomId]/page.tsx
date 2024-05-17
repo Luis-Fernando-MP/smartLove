@@ -1,8 +1,5 @@
 'use client'
 
-// import { useRouter } from 'next/navigation';
-import { useQueryClient } from '@tanstack/react-query'
-import { ROOMS_NAME_CACHE, useRoom } from 'hooks/useRooms'
 import { type JSX, Suspense } from 'react'
 
 import Details from './components/details/Details'
@@ -12,12 +9,12 @@ import './style.scss'
 const Room = (context: { params: { roomId: string } }): JSX.Element => {
   return (
     <main className='dashboard-main room'>
-      <Nav />
-      <article className='dashboard-body'>
-        <Suspense fallback={<p>cargando ...</p>}>
+      <Suspense fallback={<p>cargando ...</p>}>
+        <Nav id={context.params.roomId} />
+        <article className='dashboard-body'>
           <Details id={context.params.roomId} />
-        </Suspense>
-      </article>
+        </article>
+      </Suspense>
     </main>
   )
 }

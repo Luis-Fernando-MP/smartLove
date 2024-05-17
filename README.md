@@ -1,6 +1,7 @@
 # Proyecto Smart Pro
 
 ![alt text](./assets/imagef.png)
+![alt text](./assets/fondo2.png)
 
 Para levantar la aplicación sigue los siguientes pasos.
 

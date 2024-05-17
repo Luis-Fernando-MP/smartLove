@@ -1,8 +1,8 @@
 ### Home
 
-- [ ]: mejorar el componente Characteristic
-- [ ]: completar el diseño del home:
-- [ ]: completar el responsive del home:
+- [x]: mejorar el componente Characteristic
+- [~]: completar el diseño del home:
+- [~]: completar el responsive del home:
 
   - [ ]: nosotros
   - [ ]: Fundamentos de accesos
@@ -12,12 +12,12 @@
 
 ### Dashboard
 
-- [ ]: crear el componente header
-- [ ]: la pagina rooms
-  - [ ]: crear el componente nav
-  - [ ]: crear componente room
-  - [ ]: listar los componentes
+- [x]: crear el componente header
+- [x]: la pagina rooms
+  - [x]: crear el componente nav
+  - [x]: crear componente room
+  - [x]: listar los componentes
   - [ ]: crear los esqueletos (opcional)
-  - [ ]: utilizar zustand para el manejo de peticiones
-  - [ ]: crear el componente userModal
-- [ ]: enlazar las redes sociales
+  - [~]: utilizar zustand para el manejo de peticiones
+  - [x]: crear el componente userModal
+- [x]: enlazar las redes sociales

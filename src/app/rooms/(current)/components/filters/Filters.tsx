@@ -11,15 +11,19 @@ import {
   roomsResolver
 } from 'shared/resolvers/rooms.resolver'
 
+import useFilters from '../../store/useFilters.store'
 import './style.scss'
 
 const Filters = (): JSX.Element => {
+  const { filters, setFIlters } = useFilters()
+  console.log(filters)
+
   const hookForm = useForm<TFilterRoomsValidator>({
     resolver: roomsResolver,
     defaultValues: {
-      pricing: pricingValues[1].value,
-      classification: classificationsValues[1].value,
-      capacity: capacitiesValues[1].value
+      pricing: filters.pricing,
+      classification: filters.classification,
+      capacity: filters.capacity
     }
   })
   const { register, handleSubmit, reset, formState } = hookForm
@@ -27,8 +31,8 @@ const Filters = (): JSX.Element => {
   const { capacity: capacityError, classification: classyError, pricing: pricingError } = errors
 
   const onFormSubmit = (data: TFilterRoomsValidator) => {
-    console.log(data)
-    toast.success('Enviando datos: \n' + JSON.stringify(data))
+    setFIlters(data)
+    toast.success('Cargando filtros')
   }
 
   const onErrors = errors => {

@@ -1,0 +1,11 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.roomsContainer {
+  @include d.flex();
+  &-items {
+    width: 100%;
+    @include d.flex($dir: row);
+    flex-wrap: wrap;
+  }
+}
