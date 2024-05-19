@@ -5,14 +5,19 @@ import { DarkModeSwitch } from 'react-toggle-dark-mode'
 
 import themes from './themes.json'
 
+const currentTheme = window.localStorage.getItem('theme') !== 'dark'
+const matchTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+
 const ColorSchemeButton = (): JSX.Element => {
-  const [isActiveDarkMode, setIsActiveDarkMode] = useState(
-    Boolean(localStorage.getItem('theme') !== 'dark')
-  )
+  const [isActiveDarkMode, setIsActiveDarkMode] = useState(false)
+
+  // useEffect(() => {
+  //   setIsActiveDarkMode(currentTheme || matchTheme)
+  // }, [])
 
   useEffect(() => {
     const newTheme = isActiveDarkMode ? 'light' : 'dark'
-    localStorage.setItem('theme', newTheme)
+    window.localStorage.setItem('theme', newTheme)
     document.body.classList.toggle('dark', !isActiveDarkMode)
     setRoot(isActiveDarkMode)
   }, [isActiveDarkMode])
