@@ -3,7 +3,7 @@ import type { JSX } from 'react'
 const FallbackLoading = (): JSX.Element => {
   return (
     <section>
-      <p>Loading</p>
+      <p>Cargando habitaciones</p>
     </section>
   )
 }

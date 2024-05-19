@@ -13,13 +13,6 @@ export const getAllRooms = async (): Promise<IRoom[]> => {
 }
 
 export const getRoomById = async (id: string): Promise<IRoom> => {
-  await new Promise(resolve => {
-    setTimeout(() => {
-      resolve()
-    }, 2000)
-  })
-  console.log('no cache')
-
   const response = await axiosRoom(`/${id}`)
   return response.data.room
 }

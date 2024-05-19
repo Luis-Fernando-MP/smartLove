@@ -27,7 +27,7 @@ async function RootLayout({ children }: TRootLayout): Promise<JSX.Element> {
         </Link>
         <Nav />
         <Header />
-        <Marquee autoFill gradientColor='#fff' gradient>
+        <Marquee autoFill gradientColor='var(--bg-primary)' gradient>
           {characteristics.map(characteristic => (
             <Characteristic key={characteristic.title} characteristic={characteristic} />
           ))}

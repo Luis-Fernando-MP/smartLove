@@ -8,6 +8,8 @@ export interface IRoom {
   nombre: string
   precio: number
   estado: boolean
+  counter: number
+  onSale: boolean
   usrcreacion: APP_ROLES
   usredicion: APP_ROLES
   serviciosHabitacion: IRoomService[]

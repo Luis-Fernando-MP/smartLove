@@ -25,6 +25,21 @@
   --span-font-size: 1em;
   --small-font-size: 0.9em;
 }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1a1e23;
+    --bg-secondary: #0e1217;
+
+    --fnt-primary: #b6beca;
+    --fnt-secondary: #b6beca;
+
+    --tn-primary: #73c191;
+    --tn-secondary: #df5e65;
+
+    --disable-primary: #4a4d4f;
+    --disable-secondary: #4a4d4fc5;
+  }
+}
 
 *,
 ::before,
@@ -170,6 +185,12 @@ small {
 .btn {
   padding: 8px 10px;
   border-radius: $radius;
+}
+
+svg {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 @include m.smallerScreen() {

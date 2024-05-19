@@ -1,5 +1,7 @@
 'use client'
 
+import { useQueryClient } from '@tanstack/react-query'
+import { ROOMS_NAME_CACHE } from 'hooks/useRooms'
 import type { JSX } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -16,7 +18,7 @@ import './style.scss'
 
 const Filters = (): JSX.Element => {
   const { filters, setFIlters } = useFilters()
-  console.log(filters)
+  const queryCLient = useQueryClient()
 
   const hookForm = useForm<TFilterRoomsValidator>({
     resolver: roomsResolver,
@@ -26,12 +28,16 @@ const Filters = (): JSX.Element => {
       capacity: filters.capacity
     }
   })
+
   const { register, handleSubmit, reset, formState } = hookForm
   const { errors } = formState
   const { capacity: capacityError, classification: classyError, pricing: pricingError } = errors
 
   const onFormSubmit = (data: TFilterRoomsValidator) => {
     setFIlters(data)
+    queryCLient.invalidateQueries({
+      queryKey: [ROOMS_NAME_CACHE]
+    })
     toast.success('Cargando filtros')
   }
 

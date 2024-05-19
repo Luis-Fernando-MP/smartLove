@@ -21,7 +21,6 @@ const Nav = (): JSX.Element => {
   const { roomID: roomIdError, roomName: roomNameError, comment: commentError } = errors
 
   const onFormSubmit = (data: TReservationResolver) => {
-    console.log(data)
     toast.success('Enviando datos: \n' + JSON.stringify(data))
   }
 

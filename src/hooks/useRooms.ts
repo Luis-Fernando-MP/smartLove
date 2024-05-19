@@ -21,10 +21,6 @@ export function useRooms() {
 export function useRoom(id: string) {
   const queryClient = useQueryClient()
   const data = (queryClient.getQueryData([ROOMS_NAME_CACHE]) as IRoom[]) || []
-  if (data) {
-    const result = data.find(room => room.codigo === id)
-    console.log('cache: ', result)
-  }
 
   const query = useSuspenseQuery({
     queryKey: [ROOM_NAME_CACHE, id],

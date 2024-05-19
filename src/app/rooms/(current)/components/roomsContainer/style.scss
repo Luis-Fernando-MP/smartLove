@@ -5,7 +5,8 @@
   @include d.flex();
   &-items {
     width: 100%;
-    @include d.flex($dir: row);
+    @include d.flex($dir: row, $ali: flex-start);
     flex-wrap: wrap;
+    height: 100%;
   }
 }

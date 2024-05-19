@@ -1,9 +1,12 @@
+'use client'
+
 /* eslint-disable @next/next/no-img-element */
-import { ArrowUpRight, Bed, DollarSign, InfoIcon } from 'lucide-react'
+import { ArrowUpRight, Bed, DollarSign } from 'lucide-react'
 import Link from 'next/link'
 import type { JSX, ReactNode } from 'react'
 import { IRoom } from 'services/room/room.service.types'
 
+import SlugRoom from './slugRoom'
 import './style.scss'
 
 interface ICardRoom {
@@ -12,14 +15,26 @@ interface ICardRoom {
 }
 
 const CardRoom = ({ data }: ICardRoom): JSX.Element => {
-  const { codigo, estado, imagenesHabitacion, nombre, precio, serviciosHabitacion } = data
+  const {
+    codigo,
+    estado,
+    imagenesHabitacion,
+    nombre,
+    precio,
+    serviciosHabitacion,
+    counter,
+    onSale
+  } = data
   return (
     <section className='cardRoom'>
-      <p className='cardRoom-slug'>
-        <InfoIcon />
-        Tu mejor opción
-      </p>
-      <img src={imagenesHabitacion[0].urlImagen} alt={nombre} className='cardRoom-image' />
+      <SlugRoom counter={counter} onSale={onSale} itsFull={estado} />
+      <img
+        src={imagenesHabitacion[0].urlImagen}
+        alt={nombre}
+        className='cardRoom-image'
+        height={100}
+        loading='lazy'
+      />
       <h5>{nombre}</h5>
       <ul className='cardRoom-services'>
         {serviciosHabitacion.map(services => {
@@ -27,7 +42,7 @@ const CardRoom = ({ data }: ICardRoom): JSX.Element => {
           return (
             <li className='cardRoom-service' key={idServHabitacion}>
               <Bed />
-              <p>{nombreServicio}</p>
+              <span>{nombreServicio}</span>
             </li>
           )
         })}

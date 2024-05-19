@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { type JSX, useState } from 'react'
 import { HOME_PATHS } from 'shared/constants'
 import { mada, yesevaOne } from 'shared/fonts'
+import ColorSchemeButton from 'shared/ui/colorSchemeButton/ColorSchemeButton'
 
 import './style.scss'
 import './userMobile.scss'
@@ -60,6 +61,7 @@ const Nav = (): JSX.Element => {
           })}
         </ul>
         <article className='landingNav-account'>
+          <ColorSchemeButton />
           <button className='btn'>Regístrate</button>
           <button className='btn'>Ingresar</button>
         </article>

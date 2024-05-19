@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { JSX } from 'react'
 import { HOME_PATHS } from 'shared/constants'
 import { mada, yesevaOne } from 'shared/fonts'
+import ColorSchemeButton from 'shared/ui/colorSchemeButton/ColorSchemeButton'
 
 import './style.scss'
 
@@ -13,6 +14,7 @@ const Header = (): JSX.Element => {
         <span className={mada.className}>Hotel sauna rooftop bar</span>
       </Link>
       <article className='header-account'>
+        <ColorSchemeButton />
         <button className='btn'>Regístrate</button>
         <button className='btn'>Ingresar</button>
       </article>

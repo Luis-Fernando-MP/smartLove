@@ -1,23 +1,28 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
+
 .cardRoom {
-  background-color: v.$bg2;
-  width: 300px;
-  min-height: 400px;
+  width: 250px;
+  height: auto;
   border-radius: v.$radius;
   overflow: hidden;
-
-  &-slug {
+  margin: v.$padding * 0.6;
+  border: 1px solid v.$dis2;
+  position: relative;
+  z-index: 1;
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
     width: 100%;
-    background-color: v.$warning;
-    color: v.$warning_dark;
-    padding: 5px;
-    @include d.flex($dir: row, $ali: center);
-    justify-content: center;
-    svg {
-      stroke: v.$warning_dark;
-    }
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: rotateZ(180deg);
   }
+
   h5 {
     margin: v.$padding auto;
     text-align: center;
@@ -32,9 +37,10 @@
     border-radius: 0 0px v.$radius v.$radius;
   }
   &-services {
+    @include d.flex($gap: 7px);
     padding: v.$padding;
     width: 100%;
-    @include d.flex;
+    height: auto;
   }
   &-service {
     width: 100%;
@@ -43,8 +49,8 @@
   &-go {
     @include d.flex($ali: center, $dir: row, $gap: 5px);
     justify-content: center;
-
-    background-color: v.$tn1;
-    color: white;
+    margin: auto;
+    background-color: v.$dis2;
+    color: v.$fn2;
   }
 }

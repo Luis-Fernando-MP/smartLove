@@ -1,0 +1,43 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+$listSlugs: (
+  '.bets-option' #a2a1ff,
+  '.max-results' #f4d460,
+  '.on-sale' #a3ddc5,
+  '.its-full' #ffa5a5
+);
+
+@each $tag, $value in $listSlugs {
+  .cardRoom:has(.cardRoom-slug#{$tag}) {
+    &::before {
+      // background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba($value, 0.4), transparent);
+    }
+  }
+}
+
+body.dark {
+  .cardRoom-slug {
+    @each $tag, $value in $listSlugs {
+      &#{$tag} {
+        background-color: rgba(lighten($value, 10), 0.8);
+      }
+    }
+  }
+}
+.cardRoom-slug {
+  width: 100%;
+  padding: 5px;
+  @include d.flex($dir: row, $ali: center);
+  justify-content: center;
+  @each $tag, $value in $listSlugs {
+    &#{$tag} {
+      background-color: rgba($value, 0.5);
+      &,
+      svg {
+        color: darken($value, 60);
+        stroke: darken($value, 70);
+      }
+    }
+  }
+}

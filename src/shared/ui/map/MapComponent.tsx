@@ -53,7 +53,7 @@ function MapComponent({ position = defaultPosition }: IMap): JSX.Element {
         })
         setLoading(false)
       } catch (error) {
-        console.log(error)
+        console.error(error)
         toast.error('No se pudo cargar el mapa en la pagina', {
           position: 'bottom-right'
         })

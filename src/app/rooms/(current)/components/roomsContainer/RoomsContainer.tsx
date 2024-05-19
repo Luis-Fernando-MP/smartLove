@@ -2,6 +2,7 @@
 
 import { useRooms } from 'hooks/useRooms'
 import type { JSX } from 'react'
+import { Masonry } from 'react-masonry'
 
 import useFilters from '../../store/useFilters.store'
 import CardRoom from '../cardRoom/cardRoom'
@@ -18,11 +19,29 @@ const RoomsContainer = (): JSX.Element => {
         Para: {filters.pricing}, clasificación {filters.classification}, capacidad de{' '}
         {filters.capacity} huéspedes
       </p>
-      <article className='roomsContainer-items'>
+      <Masonry>
         {data.map(room => {
-          return <CardRoom data={room} key={room.codigo} />
+          return (
+            <div
+              key={room.codigo + Date.now().toString() + room.nombre + String(Math.random() * 1000)}
+            >
+              <CardRoom data={room} />
+            </div>
+            // <div
+            //   key={Math.random() * 1000000}
+            //   style={{
+            //     background: 'red',
+            //     padding: '10px',
+            //     maxWidth: '300px',
+            //     margin: '10px',
+            //     border: '1px solid black'
+            //   }}
+            // >
+            //   {JSON.stringify(room)}
+            // </div>
+          )
         })}
-      </article>
+      </Masonry>
     </article>
   )
 }
