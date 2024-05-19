@@ -1,6 +1,6 @@
-import Spinner from './Spinner'
 import { useTransition } from 'react'
 
+import Spinner from './Spinner'
 
 export default function Button({ children, onClick }) {
   const [isPending, startTransition] = useTransition()

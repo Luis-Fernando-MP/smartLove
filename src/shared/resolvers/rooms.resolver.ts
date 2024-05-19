@@ -1,6 +1,5 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
 
 const schemeRoomsValidator = z.object(
   {
@@ -74,5 +73,5 @@ export const capacitiesValues = [
   {
     value: '>4',
     name: 'Más de 4 huéspedes'
-  },
+  }
 ]
