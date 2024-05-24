@@ -4,21 +4,28 @@ import type { JSX } from 'react'
 
 import './style.scss'
 
-const Back = (): JSX.Element => {
-  const router = useRouter()
+import type { JSX, ReactNode } from 'react'
+
+interface IBack {
+  children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
+  row?: boolean
+}
+
+const Back = ({ row = false }: IBack):JSX.Element => {
+    const router = useRouter()
 
   const goBack = () => {
     router.replace('/rooms')
   }
 
   return (
-    <section className='back'>
+    <section className={`back ${row ? 'row' : ''}`}>
       <button onClick={goBack} className='back-action'>
         <ArrowLeft />
         <p>Regresar</p>
       </button>
     </section>
-  )
+  ) 
 }
 
 export default Back

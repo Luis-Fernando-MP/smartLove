@@ -1,21 +1,7 @@
-'use client'
+import type { JSX } from 'react'
 
-import { type JSX, Suspense } from 'react'
-
-import Details from './components/details/Details'
-import Nav from './components/nav/Nav'
-import './style.scss'
-
-const Room = (context: { params: { roomId: string } }): JSX.Element => {
-  return (
-    <main className='dashboard-main room'>
-      <Suspense fallback={<p>cargando ...</p>}>
-        <Nav id={context.params.roomId} />
-        <article className='dashboard-body'>
-          <Details id={context.params.roomId} />
-        </article>
-      </Suspense>
-    </main>
-  )
+const Page = (): JSX.Element => {
+  return <p>process</p>
 }
-export default Room
+
+export default Page

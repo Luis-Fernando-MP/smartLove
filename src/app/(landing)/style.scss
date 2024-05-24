@@ -54,8 +54,8 @@
       animation: rotateAfterElement 1s ease-in-out infinite alternate;
       background: radial-gradient(
         circle 500px at 100% 100px,
-        rgb(112, 61, 230) 0%,
-        v.$tn2 50%,
+        v.$tn1 0%,
+        transparent 90%,
         transparent
       );
       @keyframes rotateAfterElement {
@@ -63,7 +63,7 @@
           transform: translateY(0);
         }
         from {
-          transform: translateY(-50px);
+          transform: translateY(-30px);
         }
       }
     }

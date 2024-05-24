@@ -2,7 +2,7 @@
 @use '@styles/utils/defs' as d;
 @use '../../setCalculateMainSize' as calculate;
 
-$navSize: 300px; //<-- important
+$navSize: 550px; //<-- important
 
 .roomNav {
   min-width: $navSize;
@@ -11,4 +11,8 @@ $navSize: 300px; //<-- important
 
 .dashboard-main.room {
   @include calculate.setCalculateMainSize($navSize);
+}
+
+.dashboard-body {
+  @include d.flex;
 }

@@ -1,16 +1,22 @@
 import { useRoom } from 'hooks/useRooms'
 import type { JSX, ReactNode } from 'react'
+import Back from 'shared/ui/back/Back'
+
+import Steps from '../steps/Steps'
 
 interface IDetails {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
   id: string
 }
 
-const Details = ({ id }: IDetails): JSX.Element => {
+const Details = ({ id }: IDetails): JSX.Element | null => {
   const { data } = useRoom(id)
+  if (!data) return null
+
   return (
     <>
-      <img src={data?.imagenesHabitacion[0].urlImagen} width={500} />
+      <Back row />
+      <Steps total={data.precio} />
       <p>{data?.nombre}</p>
       <span>{JSON.stringify(data)}</span>
     </>

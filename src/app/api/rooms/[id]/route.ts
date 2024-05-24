@@ -1,3 +1,5 @@
+import { NextResponse } from 'next/server'
+
 import roomsData from '../room.data.json'
 
 interface Params {
@@ -5,10 +7,17 @@ interface Params {
 }
 
 export async function GET(request: Request, response: { params: Params }) {
-  const { id } = response.params
-  return Response.json({
-    room: roomsData.find(({ codigo }) => {
+  try {
+    const { id } = response.params
+    const existRoom = roomsData.find(({ codigo }) => {
       return codigo === id
     })
-  })
+    if (!existRoom) return new NextResponse('INVALID ROOM', { status: 400 })
+    return Response.json({
+      room: existRoom
+    })
+  } catch (error) {
+    console.error(error)
+    return new NextResponse('INTERNAL SERVER ERROR', { status: 501 })
+  }
 }

@@ -1,7 +1,21 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
-@use '@styles/utils/transitions' as t;
 
 .dashboard-nav__container {
   padding-bottom: 50px;
+}
+
+.roomNav {
+  &-images {
+    width: 100%;
+    height: auto;
+    @include d.flex($dir: row, $ali: center);
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  &-image {
+    max-width: 250px;
+    height: 300px;
+    object-fit: cover;
+  }
 }

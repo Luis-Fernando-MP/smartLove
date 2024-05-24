@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { API_URL } from 'shared/constants'
 
 import { IRoom } from './room.service.types'

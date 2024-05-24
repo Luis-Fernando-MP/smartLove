@@ -16,7 +16,9 @@ const NavContainer = ({ children, className }: INavContainer): JSX.Element => {
     <nav className={`dashboard-nav ${getClass()} ${className}`}>
       <section className='dashboard-nav__container'>
         <button className='dashboard-nav-static-menu' onClick={toggleShow}>
-          <PanelLeftClose />
+          <span className='btn'>
+            <PanelLeftClose />
+          </span>
         </button>
 
         {children}

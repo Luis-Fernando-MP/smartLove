@@ -1,0 +1,50 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+$widthSeparator: v.$padding * 2;
+.room {
+  &-steps {
+    @include d.flex($dir: row, $ali: stretch, $gap: $widthSeparator);
+    justify-content: center;
+    width: 100%;
+    border-radius: v.$radius;
+  }
+  &-step {
+    padding: 0 v.$padding;
+    counter-increment: step;
+    @include d.flex($dir: row, $ali: center);
+    position: relative;
+    &:last-child div {
+      @include d.flex($gap: 0, $ali: flex-start);
+      flex-direction: column;
+    }
+    &:last-child:after {
+      display: none;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      width: $widthSeparator;
+      height: 5px;
+      background-color: v.$dis2;
+      right: -1 * $widthSeparator;
+    }
+    &::before {
+      content: counters(step, '.', numeric);
+      background-color: v.$dis2;
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      @include d.flex($ali: center);
+      justify-content: center;
+    }
+    &.active::before {
+      background-color: v.$tn1;
+      color: v.$bg1;
+    }
+    &.active::after {
+      background-color: v.$tn1;
+    }
+  }
+}

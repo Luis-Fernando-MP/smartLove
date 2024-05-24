@@ -9,6 +9,8 @@ $dashboardMenuSize: 40px;
 .dashboard-nav {
   height: 100%;
   position: relative;
+  // min-width: 250px; <-- one nav have an different width and height
+  // max-width: 250px; <--
   &__container {
     @include d.flex();
     overflow: auto;
@@ -18,11 +20,12 @@ $dashboardMenuSize: 40px;
     padding: v.$padding;
   }
   &-static-menu {
-    background-color: transparent;
-    text-align: right;
+    @include d.flex($dir: row);
+    justify-content: flex-end;
+    span {
+      background-color: v.$bg1;
+    }
   }
-  // min-width: 250px; <-- one nav have an different width and height
-  // max-width: 250px; <--
 
   &.show-menu .dashboard-menu {
     transform: scale(1);

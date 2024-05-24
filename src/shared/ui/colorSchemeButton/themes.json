@@ -5,16 +5,16 @@
     "fnt-primary": "#000000",
     "fnt-secondary": "#101820",
     "tn-primary": "#4f54dc",
-    "tn-secondary": "#df5e65",
+    "tn-secondary": "#4f54dc",
     "disable-primary": "#777588",
     "disable-secondary": "#7775886f"
   },
   "dark": {
-    "bg-primary": "#101315",
+    "bg-primary": "#1a1e23",
     "bg-secondary": "#0e1217",
     "fnt-primary": "#b6beca",
     "fnt-secondary": "#b6beca",
-    "tn-primary": "#7d81e7a6",
+    "tn-primary": "#73c191",
     "tn-secondary": "#df5e65",
     "disable-primary": "#4a4d4f",
     "disable-secondary": "#4a4d4fc5"

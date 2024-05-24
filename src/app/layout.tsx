@@ -21,9 +21,13 @@ function RootLayout({ children }: TRootLayout): JSX.Element {
   return (
     <html lang='es'>
       <body className={robotoFlex.className}>
-        <NextTopLoader height={5} color='#9296ff' />
+        <NextTopLoader height={5} color='var(--tn-primary)' />
         <TanStackProvider>{children}</TanStackProvider>
-        <Toaster position='top-center' reverseOrder={false} toastOptions={{ className: 'toast' }} />
+        <Toaster
+          position='top-center'
+          reverseOrder={false}
+          toastOptions={{ className: 'toast', style: { background: 'var(--bg-primary)' } }}
+        />
       </body>
     </html>
   )

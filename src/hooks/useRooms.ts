@@ -32,6 +32,5 @@ export function useRoom(id: string) {
     retry: 2,
     initialData: data !== undefined ? data.find(room => room.codigo === id) : null
   })
-
   return { ...query }
 }
