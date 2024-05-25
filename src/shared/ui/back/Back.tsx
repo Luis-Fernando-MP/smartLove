@@ -1,18 +1,16 @@
 import { ArrowLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import type { JSX } from 'react'
+import type { JSX, ReactNode } from 'react'
 
 import './style.scss'
-
-import type { JSX, ReactNode } from 'react'
 
 interface IBack {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
   row?: boolean
 }
 
-const Back = ({ row = false }: IBack):JSX.Element => {
-    const router = useRouter()
+const Back = ({ row = false }: IBack): JSX.Element => {
+  const router = useRouter()
 
   const goBack = () => {
     router.replace('/rooms')
@@ -25,7 +23,7 @@ const Back = ({ row = false }: IBack):JSX.Element => {
         <p>Regresar</p>
       </button>
     </section>
-  ) 
+  )
 }
 
 export default Back
