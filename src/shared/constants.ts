@@ -26,7 +26,7 @@ export const HOME_PATHS = [
   },
   {
     name: 'Ubicación',
-    link: '/map',
+    link: '/plat',
     Icon: MapPin
   },
   {

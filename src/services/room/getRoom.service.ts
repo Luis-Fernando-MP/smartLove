@@ -10,8 +10,6 @@ const axiosRoom = axios.create({
 export const getAllRooms = async (): Promise<IRoom[]> => {
   try {
     const response = await axiosRoom('/habitacion')
-    console.log('response --> ', response)
-
     if (!response.data || !Array.isArray(response.data)) {
       throw new Error('No se recibieron datos válidos en la respuesta')
     }

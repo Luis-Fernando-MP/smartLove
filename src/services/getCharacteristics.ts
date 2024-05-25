@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Beer, CalendarClock, Car, Check, PawPrint, Wifi } from 'lucide-react'
-import { ICharacter } from 'shared/ui/characteristics/Characteristics'
+import { API_URL } from 'shared/constants'
 
 export const listOfCharacteristicsComponent = {
   Check,
@@ -11,10 +11,21 @@ export const listOfCharacteristicsComponent = {
   CalendarClock
 }
 
-export const getCharacteristics = async (): Promise<ICharacter[]> => {
-  const res = await axios('http://localhost:3000/api/characteristics')
-  const { data } = res.data
-  return data.map(({ title, icon }) => {
-    return { title, Icon: listOfCharacteristicsComponent[icon] }
-  })
+const axiosCharacteristics = axios.create({
+  baseURL: API_URL
+})
+
+export const getCharacteristics = async (): Promise<any[]> => {
+  try {
+    const res = await axiosCharacteristics('/characteristics')
+    if (res.statusText !== 'OK') throw new Error('Hay problemas al cargar las características')
+
+    console.log(res.data)
+    return res.data.map(({ title, icon }) => {
+      return { title, Icon: listOfCharacteristicsComponent[icon] }
+    })
+  } catch (error) {
+    console.error('Error fetching rooms:', error)
+    throw error
+  }
 }

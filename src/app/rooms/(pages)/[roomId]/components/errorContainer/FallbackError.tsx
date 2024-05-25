@@ -8,8 +8,6 @@ interface IFallbackError {
 }
 
 const FallbackError = ({ errorProps }: IFallbackError): JSX.Element => {
-  console.log(errorProps)
-
   const { error, resetErrorBoundary } = errorProps
   DismissErrorToast({
     buttonTitle: 'Actualizar',

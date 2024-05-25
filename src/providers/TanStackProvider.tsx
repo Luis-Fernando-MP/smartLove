@@ -10,7 +10,7 @@ interface ITanStackProvider {
 }
 
 const TanStackProvider = ({ children }: ITanStackProvider): JSX.Element => {
-  const [queryClient] = useState(
+  const state = useState(
     () =>
       new QueryClient({
         defaultOptions: {
@@ -22,7 +22,7 @@ const TanStackProvider = ({ children }: ITanStackProvider): JSX.Element => {
   )
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={state[0]}>
       <ReactQueryStreamedHydration>{children}</ReactQueryStreamedHydration>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
