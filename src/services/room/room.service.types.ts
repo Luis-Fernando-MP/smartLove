@@ -10,6 +10,9 @@ export interface IRoom {
   estado: boolean
   counter: number
   onSale: boolean
+  contadorreserva: number;
+  clasificacion: string;
+  cantidad: number;
   usrcreacion: APP_ROLES
   usredicion: APP_ROLES
   serviciosHabitacion: IRoomService[]
