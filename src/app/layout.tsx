@@ -5,6 +5,7 @@ import type { JSX, ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { robotoFlex } from 'shared/fonts'
 
+import './globals.css'
 import './layout.scss'
 
 export const metadata: Metadata = {
