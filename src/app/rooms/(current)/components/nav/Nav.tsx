@@ -37,7 +37,7 @@ const Nav = (): JSX.Element => {
       </details>
       <details className='roomNav-details' name='paths'>
         <summary className='roomNav-summary'>Home</summary>
-        {HOME_PATHS.map(path => {
+        {Object.values(HOME_PATHS).map(path => {
           const { name, link, Icon } = path
           const isActive = pathname === link ? 'active' : ''
           return (

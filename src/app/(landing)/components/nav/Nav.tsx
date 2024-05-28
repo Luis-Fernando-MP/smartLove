@@ -16,15 +16,20 @@ const Nav = (): JSX.Element => {
   const pathname = usePathname()
 
   const router = useRouter()
+  router.prefetch(HOME_PATHS.Rooms.link)
 
   const handleShowMenu = (): void => {
     setShow(!show)
   }
 
   const handleNavigate = (path: string) => {
+    if (typeof window === 'undefined') return
     setShow(!show)
     router.push(path)
-    const targetElement = document.querySelector('section.home-content')
+    if (path === HOME_PATHS.Rooms.link) return
+    const targetElement = document.querySelector('section.main-content')
+    console.log(targetElement)
+
     if (targetElement && targetElement instanceof HTMLElement) {
       window.scrollTo({
         top: targetElement.offsetTop,
@@ -39,12 +44,12 @@ const Nav = (): JSX.Element => {
         <Menu stroke='#fff' />
       </button>
       <nav className={`landingNav ${show ? 'show-menu' : ''}`}>
-        <Link href={HOME_PATHS[0].link} className='landingNav-brand'>
+        <Link href={HOME_PATHS.Resume.link} className='landingNav-brand'>
           <h2 className={yesevaOne.className}>Smart Pro</h2>
           <span className={mada.className}>Hotel sauna rooftop bar</span>
         </Link>
         <ul className='landingNav-paths'>
-          {HOME_PATHS.map(path => {
+          {Object.values(HOME_PATHS).map(path => {
             const { name, link, Icon } = path
             const isActive = pathname === link ? 'active' : ''
             return (

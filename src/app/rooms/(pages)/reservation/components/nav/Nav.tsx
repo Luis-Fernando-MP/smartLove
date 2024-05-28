@@ -35,7 +35,7 @@ const Nav = (): JSX.Element => {
       <h3 className='reservationNav-subtitle'>¿Cancelar reserva?</h3>
       <h5 className='reservationNav-precaution'>
         Te agradecemos que hayas leído correctamente nuestras{' '}
-        <Link href={HOME_PATHS[4].link} target='_blank' rel='noreferrer'>
+        <Link href={HOME_PATHS.Polices.link} target='_blank' rel='noreferrer'>
           políticas
         </Link>
         &nbsp;para cancelar tu reserva :)

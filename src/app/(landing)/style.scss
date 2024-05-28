@@ -1,14 +1,14 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
 
-.home {
+.main {
   width: 100%;
   height: auto;
   position: relative;
   background-color: transparent;
   &-content {
-    height: 100vh;
-    padding: 50px v.$padding;
+    min-height: 100vh;
+    padding-top: v.$padding * 3;
   }
   &-speed {
     display: grid;
@@ -38,8 +38,8 @@
       right: 0;
       top: 0;
       width: 100%;
-      background: linear-gradient(to right, v.$bg2 1px, transparent 1px),
-        linear-gradient(to bottom, v.$bg2 1px, transparent 1px);
+      background: linear-gradient(to right, v.$dis2 1px, transparent 1px),
+        linear-gradient(to bottom, v.$dis2 1px, transparent 1px);
       background-size: 6rem 4rem;
       height: 100vh;
     }
@@ -52,12 +52,12 @@
       right: 0;
       top: 0;
       animation: rotateAfterElement 1s ease-in-out infinite alternate;
-      background: radial-gradient(
-        circle 500px at 100% 100px,
-        v.$tn1 0%,
-        transparent 90%,
-        transparent
-      );
+      // background: radial-gradient(
+      //   circle 500px at 100% 100px,
+      //   v.$tn1 0%,
+      //   transparent 90%,
+      //   transparent
+      // );
       @keyframes rotateAfterElement {
         from {
           transform: translateY(0);

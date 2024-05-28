@@ -9,7 +9,7 @@ import './style.scss'
 const Header = (): JSX.Element => {
   return (
     <header className='header'>
-      <Link href={HOME_PATHS[0].link} className='header-brand'>
+      <Link href={HOME_PATHS.Resume.link} className='header-brand'>
         <h2 className={yesevaOne.className}>Smart Pro</h2>
         <span className={mada.className}>Hotel sauna rooftop bar</span>
       </Link>

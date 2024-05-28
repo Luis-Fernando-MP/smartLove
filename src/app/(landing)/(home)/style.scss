@@ -1,7 +1,47 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
+@use '@styles/utils/border' as b;
 
 .resume {
-  @include d.flex;
-  padding: 0 v.$padding;
+  @include d.flex($ali: center);
+  padding: v.$padding;
+  background-color: v.$bg2;
+  &-card {
+    @include d.flex($gap: v.$padding * 0.8);
+    border-radius: v.$radius * 2;
+    padding: v.$padding;
+    width: 50%;
+    @include b.gradientBorder($size: 2px);
+    &__list {
+      @include d.flex;
+      width: 100%;
+      counter-reset: custom-counter;
+      span {
+        color: v.$tn2;
+        text-decoration: underline;
+      }
+      i {
+        color: v.$tn1;
+      }
+    }
+    &__item {
+      position: relative;
+      &,
+      &::before {
+        @include d.flex($dir: row, $ali: center);
+      }
+      &::before {
+        justify-content: center;
+        content: counter(custom-counter);
+        counter-increment: custom-counter;
+        background-color: v.$tn2;
+        color: v.$bg1;
+        font-size: v.$fP;
+        width: 20px;
+        font-weight: 500;
+        height: 20px;
+        border-radius: v.$radius;
+      }
+    }
+  }
 }

@@ -29,7 +29,7 @@ const ColorSchemeButton = (): JSX.Element => {
       }}
       size={120}
       sunColor='#F5B027'
-      moonColor='#413F36'
+      moonColor='#705335'
     />
   )
 }

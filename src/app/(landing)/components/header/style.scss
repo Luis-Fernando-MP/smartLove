@@ -7,6 +7,7 @@
   @include d.flex($ali: center);
   justify-content: center;
   &-starts {
+    @include d.flex($dir: row, $ali: center);
     svg.active {
       fill: #f8d34c;
       stroke: #f8d34c;
@@ -30,5 +31,6 @@
     background-color: v.$tn1;
     color: v.$bg1;
     font-size: v.$fH5;
+    font-weight: 600;
   }
 }

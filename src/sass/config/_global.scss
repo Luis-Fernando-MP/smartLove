@@ -1,19 +1,20 @@
 @use '@styles/utils/scrollbar';
 @use '@styles/config/vars' as *;
 @use '@styles/utils/media' as m;
+@use '@styles/utils/text' as t;
 
 :root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f4f4f5;
+  --bg-primary: #f5faff;
+  --bg-secondary: #ebf5ff;
 
   --fnt-primary: #000000;
   --fnt-secondary: #101820;
 
-  --tn-primary: #4f54dc;
-  --tn-secondary: #7d81e7a6;
+  --tn-primary: #835afc;
+  --tn-secondary: #637dff;
 
-  --disable-primary: #777588;
-  --disable-secondary: #7775886f;
+  --disable-primary: #47455e;
+  --disable-secondary: #5950c426;
 
   --xl-font-size: 5em;
   --h1-font-size: 2em;
@@ -36,8 +37,8 @@
     --tn-primary: #73c191;
     --tn-secondary: #df5e65;
 
-    --disable-primary: #4a4d4f;
-    --disable-secondary: #4a4d4fc5;
+    --disable-primary: #1c1a2acf;
+    --disable-secondary: #03001747;
   }
 }
 
@@ -198,4 +199,8 @@ svg {
   body {
     font-size: 10px;
   }
+}
+
+.gr {
+  @include t.textGradient;
 }

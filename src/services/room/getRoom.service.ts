@@ -1,4 +1,5 @@
-import axios from 'axios'
+/* eslint-disable @typescript-eslint/no-throw-literal */
+import axios, { AxiosError } from 'axios'
 import { API_URL } from 'shared/constants'
 
 import { IRoom } from './room.service.types'
@@ -7,16 +8,25 @@ const axiosRoom = axios.create({
   baseURL: API_URL
 })
 
-export const getAllRooms = async (): Promise<IRoom[]> => {
+export const getAllRooms = async (): Promise<IRoom[] | any> => {
   try {
-    const response = await axiosRoom('/habitacion')
-    if (!response.data || !Array.isArray(response.data)) {
+    // await new Promise(resolve =>
+    //   setInterval(() => {
+    //     return resolve()
+    //   }, 2000)
+    // )
+    const response = await axiosRoom('/habitaciona')
+    if (!response.data) {
       throw new Error('No se recibieron datos válidos en la respuesta')
     }
     return response.data as IRoom[]
-  } catch (error) {
-    console.error('Error fetching rooms:', error)
-    throw error
+  } catch (error: any) {
+    if (!(error instanceof AxiosError)) throw { message: error?.message }
+    const newError = {
+      message: error.message,
+      status: error.response?.status
+    }
+    throw newError
   }
 }
 

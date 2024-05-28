@@ -8,7 +8,6 @@ export interface IRoom {
   nombre: string
   precio: number
   estado: boolean
-  counter: number
   onSale: boolean
   contadorreserva: number
   clasificacion: string

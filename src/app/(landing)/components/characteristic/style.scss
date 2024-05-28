@@ -1,0 +1,19 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.characteristic {
+  max-width: 140px;
+  height: 170px;
+  padding: 0 v.$padding * 1.5;
+  border-radius: v.$radius;
+  margin: 0 v.$padding;
+  @include d.flex($ali: center);
+  justify-content: center;
+  background-color: v.$bg2;
+  user-select: none;
+  pointer-events: none;
+  p {
+    text-wrap: wrap;
+    text-align: center;
+  }
+}

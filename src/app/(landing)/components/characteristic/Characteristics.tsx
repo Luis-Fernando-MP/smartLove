@@ -1,11 +1,11 @@
-import { Hotel } from 'lucide-react'
 import type { JSX, ReactNode } from 'react'
 
+import { parseCharacteristics } from './parse'
 import './style.scss'
 
 export interface ICharacter {
   title: string
-  Icon: typeof Hotel
+  icon: string
 }
 
 interface ICharacteristic {
@@ -14,11 +14,12 @@ interface ICharacteristic {
 }
 
 function Characteristic({ characteristic }: ICharacteristic): JSX.Element {
-  const { Icon, title } = characteristic
+  const { icon, title } = characteristic
+  const { Icon } = parseCharacteristics(icon)
   return (
     <section className='characteristic'>
-      <p>{title}</p>
       <Icon />
+      <p>{title}</p>
     </section>
   )
 }

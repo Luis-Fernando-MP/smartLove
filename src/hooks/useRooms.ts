@@ -8,14 +8,17 @@ export const ROOMS_NAME_CACHE = 'ROOMS'
 export const ROOM_NAME_CACHE = 'ROOM'
 
 export function useRooms() {
-  const query = useSuspenseQuery({
-    queryKey: [ROOMS_NAME_CACHE],
-    queryFn: getAllRooms,
-    staleTime: 20 * 1000,
-    retry: 2
-  })
-
-  return { ...query }
+  try {
+    const query = useSuspenseQuery({
+      queryKey: [ROOMS_NAME_CACHE],
+      queryFn: getAllRooms,
+      staleTime: 20 * 1000,
+      retry: 2
+    })
+    return { ...query }
+  } catch (error) {
+    return error
+  }
 }
 
 export function useRoom(id: string) {

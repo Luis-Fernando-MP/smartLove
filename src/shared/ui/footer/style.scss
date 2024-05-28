@@ -4,7 +4,7 @@
 .footer {
   width: 100%;
   min-height: 150px;
-  padding: v.$padding v.$padding * 2;
+  padding: v.$padding * 3 v.$padding * 2;
   background-color: v.$bg2;
   @include d.flex();
   justify-content: center;

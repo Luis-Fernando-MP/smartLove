@@ -2,7 +2,7 @@
 @use '@styles/utils/media' as m;
 
 @include m.mediumScreen() {
-  .home {
+  .main {
     &-speed {
       text-align: center;
       padding: v.$padding * 0.5 0;
@@ -11,7 +11,7 @@
 }
 
 @include m.mediumScreen() {
-  .home-static-header {
+  .main-static-header {
     &::after {
       background: radial-gradient(
         circle 400px at 100% 100px,
@@ -24,7 +24,7 @@
 }
 
 @include m.smallScreen() {
-  .home-static-header {
+  .main-static-header {
     &::after {
       background: radial-gradient(
         circle 300px at 100% 0px,
