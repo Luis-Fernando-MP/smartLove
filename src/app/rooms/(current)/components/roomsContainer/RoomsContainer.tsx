@@ -12,7 +12,6 @@ const RoomsContainer = (): JSX.Element | null => {
   const { data } = useRooms()
   const filters = useFilters(data => data.filters)
   if (!data) return null
-  console.log(data)
 
   return (
     <section className='dashboard-body'>

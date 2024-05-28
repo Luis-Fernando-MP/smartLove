@@ -19,8 +19,7 @@ export function useRooms() {
 
 export function useRoom(id: string) {
   const queryClient = useQueryClient()
-  const data = (queryClient.getQueryData([ROOMS_NAME_CACHE]) as IRoom[]) || []
-  console.log(data)
+  const cacheAllRooms = (queryClient.getQueryData([ROOMS_NAME_CACHE]) as IRoom[]) || []
 
   const query = useSuspenseQuery({
     queryKey: [ROOM_NAME_CACHE, id],
@@ -29,8 +28,8 @@ export function useRoom(id: string) {
       return await getRoomById(id)
     },
     staleTime: 20 * 1000,
-    retry: 2
-    // initialData: data !== undefined ? data.find(room => room.codigo === id) : null
+    retry: 1,
+    initialData: cacheAllRooms !== undefined ? cacheAllRooms.find(room => room.codigo === id) : null
   })
   return { ...query }
 }

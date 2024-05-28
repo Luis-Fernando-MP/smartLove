@@ -1,24 +1,17 @@
-'use client'
+import type { JSX, ReactNode } from 'react'
+import { IRoom } from 'services/room/room.service.types'
 
-import { useRooms } from 'hooks/useRooms'
-import type { JSX } from 'react'
+interface IRoomsComponentV2 {
+  children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
+  room: IRoom
+}
 
-const RoomsComponentV2 = (): JSX.Element | null => {
-  const rooms = useRooms()
-  console.log(rooms)
-
-  // if (data === undefined) return null
+const RoomsComponentV2 = ({ room }: IRoomsComponentV2): JSX.Element => {
+  const { codigo, nombre } = room
   return (
-    <ul className='roomsV2'>
-      {/* {data.map(room => {
-        const { codigo, nombre } = room
-        return (
-          <li className='roomsV2-room' key={codigo}>
-            <h4>{nombre}</h4>
-          </li>
-        )
-      })} */}
-    </ul>
+    <li className='roomsV2-room' key={codigo}>
+      <h4>{nombre}</h4>
+    </li>
   )
 }
 
