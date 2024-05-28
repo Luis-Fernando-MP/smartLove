@@ -8,22 +8,19 @@ export const ROOMS_NAME_CACHE = 'ROOMS'
 export const ROOM_NAME_CACHE = 'ROOM'
 
 export function useRooms() {
-  try {
-    const query = useSuspenseQuery({
-      queryKey: [ROOMS_NAME_CACHE],
-      queryFn: getAllRooms,
-      staleTime: 20 * 1000,
-      retry: 2
-    })
-    return { ...query }
-  } catch (error) {
-    return error
-  }
+  const query = useSuspenseQuery({
+    queryKey: [ROOMS_NAME_CACHE],
+    queryFn: getAllRooms,
+    staleTime: 20 * 1000,
+    retry: 1
+  })
+  return { ...query }
 }
 
 export function useRoom(id: string) {
   const queryClient = useQueryClient()
   const data = (queryClient.getQueryData([ROOMS_NAME_CACHE]) as IRoom[]) || []
+  console.log(data)
 
   const query = useSuspenseQuery({
     queryKey: [ROOM_NAME_CACHE, id],
@@ -32,8 +29,8 @@ export function useRoom(id: string) {
       return await getRoomById(id)
     },
     staleTime: 20 * 1000,
-    retry: 2,
-    initialData: data !== undefined ? data.find(room => room.codigo === id) : null
+    retry: 2
+    // initialData: data !== undefined ? data.find(room => room.codigo === id) : null
   })
   return { ...query }
 }

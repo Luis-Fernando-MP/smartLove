@@ -3,13 +3,12 @@ import { FallbackProps } from 'react-error-boundary'
 import { DismissErrorToast } from 'shared/ui/DismissErrorToast'
 
 interface IFallbackError {
-  children?: Readonly<ReactNode[]> | null
+  children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
   errorProps: FallbackProps
-  ErrorComponent: JSX.Element
 }
 
-const FallbackError = ({ errorProps, ErrorComponent }: IFallbackError): JSX.Element => {
-  const { error, resetErrorBoundary } = errorProps
+const FallbackError = ({ errorProps, children }: IFallbackError): JSX.Element => {
+  const { resetErrorBoundary } = errorProps
   DismissErrorToast({
     buttonTitle: 'Actualizar',
     id: 'errorCargaDeDatosToast',
@@ -23,7 +22,7 @@ const FallbackError = ({ errorProps, ErrorComponent }: IFallbackError): JSX.Elem
     }
   })
 
-  return ErrorComponent.props(resetErrorBoundary, error)
+  return <>{children}</>
 }
 
 export default FallbackError

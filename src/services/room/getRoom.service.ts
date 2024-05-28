@@ -10,23 +10,18 @@ const axiosRoom = axios.create({
 
 export const getAllRooms = async (): Promise<IRoom[] | any> => {
   try {
-    // await new Promise(resolve =>
-    //   setInterval(() => {
-    //     return resolve()
-    //   }, 2000)
-    // )
-    const response = await axiosRoom('/habitaciona')
+    const response = await axios.get('/habitaciona')
     if (!response.data) {
       throw new Error('No se recibieron datos válidos en la respuesta')
     }
     return response.data as IRoom[]
   } catch (error: any) {
-    if (!(error instanceof AxiosError)) throw { message: error?.message }
-    const newError = {
+    if (!(error instanceof AxiosError))
+      throw { message: error?.message || 'Error desconocido', status: 500 }
+    throw {
       message: error.message,
       status: error.response?.status
     }
-    throw newError
   }
 }
 
