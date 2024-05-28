@@ -1,13 +1,13 @@
 {
   "light": {
-    "bg-primary": "#ffffff",
-    "bg-secondary": "#f4f4f5",
+    "bg-primary": "#F5FAFF",
+    "bg-secondary": "#EBF5FF",
     "fnt-primary": "#000000",
     "fnt-secondary": "#101820",
-    "tn-primary": "#4f54dc",
-    "tn-secondary": "#4f54dc",
-    "disable-primary": "#777588",
-    "disable-secondary": "#7775886f"
+    "tn-primary": "#835afc",
+    "tn-secondary": "#637dff",
+    "disable-primary": "#47455e",
+    "disable-secondary": "#5950c426"
   },
   "dark": {
     "bg-primary": "#1a1e23",
@@ -16,7 +16,7 @@
     "fnt-secondary": "#b6beca",
     "tn-primary": "#73c191",
     "tn-secondary": "#df5e65",
-    "disable-primary": "#4a4d4f",
-    "disable-secondary": "#4a4d4fc5"
+    "disable-primary": "#1c1a2acf",
+    "disable-secondary": "#03001747"
   }
 }
