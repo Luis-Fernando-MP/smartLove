@@ -28,8 +28,6 @@ const Nav = (): JSX.Element => {
     router.push(path)
     if (path === HOME_PATHS.Rooms.link) return
     const targetElement = document.querySelector('section.main-content')
-    console.log(targetElement)
-
     if (targetElement && targetElement instanceof HTMLElement) {
       window.scrollTo({
         top: targetElement.offsetTop,

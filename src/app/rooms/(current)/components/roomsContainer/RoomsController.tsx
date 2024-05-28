@@ -15,8 +15,6 @@ const RoomsController = (): JSX.Element => {
 }
 
 const ErrorComponent = ({ error, resetErrorBoundary }: FallbackProps): JSX.Element => {
-  console.log(resetErrorBoundary)
-
   return (
     <p>
       <h2>Ha ocurrido un error</h2>

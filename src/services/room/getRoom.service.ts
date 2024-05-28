@@ -10,7 +10,7 @@ const axiosRoom = axios.create({
 
 export const getAllRooms = async (): Promise<IRoom[] | any> => {
   try {
-    const response = await axios.get('/habitaciona')
+    const response = await axiosRoom('/habitacion')
     if (!response.data) {
       throw new Error('No se recibieron datos válidos en la respuesta')
     }
