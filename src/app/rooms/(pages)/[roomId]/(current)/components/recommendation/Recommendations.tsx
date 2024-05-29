@@ -2,17 +2,18 @@
 
 import { useRooms } from 'hooks/useRooms'
 import type { JSX } from 'react'
-import RoomsComponentV2 from 'shared/ui/rooms/RoomsComponentV2'
+import RoomComponentV2 from 'shared/ui/roomComponentV2/RoomsComponentV2'
+
+import './style.scss'
 
 const Recommendations = (): JSX.Element | null => {
   const { data } = useRooms()
   if (!data) return null
 
   return (
-    <ul className='roomsV2'>
-      data
+    <ul className='roomsRecommendations'>
       {data.map(room => {
-        return <RoomsComponentV2 key={room.codigo} room={room} />
+        return <RoomComponentV2 key={room.codigo} room={room} />
       })}
     </ul>
   )

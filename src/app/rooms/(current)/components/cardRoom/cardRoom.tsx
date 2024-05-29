@@ -1,12 +1,13 @@
 'use client'
 
 /* eslint-disable @next/next/no-img-element */
-import { ArrowUpRight, Bed, DollarSign } from 'lucide-react'
+import { ArrowUpRight, DollarSign } from 'lucide-react'
 import Link from 'next/link'
 import type { JSX, ReactNode } from 'react'
 import { IRoom } from 'services/room/room.service.types'
+import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
+import SlugRoom from 'shared/ui/slugRoom/slugRoom'
 
-import SlugRoom from './slugRoom'
 import './style.scss'
 
 interface ICardRoom {
@@ -39,9 +40,11 @@ const CardRoom = ({ data }: ICardRoom): JSX.Element => {
       <ul className='cardRoom-services'>
         {serviciosHabitacion.map(services => {
           const { nombreServicio, idServHabitacion } = services
+
+          const { Icon } = parseServiceToIcon(services.urlImagen)
           return (
             <li className='cardRoom-service' key={idServHabitacion}>
-              <Bed />
+              <Icon />
               <span>{nombreServicio}</span>
             </li>
           )

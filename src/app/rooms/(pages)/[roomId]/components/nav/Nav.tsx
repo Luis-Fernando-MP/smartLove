@@ -1,17 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRoom } from 'hooks/useRooms'
-import type { JSX, ReactNode } from 'react'
+import type { JSX } from 'react'
 
 import './style.scss'
 
-interface INav {
-  children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
+interface TNav {
   id: string
 }
-
-const Nav = ({ id }: INav): JSX.Element | null => {
-  const { data } = useRoom(id)
-  if (!data) return null
+const Nav = ({ id }: TNav): JSX.Element | null => {
+  const { data, isError } = useRoom(id)
+  if (!data || isError) return null
 
   return (
     <ul className='roomNav-images'>

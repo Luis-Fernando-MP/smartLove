@@ -2,6 +2,7 @@ import { useRoom } from 'hooks/useRooms'
 import { DollarSignIcon, LucideBadgePlus } from 'lucide-react'
 import Link from 'next/link'
 import type { JSX, ReactNode } from 'react'
+import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
 import Back from 'shared/ui/back/Back'
 
 import Steps from '../steps/Steps'
@@ -13,8 +14,8 @@ interface IDetails {
 }
 
 const Details = ({ id }: IDetails): JSX.Element | null => {
-  const { data } = useRoom(id)
-  if (!data) return null
+  const { data, isError } = useRoom(id)
+  if (!data || isError) return null
 
   const { precio, nombre, contadorreserva, serviciosHabitacion } = data
 
@@ -34,9 +35,11 @@ const Details = ({ id }: IDetails): JSX.Element | null => {
         </h5>
         <ul className='roomDetails-services'>
           {serviciosHabitacion.map(service => {
+            const { Icon } = parseServiceToIcon(service.urlImagen)
             return (
               <li className='btn roomDetails-service' key={service.idServHabitacion}>
-                {service.nombreServicio}
+                <Icon />
+                <p>{service.nombreServicio}</p>
               </li>
             )
           })}

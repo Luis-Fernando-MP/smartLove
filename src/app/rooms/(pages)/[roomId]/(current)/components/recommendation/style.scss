@@ -1,0 +1,7 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.roomsRecommendations {
+  width: 100%;
+  @include d.flex($ali: center);
+}

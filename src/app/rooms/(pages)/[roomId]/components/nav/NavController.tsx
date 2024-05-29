@@ -1,17 +1,12 @@
 'use client'
 
-import { type JSX, ReactNode } from 'react'
+import { type JSX } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import ErrorContainer from 'shared/ui/errorContainer/ErrorContainer'
 
 import Nav from './Nav'
 
-interface INavController {
-  children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
-  id: string
-}
-
-const NavController = ({ id }: INavController): JSX.Element => {
+const NavController = ({ id }: { id: string }): JSX.Element => {
   return (
     <ErrorContainer LoadingComponent={<LoaderComponent />} ErrorComponent={ErrorComponent}>
       <Nav id={id} />

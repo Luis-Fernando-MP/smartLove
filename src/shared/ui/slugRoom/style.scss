@@ -8,16 +8,16 @@ $listSlugs: (
   '.its-full' #ffa5a5
 );
 
-@each $tag, $value in $listSlugs {
-  .cardRoom:has(.cardRoom-slug#{$tag}) {
-    &::before {
-      // background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba($value, 0.4), transparent);
-    }
-  }
-}
+// @each $tag, $value in $listSlugs {
+//   .room:has(.roomSlug#{$tag}) {
+//     &::before {
+//       // background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba($value, 0.4), transparent);
+//     }
+//   }
+// }
 
 body.dark {
-  .cardRoom-slug {
+  .roomSlug {
     @each $tag, $value in $listSlugs {
       &#{$tag} {
         background-color: rgba(lighten($value, 10), 0.8);
@@ -25,7 +25,7 @@ body.dark {
     }
   }
 }
-.cardRoom-slug {
+.roomSlug {
   width: 100%;
   padding: 5px;
   @include d.flex($dir: row, $ali: center);

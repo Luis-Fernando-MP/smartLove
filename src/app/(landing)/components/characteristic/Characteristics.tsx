@@ -1,6 +1,6 @@
 import type { JSX, ReactNode } from 'react'
+import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
 
-import { parseCharacteristics } from './parse'
 import './style.scss'
 
 export interface ICharacter {
@@ -15,7 +15,7 @@ interface ICharacteristic {
 
 function Characteristic({ characteristic }: ICharacteristic): JSX.Element {
   const { icon, title } = characteristic
-  const { Icon } = parseCharacteristics(icon)
+  const { Icon } = parseServiceToIcon(icon)
   return (
     <section className='characteristic'>
       <Icon />

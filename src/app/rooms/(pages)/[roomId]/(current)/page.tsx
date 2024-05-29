@@ -7,11 +7,12 @@ import RecommendationController from './components/recommendation/Recommendation
 const Page = (): JSX.Element => {
   return (
     <>
-      <h5>Otras habitaciones recomendadas :)</h5>
+      <h4 className='text-center'>
+        Otras <b className='gr'>Recomendaciones</b>
+      </h4>
       <RecommendationController />
     </>
   )
 }
 
-//
 export default Page

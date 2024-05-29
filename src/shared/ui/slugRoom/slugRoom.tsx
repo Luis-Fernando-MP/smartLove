@@ -1,7 +1,7 @@
 import { CircleOffIcon, HandHelpingIcon, Sparkles, TrophyIcon } from 'lucide-react'
 import type { JSX, ReactNode } from 'react'
 
-import './style.slug.scss'
+import './style.scss'
 
 interface ISlugRoom {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
@@ -32,7 +32,7 @@ const SlugRoom = ({ counter, maxResults = 10, onSale, itsFull }: ISlugRoom): JSX
     classSlug = 'its-full'
   }
   return (
-    <section className={`cardRoom-slug ${classSlug}`}>
+    <section className={`roomSlug ${classSlug}`}>
       <IconSlug />
       {tagSlug}
     </section>

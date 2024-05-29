@@ -4,37 +4,39 @@ export enum APP_ROLES {
 }
 
 export interface IRoom {
-  codigo: string
+  codigo: number
   nombre: string
   precio: number
   estado: boolean
-  onSale: boolean
+  usrcreacion: string
+  usredicion: string
   contadorreserva: number
   clasificacion: string
   cantidad: number
-  usrcreacion: APP_ROLES
-  usredicion: APP_ROLES
+  onSale: boolean
+  counter: number
+  preciovalor: string
   serviciosHabitacion: IRoomService[]
   imagenesHabitacion: IRoomImages[]
 }
 
 export interface IRoomService {
-  idServHabitacion: string
+  idServHabitacion: number
   nombreServicio: string
   urlImagen: string
   estado: boolean
   usrCreacion: string
-  fechCreacion: Date
-  usrEdicion: APP_ROLES
-  fechEdicion: Date
+  fechCreacion: string
+  usrEdicion: string
+  fechEdicion: string
 }
 
 export interface IRoomImages {
-  idImgHabitacion: string
+  idImgHabitacion: number
   urlImagen: string
   estado: boolean
-  usrCreacion: APP_ROLES
-  fechCreacion: Date
-  usrEdicion: APP_ROLES
-  fechEdicion: Date
+  usrCreacion: string
+  fechCreacion: string
+  usrEdicion: string
+  fechEdicion: string
 }

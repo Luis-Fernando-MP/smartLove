@@ -16,10 +16,13 @@ const RoomsContainer = (): JSX.Element | null => {
   return (
     <section className='dashboard-body'>
       <article className='roomsContainer'>
-        <h3>{data.length} Resultados encontrados</h3>
+        <h3>
+          <b className='gr'>{data.length} Resultados</b> encontrados
+        </h3>
         <p>
-          Para: {filters.pricing}, clasificación {filters.classification}, capacidad de{' '}
-          {filters.capacity} huéspedes
+          Para: <b className='gr'>{filters.pricing}</b>, clasificación{' '}
+          <b className='gr'>{filters.classification}</b>, capacidad de{' '}
+          <b className='gr'>{filters.capacity}</b> huéspedes
         </p>
         <Masonry>
           {data.map(room => (
