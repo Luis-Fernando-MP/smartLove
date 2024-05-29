@@ -1,8 +1,7 @@
 'use client'
 
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { getAllRooms, getRoomById } from 'services/room/getRoom.service'
-import { IRoom } from 'services/room/room.service.types'
 
 export const ROOMS_NAME_CACHE = 'ROOMS'
 export const ROOM_NAME_CACHE = 'ROOM'

@@ -1,6 +1,5 @@
 import { useRoom } from 'hooks/useRooms'
 import { DollarSignIcon, LucideBadgePlus } from 'lucide-react'
-import Link from 'next/link'
 import type { JSX, ReactNode } from 'react'
 import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
 import Back from 'shared/ui/back/Back'
