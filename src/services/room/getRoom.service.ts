@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
-import axios, { AxiosError } from 'axios';
-import { API_URL } from 'shared/constants';
+import axios, { AxiosError } from 'axios'
+import { API_URL } from 'shared/constants'
 
-
-
-import { IError } from './error.service';
-import { IRoom } from './room.service.types';
-
+import { IError } from './error.service'
+import { IRoom } from './room.service.types'
 
 const axiosRoom = axios.create({
   baseURL: `${API_URL}/habitacion`,
