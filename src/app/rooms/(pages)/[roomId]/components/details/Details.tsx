@@ -22,7 +22,7 @@ const Details = ({ id }: IDetails): JSX.Element | null => {
   return (
     <>
       <Back row />
-      <Steps total={precio} />
+      <Steps total={precio} id={id} />
       <section className='roomDetails'>
         <h1>{nombre}</h1>
         <h4 className='roomDetails-characteristic'>
@@ -44,9 +44,6 @@ const Details = ({ id }: IDetails): JSX.Element | null => {
             )
           })}
         </ul>
-        <Link href={`${id}/requirements`} className='btn roomDetails-continue'>
-          Continuar con la Reserva
-        </Link>
       </section>
     </>
   )

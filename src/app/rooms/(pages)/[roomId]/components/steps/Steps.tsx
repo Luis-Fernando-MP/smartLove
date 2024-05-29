@@ -1,3 +1,7 @@
+'use client'
+
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import type { JSX, ReactNode } from 'react'
 
 import './style.scss'
@@ -5,19 +9,37 @@ import './style.scss'
 interface ISteps {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
   total: number
+  id: string
 }
 
-const Steps = ({ total }: ISteps): JSX.Element => {
+const Steps = ({ total, id }: ISteps): JSX.Element => {
+  const pathname = usePathname()
+
+  console.log(pathname)
+
   return (
     <section className='room-steps'>
-      <button className='room-step active'>Habitación</button>
-      <button className='room-step'>Requisitos</button>
-      <button className='room-step'>
+      <Link
+        href={`/rooms/${id}`}
+        className={`room-step ${pathname.startsWith(`/rooms/${id}`) ? 'active' : ''}`}
+      >
+        Habitación
+      </Link>
+      <Link
+        href={`/rooms/${id}/requirements`}
+        className={`room-step ${pathname === `/rooms/${id}/requirements` ? 'active' : ''}`}
+      >
+        Requisitos
+      </Link>
+      <Link
+        href={`/rooms/${id}/pay`}
+        className={`room-step ${pathname === `/rooms/${id}/pay` ? 'active' : ''}`}
+      >
         <div>
           <span>Total</span>
           <p>PEN {total}</p>
         </div>
-      </button>
+      </Link>
     </section>
   )
 }

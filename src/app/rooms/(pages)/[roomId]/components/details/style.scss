@@ -34,8 +34,4 @@ body.dark {
     @include d.flex($dir: row);
     background-color: v.$bg2;
   }
-  &-continue {
-    background-color: v.$tn1;
-    color: v.$bg1;
-  }
 }

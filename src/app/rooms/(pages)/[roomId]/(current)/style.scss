@@ -1,0 +1,6 @@
+@use '@styles/config/vars' as v;
+.currentRoom-continue {
+  background-color: v.$tn1;
+  color: v.$bg1;
+  margin: auto;
+}
