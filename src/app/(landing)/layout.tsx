@@ -20,10 +20,10 @@ function RootLayout({ children }: TRootLayout): JSX.Element {
     <>
       <main className='main'>
         <div className='main-static-header' />
+        <Nav />
         <Link href={HOME_PATHS.Resume.link} target='_blank' className='main-speed' rel='noreferrer'>
           SMART LOVE, San Juan de Miraflores 15058, en el sector Alipio Ponce lote 6
         </Link>
-        <Nav />
         <Header />
         <Marquee autoFill gradientColor='var(--bg-primary)' gradient>
           {characteristics.map(characteristic => (

@@ -1,17 +1,25 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { type JSX } from 'react'
 
+import useStepsRoom, { useRoomStore } from '../store/room.store'
 import RecommendationController from './components/recommendation/RecommendationController'
 import './style.scss'
 
 const Page = (): JSX.Element => {
-  const path = usePathname()
+  const { setCurrentStep } = useStepsRoom()
+  const roomID = useRoomStore(store => store.id)
+
   return (
     <>
-      <Link href={`${path}/requirements`} className='btn currentRoom-continue'>
+      <Link
+        href={`/rooms/${roomID}/requirements`}
+        onClick={() => {
+          setCurrentStep(2)
+        }}
+        className='btn currentRoom-continue'
+      >
         Continuar con la Reserva
       </Link>
       <h4 className='text-center'>

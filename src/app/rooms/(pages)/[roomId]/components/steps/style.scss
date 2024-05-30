@@ -1,7 +1,9 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
+@use '@styles/utils/transitions' as t;
 
 $widthSeparator: v.$padding * 2;
+
 .room {
   &-steps {
     @include d.flex($dir: row, $ali: stretch, $gap: $widthSeparator);
@@ -21,6 +23,16 @@ $widthSeparator: v.$padding * 2;
     &:last-child:after {
       display: none;
     }
+    &:last-child {
+      h5 {
+        color: v.$success_dark;
+      }
+    }
+    &,
+    &::after,
+    &::before {
+      transition: t.$pong;
+    }
     &::after {
       content: '';
       position: absolute;
@@ -34,6 +46,7 @@ $widthSeparator: v.$padding * 2;
       background-color: v.$dis2;
       display: block;
       width: 30px;
+      font-size: v.$fH5;
       height: 30px;
       border-radius: 50%;
       @include d.flex($ali: center);
@@ -45,6 +58,26 @@ $widthSeparator: v.$padding * 2;
     }
     &.active::after {
       background-color: v.$tn1;
+    }
+    &.inactive {
+      user-select: none;
+      pointer-events: none;
+      opacity: 0.7;
+      &::before {
+        color: v.$fn2;
+      }
+      &::after,
+      &::before {
+        background-color: v.$dis2;
+      }
+    }
+  }
+}
+
+body.dark section.room-steps a.room-step {
+  &:last-child {
+    h5 {
+      color: v.$success;
     }
   }
 }

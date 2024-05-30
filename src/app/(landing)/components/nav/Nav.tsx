@@ -3,7 +3,7 @@
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { type JSX, useState } from 'react'
+import { type JSX, useEffect, useState } from 'react'
 import { HOME_PATHS } from 'shared/constants'
 import { mada, yesevaOne } from 'shared/fonts'
 import ColorSchemeButton from 'shared/ui/colorSchemeButton/ColorSchemeButton'
@@ -16,7 +16,9 @@ const Nav = (): JSX.Element => {
   const pathname = usePathname()
 
   const router = useRouter()
-  router.prefetch(HOME_PATHS.Rooms.link)
+  useEffect(() => {
+    router.prefetch(HOME_PATHS.Rooms.link)
+  }, [router])
 
   const handleShowMenu = (): void => {
     setShow(!show)

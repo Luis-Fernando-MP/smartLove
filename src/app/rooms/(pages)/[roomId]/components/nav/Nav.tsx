@@ -1,19 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRoom } from 'hooks/useRooms'
 import type { JSX } from 'react'
 
+import { useRoomStore } from '../../store/room.store'
 import './style.scss'
 
-interface TNav {
-  id: string
-}
-const Nav = ({ id }: TNav): JSX.Element | null => {
-  const { data, isError } = useRoom(id)
-  if (!data || isError) return null
+const Nav = (): JSX.Element | null => {
+  const { room } = useRoomStore()
 
   return (
     <ul className='roomNav-images'>
-      {data?.imagenesHabitacion.map(image => {
+      {room?.imagenesHabitacion.map(image => {
         const { urlImagen, idImgHabitacion, fechCreacion } = image
 
         return (

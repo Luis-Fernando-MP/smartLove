@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import type { JSX, ReactNode } from 'react'
 
+import useStepsRoom from '../../store/room.store'
+import { stepsData } from './steps.data'
 import './style.scss'
 
 interface ISteps {
@@ -13,33 +15,25 @@ interface ISteps {
 }
 
 const Steps = ({ total, id }: ISteps): JSX.Element => {
+  const { currentStep } = useStepsRoom()
   const pathname = usePathname()
-
-  console.log(pathname)
 
   return (
     <section className='room-steps'>
-      <Link
-        href={`/rooms/${id}`}
-        className={`room-step ${pathname.startsWith(`/rooms/${id}`) ? 'active' : ''}`}
-      >
-        Habitación
-      </Link>
-      <Link
-        href={`/rooms/${id}/requirements`}
-        className={`room-step ${pathname === `/rooms/${id}/requirements` ? 'active' : ''}`}
-      >
-        Requisitos
-      </Link>
-      <Link
-        href={`/rooms/${id}/pay`}
-        className={`room-step ${pathname === `/rooms/${id}/pay` ? 'active' : ''}`}
-      >
-        <div>
-          <span>Total</span>
-          <p>PEN {total}</p>
-        </div>
-      </Link>
+      {stepsData({ id, totalMount: total, urlName: pathname }).map(step => {
+        const { RenderStep, isActive, ref, value } = step
+        const activeLink = value <= currentStep
+
+        return (
+          <Link
+            key={ref}
+            href={activeLink ? ref : ''}
+            className={`room-step ${isActive && activeLink ? 'active' : 'inactive'}`}
+          >
+            {RenderStep}
+          </Link>
+        )
+      })}
     </section>
   )
 }

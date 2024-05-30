@@ -1,18 +1,34 @@
 import { IRoom } from 'services/room/room.service.types'
 import { create } from 'zustand'
 
-interface IUseSelectRoom {
-  roomID: string
-  setRoomID: (id: string) => void
-  room: IRoom | null
-  setRoom: (room: IRoom) => void
+interface IUseStepsRoom {
+  currentStep: 1 | 2 | 3
+  setCurrentStep: (currentStep: IUseStepsRoom['currentStep']) => void
 }
 
-const useSelectRoom = create<IUseSelectRoom>(set => ({
-  roomID: '',
-  room: null,
-  setRoomID: id => set(() => ({ roomID: id })),
-  setRoom: room => set(() => ({ room, roomID: String(room.codigo) }))
+const useStepsRoom = create<IUseStepsRoom>(set => ({
+  currentStep: 1,
+  setCurrentStep(currentStep) {
+    return set(() => ({ currentStep }))
+  }
 }))
 
-export default useSelectRoom
+export default useStepsRoom
+
+interface IUseRoomStore {
+  id: string
+  room: IRoom | null
+  setID: (id: IUseRoomStore['id']) => void
+  setRoom: (room: IUseRoomStore['room']) => void
+}
+
+export const useRoomStore = create<IUseRoomStore>(set => ({
+  id: '',
+  setID(id) {
+    return set(() => ({ id }))
+  },
+  room: null,
+  setRoom(room) {
+    return set(() => ({ room }))
+  }
+}))

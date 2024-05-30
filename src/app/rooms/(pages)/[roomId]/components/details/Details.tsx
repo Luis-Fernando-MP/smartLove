@@ -1,22 +1,18 @@
-import { useRoom } from 'hooks/useRooms'
 import { DollarSignIcon, LucideBadgePlus } from 'lucide-react'
-import type { JSX, ReactNode } from 'react'
+import type { JSX } from 'react'
 import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
 import Back from 'shared/ui/back/Back'
 
+import { useRoomStore } from '../../store/room.store'
 import Steps from '../steps/Steps'
 import './style.scss'
 
-interface IDetails {
-  children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
-  id: string
-}
+const Details = (): JSX.Element | null => {
+  const { id, room } = useRoomStore()
 
-const Details = ({ id }: IDetails): JSX.Element | null => {
-  const { data, isError } = useRoom(id)
-  if (!data || isError) return null
+  if (!room) return null
 
-  const { precio, nombre, contadorreserva, serviciosHabitacion } = data
+  const { precio, nombre, contadorreserva, serviciosHabitacion } = room
 
   return (
     <>

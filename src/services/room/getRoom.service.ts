@@ -24,11 +24,11 @@ const axiosRoom = axios.create({
 
 export const getAllRooms = async (): Promise<IRoom[]> => {
   try {
-    await new Promise(resolve =>
-      setTimeout(() => {
-        return resolve(true)
-      }, 1000)
-    )
+    // await new Promise(resolve =>
+    //   setTimeout(() => {
+    //     return resolve(true)
+    //   }, 1500)
+    // )
     const response = await axiosRoom('')
     if (!response.data) {
       throw new Error('No se recibieron datos válidos en la respuesta')
@@ -49,11 +49,11 @@ export const getAllRooms = async (): Promise<IRoom[]> => {
 }
 export const getRoomById = async (id: string): Promise<IRoom> => {
   try {
-    // await new Promise(resolve =>
-    //   setTimeout(() => {
-    //     return resolve(true)
-    //   }, 2500)
-    // )
+    await new Promise(resolve =>
+      setTimeout(() => {
+        return resolve(true)
+      }, 3000)
+    )
     const response = await axiosRoom(`/findById/${id}`)
     if (!response.data) {
       throw new Error('No se recibieron datos válidos en la respuesta')
