@@ -54,8 +54,8 @@ const CardRoom = ({ data }: ICardRoom): JSX.Element => {
           {precio}
         </li>
       </ul>
-      <Link href={`/rooms/${codigo}`} className={`btn cardRoom-go ${onSale ? '' : 'no-space'}`}>
-        {onSale ? 'Disponible' : 'Agotado'} <ArrowUpRight />
+      <Link href={`/rooms/${codigo}`} className={`btn cardRoom-go ${estado ? '' : 'no-space'}`}>
+        {estado ? 'Disponible' : 'Agotado'} <ArrowUpRight />
       </Link>
     </section>
   )

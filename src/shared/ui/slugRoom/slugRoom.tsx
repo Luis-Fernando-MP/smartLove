@@ -26,7 +26,7 @@ const SlugRoom = ({ counter, maxResults = 10, onSale, itsFull }: ISlugRoom): JSX
     tagSlug = 'Precio en promoción'
     classSlug = 'on-sale'
   }
-  if (itsFull) {
+  if (!itsFull) {
     IconSlug = CircleOffIcon
     tagSlug = 'Esta habitación esta agotada'
     classSlug = 'its-full'
