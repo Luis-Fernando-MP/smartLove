@@ -1,0 +1,82 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.totalCalculate {
+  width: 750px;
+  margin: auto;
+  @include d.flex($dir: row);
+  justify-content: space-around;
+  &-days,
+  &-total {
+    @include d.flex;
+    padding: v.$padding;
+  }
+  &-days {
+    width: 35%;
+  }
+  &-total {
+    width: 65%;
+    background-color: v.$bg2;
+    border-radius: v.$radius;
+  }
+  &-separator {
+    @include d.flex($gap: v.$padding * 0.5);
+    width: 100%;
+    &.polices a {
+      color: v.$fn2;
+      font-style: italic;
+    }
+  }
+  &-container {
+    &.time,
+    &.subtotal,
+    &.igv,
+    &.service {
+      @include d.flex($dir: row, $ali: center);
+    }
+
+    &.subtotal,
+    &.igv,
+    &.service,
+    .total {
+      justify-content: space-between;
+    }
+    &.time {
+      button {
+        background-color: v.$bg2;
+      }
+      button.active {
+        background-color: v.$tn1;
+        color: v.$bg1;
+      }
+    }
+    &.subtotal {
+      button {
+        @include d.flex($dir: row);
+        background-color: v.$bg1;
+      }
+    }
+    &.total {
+      margin: v.$padding 0;
+      h2 {
+        color: v.$success_dark;
+      }
+    }
+  }
+  &-date {
+    background-color: v.$bg2;
+    font-size: v.$fH5;
+    font-weight: 400;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+  }
+}
+
+body.dark .totalCalculate-container {
+  &.total {
+    h2 {
+      color: v.$success;
+    }
+  }
+}

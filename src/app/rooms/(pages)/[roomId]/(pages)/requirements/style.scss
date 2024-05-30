@@ -1,0 +1,17 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.requirementsRoom {
+  @include d.flex;
+  &-actions {
+    @include d.flex($dir: row, $ali: center);
+    justify-content: center;
+    a:last-child {
+      background-color: v.$tn1;
+      color: v.$bg1;
+    }
+    a:first-child {
+      background-color: v.$bg2;
+    }
+  }
+}

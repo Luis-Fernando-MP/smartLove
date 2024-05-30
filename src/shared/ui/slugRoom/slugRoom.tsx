@@ -16,15 +16,15 @@ const SlugRoom = ({ counter, maxResults = 10, onSale, itsFull }: ISlugRoom): JSX
   let tagSlug = 'Tu mejor opción'
   let classSlug = 'bets-option'
 
-  if (counter >= maxResults) {
-    IconSlug = TrophyIcon
-    tagSlug = 'Opción muy elegida'
-    classSlug = 'max-results'
-  }
   if (onSale) {
     IconSlug = HandHelpingIcon
     tagSlug = 'Precio en promoción'
     classSlug = 'on-sale'
+  }
+  if (counter >= maxResults) {
+    IconSlug = TrophyIcon
+    tagSlug = 'Opción muy elegida'
+    classSlug = 'max-results'
   }
   if (!itsFull) {
     IconSlug = CircleOffIcon
