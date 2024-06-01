@@ -14,8 +14,8 @@ import './userMobile.scss'
 const Nav = (): JSX.Element => {
   const [show, setShow] = useState(false)
   const pathname = usePathname()
-
   const router = useRouter()
+
   useEffect(() => {
     router.prefetch(HOME_PATHS.Rooms.link)
   }, [router])
@@ -27,7 +27,6 @@ const Nav = (): JSX.Element => {
   const handleNavigate = (path: string) => {
     if (typeof window === 'undefined') return
     setShow(!show)
-    router.push(path)
     if (path === HOME_PATHS.Rooms.link) return
     const targetElement = document.querySelector('section.main-content')
     if (targetElement && targetElement instanceof HTMLElement) {
@@ -54,13 +53,14 @@ const Nav = (): JSX.Element => {
             const isActive = pathname === link ? 'active' : ''
             return (
               <li key={name}>
-                <button
+                <Link
+                  href={link}
                   className={`btn landingNav-link ${isActive}`}
                   onClick={() => handleNavigate(link)}
                 >
                   <Icon />
                   <p>{name}</p>
-                </button>
+                </Link>
               </li>
             )
           })}
