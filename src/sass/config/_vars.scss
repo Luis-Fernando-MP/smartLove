@@ -21,13 +21,14 @@ $dis1: var(--disable-primary);
 $dis2: var(--disable-secondary);
 
 $success: #a3ddc5d3;
-$success_dark: #224034;
 $warning: #f4d460d8;
-$warning_dark: #6a5713;
-$danger: #ffa5a5bc;
-$danger_dark: #720303;
 $info: #a2a1ffcb;
-$info_dark: #1d1c4f;
+$danger: #f86e6ebc;
+
+$success_dark: darken($success, 30);
+$warning_dark: darken($warning, 30);
+$info_dark: darken($info, 30);
+$danger_dark: darken($danger, 30);
 
 //other
 $min-small-screen: 450px;
@@ -44,3 +45,17 @@ $family: var(--roboto-flex), 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Monospace',
   'Fira Mono', monospace, 'Segoe UI Emoji';
 
 $gr1: linear-gradient(90deg, $tn1 0%, $tn2 100%);
+
+@mixin color($color, $property: color) {
+  body.dark & {
+    #{$property}: $color;
+  }
+  & {
+    #{$property}: darken($color, 30);
+  }
+}
+@mixin toDark {
+  body.dark & {
+    @content;
+  }
+}
