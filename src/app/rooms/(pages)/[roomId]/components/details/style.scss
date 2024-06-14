@@ -1,5 +1,6 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
+@use '@styles/config/extraColors' as extra;
 
 body.dark {
   h4.roomDetails-characteristic {
@@ -8,12 +9,53 @@ body.dark {
   h5.roomDetails-characteristic {
     color: v.$warning;
   }
+  .roomDetails {
+    @each $tag, $value in extra.$listSlugs {
+      &#{$tag} {
+        border: 1px solid rgba(darken($value, 10), 0.3);
+        border-radius: v.$radius;
+        background-color: rgba(darken($value, 10), 0.1);
+        h1.title::before {
+          color: lighten($value, 10);
+        }
+      }
+    }
+  }
 }
 .roomDetails {
-  width: 100%;
+  max-width: fit-content;
+  min-width: 900px;
+  margin: 0 auto;
   height: auto;
   text-align: center;
   @include d.flex($ali: center);
+  padding: v.$padding;
+  border-radius: v.$radius;
+  h1.title {
+    display: block;
+    position: relative;
+    &::before {
+      border-radius: v.$radius;
+      content: attr(data-slug);
+      position: absolute;
+      top: 20px;
+      left: -70px;
+      font-size: 10px !important;
+      font-family: var('--roboto-flex');
+      font-weight: 300;
+      word-wrap: break-word;
+      width: 70px;
+    }
+  }
+  @each $tag, $value in extra.$listSlugs {
+    &#{$tag} {
+      border: 1px solid rgba($value, 0.8);
+      background-color: rgba(lighten($value, 10), 0.1);
+      h1.title::before {
+        color: darken($value, 25);
+      }
+    }
+  }
   &-characteristic {
     @include d.flex($dir: row, $gap: v.$padding * 0.8);
     font-weight: 300;

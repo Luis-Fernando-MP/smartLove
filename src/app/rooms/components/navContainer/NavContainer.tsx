@@ -20,9 +20,7 @@ const NavContainer = ({ children, className }: INavContainer): JSX.Element => {
             <PanelLeftClose />
           </span>
         </button>
-
         {children}
-
         <button className='dashboard-menu' onClick={toggleShow}>
           <Menu stroke='#fff' />
         </button>

@@ -11,6 +11,7 @@
   --fnt-secondary: #101820;
 
   --tn-primary: #835afc;
+  --tn-primary-transparent: #f8f8ffd6;
   --tn-secondary: #637dff;
 
   --disable-primary: #47455e;
@@ -28,17 +29,18 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-primary: #1a1e23;
+    --bg-primary: #070b0f;
     --bg-secondary: #0e1217;
 
     --fnt-primary: #b6beca;
     --fnt-secondary: #b6beca;
 
-    --tn-primary: #73c191;
-    --tn-secondary: #df5e65;
+    --tn-primary: #ffdf7f;
+    --tn-primary-transparent: #ffdf7f38;
+    --tn-secondary: #feb178;
 
-    --disable-primary: #1c1a2acf;
-    --disable-secondary: #03001747;
+    --disable-primary: #1c1b1a;
+    --disable-secondary: #50494221;
   }
 }
 
@@ -203,4 +205,12 @@ svg {
 
 .gr {
   @include t.textGradient;
+}
+
+.logo {
+  min-width: 60px;
+  height: 100%;
+  object-fit: cover;
+  padding: 5px 0;
+  display: block;
 }

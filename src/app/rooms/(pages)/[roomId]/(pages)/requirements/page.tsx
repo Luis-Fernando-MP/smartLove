@@ -10,17 +10,15 @@ import './style.scss'
 
 const Page = (): JSX.Element => {
   const { replace } = useRouter()
-
   const { currentStep } = useStepsRoom()
-
   const roomID = useRoomStore(store => store.id)
 
-  useEffect(() => {
-    if (currentStep < 2) {
-      replace(`/rooms/${roomID}/`)
-    }
-    return () => {}
-  }, [currentStep, replace, roomID])
+  // useEffect(() => {
+  //   if (currentStep < 2) {
+  //     replace(`/rooms/${roomID}/`)
+  //   }
+  //   return () => {}
+  // }, [currentStep, replace, roomID])
 
   return (
     <section className='requirementsRoom'>

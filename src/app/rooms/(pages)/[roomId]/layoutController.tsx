@@ -16,9 +16,9 @@ const LayoutController = ({ children, id }: ILayoutController): JSX.Element | nu
   const { setID, setRoom } = useRoomStore()
 
   useEffect(() => {
-    if (data || !isError) {
-      setRoom(data)
-      setID(String(data.codigo))
+    if (data === null || !isError) {
+      setRoom(data!)
+      setID(String(data?.codigo))
     }
   }, [data, isError, setID, setRoom])
 

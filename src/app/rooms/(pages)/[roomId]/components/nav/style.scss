@@ -6,6 +6,12 @@
 }
 
 .roomNav {
+  &-container {
+    @include d.flex;
+    h3 {
+      text-align: center;
+    }
+  }
   &-images {
     width: 100%;
     height: auto;
@@ -13,9 +19,24 @@
     justify-content: space-between;
     flex-wrap: wrap;
   }
-  &-image {
+  &-item {
     max-width: 250px;
-    height: 300px;
+    background-color: v.$bg1;
+    padding: v.$padding;
+    padding-bottom: v.$padding * 2.5;
+    border-radius: v.$radius;
+    height: 340px;
+    @include d.flex($ali: end);
+    p {
+      font-style: italic;
+      font-weight: 200;
+    }
+  }
+
+  &-image {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    border-radius: v.$radius;
   }
 }

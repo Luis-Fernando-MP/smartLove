@@ -11,7 +11,7 @@ import './layout.scss'
 export const metadata: Metadata = {
   title: 'SmartPro',
   description: 'Sistema de gestión de reservas para la empresa de hotel "Smart Love"',
-  icons: '/logo.png'
+  icons: '/logoV3.svg'
 }
 
 interface TRootLayout {
@@ -22,7 +22,7 @@ function RootLayout({ children }: TRootLayout): JSX.Element {
   return (
     <html lang='es'>
       <body className={robotoFlex.className}>
-        <NextTopLoader zIndex={100}  height={5} color='var(--tn-primary)' />
+        <NextTopLoader zIndex={100} height={5} color='var(--tn-primary)' />
         <TanStackProvider>{children}</TanStackProvider>
         <Toaster
           position='top-center'

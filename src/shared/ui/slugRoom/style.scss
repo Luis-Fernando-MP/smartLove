@@ -1,12 +1,6 @@
 @use '@styles/config/vars' as v;
+@use '@styles/config/extraColors' as extra;
 @use '@styles/utils/defs' as d;
-
-$listSlugs: (
-  '.bets-option' #a2a1ff,
-  '.max-results' #f4d460,
-  '.on-sale' #a3ddc5,
-  '.its-full' #ffa5a5
-);
 
 // @each $tag, $value in $listSlugs {
 //   .room:has(.roomSlug#{$tag}) {
@@ -18,7 +12,7 @@ $listSlugs: (
 
 body.dark {
   .roomSlug {
-    @each $tag, $value in $listSlugs {
+    @each $tag, $value in extra.$listSlugs {
       &#{$tag} {
         background-color: rgba(lighten($value, 10), 0.8);
       }
@@ -30,7 +24,7 @@ body.dark {
   padding: 5px;
   @include d.flex($dir: row, $ali: center);
   justify-content: center;
-  @each $tag, $value in $listSlugs {
+  @each $tag, $value in extra.$listSlugs {
     &#{$tag} {
       background-color: rgba($value, 0.5);
       &,

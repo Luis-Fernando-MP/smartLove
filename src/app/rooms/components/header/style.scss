@@ -11,13 +11,6 @@
   &-account {
     @include d.flex($dir: row, $ali: center);
   }
-  &-brand {
-    text-align: center;
-    span {
-      text-transform: uppercase;
-      font-size: 0.8em;
-    }
-  }
   &-account {
     justify-content: center;
   }

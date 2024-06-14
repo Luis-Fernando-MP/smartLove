@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { type JSX, useEffect, useState } from 'react'
 import { HOME_PATHS } from 'shared/constants'
-import { mada, yesevaOne } from 'shared/fonts'
 import ColorSchemeButton from 'shared/ui/colorSchemeButton/ColorSchemeButton'
+import ToggleLogo from 'shared/ui/colorSchemeButton/ToggleLogo'
 
 import './style.scss'
 import './userMobile.scss'
@@ -44,8 +44,7 @@ const Nav = (): JSX.Element => {
       </button>
       <nav className={`landingNav ${show ? 'show-menu' : ''}`}>
         <Link href={HOME_PATHS.Resume.link} className='landingNav-brand'>
-          <h2 className={yesevaOne.className}>Smart Pro</h2>
-          <span className={mada.className}>Hotel sauna rooftop bar</span>
+          <ToggleLogo />
         </Link>
         <ul className='landingNav-paths'>
           {Object.values(HOME_PATHS).map(path => {

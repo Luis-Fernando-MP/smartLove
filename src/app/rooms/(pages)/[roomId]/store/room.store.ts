@@ -17,7 +17,7 @@ export default useStepsRoom
 
 interface IUseRoomStore {
   id: string
-  room: IRoom | null
+  room: IRoom
   setID: (id: IUseRoomStore['id']) => void
   setRoom: (room: IUseRoomStore['room']) => void
 }
@@ -27,7 +27,7 @@ export const useRoomStore = create<IUseRoomStore>(set => ({
   setID(id) {
     return set(() => ({ id }))
   },
-  room: null,
+  room: null as any,
   setRoom(room) {
     return set(() => ({ room }))
   }

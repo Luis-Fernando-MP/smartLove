@@ -10,6 +10,7 @@
   border: 1px solid v.$dis2;
   position: relative;
   z-index: 1;
+  background-color: v.$bg2;
   &::before {
     content: '';
     position: absolute;

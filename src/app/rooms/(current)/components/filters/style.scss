@@ -16,7 +16,8 @@
   }
   &-submit {
     background-color: v.$tn1;
-    color: v.$info_dark;
+    color: v.$bg1;
+    font-weight: 700;
   }
   &-form {
     @include d.flex();

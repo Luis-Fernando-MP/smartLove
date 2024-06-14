@@ -1,31 +1,30 @@
 'use client'
 
-import { useLocalStorage } from 'hooks/useLocalStorage'
 import { type JSX, useEffect } from 'react'
 import { DarkModeSwitch } from 'react-toggle-dark-mode'
 
 import themes from './themes.json'
+import useStoreTheme, { ITheme } from './useStoreTheme'
 
 const ColorSchemeButton = (): JSX.Element => {
-  const [theme, setTheme] = useLocalStorage('theme', false)
+  const { theme, setTheme } = useStoreTheme()
 
   useEffect(() => {
-    document.body.classList.toggle('dark', !theme)
+    document.body.classList.toggle('dark', theme === 'dark')
     setRoot(theme)
   }, [theme])
 
-  const setRoot = checked => {
-    const newTheme = checked ? 'light' : 'dark'
-    Object.entries(themes[newTheme]).forEach(([color, value]) => {
+  const setRoot = (theme: ITheme) => {
+    Object.entries(themes[theme]).forEach(([color, value]) => {
       document.documentElement.style.setProperty(`--${color}`, value)
     })
   }
 
   return (
     <DarkModeSwitch
-      checked={theme}
+      checked={theme !== 'dark'}
       onChange={checked => {
-        setTheme(checked)
+        setTheme(!checked ? 'dark' : 'light')
       }}
       size={120}
       sunColor='#F5B027'

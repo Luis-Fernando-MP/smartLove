@@ -8,7 +8,6 @@ $navSize: 550px; //<-- important
   min-width: $navSize;
   max-width: $navSize;
 }
-
 .dashboard-main.room {
   @include calculate.setCalculateMainSize($navSize);
 }

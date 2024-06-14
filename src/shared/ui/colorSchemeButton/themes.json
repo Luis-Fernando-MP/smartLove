@@ -5,6 +5,7 @@
     "fnt-primary": "#000000",
     "fnt-secondary": "#101820",
     "tn-primary": "#835afc",
+    "tn-primary-transparent": "#f8f8ffd6",
     "tn-secondary": "#637dff",
     "disable-primary": "#47455e",
     "disable-secondary": "#5950c426"
@@ -14,9 +15,10 @@
     "bg-secondary": "#0e1217",
     "fnt-primary": "#b6beca",
     "fnt-secondary": "#b6beca",
-    "tn-primary": "#73c191",
-    "tn-secondary": "#df5e65",
-    "disable-primary": "#1c1a2acf",
-    "disable-secondary": "#03001747"
+    "tn-primary": "#ffdf7f",
+    "tn-primary-transparent": "#ffdf7f38",
+    "tn-secondary": "#feb178",
+    "disable-primary": "#1c1b1a",
+    "disable-secondary": "#50494221"
   }
 }

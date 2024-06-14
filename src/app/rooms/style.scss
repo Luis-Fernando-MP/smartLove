@@ -20,13 +20,10 @@
     height: 100%;
     background: radial-gradient(
       150% 50% at 50% 0%,
-      rgba(63, 89, 255, 0.13) 0,
-      rgba(0, 163, 255, 0) 50%,
+      v.$tn1T 0,
+      rgba(0, 0, 0, 0) 50%,
       transparent 100%
     );
-    // rgba(0, 163, 255, 0.13) 0,
-    // rgba(0, 163, 255, 0) 50%,
-    // rgba(0, 163, 255, 0) 100%
   }
 }
 
