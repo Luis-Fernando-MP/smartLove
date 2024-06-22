@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react'
 import { IRoom } from 'services/room/room.service.types'
 import { addDays, differenceDays, stringToDate } from 'shared/helpers/formatDate'
+import { round } from 'shared/helpers/round'
 import { STAY_USER, currentClassCase, discountByStay } from 'shared/helpers/stayUserCases'
 
 import useRequirementsStore from '../store/useRequirementsStore'
@@ -50,15 +51,16 @@ const useUseTotalCalculate = ({ room }: TProps) => {
   if (!room) return null
 
   return {
-    subtotal,
-    totalIGV,
-    totalSurcharge,
-    totalAmount,
+    subtotal: round(subtotal),
+    totalIGV: round(totalIGV),
+    totalSurcharge: round(totalSurcharge),
+    totalAmount: round(totalAmount),
+    roomPrice,
     diffDays,
     toDate,
     fromDate,
     stayUser,
-    roomPrice,
+    currentUserStay: currentClassCase(diffDays),
     setToDate,
     setFromDate,
     handleChangeNights

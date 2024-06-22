@@ -3,6 +3,10 @@
 
 .requirementsRoom {
   @include d.flex;
+  padding-bottom: v.$padding * 3;
+  .subtitle {
+    text-align: center;
+  }
   &-actions {
     @include d.flex($dir: row, $ali: center);
     justify-content: center;

@@ -1,6 +1,22 @@
 @use '@styles/config/vars' as v;
-.currentRoom-continue {
-  background-color: v.$tn1;
-  color: v.$bg1;
-  margin: auto;
+@use '@styles/utils/defs' as d;
+
+.currentRoom {
+  &-continue {
+    margin: auto;
+  }
+  &-services {
+    max-width: 70%;
+    width: fit-content;
+    @include d.flex($dir: row);
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: v.$bg2;
+    border-radius: v.$radius;
+    padding: v.$padding;
+    margin: 0 auto;
+  }
+  &-service {
+    @include d.flex($dir: row, $ali: center);
+  }
 }

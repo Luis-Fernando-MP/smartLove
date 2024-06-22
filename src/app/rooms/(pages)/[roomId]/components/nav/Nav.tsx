@@ -14,7 +14,6 @@ const Nav = (): JSX.Element | null => {
       <ul className='roomNav-images'>
         {room?.imagenesHabitacion.map(image => {
           const { urlImagen, idImgHabitacion, fechEdicion } = image
-
           return (
             <li key={idImgHabitacion} className='roomNav-item'>
               <img src={urlImagen} alt={fechEdicion.toString()} className='roomNav-image' />

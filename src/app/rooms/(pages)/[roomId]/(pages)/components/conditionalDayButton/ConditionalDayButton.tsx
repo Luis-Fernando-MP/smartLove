@@ -13,11 +13,16 @@ interface IConditionalDayButton {
 
 const ConditionalDayButton = ({ days, oneNight }: IConditionalDayButton): JSX.Element => {
   const classUserStatus = currentClassCase(days)
-  if (classUserStatus === STAY_USER.LONG) startsConfetti()
-  if (classUserStatus === STAY_USER.EXTENDED) moneyConfetti()
+  const handleConfetti = (): void => {
+    if (classUserStatus === STAY_USER.LONG) startsConfetti()
+    if (classUserStatus === STAY_USER.EXTENDED) moneyConfetti()
+  }
 
   return (
-    <button className={`btn conditionalDayButton ${currentClassCase(days)}`}>
+    <button
+      className={`btn conditionalDayButton ${currentClassCase(days)}`}
+      onClick={handleConfetti}
+    >
       <CalendarClockIcon />
       <p>
         {days} Noche{!oneNight && 's'}

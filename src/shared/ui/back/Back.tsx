@@ -1,6 +1,7 @@
 import { ArrowLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import type { JSX, ReactNode } from 'react'
+import { switchClass } from 'shared/helpers/switchClassName'
 
 import './style.scss'
 
@@ -17,7 +18,7 @@ const Back = ({ row = false }: IBack): JSX.Element => {
   }
 
   return (
-    <section className={`back ${row ? 'row' : ''}`}>
+    <section className={`back ${switchClass(row, 'row')}`}>
       <button onClick={goBack} className='back-action'>
         <ArrowLeft />
         <p>Regresar</p>

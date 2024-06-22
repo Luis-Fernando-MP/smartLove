@@ -2,9 +2,9 @@
 
 import Link from 'next/link'
 import { addDays, formatDate, stringToDate, today } from 'shared/helpers/formatDate'
+import { round } from 'shared/helpers/round'
 import {
   STAY_USER,
-  currentClassCase,
   currentIndexCase,
   discountByStay,
   stayCases
@@ -21,18 +21,19 @@ const TotalCalculate = (): JSX.Element | null => {
   const calculateHook = useUseTotalCalculate({ room })
   if (!calculateHook) return null
   const {
-    subtotal,
-    totalIGV,
-    totalSurcharge,
-    totalAmount,
+    currentUserStay,
     diffDays,
-    toDate,
     fromDate,
-    stayUser,
+    handleChangeNights,
     roomPrice,
-    setToDate,
     setFromDate,
-    handleChangeNights
+    setToDate,
+    stayUser,
+    subtotal,
+    toDate,
+    totalAmount,
+    totalIGV,
+    totalSurcharge
   } = calculateHook
 
   const oneNight = diffDays <= 1
@@ -106,7 +107,7 @@ const TotalCalculate = (): JSX.Element | null => {
         <progress
           value={currentIndexCase(diffDays)}
           max={stayCases.length - 1}
-          className={`totalCalculate-progress  ${stayUser}`}
+          className={`totalCalculate-progress ${stayUser}`}
         />
         <div className='totalCalculate-separator subtotal'>
           <h3>Subtotal:</h3>
@@ -126,16 +127,16 @@ const TotalCalculate = (): JSX.Element | null => {
             <h4>PEN {totalSurcharge}</h4>
           </div>
 
-          {currentClassCase(diffDays) === STAY_USER.LONG && (
+          {currentUserStay === STAY_USER.LONG && (
             <div className='totalCalculate-container service'>
               <p>*Descuento {discountByStay(STAY_USER.LONG) * 100}%</p>
-              <h4>PEN {roomPrice * discountByStay(STAY_USER.LONG) * diffDays}</h4>
+              <h4>PEN {round(roomPrice * discountByStay(STAY_USER.LONG) * diffDays)}</h4>
             </div>
           )}
-          {currentClassCase(diffDays) === STAY_USER.EXTENDED && (
+          {currentUserStay === STAY_USER.EXTENDED && (
             <div className='totalCalculate-container service'>
               <p>*Descuento {discountByStay(STAY_USER.EXTENDED) * 100}%</p>
-              <h4>PEN {roomPrice * discountByStay(STAY_USER.EXTENDED) * diffDays}</h4>
+              <h4>PEN {round(roomPrice * discountByStay(STAY_USER.EXTENDED) * diffDays)}</h4>
             </div>
           )}
 

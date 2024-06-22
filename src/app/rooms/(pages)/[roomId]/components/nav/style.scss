@@ -20,7 +20,7 @@
     flex-wrap: wrap;
   }
   &-item {
-    max-width: 250px;
+    width: 250px;
     background-color: v.$bg1;
     padding: v.$padding;
     padding-bottom: v.$padding * 2.5;

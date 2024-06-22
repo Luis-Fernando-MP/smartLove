@@ -9,14 +9,15 @@ interface ISlugRoom {
   maxResults?: number
   onSale: boolean
   itsFull: boolean
+  name: string
 }
 
 const SlugRoom = ({ ...slugOPT }: ISlugRoom): JSX.Element => {
-  const { IconSlug, className, tag } = getSlugOBJ(slugOPT)
+  const { IconSlug, classSlug, tagSlug } = getSlugOBJ(slugOPT)
   return (
-    <section className={`roomSlug ${className}`}>
+    <section className={`roomSlug ${classSlug}`}>
       <IconSlug />
-      {tag}
+      {tagSlug}
     </section>
   )
 }

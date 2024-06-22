@@ -5,6 +5,7 @@ import { ROOMS_NAME_CACHE } from 'hooks/useRooms'
 import type { JSX } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { switchClass } from 'shared/helpers/switchClassName'
 import {
   TFilterRoomsValidator,
   capacitiesValues,
@@ -57,7 +58,7 @@ const Filters = (): JSX.Element => {
           Filtrar
         </button>
 
-        <section className={`roomFilters-section ${pricingError ? 'error' : ''}`}>
+        <section className={`roomFilters-section ${switchClass(pricingError, 'error')}`}>
           <h5>Por precios:</h5>
           <p className='roomFilters-section__error'>{pricingError?.message}</p>
           {pricingValues.map(({ value, name }, i) => {
@@ -71,7 +72,7 @@ const Filters = (): JSX.Element => {
           })}
         </section>
 
-        <section className={`roomFilters-section ${classyError ? 'error' : ''}`}>
+        <section className={`roomFilters-section ${switchClass(classyError, 'error')}`}>
           <h5>Por clasificación:</h5>
           <p className='roomFilters-section__error'>{classyError?.message}</p>
           {classificationsValues.map(({ value, name }, i) => {
@@ -90,7 +91,7 @@ const Filters = (): JSX.Element => {
           })}
         </section>
 
-        <section className={`roomFilters-section ${capacityError ? 'error' : ''}`}>
+        <section className={`roomFilters-section ${switchClass(capacityError, 'error')}`}>
           <h5>Por capacidad:</h5>
           <p className='roomFilters-section__error'>{capacityError?.message}</p>
           {capacitiesValues.map(({ value, name }, i) => {

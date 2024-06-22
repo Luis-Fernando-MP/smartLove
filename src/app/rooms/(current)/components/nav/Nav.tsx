@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { type JSX } from 'react'
 import { DASHBOARD_PATHS, HOME_PATHS, WHATSAPP_URL } from 'shared/constants'
 import { whisper } from 'shared/fonts'
+import { switchClass } from 'shared/helpers/switchClassName'
 import Social from 'shared/ui/social/Social'
 
 import Filters from '../filters/Filters'
@@ -21,7 +22,7 @@ const Nav = (): JSX.Element => {
         <summary className='roomNav-summary'>Dashboard</summary>
         {DASHBOARD_PATHS.map(path => {
           const { name, link, Icon } = path
-          let isActive = pathname === link ? 'active' : ''
+          let isActive = pathname === switchClass(link)
           if (link === '/') isActive = 'active'
           return (
             <Link
@@ -39,7 +40,7 @@ const Nav = (): JSX.Element => {
         <summary className='roomNav-summary'>Home</summary>
         {Object.values(HOME_PATHS).map(path => {
           const { name, link, Icon } = path
-          const isActive = pathname === link ? 'active' : ''
+          const isActive = switchClass(pathname === link)
           return (
             <Link key={name} href={link} className={`roomNav-summary__path btn ${isActive}`}>
               <Icon />

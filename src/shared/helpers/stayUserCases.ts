@@ -4,7 +4,7 @@ export enum STAY_USER {
   SHORT = 'short-stay',
   MEDIUM = 'medium-stay-benefit',
   LONG = 'long-stay-discount',
-  EXTENDED = 'extended-stay-tr5premium'
+  EXTENDED = 'extended-stay-premium'
 }
 
 export const stayCases = [

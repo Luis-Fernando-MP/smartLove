@@ -1,5 +1,6 @@
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { switchClass } from 'shared/helpers/switchClassName'
 
 const useNav = () => {
   const [show, setShow] = useState(false)
@@ -24,7 +25,7 @@ const useNav = () => {
   }
 
   const getClass = () => {
-    return show ? 'show-menu' : ''
+    return switchClass(show, 'show-menu')
   }
 
   return { show, toggleShow, pathname, getClass }

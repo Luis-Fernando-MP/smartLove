@@ -6,6 +6,7 @@ import { type JSX } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { HOME_PATHS } from 'shared/constants'
+import { switchClass } from 'shared/helpers/switchClassName'
 import { TReservationResolver, reservationResolver } from 'shared/resolvers/reservation.resolver'
 import Back from 'shared/ui/back/Back'
 
@@ -41,7 +42,7 @@ const Nav = (): JSX.Element => {
         &nbsp;para cancelar tu reserva :)
       </h5>
       <form onSubmit={handleSubmit(onFormSubmit, onErrors)} className='reservationNav-form'>
-        <section className={`reservationNav-form__section ${roomIdError ? 'error' : ''}`}>
+        <section className={`reservationNav-form__section ${switchClass(roomIdError, 'error')}`}>
           <h5>ID de reserva:</h5>
           <p className='reservationNav-section__error'>{roomIdError?.message}</p>
           <label className='reservationNav-form__select'>
@@ -56,7 +57,7 @@ const Nav = (): JSX.Element => {
           </label>
         </section>
 
-        <section className={`reservationNav-form__section ${roomNameError ? 'error' : ''}`}>
+        <section className={`reservationNav-form__section ${switchClass(roomNameError, 'error')}`}>
           <h5>Escoge la reserva a cancelar:</h5>
           <p className='reservationNav-section__error'>{roomNameError?.message}</p>
           <span className='reservationNav-form__info'>
@@ -74,7 +75,7 @@ const Nav = (): JSX.Element => {
           </label>
         </section>
 
-        <section className={`reservationNav-form__section ${commentError ? 'error' : ''}`}>
+        <section className={`reservationNav-form__section ${switchClass(commentError, 'error')}`}>
           <h5>Coméntanos tu razón:</h5>
           <p className='reservationNav-section__error'>{commentError?.message}</p>
           <span className='reservationNav-form__info'>

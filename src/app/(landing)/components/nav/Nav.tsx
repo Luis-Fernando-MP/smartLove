@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { type JSX, useEffect, useState } from 'react'
 import { HOME_PATHS } from 'shared/constants'
+import { switchClass } from 'shared/helpers/switchClassName'
 import ColorSchemeButton from 'shared/ui/colorSchemeButton/ColorSchemeButton'
 import ToggleLogo from 'shared/ui/colorSchemeButton/ToggleLogo'
 
@@ -42,14 +43,14 @@ const Nav = (): JSX.Element => {
       <button className='landingNav-menu' onClick={handleShowMenu}>
         <Menu stroke='#fff' />
       </button>
-      <nav className={`landingNav ${show ? 'show-menu' : ''}`}>
+      <nav className={`landingNav ${switchClass(show, 'show-menu')}`}>
         <Link href={HOME_PATHS.Resume.link} className='landingNav-brand'>
           <ToggleLogo />
         </Link>
         <ul className='landingNav-paths'>
           {Object.values(HOME_PATHS).map(path => {
             const { name, link, Icon } = path
-            const isActive = pathname === link ? 'active' : ''
+            const isActive = switchClass(pathname === link)
             return (
               <li key={name}>
                 <Link
