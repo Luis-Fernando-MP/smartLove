@@ -3,6 +3,7 @@
 ![alt text](./assets/fondo1.png)
 ![alt text](./assets/fondo2.png)
 ![alt text](./assets/fondo3.png)
+![alt text](./assets/fondo4.png)
 Para levantar la aplicación sigue los siguientes pasos.
 
 1. Instala [nodeJS v20](https://nodejs.org/en/), ademas verifica tener al menos un sistema de gestor de paquetes:
