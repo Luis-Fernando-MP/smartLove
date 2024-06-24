@@ -26,7 +26,7 @@
     padding-bottom: v.$padding * 2.5;
     border-radius: v.$radius;
     height: 340px;
-    @include d.flex($ali: end);
+    @include d.flex($ali: flex-end);
     p {
       font-style: italic;
       font-weight: 200;

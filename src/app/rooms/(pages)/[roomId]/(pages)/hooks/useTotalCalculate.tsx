@@ -10,8 +10,8 @@ interface TProps {
   room?: IRoom
 }
 
-const IGV = 0.18
-const SURCHARGE = 0.1
+export const IGV = 0.18
+export const SURCHARGE = 0.1
 
 const useUseTotalCalculate = ({ room }: TProps) => {
   const { fromDate, stayUser, toDate, totalAmount } = useRequirementsStore()

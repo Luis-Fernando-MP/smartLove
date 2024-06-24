@@ -1,6 +1,6 @@
 'use client'
 
-import NavContainer from 'app/rooms/components/navContainer/NavContainer'
+import { useReservations } from 'hooks/useReservations'
 import Link from 'next/link'
 import { type JSX } from 'react'
 import { useForm } from 'react-hook-form'
@@ -10,13 +10,18 @@ import { switchClass } from 'shared/helpers/switchClassName'
 import { TReservationResolver, reservationResolver } from 'shared/resolvers/reservation.resolver'
 import Back from 'shared/ui/back/Back'
 
+import { useReservationStore } from '../../store/reservation.store'
 import './style.scss'
 
-const Nav = (): JSX.Element => {
+const Nav = (): JSX.Element | null => {
+  const { reservations } = useReservationStore()
+
   const hookForm = useForm<TReservationResolver>({
     resolver: reservationResolver,
     defaultValues: {}
   })
+  if (!reservations) return null
+
   const { register, handleSubmit, formState } = hookForm
   const { errors } = formState
   const { roomID: roomIdError, roomName: roomNameError, comment: commentError } = errors
@@ -31,7 +36,7 @@ const Nav = (): JSX.Element => {
   }
 
   return (
-    <NavContainer className='reservationNav'>
+    <>
       <Back />
       <h3 className='reservationNav-subtitle'>¿Cancelar reserva?</h3>
       <h5 className='reservationNav-precaution'>
@@ -50,9 +55,13 @@ const Nav = (): JSX.Element => {
               <option value='' style={{ display: 'none' }}>
                 Selecciona una opción
               </option>
-              <option value='123456789012'>Ejemplo ID habitación 1</option>
-              <option value='123456789012'>Ejemplo ID habitación 2</option>
-              <option value='123456789012'>Ejemplo ID habitación 3</option>
+              {reservations.map(r => {
+                return (
+                  <option key={r.idReserva} value={r.idReserva}>
+                    Código {r.idReserva}
+                  </option>
+                )
+              })}
             </select>
           </label>
         </section>
@@ -68,9 +77,13 @@ const Nav = (): JSX.Element => {
               <option value='' style={{ display: 'none' }}>
                 Selecciona una opción
               </option>
-              <option value='value1'>Ejemplo nombre habitación 1</option>
-              <option value='value2'>Ejemplo nombre habitación 2</option>
-              <option value='value3'>Ejemplo nombre habitación 3</option>
+              {reservations.map(r => {
+                return (
+                  <option key={r.idReserva} value={r.idReserva}>
+                    Pago {r.total}
+                  </option>
+                )
+              })}
             </select>
           </label>
         </section>
@@ -88,7 +101,7 @@ const Nav = (): JSX.Element => {
           Cancelar reserva
         </button>
       </form>
-    </NavContainer>
+    </>
   )
 }
 

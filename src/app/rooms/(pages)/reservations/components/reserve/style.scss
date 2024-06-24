@@ -1,0 +1,64 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.reserve {
+  border-radius: v.$radius;
+  border: 1.5px dotted v.$dis2;
+  background-color: v.$bg2;
+  height: auto;
+  margin: v.$padding * 0.3;
+  overflow: hidden;
+  padding: v.$padding;
+  position: relative;
+  width: 320px;
+  z-index: 1;
+  @include d.flex($ali: center, $gap: v.$padding * 2);
+  &-operations {
+    width: 100%;
+    justify-content: space-around;
+    @include d.flex($ali: center, $gap: 0);
+    flex-direction: row;
+  }
+  &-operation {
+    text-align: center;
+    @include d.flex($gap: 10px);
+    h4 {
+      border-bottom: 2.5px dotted v.$fn2;
+    }
+    width: 100%;
+  }
+  &-room {
+    span {
+      font: v.$fSmall;
+      font-weight: 200;
+      text-wrap: wrap;
+    }
+  }
+  &-details {
+    width: 100%;
+    @include d.flex();
+  }
+  &-detail {
+    @include d.flex($gap: 0);
+    flex-direction: row;
+    h5 {
+      min-width: fit-content;
+      min-width: 200px;
+    }
+  }
+  &-extra {
+    width: 100%;
+    @include d.flex($ali: center, $gap: 10px);
+    flex-direction: row;
+    justify-content: flex-end;
+    &::before {
+      content: '';
+      width: 15px;
+      display: block;
+      height: 15px;
+      position: relative;
+      border-radius: 50%;
+      background-color: v.$tn1;
+    }
+  }
+}

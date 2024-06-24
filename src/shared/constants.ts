@@ -51,7 +51,7 @@ export const DASHBOARD_PATHS = [
   },
   {
     name: 'Mis reservas',
-    link: 'reservation',
+    link: 'reservations',
     Icon: Hotel
   },
   {
