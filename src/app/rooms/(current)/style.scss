@@ -16,4 +16,5 @@ $navSize: 250px; //<-- important
 .room-container {
   @include d.flex($dir: row);
   flex-wrap: wrap;
+  background-color: red;
 }

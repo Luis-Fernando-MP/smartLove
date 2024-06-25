@@ -25,7 +25,7 @@
     padding: v.$padding;
     padding-bottom: v.$padding * 2.5;
     border-radius: v.$radius;
-    height: 340px;
+    height: 380px;
     @include d.flex($ali: flex-end);
     p {
       font-style: italic;

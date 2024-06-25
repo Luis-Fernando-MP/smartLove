@@ -19,8 +19,8 @@ const RoomsContainer = (): JSX.Element | null => {
         <b className='gr'>{data.length} Resultados</b> encontrados
       </h3>
       <p>
-        Para: <b className='gr'>{filters.pricing}</b>, clasificación&bnsp;
-        <b className='gr'>{filters.classification}</b>, capacidad de&bnsp;
+        Para: <b className='gr'>{filters.pricing}</b>, clasificación
+        <b className='gr'>{filters.classification}</b>, capacidad de
         <b className='gr'>{filters.capacity}</b> huéspedes
       </p>
       <Masonry>

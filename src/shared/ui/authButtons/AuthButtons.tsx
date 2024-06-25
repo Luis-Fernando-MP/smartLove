@@ -19,7 +19,7 @@ const AuthButtons = (): JSX.Element => {
     <aside className='authOptions'>
       <ColorSchemeButton />
       <ClerkLoading>
-        <div className='skeleton h-5 min-w-24 animate-pulse rounded ' />
+        <div className='skeleton h-12 w-32' />
       </ClerkLoading>
       <ClerkLoaded>
         <SignedIn>

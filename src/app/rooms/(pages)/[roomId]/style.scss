@@ -13,5 +13,5 @@ $navSize: 550px; //<-- important
 }
 
 .dashboard-body {
-  @include d.flex;
+  @include d.flex($ali: center);
 }

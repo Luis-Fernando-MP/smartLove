@@ -2,32 +2,54 @@
 @use '@styles/config/extraColors' as extra;
 @use '@styles/utils/defs' as d;
 
-// @each $tag, $value in $listSlugs {
-//   .room:has(.roomSlug#{$tag}) {
-//     &::before {
-//       // background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba($value, 0.4), transparent);
-//     }
-//   }
-// }
-
-body.dark {
-  .roomSlug {
-    @each $tag, $value in extra.$listSlugs {
-      &#{$tag} {
-        background-color: rgba(lighten($value, 10), 0.8);
-      }
-    }
-  }
+.roomSlugs {
+  position: absolute;
+  top: v.$padding;
+  right: 5px;
+  z-index: 1;
+  @include d.flex($ali: flex-end, $gap: 5px);
 }
 .roomSlug {
-  width: 100%;
-  padding: 5px;
-  @include d.flex($dir: row, $ali: center);
-  justify-content: center;
+  @include d.flex($gap: 5px, $dir: row);
+  position: relative;
+  cursor: help;
+  &-details {
+    border-radius: 5px;
+    opacity: 0;
+    padding: 5px;
+    position: absolute;
+    right: 35px;
+    width: 150px;
+    top: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    p {
+      text-wrap: wrap;
+    }
+  }
+  &-icon:hover + &-details,
+  &:hover > &-details {
+    opacity: 1;
+    visibility: visible;
+  }
+  &-icon {
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-content: center;
+  }
   @each $tag, $value in extra.$listSlugs {
     &#{$tag} {
-      background-color: rgba($value, 0.5);
-      &,
+      .roomSlug-icon,
+      .roomSlug-details {
+        background-color: rgba($value, 0.9);
+      }
+      summary {
+        color: darken($value, 80);
+        font-weight: 500;
+      }
+      p,
       svg {
         color: darken($value, 60);
         stroke: darken($value, 70);

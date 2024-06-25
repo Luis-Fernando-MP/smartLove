@@ -10,22 +10,28 @@ body.dark {
   @include d.flex($ali: center);
   border-radius: v.$radius;
   height: auto;
-  margin: 0 auto;
   max-width: fit-content;
   min-width: 900px;
   padding: v.$padding * 2 0;
   position: relative;
   text-align: center;
-
+  background-color: v.$bg1;
+  &-container {
+    @include d.flex($dir: row);
+  }
   h1.title {
     display: block;
     position: relative;
   }
-  &-characteristic {
+  &-characteristic,
+  &-calendar {
     @include d.flex($dir: row, $gap: 5px, $ali: center);
+    justify-content: center;
   }
-  h3.roomDetails-characteristic {
-    color: v.$success_dark;
-    font-weight: 500;
+  h5.roomDetails-characteristic {
+    background-color: v.$success_dark;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: v.$success;
   }
 }

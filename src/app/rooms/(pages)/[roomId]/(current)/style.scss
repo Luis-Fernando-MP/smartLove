@@ -3,20 +3,19 @@
 
 .currentRoom {
   &-continue {
-    margin: auto;
+    min-width: 200px;
   }
   &-services {
-    max-width: 70%;
+    max-width: 900px;
     width: fit-content;
     @include d.flex($dir: row);
     flex-wrap: wrap;
     justify-content: center;
-    background-color: v.$bg2;
+    background-color: v.$bg1;
     border-radius: v.$radius;
-    padding: v.$padding;
-    margin: 0 auto;
   }
   &-service {
     @include d.flex($dir: row, $ali: center);
+    color: v.$fn2;
   }
 }

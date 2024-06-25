@@ -28,15 +28,13 @@ const Page = (): JSX.Element | null => {
       </ul>
       <Link
         href={`/rooms/${codigo}/requirements`}
-        onClick={() => {
-          setCurrentStep(2)
-        }}
-        className='btn currentRoom-continue bgr'
+        className='btn currentRoom-continue bgr big'
+        onClick={() => setCurrentStep(2)}
       >
-        Continuar con la Reserva
+        Reservar ahora 🍀
       </Link>
       <h4 className='text-center'>
-        Otras <b className='gr'>Recomendaciones</b>
+        <b className='gr'>Otras Habitaciones</b> Recomendadas 🛎️
       </h4>
       <RecommendationController />
     </>

@@ -2,5 +2,6 @@
 @use '@styles/utils/defs' as d;
 
 .roomsContainer {
+  width: 100%;
   @include d.flex();
 }

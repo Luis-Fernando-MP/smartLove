@@ -1,5 +1,5 @@
 import type { JSX, ReactNode } from 'react'
-import { getSlugOBJ } from 'shared/helpers/getSlugOBJ'
+import { getSlugs } from 'shared/helpers/getSlugOBJ'
 
 import './style.scss'
 
@@ -9,16 +9,27 @@ interface ISlugRoom {
   maxResults?: number
   onSale: boolean
   itsFull: boolean
-  name: string
 }
 
 const SlugRoom = ({ ...slugOPT }: ISlugRoom): JSX.Element => {
-  const { IconSlug, classSlug, tagSlug } = getSlugOBJ(slugOPT)
+  const slugs = getSlugs(slugOPT)
   return (
-    <section className={`roomSlug ${classSlug}`}>
-      <IconSlug />
-      {tagSlug}
-    </section>
+    <article className='roomSlugs'>
+      {slugs.map(slug => {
+        const { IconSlug, classSlug, tagSlug, slugDescription } = slug
+        return (
+          <section className={`roomSlug ${classSlug}`} key={tagSlug}>
+            <details className='roomSlug-details'>
+              <summary className='roomSlug-summary'>{tagSlug}</summary>
+              <p>{slugDescription}</p>
+            </details>
+            <div className='roomSlug-icon'>
+              <IconSlug />
+            </div>
+          </section>
+        )
+      })}
+    </article>
   )
 }
 

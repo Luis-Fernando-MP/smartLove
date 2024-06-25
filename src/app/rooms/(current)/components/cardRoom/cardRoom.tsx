@@ -28,7 +28,7 @@ const CardRoom = ({ data }: ICardRoom): JSX.Element => {
   } = data
   return (
     <section className='cardRoom'>
-      <SlugRoom counter={contadorreserva} onSale={onSale} itsFull={estado} name={nombre} />
+      <SlugRoom counter={contadorreserva} onSale={onSale} itsFull={estado} />
       <img
         src={imagenesHabitacion[0].urlImagen}
         alt={nombre}

@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { ArrowUpRight, DollarSignIcon } from 'lucide-react'
+import { ArrowUpRight, BanknoteIcon, CalendarDaysIcon } from 'lucide-react'
 import Link from 'next/link'
 import type { JSX, ReactNode } from 'react'
 import { IRoom } from 'services/room/room.service.types'
+import { sansitaSwashed } from 'shared/fonts'
 import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
 
 import SlugRoom from '../slugRoom/slugRoom'
@@ -26,11 +27,34 @@ const RoomComponentV2 = ({ room }: IRoomsComponentV2): JSX.Element => {
   } = room
   return (
     <li className='roomComponentV2' key={codigo}>
+      <SlugRoom counter={contadorreserva} onSale={onSale} itsFull={estado} />
+      <header className='roomComponentV2-header'>
+        <img
+          src={imagenesHabitacion[0].urlImagen}
+          alt={nombre}
+          loading='lazy'
+          className='roomComponentV2-header__background'
+        />
+        <section className='roomComponentV2-header__images'>
+          {imagenesHabitacion.map(image => {
+            return (
+              <img
+                key={image.idImgHabitacion}
+                src={image.urlImagen}
+                alt={image.urlImagen}
+                loading='lazy'
+                className='roomComponentV2-header__image'
+              />
+            )
+          })}
+        </section>
+      </header>
       <article className='roomComponentV2-details'>
-        <h3>{nombre}</h3>
+        <h3 className={sansitaSwashed.className}>{nombre}</h3>
+        <p>Servicios de la habitación:</p>
         <ul className='roomComponentV2-services'>
           <li className='roomComponentV2-service price'>
-            <DollarSignIcon />
+            <BanknoteIcon />
             <h5>{precio}xNoche</h5>
           </li>
           {serviciosHabitacion.map(service => {
@@ -42,19 +66,23 @@ const RoomComponentV2 = ({ room }: IRoomsComponentV2): JSX.Element => {
             )
           })}
         </ul>
-        <Link href={`/rooms/${codigo}`} className='btn roomComponentV2-go'>
-          Disponible <ArrowUpRight />
-        </Link>
+        <div className='roomComponentV2-actions'>
+          <Link
+            href={`/rooms/${codigo}/calendar`}
+            className='btn  roomComponentV2-action roomComponentV2-calendar'
+          >
+            Ver calendario
+            <CalendarDaysIcon />
+          </Link>
+          <Link
+            href={`/rooms/${codigo}`}
+            className='btn roomComponentV2-action roomComponentV2-reserve'
+          >
+            Quiero reservarlo
+            <ArrowUpRight />
+          </Link>
+        </div>
       </article>
-      <section className='roomComponentV2-more'>
-        <SlugRoom counter={contadorreserva} onSale={onSale} itsFull={estado} />
-        <img
-          src={imagenesHabitacion[0].urlImagen}
-          alt={nombre}
-          loading='lazy'
-          className='roomComponentV2-image'
-        />
-      </section>
     </li>
   )
 }

@@ -21,7 +21,7 @@ export const getAllRooms = async (): Promise<IRoom[]> => {
     await new Promise(resolve =>
       setTimeout(() => {
         return resolve(true)
-      }, 1500)
+      }, 4000)
     )
     const response = await axiosRoom('')
     if (!response.data) {

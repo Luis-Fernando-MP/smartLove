@@ -1,8 +1,8 @@
-import { DollarSignIcon, LucideBadgePlus } from 'lucide-react'
+import { CalendarClockIcon, DollarSignIcon, PlusIcon } from 'lucide-react'
+import Link from 'next/link'
 import type { JSX } from 'react'
 import { sansitaSwashed } from 'shared/fonts'
-import { getSlugOBJ } from 'shared/helpers/getSlugOBJ'
-import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
+import { getSlugs } from 'shared/helpers/getSlugOBJ'
 import Back from 'shared/ui/back/Back'
 import SlugTooltip from 'shared/ui/slugTooltip/slugTooltip'
 
@@ -13,28 +13,35 @@ import './style.scss'
 const Details = (): JSX.Element | null => {
   const { id, room } = useRoomStore()
   if (!room) return null
-  const { contadorreserva, onSale, estado, precio, nombre, serviciosHabitacion } = room
-  const { classSlug, tagSlug, slugDescription } = getSlugOBJ({
-    counter: contadorreserva,
-    onSale,
-    itsFull: estado
-  })
+  const { contadorreserva, onSale, estado, precio, nombre, codigo } = room
+  // const { classSlug, tagSlug, slugDescription } = getSlugs({
+  //   counter: contadorreserva,
+  //   onSale,
+  //   itsFull: estado
+  // })
 
   return (
     <>
       <Back row />
       <Steps total={precio} id={id} />
-      <section className='roomDetails' data-slug={tagSlug}>
-        <SlugTooltip description={slugDescription} tag={tagSlug} className={classSlug} />
+      {/* <section className='roomDetails' data-slug={tagSlug}> */}
+      <section className='roomDetails'>
+        {/* <SlugTooltip description={slugDescription} tag={tagSlug} className={classSlug} /> */}
         <h1 className={`${sansitaSwashed.className} title`}>{nombre}</h1>
-        <h3 className='roomDetails-characteristic'>
-          <DollarSignIcon />
-          <b>{precio}xDía</b>
-        </h3>
-        <span className='roomDetails-characteristic'>
-          <LucideBadgePlus />
-          <b>{contadorreserva} Reservas pasadas</b>
-        </span>
+        <div className='roomDetails-container'>
+          <h5 className='roomDetails-characteristic'>
+            <DollarSignIcon />
+            <b>{precio}xDía</b>
+          </h5>
+          <span className='roomDetails-characteristic'>
+            <PlusIcon />
+            {contadorreserva} Reservas pasadas
+          </span>
+          <Link href={`/rooms/${codigo}/calendar`} className='roomDetails-calendar gr'>
+            <CalendarClockIcon color='var(--tn-primary)' />
+            <span>Ver calendario de actividades</span>
+          </Link>
+        </div>
       </section>
     </>
   )
