@@ -1,3 +1,5 @@
+'use client'
+
 import {
   ClerkLoaded,
   ClerkLoading,
@@ -7,7 +9,6 @@ import {
   SignedOut,
   UserButton
 } from '@clerk/nextjs'
-import { Loader } from 'lucide-react'
 import type { JSX } from 'react'
 
 import ColorSchemeButton from '../colorSchemeButton/ColorSchemeButton'
@@ -18,19 +19,19 @@ const AuthButtons = (): JSX.Element => {
     <aside className='authOptions'>
       <ColorSchemeButton />
       <ClerkLoading>
-        <Loader className='text-muted-foreground h-5 w-5' />
+        <div className='skeleton h-5 min-w-24 animate-pulse rounded ' />
       </ClerkLoading>
       <ClerkLoaded>
         <SignedIn>
           <UserButton afterSignOutUrl='/' />
         </SignedIn>
         <SignedOut>
-          <SignInButton mode='modal' forceRedirectUrl='/'>
-            <button className='btn'>Ingresar</button>
-          </SignInButton>
-          <SignUpButton mode='modal' forceRedirectUrl='/'>
+          <SignUpButton mode='modal' fallbackRedirectUrl='/rooms'>
             <button className='btn'>Regístrate</button>
           </SignUpButton>
+          <SignInButton mode='modal' fallbackRedirectUrl='/rooms'>
+            <button className='btn'>Ingresar</button>
+          </SignInButton>
         </SignedOut>
       </ClerkLoaded>
     </aside>

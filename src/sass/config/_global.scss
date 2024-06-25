@@ -6,12 +6,14 @@
 :root {
   --bg-primary: #f5faff;
   --bg-secondary: #ebf5ff;
+  --skeleton-co: #e3f1ff;
+  --skeleton: #cfddeb;
 
   --fnt-primary: #000000;
   --fnt-secondary: #101820;
 
   --tn-primary: #835afc;
-  --tn-primary-transparent: #f8f8ffd6;
+  --tn-primary-transparent: #2c00ff24;
   --tn-secondary: #637dff;
 
   --disable-primary: #47455e;
@@ -26,22 +28,6 @@
   --p-font-size: 1.1em;
   --span-font-size: 1em;
   --small-font-size: 0.9em;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-primary: #070b0f;
-    --bg-secondary: #0e1217;
-
-    --fnt-primary: #b6beca;
-    --fnt-secondary: #b6beca;
-
-    --tn-primary: #ffdf7f;
-    --tn-primary-transparent: #ffdf7f38;
-    --tn-secondary: #feb178;
-
-    --disable-primary: #1c1b1a;
-    --disable-secondary: #50494221;
-  }
 }
 
 *,
@@ -228,4 +214,13 @@ svg {
   object-fit: cover;
   padding: 5px 0;
   display: block;
+  &-container {
+    text-align: center;
+  }
+}
+.skeleton-con {
+  background-color: $sk1;
+}
+.skeleton {
+  background-color: $sk2;
 }

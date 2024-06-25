@@ -1,8 +1,10 @@
+'use client'
+
 import { type JSX } from 'react'
 
 import './style.scss'
 
-const Resume = async (): Promise<JSX.Element> => {
+const Resume = (): JSX.Element => {
   return (
     <article className='resume'>
       <section className='resume-card'>

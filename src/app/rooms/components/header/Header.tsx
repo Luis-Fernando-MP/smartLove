@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { JSX } from 'react'
 import { HOME_PATHS } from 'shared/constants'
-import ColorSchemeButton from 'shared/ui/colorSchemeButton/ColorSchemeButton'
+import AuthButtons from 'shared/ui/authButtons/AuthButtons'
 import ToggleLogo from 'shared/ui/colorSchemeButton/ToggleLogo'
 
 import './style.scss'
@@ -13,9 +13,7 @@ const Header = (): JSX.Element => {
         <ToggleLogo />
       </Link>
       <article className='header-account'>
-        <ColorSchemeButton />
-        <button className='btn'>Regístrate</button>
-        <button className='btn'>Ingresar</button>
+        <AuthButtons />
       </article>
     </header>
   )

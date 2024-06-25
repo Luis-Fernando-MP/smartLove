@@ -19,29 +19,32 @@
     width: 100%;
     height: 100%;
     background: radial-gradient(
-      150% 50% at 50% 0%,
-      v.$tn1T 0,
-      rgba(0, 0, 0, 0) 50%,
-      transparent 100%
+      150% 90% at 50% 0%,
+      v.$tn1T 10%,
+      v.$bg2 20%,
+      v.$tn1T 50%,
+      transparent 90%,
+      v.$tn1T 120%
     );
   }
 }
 
 // international main styles
 .dashboard-main {
-  @include d.flex($dir: row, $gap: 5px);
-  height: calc(100% - 50px);
+  @include d.flex($dir: row, $gap: 0);
+  height: calc(100% - 60px);
   left: 0;
-  position: relative;
   transition: t.$pong;
   width: 100%;
 }
 
 //international body styles
 .dashboard-body {
-  background-color: v.$bg1;
-  border-top-left-radius: v.$radius * 2.5;
+  background-color: v.$bg2;
+  position: relative;
   padding: v.$padding;
   width: 100%;
+  height: 98%;
   overflow: auto;
+  border-end-start-radius: v.$radius * 2.5;
 }

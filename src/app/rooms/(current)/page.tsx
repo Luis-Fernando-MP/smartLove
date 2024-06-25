@@ -9,7 +9,11 @@ const Rooms = (): JSX.Element => {
   return (
     <main className='dashboard-main rooms'>
       <Nav />
-      <RoomsController />
+      <section className='dashboard-body'>
+        <article className='roomsContainer'>
+          <RoomsController />
+        </article>
+      </section>
     </main>
   )
 }

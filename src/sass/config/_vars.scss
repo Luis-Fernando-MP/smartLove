@@ -11,6 +11,9 @@ $fSmall: var(--small-font-size);
 $bg1: var(--bg-primary);
 $bg2: var(--bg-secondary);
 
+$sk1: var(--skeleton-co);
+$sk2: var(--skeleton);
+
 $fn1: var(--fnt-primary);
 $fn2: var(--fnt-secondary);
 
@@ -38,7 +41,7 @@ $medium-screen: 820px;
 $large-screen: 992px;
 $extra-large-screen: 1200px;
 
-$radius: 5px;
+$radius: 10px;
 $padding: 15px;
 $icon: 20px;
 $family-size: 12px;

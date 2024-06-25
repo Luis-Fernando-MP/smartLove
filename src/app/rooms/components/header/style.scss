@@ -3,25 +3,11 @@
 
 .header {
   width: 100%;
-  min-height: 50px;
-  max-height: 50px;
+  min-height: 60px;
+  max-height: 60px;
   justify-content: space-between;
   padding: 0 v.$padding * 3;
-  &,
-  &-account {
-    @include d.flex($dir: row, $ali: center);
-  }
-  &-account {
-    justify-content: center;
-  }
-  &-account button {
-    &:first-child {
-      background-color: transparent;
-    }
-    &:last-child {
-      font-weight: 700;
-      background-color: v.$tn1;
-      color: white;
-    }
-  }
+  background-color: v.$bg2;
+  @include d.flex($dir: row, $ali: center);
+  border-end-start-radius: v.$radius * 2.5;
 }
