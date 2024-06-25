@@ -1,3 +1,4 @@
+import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import NextTopLoader from 'nextjs-toploader'
 import TanStackProvider from 'providers/TanStackProvider'
@@ -20,20 +21,22 @@ interface TRootLayout {
 
 function RootLayout({ children }: TRootLayout): JSX.Element {
   return (
-    <html lang='es'>
-      <body className={robotoFlex.className}>
-        <NextTopLoader zIndex={100} height={5} color='var(--tn-primary)' />
-        <TanStackProvider>{children}</TanStackProvider>
-        <Toaster
-          position='top-center'
-          reverseOrder={false}
-          toastOptions={{
-            className: 'toast',
-            style: { background: 'var(--bg-primary)', color: 'var(--fnt-primary)' }
-          }}
-        />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang='es'>
+        <body className={robotoFlex.className}>
+          <NextTopLoader zIndex={100} height={5} color='var(--tn-primary)' />
+          <TanStackProvider>{children}</TanStackProvider>
+          <Toaster
+            position='top-center'
+            reverseOrder={false}
+            toastOptions={{
+              className: 'toast',
+              style: { background: 'var(--bg-primary)', color: 'var(--fnt-primary)' }
+            }}
+          />
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }
 

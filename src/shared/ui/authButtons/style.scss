@@ -1,0 +1,15 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.authOptions {
+  @include d.flex($dir: row, $ali: center);
+  button {
+    &:first-child {
+      background-color: transparent;
+    }
+    &:last-child {
+      font-weight: 700;
+      background-color: v.$bg1;
+    }
+  }
+}

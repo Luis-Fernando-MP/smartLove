@@ -25,8 +25,7 @@
   }
   &,
   &-link,
-  &-paths,
-  &-account {
+  &-paths {
     @include d.flex($dir: row, $ali: center);
   }
   &-brand {
@@ -34,15 +33,6 @@
     span {
       text-transform: uppercase;
       font-size: 0.8em;
-    }
-  }
-  &-account button {
-    &:first-child {
-      background-color: transparent;
-    }
-    &:last-child {
-      font-weight: 700;
-      background-color: v.$bg1;
     }
   }
   &-link {
