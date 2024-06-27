@@ -1,6 +1,19 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
+@use '@styles/utils/scrollbar' as *;
 
 .reservations {
   @include d.flex();
+  background-color: v.$bg2;
+  width: 100%;
+  height: 100vh;
+  @extend %scroll-hidden;
+  overflow-x: scroll;
+
+  &-list {
+    width: 100%;
+    height: auto;
+    @include d.flex($dir: row);
+    flex-wrap: wrap;
+  }
 }

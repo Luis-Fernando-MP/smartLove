@@ -1,13 +1,7 @@
 'use client'
 
 import type { JSX, ReactNode } from 'react'
-import Logo from 'shared/assets/logo'
-import LogoV2 from 'shared/assets/logoV2'
-import LogoV2Blue from 'shared/assets/logoV2-blue'
-import LogoV3 from 'shared/assets/logoV3'
 import { sansitaSwashed } from 'shared/fonts'
-
-import useStoreTheme from './useStoreTheme'
 
 interface IToggleLogo {
   className?: string

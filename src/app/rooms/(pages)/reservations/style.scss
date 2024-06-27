@@ -11,4 +11,9 @@ $navSize: 420px; //<-- important
 
 .dashboard-main.reservation {
   @include calculate.setCalculateMainSize($navSize);
+  .dashboard-body {
+    @include d.flex($dir: row);
+    padding: 0 v.$padding;
+    background-color: transparent;
+  }
 }

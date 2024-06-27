@@ -1,6 +1,7 @@
 import { IGV, SURCHARGE } from 'app/rooms/(pages)/[roomId]/(pages)/hooks/useTotalCalculate'
 import type { JSX, ReactNode } from 'react'
 import { IReservation } from 'services/room/reserve.service.types'
+import { mada, robotoFlex, sansitaSwashed, whisper } from 'shared/fonts'
 import { round } from 'shared/helpers/round'
 import ToggleLogo from 'shared/ui/colorSchemeButton/ToggleLogo'
 
@@ -17,7 +18,7 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
       <ToggleLogo />
       <section className='reserve-operations'>
         <div className='reserve-operation'>
-          <h4>Operación</h4>
+          <h4>Ope.</h4>
           <p>{reserve.idReserva}</p>
         </div>
         <div className='reserve-operation'>
@@ -62,7 +63,7 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
         </li>
       </ul>
       <div className='reserve-extra'>
-        <h5>Cliente</h5>
+        <h5 className={mada.className}>Cliente</h5>
       </div>
     </article>
   )

@@ -16,6 +16,12 @@ body.dark {
   position: relative;
   text-align: center;
   background-color: v.$bg1;
+  .slugs {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    @include d.flex($ali: flex-end, $gap: v.$padding);
+  }
   &-container {
     @include d.flex($dir: row);
   }

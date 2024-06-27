@@ -1,21 +1,12 @@
 'use client'
 
-import {
-  ClerkLoaded,
-  ClerkLoading,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
-} from '@clerk/nextjs'
-import { Loader, Menu } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { type JSX, useEffect, useState } from 'react'
 import { HOME_PATHS } from 'shared/constants'
 import { switchClass } from 'shared/helpers/switchClassName'
 import AuthButtons from 'shared/ui/authButtons/AuthButtons'
-import ColorSchemeButton from 'shared/ui/colorSchemeButton/ColorSchemeButton'
 import ToggleLogo from 'shared/ui/colorSchemeButton/ToggleLogo'
 
 import './style.scss'

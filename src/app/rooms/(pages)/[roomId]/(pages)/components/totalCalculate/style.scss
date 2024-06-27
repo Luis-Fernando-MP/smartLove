@@ -17,7 +17,7 @@
   }
   &-total {
     width: 65%;
-    background-color: v.$bg2;
+    background-color: v.$bg1;
     border-radius: v.$radius;
   }
   &-separator {
@@ -45,7 +45,7 @@
     &.time {
       flex-wrap: wrap;
       button {
-        background-color: v.$bg2;
+        background-color: v.$bg1;
       }
       button.active {
         background-color: v.$tn1;
@@ -68,7 +68,7 @@
     }
   }
   &-date {
-    background-color: v.$bg2;
+    background-color: v.$bg1;
     font-size: v.$fH5;
     font-weight: 400;
     user-select: none;

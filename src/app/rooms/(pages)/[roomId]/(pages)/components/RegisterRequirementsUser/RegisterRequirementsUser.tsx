@@ -4,16 +4,17 @@ import toast from 'react-hot-toast'
 import { switchClass } from 'shared/helpers/switchClassName'
 import { TRequirementsUser, keysValues } from 'shared/resolvers/requirementsUser.resolver'
 
-import useRegisterStore, { defaultFormData } from '../../store/useRegisterStore'
+import useRegisterStore from '../../store/useRegisterStore'
 import './style.scss'
 
 interface IRegisterRequirementsUser {
   onSubmit: (data: any) => void
+  defaultFormValues: TRequirementsUser
 }
 
 // eslint-disable-next-line react/display-name
 const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequirementsUser>(
-  ({ onSubmit }, ref) => {
+  ({ onSubmit, defaultFormValues }, ref) => {
     const { formData, setFormData } = useRegisterStore()
     const { register, handleSubmit, formState, setValue, reset } =
       useFormContext<TRequirementsUser>()
@@ -31,7 +32,7 @@ const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequiremen
     }
     const onReset = (): void => {
       reset()
-      setFormData(defaultFormData)
+      setFormData(defaultFormValues)
     }
 
     const handleInputChange = useCallback(
@@ -79,7 +80,7 @@ const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequiremen
           >
             {isValid ? 'Continuar con la reserva' : 'Requerimos todos tus datos'}
           </button>
-          <button type='reset' onClick={onReset} className='regRequirements-form__reset btn'>
+          <button type='button' onClick={onReset} className='regRequirements-form__reset btn'>
             Limpiar campos
           </button>
         </div>

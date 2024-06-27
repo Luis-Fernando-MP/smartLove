@@ -1,3 +1,5 @@
+'use client'
+
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { switchClass } from 'shared/helpers/switchClassName'
@@ -11,10 +13,8 @@ const useNav = () => {
       if (window.innerWidth > 1200) return
       setShow(true)
     }
-
     handleResize()
     window.addEventListener('resize', handleResize)
-
     return () => {
       window.removeEventListener('resize', handleResize)
     }

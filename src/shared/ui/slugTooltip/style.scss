@@ -8,13 +8,12 @@
     font-size: v.$fH5;
     padding: v.$padding * 0.6 v.$padding;
     background-color: v.$bg2;
+    display: block;
+    height: fit-content;
   }
   &-container {
-    margin: v.$padding;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1;
+    position: relative;
+    height: auto;
     &:hover .tooltip-float {
       top: -100%;
       opacity: 1;
@@ -47,6 +46,7 @@
     transform: translateX(50%);
     transition: all 0.5s;
     width: 200px;
+    z-index: 1;
   }
 
   @keyframes shake {

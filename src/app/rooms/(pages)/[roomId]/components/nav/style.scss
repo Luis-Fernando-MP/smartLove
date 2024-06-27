@@ -23,12 +23,10 @@
     width: 250px;
     background-color: v.$bg1;
     padding: v.$padding;
-    padding-bottom: v.$padding * 2.5;
     border-radius: v.$radius;
     height: 380px;
     @include d.flex($ali: flex-end);
     p {
-      font-style: italic;
       font-weight: 200;
     }
   }

@@ -2,6 +2,7 @@
 @use '@styles/config/vars' as *;
 @use '@styles/utils/media' as m;
 @use '@styles/utils/text' as t;
+@use '@styles/utils/hover' as h;
 
 :root {
   --bg-primary: #f5faff;
@@ -157,6 +158,7 @@ button {
   background: transparent;
   border: none;
   cursor: pointer;
+  @include h.border;
 }
 
 input,
@@ -175,6 +177,7 @@ small {
 .btn {
   padding: 8px 10px;
   border-radius: $radius;
+  @include h.border;
 }
 
 svg {

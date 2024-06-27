@@ -22,7 +22,7 @@ const Nav = (): JSX.Element => {
         <summary className='roomNav-summary'>Dashboard</summary>
         {DASHBOARD_PATHS.map(path => {
           const { name, link, Icon } = path
-          let isActive = pathname === switchClass(link)
+          let isActive = ''
           if (link === '/') isActive = 'active'
           return (
             <Link

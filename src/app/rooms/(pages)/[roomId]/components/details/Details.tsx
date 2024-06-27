@@ -14,19 +14,30 @@ const Details = (): JSX.Element | null => {
   const { id, room } = useRoomStore()
   if (!room) return null
   const { contadorreserva, onSale, estado, precio, nombre, codigo } = room
-  // const { classSlug, tagSlug, slugDescription } = getSlugs({
-  //   counter: contadorreserva,
-  //   onSale,
-  //   itsFull: estado
-  // })
+  const slugs = getSlugs({
+    counter: contadorreserva,
+    onSale,
+    itsFull: estado
+  })
 
   return (
     <>
       <Back row />
       <Steps total={precio} id={id} />
-      {/* <section className='roomDetails' data-slug={tagSlug}> */}
       <section className='roomDetails'>
-        {/* <SlugTooltip description={slugDescription} tag={tagSlug} className={classSlug} /> */}
+        <aside className='slugs'>
+          {slugs.map(slug => {
+            const { classSlug, tagSlug, slugDescription } = slug
+            return (
+              <SlugTooltip
+                key={tagSlug}
+                description={slugDescription}
+                tag={tagSlug}
+                className={classSlug}
+              />
+            )
+          })}
+        </aside>
         <h1 className={`${sansitaSwashed.className} title`}>{nombre}</h1>
         <div className='roomDetails-container'>
           <h5 className='roomDetails-characteristic'>

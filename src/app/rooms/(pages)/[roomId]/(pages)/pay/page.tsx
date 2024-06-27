@@ -12,7 +12,6 @@ const Page = (para): JSX.Element => {
   const { formData } = useRegisterStore()
   const roomID = useRoomStore(store => store.id)
   const router = useRouter()
-  console.log(para)
   useEffect(() => {
     const incompleteData = [totalAmount, fromDate, toDate, nights, ...Object.values(formData)].some(
       (v: any) => {

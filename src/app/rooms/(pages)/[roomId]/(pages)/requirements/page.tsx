@@ -1,8 +1,9 @@
 'use client'
 
+import { useUser } from '@clerk/nextjs'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { type JSX, useRef } from 'react'
+import { type JSX, useMemo, useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { switchClass } from 'shared/helpers/switchClassName'
@@ -14,19 +15,33 @@ import {
 import { useRoomStore } from '../../store/room.store'
 import RegisterRequirementsUser from '../components/RegisterRequirementsUser/RegisterRequirementsUser'
 import TotalCalculate from '../components/totalCalculate/TotalCalculate'
-import useRegisterStore from '../store/useRegisterStore'
+import { defaultFormData } from '../store/useRegisterStore'
 import useRequirementsStore from '../store/useRequirementsStore'
 import './style.scss'
 
 const Page = (): JSX.Element => {
   const { totalAmount, fromDate, toDate, nights } = useRequirementsStore()
-  const { formData } = useRegisterStore()
   const roomID = useRoomStore(store => store.id)
   const $formRef = useRef<HTMLFormElement>(null)
   const router = useRouter()
+  const { user } = useUser()
+
+  const defaultFormValues = useMemo(() => {
+    if (!user) return defaultFormData
+    const { emailAddresses, lastName, fullName } = user
+    return {
+      ...defaultFormData,
+      fullName: fullName ?? defaultFormData.fullName,
+      lastName: lastName ?? defaultFormData.lastName,
+      email: emailAddresses[0].emailAddress
+    }
+  }, [user])
+
+  console.log(defaultFormValues)
+
   const methods = useForm({
-    defaultValues: formData,
     resolver: requirementsUserResolver,
+    values: defaultFormValues,
     mode: 'all'
   })
 
@@ -75,7 +90,11 @@ const Page = (): JSX.Element => {
         <span>Completa tus datos personales, para reservar la habitación</span>
       </div>
       <FormProvider {...methods}>
-        <RegisterRequirementsUser onSubmit={handleSubmit} ref={$formRef} />
+        <RegisterRequirementsUser
+          onSubmit={handleSubmit}
+          ref={$formRef}
+          defaultFormValues={defaultFormValues}
+        />
       </FormProvider>
     </section>
   )

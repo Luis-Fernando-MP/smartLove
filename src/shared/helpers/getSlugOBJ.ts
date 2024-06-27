@@ -43,7 +43,6 @@ export function getSlugs({ maxResults = 10, ...slugConditions }: ISlugOBJ) {
   const slugs = slugDictionary({ maxResults, ...slugConditions }).filter(slug => {
     return slug.condition
   })
-  console.log(slugs)
   if (slugs.length >= 1) return [...slugs]
   return [defaultSlug]
 }

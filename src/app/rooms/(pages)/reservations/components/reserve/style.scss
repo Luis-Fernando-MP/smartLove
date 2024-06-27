@@ -3,21 +3,22 @@
 
 .reserve {
   border-radius: v.$radius;
-  border: 1.5px dotted v.$dis2;
-  background-color: v.$bg2;
+  border: 2.5px dotted v.$sk2;
+  background-color: v.$bg1;
   height: auto;
   margin: v.$padding * 0.3;
   overflow: hidden;
   padding: v.$padding;
   position: relative;
-  width: 320px;
+  width: 330px;
   z-index: 1;
   @include d.flex($ali: center, $gap: v.$padding * 2);
   &-operations {
     width: 100%;
-    justify-content: space-around;
-    @include d.flex($ali: center, $gap: 0);
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: min-content 1fr 1fr;
+    background-color: v.$bg2;
+    padding: 5px v.$padding;
   }
   &-operation {
     text-align: center;
@@ -25,7 +26,6 @@
     h4 {
       border-bottom: 2.5px dotted v.$fn2;
     }
-    width: 100%;
   }
   &-room {
     span {

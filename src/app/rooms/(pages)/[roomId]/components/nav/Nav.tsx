@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { JSX } from 'react'
-import { sansitaSwashed } from 'shared/fonts'
+import { mada, sansitaSwashed } from 'shared/fonts'
 
 import { useRoomStore } from '../../store/room.store'
 import './style.scss'
@@ -17,7 +17,7 @@ const Nav = (): JSX.Element | null => {
           return (
             <li key={idImgHabitacion} className='roomNav-item'>
               <img src={urlImagen} alt={fechEdicion.toString()} className='roomNav-image' />
-              <p>{fechEdicion}</p>
+              <p className={mada.className}>{fechEdicion}</p>
             </li>
           )
         })}
