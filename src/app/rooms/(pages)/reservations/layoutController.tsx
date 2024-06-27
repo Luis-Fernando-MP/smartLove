@@ -4,6 +4,7 @@ import NavContainer from 'app/rooms/components/navContainer/NavContainer'
 import { useReservations } from 'hooks/useReservations'
 import { type JSX, type ReactNode } from 'react'
 
+import Details from './components/details/Details'
 import Nav from './components/nav/Nav'
 import Reservations from './components/reservations/Reservations'
 
@@ -21,7 +22,7 @@ const LayoutController = ({ children }: ILayoutController): JSX.Element | null =
       </NavContainer>
       <article className='dashboard-body'>
         <Reservations />
-        <aside className='dashboard-body__details'>details</aside>
+        <Details />
       </article>
     </>
   )

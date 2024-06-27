@@ -8,4 +8,7 @@ export interface IReservation {
   total: number
   estado: number
   habitacion: IRoom
+  subtotal: number
+  igv: number
+  montoServicios: number
 }

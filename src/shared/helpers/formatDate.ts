@@ -8,6 +8,36 @@ export const formatDate = (date: Date): string => {
   return `${year}-${month}-${day}`
 }
 
+export const breakDownDate = (date: Date) => {
+  if (!(date instanceof Date) || isNaN(date.getTime())) {
+    throw new Error('Invalid Date')
+  }
+
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+
+  const monthIndex = date.getMonth()
+
+  const monthNames = [
+    'ENE',
+    'FEB',
+    'MAR',
+    'ABR',
+    'MAY',
+    'JUN',
+    'JUL',
+    'AGO',
+    'SEP',
+    'OCT',
+    'NOV',
+    'DIC'
+  ]
+  const monthAbbr = monthNames[monthIndex]
+
+  return { year, month, day, monthAbbr }
+}
+
 export const addDays = (date: Date, days: number): Date => {
   const newDate = new Date(date.getTime())
   newDate.setDate(newDate.getDate() + days)

@@ -2,6 +2,7 @@
 @use '@styles/utils/defs' as d;
 @use '../../setCalculateMainSize' as calculate;
 @use '@styles/utils/scrollbar' as *;
+@use '@styles/utils/transitions' as t;
 
 $navSize: 420px; //<-- important
 
@@ -13,7 +14,7 @@ $navSize: 420px; //<-- important
 .dashboard-main.reservation {
   @include calculate.setCalculateMainSize($navSize);
   .dashboard-body {
-    @include d.flex($dir: row);
+    @include d.flex($dir: row, $gap: 0);
     background-color: transparent;
     overflow: hidden;
     padding: 0;
@@ -30,17 +31,27 @@ $navSize: 420px; //<-- important
       overflow: auto;
     }
     &__details {
-      width: 800px;
+      visibility: hidden;
+      opacity: 0;
+      width: 0px;
+      transition: t.$pong;
+      &.active {
+        width: 500px;
+        visibility: visible;
+        opacity: 1;
+        padding: v.$padding;
+      }
+      animation: toBlock 1s paused forwards;
       height: 100%;
-      max-width: 800px;
+      max-width: 500px;
       background-color: transparent;
       position: relative;
-      padding: v.$padding;
+
       &::after {
         content: '';
         position: absolute;
         top: 0px;
-        left: -15px;
+        left: 0px;
         height: 20px;
         width: 20px;
         background-color: transparent;

@@ -1,12 +1,10 @@
 @use '@styles/config/vars' as v;
 
 @mixin border($size: 1.5px, $bg: v.$tn1, $s: 0.2s) {
-  border: $size solid transparent;
   transition: all $s ease-in;
   scale: 1;
   &:hover {
     scale: 0.99;
-    border-color: $bg;
     @content;
   }
 }

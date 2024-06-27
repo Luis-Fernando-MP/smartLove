@@ -4,15 +4,13 @@
 .reserve {
   background-color: v.$bg1;
   border-radius: v.$radius;
-  border: 2.5px dotted v.$sk2;
   height: auto;
   margin: v.$padding * 0.3;
-  overflow: hidden;
-  overflow: hidden;
   padding: v.$padding;
   position: relative;
   width: 330px;
   z-index: 1;
+  margin-left: 25px;
   @include d.flex($ali: center, $gap: v.$padding * 2);
   &-operations {
     width: 100%;
@@ -28,52 +26,42 @@
       border-bottom: 2.5px dotted v.$fn2;
     }
   }
-  &-room {
-    span {
-      font: v.$fSmall;
-      font-weight: 200;
-      text-wrap: wrap;
-    }
-  }
-  &-details {
-    width: 100%;
-    @include d.flex();
-  }
-  &-detail {
-    @include d.flex($gap: 0);
-    flex-direction: row;
-    h5 {
-      min-width: fit-content;
-      min-width: 200px;
-    }
-  }
-  &-extra {
-    width: 100%;
-    @include d.flex($ali: center, $gap: 10px);
-    flex-direction: row;
-    justify-content: flex-end;
-    &::before {
-      content: '';
-      width: 15px;
-      display: block;
-      height: 15px;
-      position: relative;
-      border-radius: 50%;
-      background-color: v.$tn1;
-    }
-  }
-
-  //actions buttons
-  &-action {
-    @include d.flex($gap: 5px, $dir: flex);
+  &-actions {
+    @include d.flex;
+    padding: v.$padding;
+    border-radius: v.$radius * 2;
     position: absolute;
-    left: 10px;
-    top: 10px;
-    height: 30px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    &.print {
-      top: 45px;
+    top: 50%;
+    left: -20px;
+    background-color: v.$bg1;
+    border: 4px solid v.$tn1;
+    border-right: 1px solid v.$tn1;
+    transform: translateY(-50%);
+  }
+  &-action {
+    border: none;
+  }
+  &-littleBoxes {
+    width: 100%;
+    @include d.flex($gap: 10px, $dir: row, $ali: center);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  &-date {
+    width: 100%;
+    background-color: v.$bg2;
+    @include d.flex($dir: row, $ali: center);
+    justify-content: space-evenly;
+    padding: v.$padding;
+    border-radius: v.$radius;
+    h3 {
+      @include d.flex($dir: row, $gap: 5px);
+      b {
+        color: v.$tn1;
+      }
+      span {
+        font-size: v.$fSmall;
+      }
     }
   }
 }

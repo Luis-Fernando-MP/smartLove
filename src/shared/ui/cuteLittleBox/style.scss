@@ -1,0 +1,41 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.cuteLittleBox {
+  background-color: v.$bg2;
+  width: 100px;
+  height: 100px;
+  padding: v.$padding;
+  border-radius: v.$radius;
+  @include d.flex($gap: 10px);
+  justify-content: flex-end;
+  position: relative;
+  &.active {
+    background-color: v.$tn1;
+    p,
+    h3,
+    svg {
+      color: v.$bg1;
+    }
+    p::after {
+      border-color: v.$bg1;
+    }
+  }
+  &-icon {
+    top: 10px;
+    right: 10px;
+    position: absolute;
+  }
+  &-title {
+    max-width: fit-content;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 70%;
+      border-bottom: 2px solid v.$fn1;
+    }
+  }
+}
