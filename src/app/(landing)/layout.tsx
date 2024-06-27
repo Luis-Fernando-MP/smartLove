@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import type { JSX, ReactNode } from 'react'
 import Marquee from 'react-fast-marquee'
 import { HOME_PATHS } from 'shared/constants'
