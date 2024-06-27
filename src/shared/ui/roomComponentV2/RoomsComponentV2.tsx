@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { ArrowUpRight, BanknoteIcon, CalendarDaysIcon } from 'lucide-react'
+import { ArrowUpRight, BanknoteIcon, CalendarRange } from 'lucide-react'
 import Link from 'next/link'
 import type { JSX, ReactNode } from 'react'
 import { IRoom } from 'services/room/room.service.types'
@@ -72,7 +72,7 @@ const RoomComponentV2 = ({ room }: IRoomsComponentV2): JSX.Element => {
             className='btn  roomComponentV2-action roomComponentV2-calendar'
           >
             Ver calendario
-            <CalendarDaysIcon />
+            <CalendarRange />
           </Link>
           <Link
             href={`/rooms/${codigo}`}

@@ -1,4 +1,4 @@
-import { CalendarClockIcon, DollarSignIcon, PlusIcon } from 'lucide-react'
+import { CalendarRange, DollarSignIcon, PlusIcon } from 'lucide-react'
 import Link from 'next/link'
 import type { JSX } from 'react'
 import { sansitaSwashed } from 'shared/fonts'
@@ -49,7 +49,7 @@ const Details = (): JSX.Element | null => {
             {contadorreserva} Reservas pasadas
           </span>
           <Link href={`/rooms/${codigo}/calendar`} className='roomDetails-calendar gr'>
-            <CalendarClockIcon color='var(--tn-primary)' />
+            <CalendarRange color='var(--tn-primary)' />
             <span>Ver calendario de actividades</span>
           </Link>
         </div>

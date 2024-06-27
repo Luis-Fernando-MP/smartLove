@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import toast, { Toast } from 'react-hot-toast'
+import { v4 as uuidv4 } from 'uuid'
 
 interface TDismissErrorToast {
   message: Readonly<ReactNode[]> | null | Readonly<ReactNode>
@@ -35,7 +36,7 @@ export function DismissErrorToast({
       </span>
     ),
     {
-      id: id ?? Date.now().toString()
+      id: id ?? uuidv4()
     }
   )
 }

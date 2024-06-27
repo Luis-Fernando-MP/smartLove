@@ -1,4 +1,4 @@
-import { CalendarClockIcon } from 'lucide-react'
+import { CalendarRange } from 'lucide-react'
 import { type JSX, type ReactNode } from 'react'
 import { moneyConfetti, startsConfetti } from 'shared/helpers/customConfetis'
 import { STAY_USER, currentClassCase } from 'shared/helpers/stayUserCases'
@@ -23,7 +23,7 @@ const ConditionalDayButton = ({ days, oneNight }: IConditionalDayButton): JSX.El
       className={`btn conditionalDayButton ${currentClassCase(days)}`}
       onClick={handleConfetti}
     >
-      <CalendarClockIcon />
+      <CalendarRange />
       <p>
         {days} Noche{!oneNight && 's'}
       </p>

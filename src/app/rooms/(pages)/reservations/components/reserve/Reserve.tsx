@@ -1,8 +1,15 @@
+'use client'
+
 import { IGV, SURCHARGE } from 'app/rooms/(pages)/[roomId]/(pages)/hooks/useTotalCalculate'
-import type { JSX, ReactNode } from 'react'
+import html2canvas from 'html2canvas'
+import JsPDF from 'jspdf'
+import { LoaderCircle, NotepadText, Printer } from 'lucide-react'
+import { type JSX, type ReactNode, useRef, useState } from 'react'
+import toast from 'react-hot-toast'
 import { IReservation } from 'services/room/reserve.service.types'
-import { mada, robotoFlex, sansitaSwashed, whisper } from 'shared/fonts'
+import { mada } from 'shared/fonts'
 import { round } from 'shared/helpers/round'
+import PreviewToast from 'shared/previewToast/PreviewToast'
 import ToggleLogo from 'shared/ui/colorSchemeButton/ToggleLogo'
 
 import './style.scss'
@@ -13,9 +20,54 @@ interface IReserve {
 }
 
 const Reserve = ({ reserve }: IReserve): JSX.Element => {
+  const reservePrint = useRef<HTMLElement>(null)
+  const [loading, setLoading] = useState(false)
+
+  const handlePrint = async (): Promise<void> => {
+    setLoading(true)
+    if (!reservePrint.current || loading) return
+    const toastId = toast.loading('Generando PDF... ⏳')
+    try {
+      const canvas = await html2canvas(reservePrint.current, {
+        scale: 3.5,
+        useCORS: true,
+        backgroundColor: 'black',
+        logging: true
+      })
+      const imgData = canvas.toDataURL('image/png')
+      const pdf = new JsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: [52, 74]
+      })
+      pdf.addImage(imgData, 'PNG', 0, 0, 52, 74)
+      PreviewToast({
+        buttonTitle: 'Descargar',
+        src: imgData,
+        title: 'Su archivo esta listo para descargarse',
+        id: toastId,
+        onClick() {
+          pdf.save(`Reserva-${reserve.idReserva}.SmartPro.pdf`)
+          toast.success('PDF generado con éxito! 🎉', { id: toastId })
+        }
+      })
+    } catch (error) {
+      toast.error('Error al generar PDF 😞', { id: toastId })
+      console.error('Error generating PDF', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
-    <article className='reserve'>
+    <article className='reserve' ref={reservePrint}>
       <ToggleLogo />
+      <button className='reserve-action details' title='Detalles'>
+        <NotepadText />
+      </button>
+      <button className='reserve-action print' title='Imprimir' onClick={handlePrint}>
+        {loading ? <LoaderCircle className='animate-spin' /> : <Printer />}
+      </button>
       <section className='reserve-operations'>
         <div className='reserve-operation'>
           <h4>Ope.</h4>

@@ -2,11 +2,12 @@
 @use '@styles/utils/defs' as d;
 
 .reserve {
+  background-color: v.$bg1;
   border-radius: v.$radius;
   border: 2.5px dotted v.$sk2;
-  background-color: v.$bg1;
   height: auto;
   margin: v.$padding * 0.3;
+  overflow: hidden;
   overflow: hidden;
   padding: v.$padding;
   position: relative;
@@ -59,6 +60,20 @@
       position: relative;
       border-radius: 50%;
       background-color: v.$tn1;
+    }
+  }
+
+  //actions buttons
+  &-action {
+    @include d.flex($gap: 5px, $dir: flex);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: 30px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    &.print {
+      top: 45px;
     }
   }
 }

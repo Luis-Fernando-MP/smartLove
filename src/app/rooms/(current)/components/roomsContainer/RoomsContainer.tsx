@@ -3,6 +3,7 @@
 import { useRooms } from 'hooks/useRooms'
 import type { JSX } from 'react'
 import { Masonry } from 'react-masonry'
+import { v4 as uuidv4 } from 'uuid'
 
 import useFilters from '../../store/useFilters.store'
 import CardRoom from '../cardRoom/cardRoom'
@@ -25,9 +26,7 @@ const RoomsContainer = (): JSX.Element | null => {
       </p>
       <Masonry>
         {data.map(room => (
-          <div
-            key={room.codigo + Date.now().toString() + room.nombre + String(Math.random() * 1000)}
-          >
+          <div key={uuidv4()}>
             <CardRoom data={room} />
           </div>
         ))}
