@@ -21,7 +21,7 @@ export const getAllReservers = async (): Promise<IReservation[]> => {
     await new Promise(resolve =>
       setTimeout(() => {
         return resolve(true)
-      }, 1500)
+      }, 100)
     )
     const response = await getAxiosReserve('')
     if (!response.data) {

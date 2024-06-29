@@ -2,7 +2,6 @@
 
 import { useUser } from '@clerk/nextjs'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { type JSX, useMemo, useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -23,7 +22,6 @@ const Page = (): JSX.Element => {
   const { totalAmount, fromDate, toDate, nights } = useRequirementsStore()
   const roomID = useRoomStore(store => store.id)
   const $formRef = useRef<HTMLFormElement>(null)
-  const router = useRouter()
   const { user } = useUser()
 
   const defaultFormValues = useMemo(() => {

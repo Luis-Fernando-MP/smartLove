@@ -11,9 +11,9 @@ import {
 export const WHATSAPP_URL = 'https://wa.me/message/7HOKZ7Y6O6UBE1'
 export const FACEBOOK_URL = 'https://www.facebook.com/Hotel.Smart.Love'
 export const TIKTOK_URL = 'https://www.tiktok.com/@hotel.smart.love'
-export const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ??
-  'http://ec2-18-220-225-128.us-east-2.compute.amazonaws.com:8080/smartpro'
+
+export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:300/api'
+export const USER_WEBHOOK = process.env.CLERK_WEBHOOK_USER_EVENTS!
 
 export const HOME_PATHS = {
   Resume: {

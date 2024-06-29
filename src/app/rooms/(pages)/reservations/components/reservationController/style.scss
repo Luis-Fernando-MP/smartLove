@@ -1,18 +1,10 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
-@use '../../setCalculateMainSize' as calculate;
 @use '@styles/utils/scrollbar' as *;
 @use '@styles/utils/transitions' as t;
 
-$navSize: 420px; //<-- important
-
-.reservationNav {
-  min-width: $navSize;
-  max-width: $navSize;
-}
 
 .dashboard-main.reservation {
-  @include calculate.setCalculateMainSize($navSize);
   .dashboard-body {
     @include d.flex($dir: row, $gap: 0);
     background-color: transparent;

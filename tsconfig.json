@@ -7,19 +7,27 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "jsxImportSource": "react",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "bundler",
     "noEmit": true,
     "noImplicitAny": false,
-    "outDir": "./dist",
+    "outDir": "./build",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "es5",
     "paths": {
-      "@/*": ["./src/*"],
-      "@styles/*": ["sass/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@styles/*": [
+        "sass/*"
+      ]
     },
     "plugins": [
       {
@@ -27,6 +35,14 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "./build/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -2,7 +2,6 @@
 
 import { useGetReservations } from 'hooks/useReservations'
 import type { JSX } from 'react'
-import { sansitaSwashed } from 'shared/fonts'
 import { v4 as uuidv4 } from 'uuid'
 
 import Reserve from '../reserve/Reserve'
