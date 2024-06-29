@@ -7,11 +7,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "jsxImportSource": "react",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "noEmit": true,
@@ -22,12 +18,8 @@
     "strict": true,
     "target": "es5",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@styles/*": [
-        "sass/*"
-      ]
+      "@/*": ["./src/*"],
+      "@styles/*": ["sass/*"]
     },
     "plugins": [
       {
@@ -42,7 +34,5 @@
     ".next/types/**/*.ts",
     "./build/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
