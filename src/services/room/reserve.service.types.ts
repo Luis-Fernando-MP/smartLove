@@ -1,5 +1,5 @@
-import { IRoom } from '../../shared/room.service.types'
 import { Client } from './client.service.types'
+import { IRoom } from './room.service.types'
 
 export interface IReservation {
   idReserva: number

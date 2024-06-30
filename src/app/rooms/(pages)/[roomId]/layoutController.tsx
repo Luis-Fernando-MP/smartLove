@@ -16,13 +16,14 @@ const LayoutController = ({ children, id }: ILayoutController): JSX.Element | nu
   const { setID, setRoom } = useRoomStore()
 
   useEffect(() => {
-    if (data === null || !isError) {
-      setRoom(data)
-      setID(String(data?.codigo))
-    }
+    if (isError) return
+    if (data === null) return
+    setRoom(data)
+    setID(String(data?.codigo))
   }, [data, isError, setID, setRoom])
 
   if (!data || isError) return null
+
   return (
     <>
       <NavContainer className='roomNav'>

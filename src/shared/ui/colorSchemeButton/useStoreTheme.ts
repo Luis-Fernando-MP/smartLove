@@ -23,7 +23,7 @@ const useStoreTheme = create(
 function getUserThemePreferences(): ITheme {
   try {
     let mediaPreferenceDark = false
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
       mediaPreferenceDark = true
     }
     const preference = mediaPreferenceDark ? 'dark' : 'light'

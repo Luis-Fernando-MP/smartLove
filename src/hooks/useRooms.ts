@@ -21,9 +21,9 @@ export function useRoom(id: string) {
   const queryClient = useQueryClient()
   const cacheAllRooms = (queryClient.getQueryData([ROOMS_NAME_CACHE]) as IRoom[]) || []
 
-  const query = useSuspenseQuery({
+  return useSuspenseQuery({
     queryKey: [ROOM_NAME_CACHE, id],
-    queryFn: async ({ queryKey }) => {
+    queryFn: async ({ queryKey }): Promise<IRoom> => {
       const [, id] = queryKey
       return await getRoomById(id)
     },
@@ -32,5 +32,4 @@ export function useRoom(id: string) {
     initialData:
       cacheAllRooms !== undefined ? cacheAllRooms.find(room => String(room.codigo) === id) : null
   })
-  return { ...query }
 }

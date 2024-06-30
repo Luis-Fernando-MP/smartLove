@@ -18,7 +18,7 @@ interface IPreviewToast {
 const PreviewToast = ({ src, title, buttonTitle, onClick, id, children }: IPreviewToast) => {
   const handleClick = (t: Toast): void => {
     toast.dismiss(t.id)
-    onClick && onClick()
+    onClick?.()
   }
 
   toast(
