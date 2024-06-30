@@ -16,14 +16,14 @@ const getAxiosReserve = axios.create({
   }
 })
 
-export const getAllReservers = async (): Promise<IReservation[]> => {
+export const getAllReservers = async (id: string): Promise<IReservation[]> => {
   try {
     await new Promise(resolve =>
       setTimeout(() => {
         return resolve(true)
       }, 100)
     )
-    const response = await getAxiosReserve('')
+    const response = await getAxiosReserve(`/findReservasCliente/${id}`)
     if (!response.data) {
       throw new Error('No se recibieron datos válidos en la respuesta')
     }

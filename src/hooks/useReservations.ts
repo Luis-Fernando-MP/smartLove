@@ -6,10 +6,13 @@ import { IReservation } from 'services/room/reserve.service.types'
 
 export const RESERVATIONS_NAME_CACHE = 'RESERVATIONS'
 
-export function useReservations() {
+export function useReservations(id: string) {
   const query = useSuspenseQuery({
-    queryKey: [RESERVATIONS_NAME_CACHE],
-    queryFn: getAllReservers,
+    queryKey: [RESERVATIONS_NAME_CACHE, id],
+    queryFn: async ({ queryKey }) => {
+      const [, id] = queryKey
+      return await getAllReservers(id)
+    },
     staleTime: 20 * 1000,
     retry: 1
   })

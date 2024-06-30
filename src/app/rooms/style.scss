@@ -24,9 +24,9 @@
       v.$bg2 10%,
       v.$tn1T 30%,
       v.$tn1T 50%,
-      transparent 90%,
       v.$tn1T 120%
     );
+    // transparent 90%,
   }
 }
 
@@ -41,6 +41,7 @@
 
 //international body styles
 .dashboard-body {
+  background-image: linear-gradient(0deg, v.$tn1T 10%, v.$bg2 100%);
   background-color: v.$bg2;
   position: relative;
   padding: v.$padding;

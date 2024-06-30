@@ -1,6 +1,6 @@
 'use client'
 
-import { LoaderCircle, NotebookTabs, Printer, Repeat, Skull } from 'lucide-react'
+import { LoaderCircle, NotebookTabs, Printer, Repeat, Skull, XIcon } from 'lucide-react'
 import { type JSX, type ReactNode } from 'react'
 import { IReservation } from 'services/room/reserve.service.types'
 import { breakDownDate } from 'shared/helpers/formatDate'
@@ -16,10 +16,17 @@ interface IReserve {
 }
 
 const Reserve = ({ reserve }: IReserve): JSX.Element => {
-  const { loading, refReservePrint, handlePrint, handleReservationSelected, littleBoxData } =
-    useReserve({
-      reserve
-    })
+  const {
+    handlePrint,
+    handleReservationDeselected,
+    handleReservationSelected,
+    littleBoxData,
+    loading,
+    refReservePrint,
+    isReading
+  } = useReserve({
+    reserve
+  })
 
   const { fechaIngreso, fechaSalida } = reserve
 
@@ -36,8 +43,12 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
         <button className='reserve-action' title='Cancelar reservación'>
           <Skull />
         </button>
-        <button className='reserve-action' title='Detalles' onClick={handleReservationSelected}>
-          <NotebookTabs />
+        <button
+          className='reserve-action'
+          title='Detalles'
+          onClick={isReading ? handleReservationDeselected : handleReservationSelected}
+        >
+          {isReading ? <XIcon /> : <NotebookTabs />}
         </button>
         <button className='reserve-action print' title='Imprimir' onClick={handlePrint}>
           {loading ? <LoaderCircle className='animate-spin' /> : <Printer />}

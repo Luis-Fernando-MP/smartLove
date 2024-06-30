@@ -1,15 +1,16 @@
 'use client'
 
-import { useGetReservations } from 'hooks/useReservations'
 import type { JSX } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
+import { useReservationsStore } from '../../store/reservation.store'
 import Reserve from '../reserve/Reserve'
 import './style.scss'
 
 const Reservations = (): JSX.Element | null => {
-  const reservations = useGetReservations()
+  const reservations = useReservationsStore(s => s.reservations)
   if (!reservations) return null
+
   return (
     <section className='reservations dashboard-body__reservations'>
       <h3>

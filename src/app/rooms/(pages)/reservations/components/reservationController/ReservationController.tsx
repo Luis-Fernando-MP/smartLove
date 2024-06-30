@@ -10,11 +10,9 @@ import './style.scss'
 
 const ReservationsController = (): JSX.Element => {
   return (
-    <main className='dashboard-main reservation'>
-      <ErrorContainer LoadingComponent={<LoaderComponent />} ErrorComponent={ErrorComponent}>
-        <Reservation />
-      </ErrorContainer>
-    </main>
+    <ErrorContainer LoadingComponent={<LoaderComponent />} ErrorComponent={ErrorComponent}>
+      <Reservation />
+    </ErrorContainer>
   )
 }
 export default ReservationsController

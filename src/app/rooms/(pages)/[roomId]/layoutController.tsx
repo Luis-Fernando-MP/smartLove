@@ -17,7 +17,7 @@ const LayoutController = ({ children, id }: ILayoutController): JSX.Element | nu
 
   useEffect(() => {
     if (data === null || !isError) {
-      setRoom(data!)
+      setRoom(data)
       setID(String(data?.codigo))
     }
   }, [data, isError, setID, setRoom])

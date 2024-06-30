@@ -22,16 +22,27 @@ interface TProps {
 const useReserve = ({ reserve }: TProps) => {
   const [loading, setLoading] = useState(false)
   const refReservePrint = useRef<HTMLElement>(null)
-  const { setReservation } = useReservationStore()
+  const { setReservation, selectedReservationId, selectReservation, deselectReservation } =
+    useReservationStore()
 
-  const handleReservationSelected = (): void => {
+  const isReading = selectedReservationId === reserve.idReserva
+
+  const handleReservationSelected = () => {
+    selectReservation(reserve.idReserva)
     setReservation(reserve)
   }
 
-  const handlePrint = async (): Promise<void> => {
+  const handleReservationDeselected = () => {
+    deselectReservation()
+    setReservation(null)
+  }
+
+  const handlePrint = async () => {
+    if (loading || !refReservePrint.current) return
+
     setLoading(true)
-    if (!refReservePrint.current || loading) return
     const toastId = toast.loading('Generando PDF... ⏳')
+
     try {
       const canvas = await html2canvas(refReservePrint.current, {
         scale: 4,
@@ -45,19 +56,13 @@ const useReserve = ({ reserve }: TProps) => {
       img.src = imgData
 
       img.onload = () => {
-        const imgWidth = img.width
-        const imgHeight = img.height
-
-        const pdfWidth = 60
-        const pdfHeight = (imgHeight * pdfWidth) / imgWidth
-
         const pdf = new JsPDF({
           orientation: 'portrait',
           unit: 'mm',
-          format: [pdfWidth, pdfHeight]
+          format: [60, (img.height * 60) / img.width]
         })
 
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight)
+        pdf.addImage(imgData, 'PNG', 0, 0, 60, (img.height * 60) / img.width)
 
         PreviewToast({
           buttonTitle: 'Descargar',
@@ -75,53 +80,31 @@ const useReserve = ({ reserve }: TProps) => {
       console.error('Error generating PDF', error)
     } finally {
       setLoading(false)
+      toast.remove(toastId)
     }
   }
 
   const littleBoxData = () => {
-    const { total, igv, subtotal, totalDias } = reserve
+    const { total, igv, subtotal, totalDias, montoServicios = 0 } = reserve
 
     return [
-      {
-        title: 'Total:',
-        subtitle: total,
-        Icon: PiggyBankIcon,
-        active: true
-      },
-      {
-        title: 'Sub Total:',
-        subtitle: subtotal,
-        Icon: BanknoteIcon
-      },
-      {
-        title: 'IGV:',
-        subtitle: igv,
-        Icon: SquirrelIcon
-      },
-      {
-        title: 'Servicios:',
-        subtitle: reserve.montoServicios ?? 0,
-        Icon: ShowerHeadIcon
-      },
-      {
-        title: 'Cuartos:',
-        subtitle: 2,
-        Icon: HotelIcon
-      },
-      {
-        title: 'Días:',
-        subtitle: totalDias,
-        Icon: MoonStarIcon
-      }
+      { title: 'Total:', subtitle: total, Icon: PiggyBankIcon, active: true },
+      { title: 'Sub Total:', subtitle: subtotal, Icon: BanknoteIcon },
+      { title: 'IGV:', subtitle: igv, Icon: SquirrelIcon },
+      { title: 'Servicios:', subtitle: montoServicios, Icon: ShowerHeadIcon },
+      { title: 'Cuartos:', subtitle: 2, Icon: HotelIcon },
+      { title: 'Días:', subtitle: totalDias, Icon: MoonStarIcon }
     ]
   }
 
   return {
-    loading,
-    refReservePrint,
     handlePrint,
+    handleReservationDeselected,
     handleReservationSelected,
-    littleBoxData
+    isReading,
+    littleBoxData,
+    loading,
+    refReservePrint
   }
 }
 

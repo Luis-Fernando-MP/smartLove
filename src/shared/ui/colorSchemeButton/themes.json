@@ -13,13 +13,13 @@
     "skeleton": "#CFDDEB"
   },
   "dark": {
-    "bg-primary": "#090b0df5",
-    "bg-secondary": "#08090bf5",
+    "bg-primary": "#01010df5",
+    "bg-secondary": "#000004f5",
     "fnt-primary": "#b6beca",
     "fnt-secondary": "#b6beca",
-    "tn-primary": "#ffdf7f",
-    "tn-primary-transparent": "#3f3f3f38",
-    "tn-secondary": "#feb178",
+    "tn-primary": "#835afc",
+    "tn-primary-transparent": "#2c00ff24",
+    "tn-secondary": "#ff8063",
     "disable-primary": "#1c1b1a",
     "disable-secondary": "#50494221",
     "skeleton-co": "#212830",

@@ -1,6 +1,5 @@
 'use client'
 
-import { useGetReservations } from 'hooks/useReservations'
 import Link from 'next/link'
 import { type JSX } from 'react'
 import { useForm } from 'react-hook-form'
@@ -10,11 +9,11 @@ import { switchClass } from 'shared/helpers/switchClassName'
 import { TReservationResolver, reservationResolver } from 'shared/resolvers/reservation.resolver'
 import Back from 'shared/ui/back/Back'
 
+import { useReservationsStore } from '../../store/reservation.store'
 import './style.scss'
 
 const Nav = (): JSX.Element | null => {
-  const reservations = useGetReservations()
-
+  const reservations = useReservationsStore(s => s.reservations)
   const hookForm = useForm<TReservationResolver>({
     resolver: reservationResolver,
     defaultValues: {}

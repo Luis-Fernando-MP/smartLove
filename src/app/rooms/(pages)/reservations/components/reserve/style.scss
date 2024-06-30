@@ -12,6 +12,7 @@
   z-index: 1;
   margin-left: 25px;
   @include d.flex($ali: center, $gap: v.$padding * 2);
+  border: 1.5px solid v.$tn1T;
   &-operations {
     width: 100%;
     display: grid;
@@ -34,12 +35,18 @@
     top: 50%;
     left: -20px;
     background-color: v.$bg1;
-    border: 4px solid v.$tn1;
-    border-right: 1px solid v.$tn1;
+    border-top: 1.5px solid v.$tn1T;
+    border-left: 4px solid v.$tn1T;
+    border-bottom: 1.5px solid v.$tn1T;
+    border-right: 1px solid v.$tn1T;
+
     transform: translateY(-50%);
   }
   &-action {
     border: none;
+    &:hover {
+      color: v.$tn1;
+    }
   }
   &-littleBoxes {
     width: 100%;

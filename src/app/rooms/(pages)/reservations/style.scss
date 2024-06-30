@@ -4,7 +4,7 @@
 @use '@styles/utils/scrollbar' as *;
 @use '@styles/utils/transitions' as t;
 
-$navSize: 420px; //<-- important
+$navSize: 400px; //<-- important
 
 .reservationNav {
   min-width: $navSize;
@@ -15,49 +15,28 @@ $navSize: 420px; //<-- important
   @include calculate.setCalculateMainSize($navSize);
   .dashboard-body {
     @include d.flex($dir: row, $gap: 0);
-    background-color: transparent;
     overflow: hidden;
     padding: 0;
-
+    position: relative;
     &__reservations {
-      border-end-start-radius: v.$radius * 2.5;
-      border-end-end-radius: v.$radius * 2.5;
-      padding: v.$padding;
-      @include d.flex();
-      background-color: v.$bg2;
       width: 100%;
-      height: 100%;
-      @extend %scroll-hidden;
-      overflow: auto;
     }
     &__details {
+      position: absolute;
+      top: 0;
+      right: -600px;
+      background-color: v.$bg1;
       height: 100%;
+      width: 500px;
       max-width: 500px;
-      background-color: transparent;
-      position: relative;
-      transition: 0.5s all ease-in-out;
-      visibility: hidden;
-      opacity: 0;
-      width: 0px;
-      padding: 0;
+      transition: t.$pong;
+      transition: all 0.5s cubic-bezier(0.79, 0.14, 0.15, 0.86);
+      border-radius: v.$radius;
+      padding: v.$padding;
+      z-index: 1;
+      border: 1.5px solid v.$tn1T;
       &.active {
-        width: 500px;
-        visibility: visible;
-        opacity: 1;
-        padding: v.$padding;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        height: 20px;
-        width: 20px;
-        background-color: transparent;
-        border-top-left-radius: 20px;
-        box-shadow: -8px -8px 0 8px v.$bg2;
-        z-index: -1;
+        right: 0;
       }
     }
   }
