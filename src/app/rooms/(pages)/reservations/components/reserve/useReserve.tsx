@@ -25,10 +25,10 @@ const useReserve = ({ reserve }: TProps) => {
   const { setReservation, selectedReservationId, selectReservation, deselectReservation } =
     useReservationStore()
 
-  const isReading = selectedReservationId === reserve.idReserva
+  const isReading = selectedReservationId && selectedReservationId === String(reserve.idReserva)
 
   const handleReservationSelected = () => {
-    selectReservation(reserve.idReserva)
+    selectReservation(String(reserve.idReserva))
     setReservation(reserve)
   }
 
