@@ -3,6 +3,7 @@
 import { type JSX } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import ErrorContainer from 'shared/ui/errorContainer/ErrorContainer'
+import { v4 as uuid } from 'uuid'
 
 import RoomsContainer from './RoomsContainer'
 
@@ -35,8 +36,8 @@ const LoaderComponent = (): JSX.Element => {
       <p className='skeleton h-5 w-1/3' />
       <p className='skeleton h-5 w-2/12' />
       <div className='flex flex-wrap gap-3 '>
-        {new Array(10).fill(Math.random()).map(key => (
-          <div key={key} className='skeleton-co h-90 w-64 p-4'>
+        {new Array(10).fill(Math.random()).map(() => (
+          <div key={uuid()} className='skeleton-co h-90 w-64 p-4'>
             <div className='skeleton h-32 w-full ' />
             <div className='skeleton m-auto mt-4 h-6 w-3/4 ' />
             <div className='mt-2 space-y-2'>

@@ -1,8 +1,11 @@
 import { IncomingHttpHeaders } from 'http'
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
+import { createUser } from 'services/users/setUser.service'
 import { USER_WEBHOOK } from 'shared/constants'
 import { Webhook, WebhookRequiredHeaders } from 'svix'
+
+import { IDeletedUser, IModifyUser, IWebhookEvent, TWebhookEventType } from './clerk.types'
 
 // /api/webhooks/user
 async function handler(request: Request) {
@@ -13,33 +16,46 @@ async function handler(request: Request) {
     'svix-timestamp': headersList.get('svix-timestamp'),
     'svix-signature': headersList.get('svix-signature')
   }
+
   const wh = new Webhook(USER_WEBHOOK)
-  let evt: Event | null = null
+  let evt: IWebhookEvent | null = null
 
   try {
     evt = wh.verify(
       JSON.stringify(payload),
       heads as IncomingHttpHeaders & WebhookRequiredHeaders
-    ) as Event
+    ) as IWebhookEvent
   } catch (err) {
     console.error((err as Error).message)
     return NextResponse.json({}, { status: 400 })
   }
 
-  const eventType: EventType = evt.type
+  const eventType: TWebhookEventType = evt.type
+  console.log('tipo: ', evt.type)
+
   if (eventType === 'user.created' || eventType === 'user.updated') {
-    const { id, ...attributes } = evt.data
-
-    // TODO: update user
-    console.log(id, attributes)
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const { id, first_name, image_url, last_name, email_addresses } = evt.data
+    const isCreated = await createUser({
+      id,
+      first_name,
+      last_name,
+      image_url,
+      email: email_addresses[0].email_address
+    })
+    console.log(isCreated)
   }
-}
+  if (eventType === 'user.deleted') {
+    const deletedUser = evt.data as unknown as IDeletedUser
+    if (deletedUser.deleted) {
+      console.log('deleted')
+    } else {
+      console.log('error to deleted')
+    }
+    console.log(deletedUser)
+  }
 
-type EventType = 'user.created' | 'user.updated' | '*'
-interface Event {
-  data: Record<string, string | number>
-  object: 'event'
-  type: EventType
+  return Response.json({ status: 'ok' })
 }
 
 export const GET = handler

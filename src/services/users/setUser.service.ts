@@ -1,34 +1,29 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
 import axios, { AxiosError } from 'axios'
+import { IError } from 'services/error.service.types'
 import { API_URL } from 'shared/constants'
 
-import { IError } from '../error.service.types'
-import { IReservation } from './reserve.service.types'
+import { IUser } from './user.service.types'
 
-const getAxiosReserve = axios.create({
-  baseURL: `${API_URL}/reservas`,
+const UserAxios = axios.create({
+  baseURL: `${API_URL}/usuarios`,
   withCredentials: true,
   responseEncoding: 'utf8',
   responseType: 'json',
-  method: 'GET',
   headers: {
     'Content-Type': 'application/json'
   },
+  // Solo para entorno de desarrollo
   httpsAgent: false
 })
 
-export const getAllReservers = async (id: string): Promise<IReservation[]> => {
+export const createUser = async (userData: IUser) => {
   try {
-    await new Promise(resolve =>
-      setTimeout(() => {
-        return resolve(true)
-      }, 100)
-    )
-    const response = await getAxiosReserve(`/findReservasCliente/${id}`)
+    const response = await UserAxios.post('', { userData })
     if (!response.data) {
-      throw new Error('No se recibieron datos válidos en la respuesta')
+      throw new Error('Error al guardar el usuario')
     }
-    return response.data as IReservation[]
+    return response.data
   } catch (error: any) {
     let errorEvent: IError = {
       message: error?.message,

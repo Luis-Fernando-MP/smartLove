@@ -2,7 +2,7 @@
 import axios, { AxiosError } from 'axios'
 import { API_URL } from 'shared/constants'
 
-import { IError } from './error.service'
+import { IError } from '../error.service.types'
 import { IRoom } from './room.service.types'
 
 const axiosRoom = axios.create({
@@ -13,7 +13,8 @@ const axiosRoom = axios.create({
   method: 'GET',
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  httpsAgent: false
 })
 
 export const getAllRooms = async (): Promise<IRoom[]> => {
@@ -24,10 +25,11 @@ export const getAllRooms = async (): Promise<IRoom[]> => {
       }, 200)
     )
     const response = await axiosRoom('')
-    if (!response.data) {
+    const { data } = response
+    if (!data) {
       throw new Error('No se recibieron datos válidos en la respuesta')
     }
-    return response.data as IRoom[]
+    return data as IRoom[]
   } catch (error: any) {
     let errorEvent: IError = {
       message: error?.message,
