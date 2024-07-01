@@ -7,13 +7,11 @@ import { IUser } from './user.service.types'
 
 const UserAxios = axios.create({
   baseURL: `${API_URL}/usuarios`,
-  withCredentials: true,
   responseEncoding: 'utf8',
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json'
   },
-  // Solo para entorno de desarrollo
   httpsAgent: false
 })
 

@@ -7,7 +7,6 @@ import { IReservation } from './reserve.service.types'
 
 const getAxiosReserve = axios.create({
   baseURL: `${API_URL}/reservas`,
-  withCredentials: true,
   responseEncoding: 'utf8',
   responseType: 'json',
   method: 'GET',

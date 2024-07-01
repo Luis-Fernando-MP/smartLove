@@ -5,7 +5,6 @@ import NextTopLoader from 'nextjs-toploader'
 import TanStackProvider from 'providers/TanStackProvider'
 import type { JSX, ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
-import { IS_PRODUCTION, USER_WEBHOOK } from 'shared/constants'
 import { robotoFlex } from 'shared/fonts'
 
 import './globals.css'

@@ -1,11 +1,10 @@
 import { IncomingHttpHeaders } from 'http'
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { createUser } from 'services/users/setUser.service'
 import { USER_WEBHOOK } from 'shared/constants'
 import { Webhook, WebhookRequiredHeaders } from 'svix'
 
-import { IDeletedUser, IModifyUser, IWebhookEvent, TWebhookEventType } from './clerk.types'
+import { IDeletedUser, IWebhookEvent, TWebhookEventType } from './clerk.types'
 
 // /api/webhooks/user
 async function handler(request: Request) {
@@ -36,14 +35,14 @@ async function handler(request: Request) {
   if (eventType === 'user.created' || eventType === 'user.updated') {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const { id, first_name, image_url, last_name, email_addresses } = evt.data
-    const isCreated = await createUser({
+    // const isCreated = await createUser()
+    console.log({
       id,
       first_name,
       last_name,
       image_url,
       email: email_addresses[0].email_address
     })
-    console.log(isCreated)
   }
   if (eventType === 'user.deleted') {
     const deletedUser = evt.data as unknown as IDeletedUser

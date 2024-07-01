@@ -7,7 +7,6 @@ import { IRoom } from './room.service.types'
 
 const axiosRoom = axios.create({
   baseURL: `${API_URL}/habitacion`,
-  withCredentials: true,
   responseEncoding: 'utf8',
   responseType: 'json',
   method: 'GET',

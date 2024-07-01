@@ -41,7 +41,7 @@ $medium-screen: 820px;
 $large-screen: 992px;
 $extra-large-screen: 1200px;
 
-$radius: 10px;
+$radius: 7px;
 $padding: 15px;
 $icon: 20px;
 $family-size: 12px;
@@ -49,7 +49,7 @@ $family: var(--roboto-flex), 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Monospace',
   'Fira Mono', monospace, 'Segoe UI Emoji';
 
 $gr1: linear-gradient(90deg, $tn1 0%, $tn2 100%);
-
+$imgFilter: brightness(0.5) opacity(0.5);
 @mixin color($color, $property: color) {
   body.dark & {
     #{$property}: $color;

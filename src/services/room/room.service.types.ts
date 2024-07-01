@@ -16,6 +16,7 @@ export interface IRoom {
   onSale: boolean
   counter: number
   preciovalor: string
+  descripcion: string
   serviciosHabitacion: IRoomService[]
   imagenesHabitacion: IRoomImages[]
 }

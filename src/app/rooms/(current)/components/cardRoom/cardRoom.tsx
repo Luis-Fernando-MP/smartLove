@@ -1,10 +1,11 @@
 'use client'
 
 /* eslint-disable @next/next/no-img-element */
-import { ArrowUpRight, DollarSign } from 'lucide-react'
+import { BanknoteIcon, CalendarDaysIcon, ImagesIcon, LandPlotIcon } from 'lucide-react'
 import Link from 'next/link'
 import type { JSX, ReactNode } from 'react'
 import { IRoom } from 'services/room/room.service.types'
+import { sansitaSwashed } from 'shared/fonts'
 import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
 import SlugRoom from 'shared/ui/slugRoom/slugRoom'
 
@@ -24,23 +25,44 @@ const CardRoom = ({ data }: ICardRoom): JSX.Element => {
     precio,
     serviciosHabitacion,
     onSale,
-    contadorreserva
+    contadorreserva,
+    descripcion
   } = data
   return (
-    <section className='cardRoom'>
+    <article className='cardRoom'>
       <SlugRoom counter={contadorreserva} onSale={onSale} itsFull={estado} />
-      <img
-        src={imagenesHabitacion[0].urlImagen}
-        alt={nombre}
-        className='cardRoom-image'
-        height={100}
-        loading='lazy'
-      />
-      <h5>{nombre}</h5>
+      <section className='cardRoom-images'>
+        {imagenesHabitacion.slice(0, 3).map(image => {
+          return (
+            <img
+              key={image.idImgHabitacion}
+              src={image.urlImagen}
+              alt={image.fechEdicion}
+              className='cardRoom-image'
+              loading='lazy'
+            />
+          )
+        })}
+        <img
+          src={imagenesHabitacion[0].urlImagen}
+          alt={nombre}
+          className='cardRoom-images__background'
+          loading='lazy'
+        />
+      </section>
+
+      <div className='cardRoom-information'>
+        <h4 className={sansitaSwashed.className}>{nombre}</h4>
+        <p className='cardRoom-descriptions'>{descripcion}</p>
+      </div>
+
       <ul className='cardRoom-services'>
+        <li className='cardRoom-service price'>
+          <BanknoteIcon />
+          {precio}
+        </li>
         {serviciosHabitacion.map(services => {
           const { nombreServicio, idServHabitacion } = services
-
           const { Icon } = parseServiceToIcon(services.urlImagen)
           return (
             <li className='cardRoom-service' key={idServHabitacion}>
@@ -49,15 +71,20 @@ const CardRoom = ({ data }: ICardRoom): JSX.Element => {
             </li>
           )
         })}
-        <li className='cardRoom-service'>
-          <DollarSign />
-          {precio}
-        </li>
       </ul>
-      <Link href={`/rooms/${codigo}`} className={`btn cardRoom-go ${estado ? '' : 'no-space'}`}>
-        {estado ? 'Disponible' : 'Agotado'} <ArrowUpRight />
-      </Link>
-    </section>
+
+      <section className='cardRoom-actions'>
+        <Link href={`/rooms/${codigo}/calendar`} className='btn cardRoom-action'>
+          <CalendarDaysIcon />
+        </Link>
+        <Link href={`/rooms/${codigo}`} className='btn cardRoom-action'>
+          <LandPlotIcon />
+        </Link>
+        <Link href={`/rooms/${codigo}/images`} className='btn cardRoom-action'>
+          <ImagesIcon />
+        </Link>
+      </section>
+    </article>
   )
 }
 
