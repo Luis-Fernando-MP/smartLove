@@ -1,4 +1,4 @@
-import { IReservation } from 'services/room/reserve.service.types'
+import { IReservation } from 'services/reserve/reserve.service.types'
 import { create } from 'zustand'
 
 interface IUseReservationStore {

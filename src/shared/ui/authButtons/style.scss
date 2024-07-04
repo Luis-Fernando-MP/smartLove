@@ -4,13 +4,20 @@
 .authOptions {
   @include d.flex($dir: row, $ali: center);
   button {
-    &:first-child {
+    & &:first-child {
       background-color: transparent;
     }
     &:last-child {
       font-weight: 700;
       background-color: v.$tn1;
-      color: white;
+      padding: 5px;
+      &.btn {
+        padding: 10px;
+      }
+      &,
+      span {
+        color: white;
+      }
     }
   }
 }

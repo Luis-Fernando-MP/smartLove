@@ -1,10 +1,15 @@
 'use client'
 
-import { useUser } from '@clerk/nextjs'
+import { useClerk, useUser } from '@clerk/nextjs'
+import { useCreateReservation } from 'hooks/useReservations'
+import { useCreateClient } from 'hooks/useUser'
 import Link from 'next/link'
-import { type JSX, useMemo, useRef } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { type JSX, useCallback, useEffect, useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { ISendReserveData } from 'services/reserve/reserve.service.types'
+import { delay } from 'shared/helpers/delay'
 import { switchClass } from 'shared/helpers/switchClassName'
 import {
   TRequirementsUser,
@@ -14,32 +19,31 @@ import {
 import { useRoomStore } from '../../store/room.store'
 import RegisterRequirementsUser from '../components/RegisterRequirementsUser/RegisterRequirementsUser'
 import TotalCalculate from '../components/totalCalculate/TotalCalculate'
+import usePayStore from '../store/usePayStore'
 import { defaultFormData } from '../store/useRegisterStore'
 import useRequirementsStore from '../store/useRequirementsStore'
 import './style.scss'
 
 const Page = (): JSX.Element => {
-  const { totalAmount, fromDate, toDate, nights } = useRequirementsStore()
+  const { totalAmount, fromDate, toDate, nights, igv, subtotal, surcharge } = useRequirementsStore()
   const roomID = useRoomStore(store => store.id)
   const $formRef = useRef<HTMLFormElement>(null)
   const { user } = useUser()
+  const { openSignIn } = useClerk()
+  const currentPath = usePathname()
+  const { push } = useRouter()
+  const {
+    mutate: resMutate,
+    error: resError,
+    failureCount: resFails,
+    status: resStatus
+  } = useCreateReservation()
 
-  const defaultFormValues = useMemo(() => {
-    if (!user) return defaultFormData
-    const { emailAddresses, lastName, fullName } = user
-    return {
-      ...defaultFormData,
-      fullName: fullName ?? defaultFormData.fullName,
-      lastName: lastName ?? defaultFormData.lastName,
-      email: emailAddresses[0].emailAddress
-    }
-  }, [user])
-
-  console.log(defaultFormValues)
+  // const { setTempPayData } = usePayStore()
 
   const methods = useForm({
     resolver: requirementsUserResolver,
-    values: defaultFormValues,
+    values: defaultFormData,
     mode: 'all'
   })
 
@@ -48,23 +52,53 @@ const Page = (): JSX.Element => {
     $formRef.current.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }))
   }
 
-  const handleSubmit = (data: TRequirementsUser) => {
-    const sendData = {
-      cliente: { idCliente: 1, ...data },
-      habitacion: { codigo: roomID },
+  useEffect(() => {
+    // Continuamos con la reserva
+    const inProcess = localStorage.getItem('process') === '1'
+    if (inProcess && user !== null) {
+      handleContinue()
+    }
+  }, [user])
+
+  const handleSubmit = async (clientData: TRequirementsUser) => {
+    localStorage.setItem('process', '1')
+
+    if (user === null) {
+      return openSignIn({
+        forceRedirectUrl: currentPath,
+        afterSignOutUrl: currentPath,
+        signUpForceRedirectUrl: currentPath,
+        routing: 'virtual'
+      })
+    }
+
+    const reserveData: ISendReserveData = {
+      cliente: {
+        email: user?.emailAddresses[0].emailAddress ?? '',
+        ...clientData
+      },
+      habitacion: { codigo: Number(roomID) },
       fechaIngreso: fromDate,
       fechaSalida: toDate,
       totalDias: nights,
-      subtotal: 0,
-      total: totalAmount
+      subtotal,
+      total: totalAmount,
+      igv,
+      id: user?.id ?? '',
+      estado: 1
     }
-    console.log(sendData)
-
-    toast.loading('Estamos registrando tu reserva: ' + JSON.stringify(sendData))
-    // router.push({
-    //   pathname: `/rooms/${roomID}/pay`,
-    //   query: { data: JSON.stringify(data) }
-    // })1
+    const toId = toast.loading('Procesando reserva')
+    resMutate(reserveData, {
+      onError() {
+        toast.error('Hemos fallados en crear la reserva', { id: toId })
+      },
+      onSuccess() {
+        toast.success('Reserva creada', { id: toId })
+        push(`/rooms/${roomID}/pay`)
+      }
+    })
+    localStorage.removeItem('process')
+    localStorage.setItem('newPay', '1')
   }
 
   const { isValid } = methods.formState
@@ -88,11 +122,7 @@ const Page = (): JSX.Element => {
         <span>Completa tus datos personales, para reservar la habitación</span>
       </div>
       <FormProvider {...methods}>
-        <RegisterRequirementsUser
-          onSubmit={handleSubmit}
-          ref={$formRef}
-          defaultFormValues={defaultFormValues}
-        />
+        <RegisterRequirementsUser onSubmit={handleSubmit} ref={$formRef} />
       </FormProvider>
     </section>
   )

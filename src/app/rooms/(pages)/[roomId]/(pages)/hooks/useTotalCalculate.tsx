@@ -15,7 +15,16 @@ export const SURCHARGE = 0.1
 
 const useUseTotalCalculate = ({ room }: TProps) => {
   const { fromDate, stayUser, toDate, totalAmount } = useRequirementsStore()
-  const { setFromDate, setToDate, setNights, setTotalAmount, setStayUser } = useRequirementsStore()
+  const {
+    setFromDate,
+    setToDate,
+    setNights,
+    setTotalAmount,
+    setStayUser,
+    setIvg,
+    setSubtotal,
+    setSurcharge
+  } = useRequirementsStore()
 
   const roomPrice = useMemo(() => room?.precio ?? 0, [room])
   const diffDays = useMemo(
@@ -37,7 +46,22 @@ const useUseTotalCalculate = ({ room }: TProps) => {
     setNights(diffDays)
     setTotalAmount(calculateTotalAmount)
     setStayUser(currentClassCase(diffDays) as STAY_USER)
-  }, [diffDays, calculateTotalAmount, setNights, setTotalAmount, setStayUser])
+    setIvg(totalIGV)
+    setSubtotal(subtotal)
+    setSurcharge(totalSurcharge)
+  }, [
+    diffDays,
+    calculateTotalAmount,
+    setNights,
+    setTotalAmount,
+    setStayUser,
+    setIvg,
+    totalIGV,
+    setSubtotal,
+    subtotal,
+    setSurcharge,
+    totalSurcharge
+  ])
 
   const handleChangeNights = useCallback(
     (total: number) => {

@@ -1,6 +1,7 @@
 import { IncomingHttpHeaders } from 'http'
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
+import { createUser } from 'services/users/setUser.service'
 import { USER_WEBHOOK } from 'shared/constants'
 import { Webhook, WebhookRequiredHeaders } from 'svix'
 
@@ -30,19 +31,17 @@ async function handler(request: Request) {
   }
 
   const eventType: TWebhookEventType = evt.type
-  console.log('tipo: ', evt.type)
-
   if (eventType === 'user.created' || eventType === 'user.updated') {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const { id, first_name, image_url, last_name, email_addresses } = evt.data
-    // const isCreated = await createUser()
-    console.log({
+    const sendUserData = {
       id,
-      first_name,
-      last_name,
-      image_url,
-      email: email_addresses[0].email_address
-    })
+      email: email_addresses[0].email_address,
+      first_name: first_name ?? '',
+      last_name: last_name ?? '',
+      imagen_url: image_url
+    }
+    await createUser(sendUserData as any)
   }
   if (eventType === 'user.deleted') {
     const deletedUser = evt.data as unknown as IDeletedUser

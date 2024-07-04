@@ -197,9 +197,11 @@ svg {
 }
 .bgr {
   background-image: $gr1;
-  color: $bg1;
+  color: white;
   opacity: 1;
   border: 1.5px solid transparent;
+  font-size: $fP;
+  font-weight: 600;
   &.inactive {
     background-image: none;
     background-color: $bg1;

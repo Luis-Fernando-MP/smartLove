@@ -1,12 +1,11 @@
-import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
-import { ViewTransitions } from 'next-view-transitions'
 import NextTopLoader from 'nextjs-toploader'
 import TanStackProvider from 'providers/TanStackProvider'
 import type { JSX, ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { robotoFlex } from 'shared/fonts'
 
+import Providers from './Providers'
 import './globals.css'
 import './layout.scss'
 
@@ -22,24 +21,22 @@ interface TRootLayout {
 
 function RootLayout({ children }: TRootLayout): JSX.Element {
   return (
-    <ClerkProvider>
-      <ViewTransitions>
-        <html lang='es'>
-          <body className={robotoFlex.className}>
-            <NextTopLoader zIndex={100} height={5} color='var(--tn-primary)' />
-            <TanStackProvider>{children}</TanStackProvider>
-            <Toaster
-              position='top-center'
-              reverseOrder={false}
-              toastOptions={{
-                className: 'toast',
-                style: { background: 'var(--bg-primary)', color: 'var(--fnt-primary)' }
-              }}
-            />
-          </body>
-        </html>
-      </ViewTransitions>
-    </ClerkProvider>
+    <Providers>
+      <html lang='es'>
+        <body className={robotoFlex.className}>
+          <NextTopLoader zIndex={100} height={5} color='var(--tn-primary)' />
+          <TanStackProvider>{children}</TanStackProvider>
+          <Toaster
+            position='top-center'
+            reverseOrder={false}
+            toastOptions={{
+              className: 'toast',
+              style: { background: 'var(--bg-primary)', color: 'var(--fnt-primary)' }
+            }}
+          />
+        </body>
+      </html>
+    </Providers>
   )
 }
 

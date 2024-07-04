@@ -1,0 +1,55 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.pay {
+  width: 900px;
+  @include d.flex($ali: center);
+
+  &-item {
+    @include d.flex($ali: flex-start, $gap: 5px);
+    background-color: v.$bg1;
+    border-radius: v.$radius * 2;
+    padding: v.$padding;
+    padding-left: 60px;
+    width: 50%;
+    position: relative;
+    &__loader {
+      color: v.$gr1;
+      top: 40%;
+      position: absolute;
+      right: 20px;
+    }
+    &__info,
+    &__info p {
+      @include d.flex($dir: row, $gap: 10px, $ali: center);
+    }
+    &::before {
+      background-color: v.$tn1;
+      border-radius: 50%;
+      content: '';
+      height: 20px;
+      left: 20px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+    }
+    &.error::before {
+      background-color: rgba(v.$danger, 0.6);
+    }
+    &.pending::before {
+      background-color: rgba(v.$info, 0.6);
+    }
+    &.success::before {
+      background-color: rgba(v.$success, 0.6);
+    }
+  }
+
+  &-success {
+    width: 900px;
+    border-radius: v.$radius;
+    padding: v.$padding;
+    @include d.flex($ali: center);
+    background-color: v.$bg1;
+  }
+}

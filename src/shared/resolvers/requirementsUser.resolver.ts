@@ -30,14 +30,6 @@ const schemeRequirementsUser = z.object({
     .max(80, {
       message: '😃 ¡Tus apellidos no pueden exceder los 80 caracteres!'
     }),
-  email: z
-    .string()
-    .min(10, {
-      message: '📧 ¡Correo electrónico necesario! (mínimo 10 caracteres)'
-    })
-    .email({
-      message: '📧 ¡Formato de correo electrónico inválido!'
-    }),
   country: z
     .string()
     .regex(onlyTextRegex, {
@@ -80,7 +72,6 @@ export const requirementsUserResolver = zodResolver(schemeRequirementsUser)
 export const keysValues = {
   Nombres: 'fullName',
   Apellidos: 'lastName',
-  Correo: 'email',
   Ciudad: 'country',
   Dirección: 'location',
   'DNI o Carnet': 'passportOrID',

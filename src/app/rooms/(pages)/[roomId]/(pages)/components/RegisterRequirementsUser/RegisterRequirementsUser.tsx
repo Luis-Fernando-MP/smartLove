@@ -1,30 +1,49 @@
+import { useUser } from '@clerk/nextjs'
 import { forwardRef, useCallback, useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { cleanText } from 'shared/helpers/formatDate'
 import { switchClass } from 'shared/helpers/switchClassName'
 import { TRequirementsUser, keysValues } from 'shared/resolvers/requirementsUser.resolver'
 
-import useRegisterStore from '../../store/useRegisterStore'
+import useRegisterStore, { defaultFormData } from '../../store/useRegisterStore'
 import './style.scss'
 
 interface IRegisterRequirementsUser {
   onSubmit: (data: any) => void
-  defaultFormValues: TRequirementsUser
 }
 
 // eslint-disable-next-line react/display-name
 const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequirementsUser>(
-  ({ onSubmit, defaultFormValues }, ref) => {
+  ({ onSubmit }, ref) => {
     const { formData, setFormData } = useRegisterStore()
     const { register, handleSubmit, formState, setValue, reset } =
       useFormContext<TRequirementsUser>()
+    const { user } = useUser()
     const { errors: err, isValid } = formState
 
     useEffect(() => {
-      Object.entries(formData).forEach(([key, value]) => {
+      let clonFormData: TRequirementsUser = structuredClone(formData)
+      function isInvalidFiled(field: string, userValue: string) {
+        const fieldClean = cleanText(field)
+        const userValeClean = cleanText(userValue)
+        if (fieldClean.length < 1) return userValeClean
+        if (fieldClean === userValeClean) return userValeClean
+
+        return fieldClean
+      }
+      if (user) {
+        const { lastName, fullName } = user
+        clonFormData = {
+          ...formData,
+          fullName: isInvalidFiled(clonFormData.fullName, fullName ?? ''),
+          lastName: isInvalidFiled(clonFormData.lastName, lastName ?? '')
+        }
+      }
+      Object.entries(clonFormData).forEach(([key, value]) => {
         setValue(key as keyof TRequirementsUser, value)
       })
-    }, [formData, setValue])
+    }, [formData, setValue, user])
 
     const onError = (): void => {
       toast.error('Completa todos los campos correctamente')
@@ -32,7 +51,7 @@ const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequiremen
     }
     const onReset = (): void => {
       reset()
-      setFormData(defaultFormValues)
+      setFormData(defaultFormData)
     }
 
     const handleInputChange = useCallback(

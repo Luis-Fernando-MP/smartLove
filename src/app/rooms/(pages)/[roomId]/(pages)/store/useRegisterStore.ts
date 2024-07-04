@@ -11,7 +11,6 @@ export const defaultFormData = {
   fullName: '',
   lastName: '',
   passportOrID: '',
-  email: '',
   phone: '',
   country: '',
   location: ''

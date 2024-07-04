@@ -2,10 +2,9 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import type { JSX, ReactNode } from 'react'
+import { type JSX, type ReactNode } from 'react'
+import { switchClass } from 'shared/helpers/switchClassName'
 
-import useStepsRoom from '../../store/room.store'
-import { stepsData } from './steps.data'
 import './style.scss'
 
 interface ISteps {
@@ -15,25 +14,27 @@ interface ISteps {
 }
 
 const Steps = ({ total, id }: ISteps): JSX.Element => {
-  const { currentStep } = useStepsRoom()
   const pathname = usePathname()
-
+  const baseUrlSteps = `/rooms/${id}`
+  const activeStep3 = pathname === `${baseUrlSteps}/pay`
+  const activeStep2 = pathname === `${baseUrlSteps}/requirements` || activeStep3
   return (
     <section className='room-steps'>
-      {stepsData({ id, totalMount: total, urlName: pathname }).map(step => {
-        const { RenderStep, isActive, ref, value } = step
-        const activeLink = value <= currentStep
-
-        return (
-          <Link
-            key={ref}
-            href={activeLink ? ref : ''}
-            className={`room-step ${isActive && activeLink ? 'active' : 'inactive'}`}
-          >
-            {RenderStep}
-          </Link>
-        )
-      })}
+      <Link href={baseUrlSteps} className='room-step active'>
+        <p>Habitación</p>
+      </Link>
+      <Link
+        href={`${baseUrlSteps}/requirements`}
+        className={`room-step ${switchClass(activeStep2)}`}
+      >
+        <p>Requisitos</p>
+      </Link>
+      <Link href={`${baseUrlSteps}/pay`} className={`room-step ${switchClass(activeStep3)}`}>
+        <div>
+          <span>Total</span>
+          <h5>PEN {total}</h5>
+        </div>
+      </Link>
     </section>
   )
 }

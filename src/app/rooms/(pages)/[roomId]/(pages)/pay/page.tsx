@@ -1,22 +1,34 @@
 'use client'
 
-import { type JSX } from 'react'
+import { Link } from 'next-view-transitions'
+import 'next/navigation'
+import { type JSX, useEffect, useMemo } from 'react'
 
-import { useRoomStore } from '../../store/room.store'
-import useRegisterStore from '../store/useRegisterStore'
-import useRequirementsStore from '../store/useRequirementsStore'
+import './style.scss'
 
 const Page = (): JSX.Element => {
-  const { totalAmount, fromDate, toDate, nights } = useRequirementsStore()
-  const { formData } = useRegisterStore()
-  const roomID = useRoomStore(store => store.id)
+  const isNewPay = useMemo(() => localStorage.getItem('newPay') ?? '', [])
+
+  useEffect(() => {
+    const handleUnload = () => {
+      localStorage.removeItem('newPay')
+    }
+    window.addEventListener('beforeunload', handleUnload)
+    return () => window.removeEventListener('beforeunload', handleUnload)
+  }, [])
 
   return (
-    <section>
-      <pre>{JSON.stringify(formData)}</pre>
-      <pre>{JSON.stringify({ totalAmount, fromDate, toDate, nights })}</pre>
-      <pre>{JSON.stringify(roomID)}</pre>
-    </section>
+    <article className='pay-success'>
+      <h3>
+        {isNewPay === '1'
+          ? 'Su reserva ha sido registrada correctamente'
+          : 'Verifique todas sus Reservas'}
+      </h3>
+      <p>Puede ver más detalles en /reserves</p>
+      <Link href='/rooms/reservations' className='btn bgr'>
+        Mis reservas
+      </Link>
+    </article>
   )
 }
 

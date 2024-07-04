@@ -1,31 +1,40 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
-import axios, { AxiosError } from 'axios'
+import axios, { AxiosError, CreateAxiosDefaults } from 'axios'
 import { API_URL } from 'shared/constants'
 import { delay } from 'shared/helpers/delay'
 
 import { IError } from '../error.service.types'
-import { IRoom } from './room.service.types'
+import { IReservation, ISendReserveData } from './reserve.service.types'
 
-const axiosRoom = axios.create({
-  baseURL: `${API_URL}/habitacion`,
+const defaultAxiosConfig: CreateAxiosDefaults = {
   responseEncoding: 'utf8',
   responseType: 'json',
-  method: 'GET',
   headers: {
     'Content-Type': 'application/json'
   },
   httpsAgent: false
+}
+
+const getAxiosReserve = axios.create({
+  ...defaultAxiosConfig,
+  baseURL: `${API_URL}/reservas`,
+  method: 'GET'
 })
 
-export const getAllRooms = async (): Promise<IRoom[]> => {
+const postAxiosReserve = axios.create({
+  ...defaultAxiosConfig,
+  baseURL: `${API_URL}/reservas`,
+  method: 'POST'
+})
+
+export const getAllReservers = async (id: string): Promise<IReservation[]> => {
   try {
-    await delay(500)
-    const response = await axiosRoom('')
-    const { data } = response
-    if (!data) {
+    delay(1000)
+    const response = await getAxiosReserve(`/findReservasCliente/${id}`)
+    if (!response.data) {
       throw new Error('No se recibieron datos válidos en la respuesta')
     }
-    return data as IRoom[]
+    return response.data as IReservation[]
   } catch (error: any) {
     let errorEvent: IError = {
       message: error?.message,
@@ -39,14 +48,15 @@ export const getAllRooms = async (): Promise<IRoom[]> => {
     throw errorEvent
   }
 }
-export const getRoomById = async (id: string): Promise<IRoom> => {
+
+export const createReservation = async (reserve: ISendReserveData) => {
   try {
-    await delay(800)
-    const response = await axiosRoom(`/findById/${id}`)
+    await delay(3000)
+    const response = await postAxiosReserve.post('', reserve)
     if (!response.data) {
-      throw new Error('No se recibieron datos válidos en la respuesta')
+      throw new Error('Error al crear la reserva')
     }
-    return response.data as IRoom
+    return response.data
   } catch (error: any) {
     let errorEvent: IError = {
       message: error?.message,

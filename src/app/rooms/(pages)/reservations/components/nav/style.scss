@@ -1,18 +1,10 @@
 @use '@styles/config/vars' as v;
 @use '@styles/utils/defs' as d;
 
-:root {
-  --input-border: #8b8a8b;
-  --input-focus-h: 245;
-  --input-focus-s: 100%;
-  --input-focus-l: 42%;
-}
-
 .reservationNav {
-  padding: 0 v.$padding * 2;
+  padding: 0 v.$padding;
+  background-image: linear-gradient(0deg, v.$tn1T 10%, v.$bg2 100%);
   &-submit {
-    background-color: v.$danger;
-    color: v.$danger_dark;
     padding: v.$padding 0;
     border-radius: v.$radius;
   }
@@ -24,6 +16,10 @@
   }
   &-form {
     @include d.flex();
+    background-color: v.$bg1;
+    border-radius: v.$radius;
+    padding: v.$padding;
+    background-image: linear-gradient(0deg, v.$tn1T 10%, v.$bg2 100%);
     &__section {
       padding: v.$padding * 0.5;
       border-radius: v.$radius;
@@ -52,6 +48,14 @@
       position: relative;
       width: 100%;
       cursor: pointer;
+      &.auto {
+        select {
+          cursor: none;
+          pointer-events: none;
+          user-select: none;
+          opacity: 0.7;
+        }
+      }
       select {
         border-radius: v.$radius;
         background-color: transparent;

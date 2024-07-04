@@ -4,6 +4,7 @@ import NavContainer from 'app/rooms/components/navContainer/NavContainer'
 import { type JSX, ReactNode } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import ErrorContainer from 'shared/ui/errorContainer/ErrorContainer'
+import { v4 as uuid } from 'uuid'
 
 import LayoutController from './layoutController'
 import './style.scss'
@@ -46,7 +47,7 @@ const LoaderComponent = (): JSX.Element => {
         </h3>
         <div className='flex w-full flex-wrap gap-2'>
           {new Array(5).fill(Math.random()).map(key => (
-            <div key={key} className='skeleton-co -lg flex h-96 w-64  flex-col gap-1 p-4'>
+            <div key={uuid()} className='skeleton-co -lg flex h-96 w-64  flex-col gap-1 p-4'>
               <div className='skeleton -md h-full w-full' />
               <div className='skeleton mt-4 h-7 w-full ' />
             </div>

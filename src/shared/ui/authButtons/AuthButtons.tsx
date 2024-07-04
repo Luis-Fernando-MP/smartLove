@@ -9,12 +9,14 @@ import {
   SignedOut,
   UserButton
 } from '@clerk/nextjs'
+import { usePathname } from 'next/navigation'
 import type { JSX } from 'react'
 
 import ColorSchemeButton from '../colorSchemeButton/ColorSchemeButton'
 import './style.scss'
 
 const AuthButtons = (): JSX.Element => {
+  const currentPath = usePathname()
   return (
     <aside className='authOptions'>
       <ColorSchemeButton />
@@ -23,13 +25,13 @@ const AuthButtons = (): JSX.Element => {
       </ClerkLoading>
       <ClerkLoaded>
         <SignedIn>
-          <UserButton afterSignOutUrl='/' />
+          <UserButton showName afterSignOutUrl={currentPath} />
         </SignedIn>
         <SignedOut>
-          <SignUpButton mode='modal' fallbackRedirectUrl='/rooms'>
+          <SignUpButton mode='modal' forceRedirectUrl={currentPath}>
             <button className='btn'>Regístrate</button>
           </SignUpButton>
-          <SignInButton mode='modal' fallbackRedirectUrl='/rooms'>
+          <SignInButton mode='modal' forceRedirectUrl={currentPath}>
             <button className='btn'>Ingresar</button>
           </SignInButton>
         </SignedOut>

@@ -4,12 +4,11 @@ import Link from 'next/link'
 import { type JSX } from 'react'
 import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
 
-import useStepsRoom, { useRoomStore } from '../store/room.store'
+import { useRoomStore } from '../store/room.store'
 import RecommendationController from './components/recommendation/RecommendationController'
 import './style.scss'
 
 const Page = (): JSX.Element | null => {
-  const { setCurrentStep } = useStepsRoom()
   const room = useRoomStore(store => store.room)
   if (!room) return null
   const { codigo, serviciosHabitacion } = room
@@ -26,11 +25,7 @@ const Page = (): JSX.Element | null => {
           )
         })}
       </ul>
-      <Link
-        href={`/rooms/${codigo}/requirements`}
-        className='btn currentRoom-continue bgr big'
-        onClick={() => setCurrentStep(2)}
-      >
+      <Link href={`/rooms/${codigo}/requirements`} className='btn currentRoom-continue bgr big'>
         Reservar ahora 🍀
       </Link>
       <h4 className='text-center'>

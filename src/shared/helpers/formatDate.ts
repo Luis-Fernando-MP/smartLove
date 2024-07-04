@@ -73,3 +73,9 @@ export const between = (value: Comparable, min: Comparable, max: Comparable): bo
   console.error('Los tipos de los parámetros deben ser consistentes.')
   return false
 }
+
+export const cleanText = (text: string) => {
+  const regex = /[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]/g
+  const newText = text.match(regex)?.join('') ?? ''
+  return newText
+}
