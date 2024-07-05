@@ -10,7 +10,7 @@ import {
 } from 'lucide-react'
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
-import { IReservation } from 'services/room/reserve.service.types'
+import { IReservation } from 'services/reserve/reserve.service.types'
 import PreviewToast from 'shared/previewToast/PreviewToast'
 
 import { useReservationStore } from '../../store/reservation.store'

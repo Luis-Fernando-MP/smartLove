@@ -22,7 +22,7 @@ const Reservations = (): JSX.Element | null => {
         <b className='gr'>Promociones y Programas de lealtad</b> 🎉
       </p>
       <article className='reservations-list'>
-        {reservations.map(r => {
+        {reservations.reverse().map(r => {
           return <Reserve reserve={r} key={uuidv4()} />
         })}
       </article>

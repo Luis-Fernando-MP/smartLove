@@ -13,7 +13,6 @@ const UserAxios = axios.create({
   headers: {
     'Content-Type': 'application/json'
   }
-  // httpsAgent: false
 })
 
 export const createUser = async (userData: IUser) => {

@@ -2,7 +2,8 @@
 
 import { LoaderCircle, NotebookTabs, Printer, Repeat, Skull, XIcon } from 'lucide-react'
 import { type JSX, type ReactNode } from 'react'
-import { IReservation } from 'services/room/reserve.service.types'
+import { IReservation } from 'services/reserve/reserve.service.types'
+import { sansitaSwashed } from 'shared/fonts'
 import { breakDownDate } from 'shared/helpers/formatDate'
 import ToggleLogo from 'shared/ui/colorSchemeButton/ToggleLogo'
 import CuteLittleBox from 'shared/ui/cuteLittleBox/CuteLittleBox'
@@ -36,6 +37,7 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
   return (
     <article className='reserve' ref={refReservePrint}>
       <ToggleLogo />
+      <h3 className={`${sansitaSwashed.className} center`}>{reserve.habitacion.nombre}</h3>
       <aside className='reserve-actions'>
         <button className='reserve-action' title='Repetir reservación'>
           <Repeat />

@@ -13,8 +13,7 @@ const axiosRoom = axios.create({
   method: 'GET',
   headers: {
     'Content-Type': 'application/json'
-  },
-  httpsAgent: false
+  }
 })
 
 export const getAllRooms = async (): Promise<IRoom[]> => {

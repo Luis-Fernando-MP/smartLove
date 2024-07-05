@@ -11,8 +11,7 @@ const defaultAxiosConfig: CreateAxiosDefaults = {
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json'
-  },
-  httpsAgent: false
+  }
 }
 
 const getAxiosReserve = axios.create({
