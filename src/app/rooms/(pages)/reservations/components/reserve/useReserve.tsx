@@ -70,7 +70,7 @@ const useReserve = ({ reserve }: TProps) => {
           title: 'Su archivo está listo para descargarse',
           id: toastId,
           onClick() {
-            pdf.save(`Reserva-${reserve.idReserva}.SmartPro.pdf`)
+            pdf.save('Reserva.SmartPro.pdf')
             toast.success('PDF generado con éxito! 🎉', { id: toastId })
           }
         })

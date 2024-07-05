@@ -19,7 +19,7 @@ const Nav = (): JSX.Element | null => {
     resolver: reservationResolver,
     defaultValues: {}
   })
-  const { reservation, setReservation } = usePruneReserveStore()
+  const { reservation } = usePruneReserveStore()
 
   if (!reservations) return null
 

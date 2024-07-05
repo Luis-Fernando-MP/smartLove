@@ -2,14 +2,12 @@
 
 import { useClerk, useUser } from '@clerk/nextjs'
 import { useCreateReservation } from 'hooks/useReservations'
-import { useCreateClient } from 'hooks/useUser'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { type JSX, useCallback, useEffect, useRef } from 'react'
+import { type JSX, useEffect, useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { ISendReserveData } from 'services/reserve/reserve.service.types'
-import { delay } from 'shared/helpers/delay'
 import { switchClass } from 'shared/helpers/switchClassName'
 import {
   TRequirementsUser,
@@ -19,25 +17,19 @@ import {
 import { useRoomStore } from '../../store/room.store'
 import RegisterRequirementsUser from '../components/RegisterRequirementsUser/RegisterRequirementsUser'
 import TotalCalculate from '../components/totalCalculate/TotalCalculate'
-import usePayStore from '../store/usePayStore'
 import { defaultFormData } from '../store/useRegisterStore'
 import useRequirementsStore from '../store/useRequirementsStore'
 import './style.scss'
 
 const Page = (): JSX.Element => {
-  const { totalAmount, fromDate, toDate, nights, igv, subtotal, surcharge } = useRequirementsStore()
+  const { totalAmount, fromDate, toDate, nights, igv, subtotal } = useRequirementsStore()
   const roomID = useRoomStore(store => store.id)
   const $formRef = useRef<HTMLFormElement>(null)
   const { user } = useUser()
   const { openSignIn } = useClerk()
   const currentPath = usePathname()
   const { push } = useRouter()
-  const {
-    mutate: resMutate,
-    error: resError,
-    failureCount: resFails,
-    status: resStatus
-  } = useCreateReservation()
+  const { mutate: resMutate } = useCreateReservation()
 
   // const { setTempPayData } = usePayStore()
 
