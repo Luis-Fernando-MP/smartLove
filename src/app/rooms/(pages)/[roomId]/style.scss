@@ -2,7 +2,7 @@
 @use '@styles/utils/defs' as d;
 @use '../../setCalculateMainSize' as calculate;
 
-$navSize: 550px; //<-- important
+$navSize: 500px; //<-- important
 
 .roomNav {
   min-width: $navSize;

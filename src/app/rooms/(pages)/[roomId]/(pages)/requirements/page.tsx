@@ -1,7 +1,9 @@
 'use client'
 
 import { useClerk, useUser } from '@clerk/nextjs'
+import { useQueryClient } from '@tanstack/react-query'
 import { useCreateReservation } from 'hooks/useReservations'
+import { ROOM_NAME_CACHE } from 'hooks/useRooms'
 import { Link } from 'next-view-transitions'
 import { usePathname, useRouter } from 'next/navigation'
 import { type JSX, useEffect, useRef } from 'react'
@@ -23,6 +25,8 @@ import './style.scss'
 
 const Page = (): JSX.Element | null => {
   const { totalAmount, fromDate, toDate, nights, igv, subtotal } = useRequirementsStore()
+
+  const client = useQueryClient()
   const room = useRoomStore(store => store.room)
   const $formRef = useRef<HTMLFormElement>(null)
   const { user } = useUser()
@@ -81,6 +85,9 @@ const Page = (): JSX.Element | null => {
     const toId = toast.loading('Procesando reserva')
     resMutate(reserveData, {
       onSuccess() {
+        client.refetchQueries({
+          queryKey: [ROOM_NAME_CACHE, String(roomID)]
+        })
         toast.success('Reserva creada', { id: toId })
         push(`/rooms/${roomID}/pay`)
       }

@@ -5,13 +5,20 @@
 .back {
   width: 100%;
   &-action {
+    width: fit-content;
     background-color: v.$bg1;
     padding: v.$padding;
     border-radius: v.$radius;
-    @include d.flex($ali: flex-start);
+    @include d.flex($ali: flex-start, $gap: 5px);
     margin-left: 0;
+    &:hover {
+      svg,
+      p {
+        color: v.$tn1;
+      }
+    }
   }
-  &.row button {
+  &.row a {
     @include d.flex($dir: row, $ali: center);
   }
   svg {

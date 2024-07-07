@@ -6,17 +6,14 @@ import { IRoom } from 'services/room/room.service.types'
 
 export const ROOMS_NAME_CACHE = 'ROOMS'
 export const ROOM_NAME_CACHE = 'ROOM'
-
 export function useRooms() {
-  const query = useSuspenseQuery({
+  return useSuspenseQuery({
     queryKey: [ROOMS_NAME_CACHE],
     queryFn: getAllRooms,
     staleTime: 5000,
     retry: 2
   })
-  return { ...query }
 }
-
 export function useRoom(id: string) {
   const queryClient = useQueryClient()
   const cacheAllRooms = (queryClient.getQueryData([ROOMS_NAME_CACHE]) as IRoom[]) || []
@@ -27,9 +24,10 @@ export function useRoom(id: string) {
       const [, id] = queryKey
       return await getRoomById(id)
     },
-    staleTime: 2000,
+
+    staleTime: 500,
     retry: 2,
-    initialDataUpdatedAt: 1000,
+    initialDataUpdatedAt: 500,
     initialData:
       cacheAllRooms !== undefined
         ? cacheAllRooms.find(room => String(room.codigo) === id)

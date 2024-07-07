@@ -40,6 +40,7 @@ $dashboardMenuSize: 40px;
     padding: v.$padding * 0.5;
     border-radius: v.$radius;
     justify-content: flex-end;
+    z-index: 10;
     span {
       background-color: v.$bg1;
     }

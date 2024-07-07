@@ -1,7 +1,5 @@
 'use client'
 
-import dayjs from 'dayjs'
-import 'dayjs/locale/es'
 import { Link } from 'next-view-transitions'
 import { addDays, formatDate, stringToDate, today } from 'shared/helpers/formatDate'
 import { round } from 'shared/helpers/round'
@@ -17,8 +15,6 @@ import { useRoomStore } from '../../../store/room.store'
 import useUseTotalCalculate from '../../hooks/useTotalCalculate'
 import ConditionalDayButton from '../conditionalDayButton/ConditionalDayButton'
 import './style.scss'
-
-dayjs.locale('es')
 
 const TotalCalculate = (): JSX.Element | null => {
   const room = useRoomStore(store => store.room)
@@ -42,24 +38,8 @@ const TotalCalculate = (): JSX.Element | null => {
 
   const oneNight = diffDays <= 1
 
-  const hoy = dayjs()
-  console.log('hoy - ', hoy)
-
-  const busyDays = room.fechas?.filter(f => dayjs(f.fechaFin, 'YYYY-MM-DD HH:mm:ss.S').isAfter(hoy))
-
-  console.log('fechas - ', room.fechas)
-  console.log('busy - ', busyDays)
-
   return (
     <div>
-      {room.fechas?.map(f => {
-        return (
-          <p key={f.fechaFin}>
-            {dayjs(f.fechaInicio).format('dddd DD [de] MMMM YYYY ').toString()} -
-            {dayjs(f.fechaFin).format('dddd DD [de] MMMM YYYY ').toString()}
-          </p>
-        )
-      })}
       <section className='totalCalculate'>
         <article className='totalCalculate-days'>
           <div className='totalCalculate-separator'>

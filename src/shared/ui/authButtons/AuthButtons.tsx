@@ -4,7 +4,6 @@ import {
   ClerkLoaded,
   ClerkLoading,
   SignInButton,
-  SignUpButton,
   SignedIn,
   SignedOut,
   UserButton,
@@ -39,10 +38,13 @@ const AuthButtons = (): JSX.Element => {
           <UserButton showName afterSignOutUrl={currentPath} />
         </SignedIn>
         <SignedOut>
-          <SignUpButton mode='modal' forceRedirectUrl={currentPath}>
-            <button className='btn'>Regístrate</button>
-          </SignUpButton>
-          <SignInButton mode='modal' forceRedirectUrl={currentPath}>
+          <SignInButton
+            mode='modal'
+            forceRedirectUrl={currentPath}
+            fallbackRedirectUrl={currentPath}
+            signUpFallbackRedirectUrl={currentPath}
+            signUpForceRedirectUrl={currentPath}
+          >
             <button className='btn'>Ingresar</button>
           </SignInButton>
         </SignedOut>

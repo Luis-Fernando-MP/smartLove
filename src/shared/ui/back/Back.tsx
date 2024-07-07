@@ -1,5 +1,5 @@
 import { ArrowLeft } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { Link } from 'next-view-transitions'
 import type { JSX, ReactNode } from 'react'
 import { switchClass } from 'shared/helpers/switchClassName'
 
@@ -11,18 +11,12 @@ interface IBack {
 }
 
 const Back = ({ row = false }: IBack): JSX.Element => {
-  const router = useRouter()
-
-  const goBack = () => {
-    router.replace('/rooms')
-  }
-
   return (
     <section className={`back ${switchClass(row, 'row')}`}>
-      <button onClick={goBack} className='back-action'>
+      <Link href='/rooms' className='back-action'>
         <ArrowLeft />
         <p>Regresar</p>
-      </button>
+      </Link>
     </section>
   )
 }
