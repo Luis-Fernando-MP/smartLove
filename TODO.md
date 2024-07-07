@@ -36,7 +36,7 @@
 
 ## Cortas
 
-- [ ]: Cambiar los colores de día:
+- [X]: Cambiar los colores de día:
   --bg-primary: #f4f2fff5;
   --bg-secondary: #ecebfff5;
   --fnt-primary: #000000;

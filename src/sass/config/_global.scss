@@ -5,20 +5,18 @@
 @use '@styles/utils/hover' as h;
 
 :root {
-  --bg-primary: #f5faff;
-  --bg-secondary: #ebf5ff;
-  --skeleton-co: #e3f1ff;
-  --skeleton: #cfddeb;
-
+  --bg-primary: #f4f2fff5;
+  --bg-secondary: #ecebfff5;
   --fnt-primary: #000000;
   --fnt-secondary: #6f6f6f;
-
-  --tn-primary: #835afc;
-  --tn-primary-transparent: #2c00ff24;
-  --tn-secondary: #637dff;
-
+  --tn-primary: #8b61ff;
+  --tn-primary-transparent: #b56aff1f;
+  --tn-secondary: #3959ff;
   --disable-primary: #47455e;
-  --disable-secondary: #5950c426;
+  --disable-secondary: #c7b3ff70;
+  --skeleton-co: #F6F4FF;
+  --skeleton: #EFEAFF;
+
 
   --xl-font-size: 5em;
   --h1-font-size: 2em;
