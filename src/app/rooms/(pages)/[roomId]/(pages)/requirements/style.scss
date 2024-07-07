@@ -10,6 +10,10 @@
   &-actions {
     @include d.flex($dir: row, $ali: center);
     justify-content: center;
+    a {
+      font-size: v.$fH5;
+      font-weight: 500;
+    }
     a:last-child {
       background-color: v.$tn1;
       color: v.$bg1;

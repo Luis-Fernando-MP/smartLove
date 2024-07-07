@@ -20,7 +20,7 @@ const CuteCalendar = (): JSX.Element | null => {
 
   return (
     <article className='CCalendar'>
-      {busyDays?.map(f => {
+      {busyDays?.reverse().map(f => {
         const from = dayjs(f.fechaInicio)
         const to = dayjs(f.fechaFin)
         return (

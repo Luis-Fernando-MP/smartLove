@@ -196,17 +196,16 @@ svg {
   background-image: $gr1;
   color: $bg1;
   opacity: 1;
-  border: 1.5px solid transparent;
-  font-size: $fP;
+  border: 2px solid transparent;
+  font-size: $fH5;
   font-weight: 600;
   &.inactive {
     background-image: none;
-    background-color: $bg1;
+    background-color: $sk2;
     color: $fn1;
     pointer-events: none;
     user-select: none;
-    opacity: 0.5;
-    border-color: $bg2;
+    border-color: $sk1;
   }
   &.big {
     text-align: center;

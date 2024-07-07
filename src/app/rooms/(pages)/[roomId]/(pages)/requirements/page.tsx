@@ -107,7 +107,7 @@ const Page = (): JSX.Element | null => {
           onClick={handleContinue}
           className={`btn bgr  ${switchClass(!isValid, 'inactive')}`}
         >
-          {isValid ? 'Continuar con la reserva' : 'Requerimos todos tus datos'}
+          {isValid ? 'Procesar la reserva' : 'Requerimos todos tus datos'}
         </button>
       </div>
       <TotalCalculate />

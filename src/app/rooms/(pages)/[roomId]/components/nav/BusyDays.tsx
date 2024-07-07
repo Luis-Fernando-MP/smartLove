@@ -25,10 +25,13 @@ const BusyDays = (): JSX.Element | null => {
       </h2>
       <p>Revisa su disponibilidad antes de reservar</p>
       <Link href={`/rooms/${room?.codigo}/calendar`}>Véase el calendario de reservas</Link>
-      <button onClick={() => setActive(!active)} className='btn RBusyDays-action'>
-        {active ? <PanelTopCloseIcon /> : <PanelTopOpenIcon />}
-        {active ? 'Contraer' : 'Extender'}
-      </button>
+      {busyDays.length > 2 && (
+        <button onClick={() => setActive(!active)} className='btn RBusyDays-action'>
+          {active ? <PanelTopCloseIcon /> : <PanelTopOpenIcon />}
+          {active ? 'Contraer' : 'Extender'}
+        </button>
+      )}
+
       <CuteCalendar />
     </section>
   )
