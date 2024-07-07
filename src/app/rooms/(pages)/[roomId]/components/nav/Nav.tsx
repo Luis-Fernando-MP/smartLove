@@ -13,11 +13,11 @@ const Nav = (): JSX.Element | null => {
       <h3 className={`${sansitaSwashed.className}`}>Imágenes de la habitación</h3>
       <ul className='roomNav-images'>
         {room?.imagenesHabitacion.map(image => {
-          const { urlImagen, idImgHabitacion, fechEdicion } = image
+          const { urlImagen, idImgHabitacion, fechCreacion } = image
           return (
             <li key={idImgHabitacion} className='roomNav-item'>
-              <img src={urlImagen} alt={fechEdicion.toString()} className='roomNav-image' />
-              <p className={mada.className}>{fechEdicion}</p>
+              <img src={urlImagen} alt={fechCreacion.toString()} className='roomNav-image' />
+              <p className={mada.className}>{fechCreacion}</p>
             </li>
           )
         })}

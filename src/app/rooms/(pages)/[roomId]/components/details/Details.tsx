@@ -22,7 +22,7 @@ const Details = (): JSX.Element | null => {
   return (
     <>
       <Back row />
-      <Steps total={precio} id={room.codigo} />
+      <Steps total={precio} id={String(room.codigo)} />
       <section className='roomDetails'>
         <aside className='slugs'>
           {slugs.map(slug => {

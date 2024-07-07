@@ -36,7 +36,7 @@ const CardRoom = ({ data }: ICardRoom): JSX.Element => {
             <img
               key={image.idImgHabitacion}
               src={image.urlImagen}
-              alt={image.fechEdicion}
+              alt={image.urlImagen}
               className='cardRoom-image'
               loading='lazy'
             />

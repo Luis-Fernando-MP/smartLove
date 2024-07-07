@@ -17,7 +17,7 @@ const SlugRoom = ({ ...slugOPT }: ISlugRoom): JSX.Element => {
       {slugs.map(slug => {
         const { IconSlug, classSlug, tagSlug, slugDescription } = slug
         return (
-          <section className={`roomSlug ${classSlug}`} key={tagSlug}>
+          <section className={`roomSlug ${classSlug as string}`} key={tagSlug}>
             <details className='roomSlug-details'>
               <summary className='roomSlug-summary'>{tagSlug}</summary>
               <p>{slugDescription}</p>

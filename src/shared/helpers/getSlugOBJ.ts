@@ -1,4 +1,4 @@
-import { CircleOffIcon, TrophyIcon } from 'lucide-react'
+import { CircleOffIcon, Sparkles, TrophyIcon } from 'lucide-react'
 
 interface ISlugOBJ {
   counter: number
@@ -25,13 +25,13 @@ export const slugDictionary = ({ counter, itsFull, maxResults }: ISlugOBJ) => [
 ]
 
 export function getSlugs({ maxResults = 10, ...slugConditions }: ISlugOBJ) {
-  // const defaultSlug = {
-  //   IconSlug: Sparkles,
-  //   slugDescription: 'Este habitación te esta esperando!! no la desaproveches',
-  //   tagSlug: 'Opción recomendada  🤝',
-  //   classSlug: 'bets-option'
-  // }
-  return []
+  const defaultSlug = {
+    IconSlug: Sparkles,
+    slugDescription: 'Este habitación te esta esperando!! no la desaproveches',
+    tagSlug: 'Opción recomendada  🤝',
+    classSlug: 'bets-option'
+  }
+  return [defaultSlug]
   // const slugs = slugDictionary({ maxResults, ...slugConditions }).filter(slug => {
   //   return slug.condition
   // })
