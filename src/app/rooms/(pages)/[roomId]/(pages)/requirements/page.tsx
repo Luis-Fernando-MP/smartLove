@@ -21,28 +21,20 @@ import { defaultFormData } from '../store/useRegisterStore'
 import useRequirementsStore from '../store/useRequirementsStore'
 import './style.scss'
 
-const Page = (): JSX.Element => {
+const Page = (): JSX.Element | null => {
   const { totalAmount, fromDate, toDate, nights, igv, subtotal } = useRequirementsStore()
-  const roomID = useRoomStore(store => store.id)
+  const room = useRoomStore(store => store.room)
   const $formRef = useRef<HTMLFormElement>(null)
   const { user } = useUser()
   const { openSignIn } = useClerk()
   const currentPath = usePathname()
   const { push } = useRouter()
   const { mutate: resMutate } = useCreateReservation()
-
-  // const { setTempPayData } = usePayStore()
-
   const methods = useForm({
     resolver: requirementsUserResolver,
     values: defaultFormData,
     mode: 'all'
   })
-
-  const handleContinue = () => {
-    if (!$formRef.current) return
-    $formRef.current.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }))
-  }
 
   useEffect(() => {
     // Continuamos con la reserva
@@ -51,6 +43,13 @@ const Page = (): JSX.Element => {
       handleContinue()
     }
   }, [user])
+
+  const roomID = room?.codigo ?? ''
+
+  const handleContinue = () => {
+    if (!$formRef.current) return
+    $formRef.current.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }))
+  }
 
   const handleSubmit = async (clientData: TRequirementsUser) => {
     localStorage.setItem('process', '1')
@@ -81,16 +80,12 @@ const Page = (): JSX.Element => {
     }
     const toId = toast.loading('Procesando reserva')
     resMutate(reserveData, {
-      onError() {
-        toast.error('Hemos fallados en crear la reserva', { id: toId })
-      },
       onSuccess() {
         toast.success('Reserva creada', { id: toId })
         push(`/rooms/${roomID}/pay`)
       }
     })
     localStorage.removeItem('process')
-    localStorage.setItem('newPay', '1')
   }
 
   const { isValid } = methods.formState

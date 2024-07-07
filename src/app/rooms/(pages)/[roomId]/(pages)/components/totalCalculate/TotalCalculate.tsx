@@ -1,5 +1,7 @@
 'use client'
 
+import dayjs from 'dayjs'
+import 'dayjs/locale/es'
 import Link from 'next/link'
 import { addDays, formatDate, stringToDate, today } from 'shared/helpers/formatDate'
 import { round } from 'shared/helpers/round'
@@ -16,10 +18,12 @@ import useUseTotalCalculate from '../../hooks/useTotalCalculate'
 import ConditionalDayButton from '../conditionalDayButton/ConditionalDayButton'
 import './style.scss'
 
+dayjs.locale('es')
+
 const TotalCalculate = (): JSX.Element | null => {
   const room = useRoomStore(store => store.room)
   const calculateHook = useUseTotalCalculate({ room })
-  if (!calculateHook) return null
+  if (!calculateHook || !room) return null
   const {
     currentUserStay,
     diffDays,
@@ -38,128 +42,146 @@ const TotalCalculate = (): JSX.Element | null => {
 
   const oneNight = diffDays <= 1
 
+  const hoy = dayjs()
+  console.log('hoy - ', hoy)
+
+  const busyDays = room.fechas?.filter(f => dayjs(f.fechaFin, 'YYYY-MM-DD HH:mm:ss.S').isAfter(hoy))
+
+  console.log('fechas - ', room.fechas)
+  console.log('busy - ', busyDays)
+
   return (
-    <section className='totalCalculate'>
-      <article className='totalCalculate-days'>
-        <div className='totalCalculate-separator'>
-          <h3 className='gr'>Tiempo de hospedaje:</h3>
-          <div className='totalCalculate-container time'>
-            <button
-              className={`btn ${switchClass(oneNight)}`}
-              onClick={() => handleChangeNights(1)}
-            >
-              Solo 1 día
-            </button>
-            <button
-              className={`btn ${switchClass(!oneNight)}`}
-              onClick={() => handleChangeNights(2)}
-            >
-              +de 1 día
-            </button>
-            <button
-              className={`btn ${switchClass(diffDays === 2)}`}
-              onClick={() => {
-                setFromDate(today())
-                setToDate(addDays(today(), 2))
-              }}
-            >
-              🐢 Solo hoy y mañana
-            </button>
+    <div>
+      {room.fechas?.map(f => {
+        return (
+          <p key={f.fechaFin}>
+            {dayjs(f.fechaInicio).format('dddd DD [de] MMMM YYYY ').toString()} -
+            {dayjs(f.fechaFin).format('dddd DD [de] MMMM YYYY ').toString()}
+          </p>
+        )
+      })}
+      <section className='totalCalculate'>
+        <article className='totalCalculate-days'>
+          <div className='totalCalculate-separator'>
+            <h3 className='gr'>Tiempo de hospedaje:</h3>
+            <div className='totalCalculate-container time'>
+              <button
+                className={`btn ${switchClass(oneNight)}`}
+                onClick={() => handleChangeNights(1)}
+              >
+                Solo 1 día
+              </button>
+              <button
+                className={`btn ${switchClass(!oneNight)}`}
+                onClick={() => handleChangeNights(2)}
+              >
+                +de 1 día
+              </button>
+              <button
+                className={`btn ${switchClass(diffDays === 2)}`}
+                onClick={() => {
+                  setFromDate(today())
+                  setToDate(addDays(today(), 2))
+                }}
+              >
+                🐢 Solo hoy y mañana
+              </button>
+            </div>
           </div>
-        </div>
-        <div className='totalCalculate-separator'>
-          <h5>Desde:</h5>
-          <div className='totalCalculate-container'>
-            <input
-              type='date'
-              className='totalCalculate-date btn'
-              min={formatDate(today())}
-              max={formatDate(addDays(stringToDate(toDate), -1))}
-              value={fromDate}
-              disabled={oneNight}
-              onChange={e => {
-                const dateValue = e.target.value
-                if (dateValue === '') return handleChangeNights(1)
-                setFromDate(stringToDate(dateValue))
-              }}
-            />
+          <div className='totalCalculate-separator'>
+            <h5>Desde:</h5>
+            <div className='totalCalculate-container'>
+              <input
+                type='date'
+                className='totalCalculate-date btn'
+                min={formatDate(today())}
+                max={formatDate(addDays(stringToDate(toDate), -1))}
+                value={fromDate}
+                disabled={oneNight}
+                onChange={e => {
+                  const dateValue = e.target.value
+                  if (dateValue === '') return handleChangeNights(1)
+                  setFromDate(stringToDate(dateValue))
+                }}
+              />
+            </div>
           </div>
-        </div>
-        <div className='totalCalculate-separator'>
-          <h5>Hasta:</h5>
-          <div className='totalCalculate-container'>
-            <input
-              type='date'
-              className='totalCalculate-date btn'
-              min={formatDate(addDays(stringToDate(fromDate), 1))}
-              value={toDate}
-              disabled={oneNight}
-              onChange={e => {
-                const dateValue = e.target.value
-                if (dateValue === '') return handleChangeNights(1)
-                setToDate(stringToDate(dateValue))
-              }}
-            />
+          <div className='totalCalculate-separator'>
+            <h5>Hasta:</h5>
+            <div className='totalCalculate-container'>
+              <input
+                type='date'
+                className='totalCalculate-date btn'
+                min={formatDate(addDays(stringToDate(fromDate), 1))}
+                value={toDate}
+                disabled={oneNight}
+                onChange={e => {
+                  const dateValue = e.target.value
+                  if (dateValue === '') return handleChangeNights(1)
+                  setToDate(stringToDate(dateValue))
+                }}
+              />
+            </div>
           </div>
-        </div>
-      </article>
-      <article className={`totalCalculate-total ${stayUser}`}>
-        <progress
-          value={currentIndexCase(diffDays)}
-          max={stayCases.length - 1}
-          className={`totalCalculate-progress ${stayUser}`}
-        />
-        <div className='totalCalculate-separator subtotal'>
-          <h3>Subtotal:</h3>
-          <div className='totalCalculate-container subtotal'>
-            <ConditionalDayButton days={diffDays} oneNight={oneNight} />
-            <h4>PEN {subtotal}</h4>
+        </article>
+        <article className={`totalCalculate-total ${stayUser}`}>
+          <progress
+            value={currentIndexCase(diffDays)}
+            max={stayCases.length - 1}
+            className={`totalCalculate-progress ${stayUser}`}
+          />
+          <div className='totalCalculate-separator subtotal'>
+            <h3>Subtotal:</h3>
+            <div className='totalCalculate-container subtotal'>
+              <ConditionalDayButton days={diffDays} oneNight={oneNight} />
+              <h4>PEN {subtotal}</h4>
+            </div>
           </div>
-        </div>
-        <div className='totalCalculate-separator'>
-          <h5>Costo final:</h5>
-          <div className='totalCalculate-container igv'>
-            <p>*ICV 18%</p>
-            <h4>PEN {totalIGV}</h4>
-          </div>
-          <div className='totalCalculate-container service'>
-            <p>*Recargo x Servicio 10%</p>
-            <h4>PEN {totalSurcharge}</h4>
-          </div>
-
-          {currentUserStay === STAY_USER.LONG && (
+          <div className='totalCalculate-separator'>
+            <h5>Costo final:</h5>
+            <div className='totalCalculate-container igv'>
+              <p>*ICV 18%</p>
+              <h4>PEN {totalIGV}</h4>
+            </div>
             <div className='totalCalculate-container service'>
-              <p>*Descuento {discountByStay(STAY_USER.LONG) * 100}%</p>
-              <h4>PEN {round(roomPrice * discountByStay(STAY_USER.LONG) * diffDays)}</h4>
+              <p>*Recargo x Servicio 10%</p>
+              <h4>PEN {totalSurcharge}</h4>
             </div>
-          )}
-          {currentUserStay === STAY_USER.EXTENDED && (
-            <div className='totalCalculate-container service'>
-              <p>*Descuento {discountByStay(STAY_USER.EXTENDED) * 100}%</p>
-              <h4>PEN {round(roomPrice * discountByStay(STAY_USER.EXTENDED) * diffDays)}</h4>
-            </div>
-          )}
 
-          <div className='totalCalculate-container total'>
-            <div className='total-title'>
-              <h3>TOTAL**</h3>
+            {currentUserStay === STAY_USER.LONG && (
+              <div className='totalCalculate-container service'>
+                <p>*Descuento {discountByStay(STAY_USER.LONG) * 100}%</p>
+                <h4>PEN {round(roomPrice * discountByStay(STAY_USER.LONG) * diffDays)}</h4>
+              </div>
+            )}
+            {currentUserStay === STAY_USER.EXTENDED && (
+              <div className='totalCalculate-container service'>
+                <p>*Descuento {discountByStay(STAY_USER.EXTENDED) * 100}%</p>
+                <h4>PEN {round(roomPrice * discountByStay(STAY_USER.EXTENDED) * diffDays)}</h4>
+              </div>
+            )}
 
-              {(stayUser === STAY_USER.LONG || stayUser === STAY_USER.EXTENDED) && (
-                <h4 className='tach'>
-                  {totalAmount + roomPrice * diffDays * discountByStay(stayUser)}
-                </h4>
-              )}
+            <div className='totalCalculate-container total'>
+              <div className='total-title'>
+                <h3>TOTAL**</h3>
+
+                {(stayUser === STAY_USER.LONG || stayUser === STAY_USER.EXTENDED) && (
+                  <h4 className='tach'>
+                    {totalAmount + roomPrice * diffDays * discountByStay(stayUser)}
+                  </h4>
+                )}
+              </div>
+              <h2>PEN {totalAmount}</h2>
             </div>
-            <h2>PEN {totalAmount}</h2>
           </div>
-        </div>
 
-        <div className='totalCalculate-separator polices'>
-          <Link href='/polices#taxes'>Ver detalles de impuestos</Link>
-          <Link href='/polices#fees'>Ver detalles de tarifas flexibles</Link>
-        </div>
-      </article>
-    </section>
+          <div className='totalCalculate-separator polices'>
+            <Link href='/polices#taxes'>Ver detalles de impuestos</Link>
+            <Link href='/polices#fees'>Ver detalles de tarifas flexibles</Link>
+          </div>
+        </article>
+      </section>
+    </div>
   )
 }
 

@@ -28,8 +28,6 @@ const Nav = (): JSX.Element | null => {
   const { roomID: roomIdError, roomName: roomNameError, comment: commentError } = errors
 
   const getReservation = (id: string) => {
-    console.log(reservations.find(r => String(r.idReserva) === id))
-
     return reservations.find(r => String(r.idReserva) === id)
   }
 

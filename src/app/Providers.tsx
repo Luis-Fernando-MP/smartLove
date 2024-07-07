@@ -13,8 +13,8 @@ const Providers = ({ children }: IProviders): JSX.Element => {
   return (
     <ClerkProvider>
       <ViewTransitions>
-        <html lang='es'>{children}</html>
-        <SpeedInsights />
+        {children}
+        {/* <SpeedInsights /> */}
       </ViewTransitions>
     </ClerkProvider>
   )

@@ -24,13 +24,12 @@ const CardRoom = ({ data }: ICardRoom): JSX.Element => {
     nombre,
     precio,
     serviciosHabitacion,
-    onSale,
     contadorreserva,
     descripcion
   } = data
   return (
     <article className='cardRoom'>
-      <SlugRoom counter={contadorreserva} onSale={onSale} itsFull={estado} />
+      <SlugRoom counter={contadorreserva} itsFull={estado} />
       <section className='cardRoom-images'>
         {imagenesHabitacion.slice(0, 3).map(image => {
           return (

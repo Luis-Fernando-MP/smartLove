@@ -13,8 +13,8 @@ export function useReservations(id: string) {
       const [, id] = queryKey
       return await getAllReservers(id)
     },
-    staleTime: 20 * 1000,
-    retry: 1
+    staleTime: 2000,
+    retry: 2
   })
   return { ...query }
 }

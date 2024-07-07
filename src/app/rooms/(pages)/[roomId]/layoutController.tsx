@@ -13,16 +13,14 @@ interface ILayoutController {
 
 const LayoutController = ({ children, id }: ILayoutController): JSX.Element | null => {
   const { data, isError } = useRoom(id)
-  const { setID, setRoom } = useRoomStore()
+  const { setRoom } = useRoomStore()
 
   useEffect(() => {
-    if (isError) return
     if (data === null) return
     setRoom(data)
-    setID(String(data?.codigo))
-  }, [data, isError, setID, setRoom])
+  }, [data, isError, setRoom])
 
-  if (!data || isError) return null
+  if (!data || isError) return <p>loading...</p>
 
   return (
     <>

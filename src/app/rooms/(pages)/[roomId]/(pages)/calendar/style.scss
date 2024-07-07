@@ -1,0 +1,12 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+
+.RCalendar {
+  width: 900px;
+
+  min-height: 700px;
+  background-color: v.$bg1;
+  padding: v.$padding;
+  border-radius: v.$radius;
+  @include d.flex($ali: center);
+}

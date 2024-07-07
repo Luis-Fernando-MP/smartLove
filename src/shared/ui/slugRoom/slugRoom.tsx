@@ -7,7 +7,6 @@ interface ISlugRoom {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
   counter: number
   maxResults?: number
-  onSale: boolean
   itsFull: boolean
 }
 

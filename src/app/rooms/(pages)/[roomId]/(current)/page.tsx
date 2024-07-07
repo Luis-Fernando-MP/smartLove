@@ -28,9 +28,9 @@ const Page = (): JSX.Element | null => {
       <Link href={`/rooms/${codigo}/requirements`} className='btn currentRoom-continue bgr big'>
         Reservar ahora 🍀
       </Link>
-      <h4 className='text-center'>
+      <h3 className='text-center'>
         <b className='gr'>Otras Habitaciones</b> Recomendadas 🛎️
-      </h4>
+      </h3>
       <RecommendationController />
     </>
   )

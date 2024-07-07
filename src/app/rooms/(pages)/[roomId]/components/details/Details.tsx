@@ -11,19 +11,18 @@ import Steps from '../steps/Steps'
 import './style.scss'
 
 const Details = (): JSX.Element | null => {
-  const { id, room } = useRoomStore()
+  const room = useRoomStore(s => s.room)
   if (!room) return null
-  const { contadorreserva, onSale, estado, precio, nombre, codigo } = room
+  const { contadorreserva, estado, precio, nombre, codigo } = room
   const slugs = getSlugs({
     counter: contadorreserva,
-    onSale,
     itsFull: estado
   })
 
   return (
     <>
       <Back row />
-      <Steps total={precio} id={id} />
+      <Steps total={precio} id={room.codigo} />
       <section className='roomDetails'>
         <aside className='slugs'>
           {slugs.map(slug => {

@@ -20,14 +20,13 @@ const RoomComponentV2 = ({ room }: IRoomsComponentV2): JSX.Element => {
     nombre,
     imagenesHabitacion,
     contadorreserva,
-    onSale,
     estado,
     serviciosHabitacion,
     precio
   } = room
   return (
     <li className='roomComponentV2' key={codigo}>
-      <SlugRoom counter={contadorreserva} onSale={onSale} itsFull={estado} />
+      <SlugRoom counter={contadorreserva} itsFull={estado} />
       <header className='roomComponentV2-header'>
         <img
           src={imagenesHabitacion[0].urlImagen}

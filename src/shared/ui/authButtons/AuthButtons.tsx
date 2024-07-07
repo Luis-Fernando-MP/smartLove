@@ -7,16 +7,27 @@ import {
   SignUpButton,
   SignedIn,
   SignedOut,
-  UserButton
+  UserButton,
+  useClerk
 } from '@clerk/nextjs'
 import { usePathname } from 'next/navigation'
-import type { JSX } from 'react'
+import { type JSX, useEffect } from 'react'
 
 import ColorSchemeButton from '../colorSchemeButton/ColorSchemeButton'
 import './style.scss'
 
 const AuthButtons = (): JSX.Element => {
+  const { addListener } = useClerk()
   const currentPath = usePathname()
+
+  useEffect(() => {
+    addListener(li => {
+      console.log(li)
+    })
+
+    return () => {}
+  }, [addListener])
+
   return (
     <aside className='authOptions'>
       <ColorSchemeButton />

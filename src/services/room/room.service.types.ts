@@ -8,17 +8,15 @@ export interface IRoom {
   nombre: string
   precio: number
   estado: boolean
-  usrcreacion: string
-  usredicion: string
   contadorreserva: number
-  clasificacion: string
+  clasificacion: 'Estandar'
   cantidad: number
-  onSale: boolean
   counter: number
-  preciovalor: string
+  preciovalor: 'estandar'
   descripcion: string
   serviciosHabitacion: IRoomService[]
   imagenesHabitacion: IRoomImages[]
+  fechas?: IRoomBusyDays[]
 }
 
 export interface IRoomService {
@@ -27,17 +25,16 @@ export interface IRoomService {
   urlImagen: string
   estado: boolean
   usrCreacion: string
-  fechCreacion: string
-  usrEdicion: string
-  fechEdicion: string
 }
 
 export interface IRoomImages {
   idImgHabitacion: number
   urlImagen: string
   estado: boolean
-  usrCreacion: string
   fechCreacion: string
-  usrEdicion: string
-  fechEdicion: string
+}
+
+export interface IRoomBusyDays {
+  fechaInicio: string
+  fechaFin: string
 }

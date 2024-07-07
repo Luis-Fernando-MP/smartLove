@@ -11,8 +11,8 @@ export function useRooms() {
   const query = useSuspenseQuery({
     queryKey: [ROOMS_NAME_CACHE],
     queryFn: getAllRooms,
-    staleTime: 20 * 1000,
-    retry: 1
+    staleTime: 5000,
+    retry: 2
   })
   return { ...query }
 }
@@ -27,9 +27,12 @@ export function useRoom(id: string) {
       const [, id] = queryKey
       return await getRoomById(id)
     },
-    staleTime: 20 * 1000,
-    retry: 1,
+    staleTime: 2000,
+    retry: 2,
+    initialDataUpdatedAt: 1000,
     initialData:
-      cacheAllRooms !== undefined ? cacheAllRooms.find(room => String(room.codigo) === id) : null
+      cacheAllRooms !== undefined
+        ? cacheAllRooms.find(room => String(room.codigo) === id)
+        : undefined
   })
 }
