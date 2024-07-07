@@ -3,14 +3,14 @@
 @use '@styles/config/index' as i;
 
 .landingNav {
-  width: 80%;
-  margin: auto;
-  height: 50px;
-  justify-content: space-between;
-  backdrop-filter: blur(50px);
+  height: 60px;
+  justify-content: space-evenly;
+  backdrop-filter: opacity(0.5);
   position: sticky;
   top: 0;
   z-index: i.$nav;
+  background-color: v.$bg1;
+  padding: v.$padding;
   &-menu {
     user-select: none;
     pointer-events: none;
@@ -39,8 +39,9 @@
     justify-content: center;
     border-radius: 5px;
     background-color: transparent;
+    border: 2px solid v.$bg1;
     &.active {
-      border-bottom: 1px solid v.$tn1;
+      border-color: v.$tn1;
       &,
       p {
         color: v.$tn1;

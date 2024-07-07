@@ -1,26 +1,82 @@
 [
   {
-    "title": "100% Responsable",
-    "icon": "Check"
+    "title": "Somos 100% Responsable",
+    "icon": "HandPlatter"
   },
   {
-    "title": "Se aceptan mascotas",
-    "icon": "Paw"
+    "title": "Aceptamos a tus mascotas",
+    "icon": "Squirrel"
   },
   {
-    "title": "Estacionamiento gratis",
-    "icon": "Car"
+    "title": "Hay estacionamiento gratis",
+    "icon": "CarFront"
   },
   {
-    "title": "Wifi gratis",
+    "title": "Contarás con Wifi gratis",
     "icon": "Wifi"
   },
   {
-    "title": "Bar personalizado",
+    "title": "Hay un bar personalizado",
     "icon": "Beer"
   },
   {
-    "title": "Recepción las 24 horas/semana",
-    "icon": "Calendar"
+    "title": "Recepción las 24 horas/semana",
+    "icon": "CalendarDays"
+  },
+  {
+    "title": "Desayuno incluido",
+    "icon": "Coffee"
+  },
+  {
+    "title": "Servicio de habitaciones",
+    "icon": "Hotel"
+  },
+  {
+    "title": "Piscina climatizada",
+    "icon": "Fish"
+  },
+  {
+    "title": "Gimnasio equipado",
+    "icon": "Dumbbell"
+  },
+  {
+    "title": "Acceso para discapacitados",
+    "icon": "Glasses"
+  },
+  {
+    "title": "Transporte al aeropuerto",
+    "icon": "Plane"
+  },
+  {
+    "title": "Spa y centro de bienestar",
+    "icon": "WandSparkles"
+  },
+  {
+    "title": "Restaurante gourmet",
+    "icon": "Utensils"
+  },
+  {
+    "title": "Sala de conferencias",
+    "icon": "Theater"
+  },
+  {
+    "title": "Servicio de lavandería",
+    "icon": "Flower"
+  },
+  {
+    "title": "Aire acondicionado",
+    "icon": "Feather"
+  },
+  {
+    "title": "Televisión por cable",
+    "icon": "Tv"
+  },
+  {
+    "title": "Minibar en la habitación",
+    "icon": "Wine"
+  },
+  {
+    "title": "Caja fuerte",
+    "icon": "LockKeyhole"
   }
 ]

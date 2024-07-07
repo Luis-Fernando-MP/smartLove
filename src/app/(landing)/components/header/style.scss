@@ -3,14 +3,16 @@
 
 .headerApp {
   width: 100%;
-  min-height: 550px;
+  min-height: 70dvh;
   @include d.flex($ali: center);
   justify-content: center;
   &-starts {
     @include d.flex($dir: row, $ali: center);
     svg.active {
-      fill: #f8d34c;
-      stroke: #f8d34c;
+      fill: v.$tn1;
+      stroke: v.$tn1;
+
+      scale: 1.5;
     }
   }
   p,
@@ -26,11 +28,8 @@
     text-transform: capitalize;
   }
   &-go {
-    padding: v.$padding v.$padding * 2.5;
-    border-radius: v.$radius;
-    background-color: v.$tn1;
-    color: v.$bg1;
-    font-size: v.$fH5;
+    @include d.flex($dir: row, $ali: center, $gap: 10px);
+    font-size: v.$fH3;
     font-weight: 600;
   }
 }

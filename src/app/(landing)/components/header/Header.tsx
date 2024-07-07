@@ -1,4 +1,4 @@
-import { Star } from 'lucide-react'
+import { HandPlatter, Star } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
 import { HOME_PATHS } from 'shared/constants'
@@ -21,19 +21,17 @@ function Header(): JSX.Element {
         con <b className='gr'>SmartPro</b>
       </h1>
       <h4>
-        +1000 usuarios registrados y +35 habitaciones
+        +100 usuarios registrados y +35 habitaciones
         <br />
         disponibles esperando por ti!
       </h4>
-      <Link href={HOME_PATHS.Rooms.link} className='headerApp-go'>
-        Reservar ahora
+      <Link href={HOME_PATHS.Rooms.link} className='headerApp-go bgr btn'>
+        <HandPlatter /> Reservar ahora
       </Link>
       <section className='headerApp-starts'>
         <Star className='active' />
         <Star className='active' />
         <Star className='active' />
-        <Star />
-        <Star />
       </section>
     </header>
   )

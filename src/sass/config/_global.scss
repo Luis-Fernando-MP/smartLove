@@ -9,14 +9,13 @@
   --bg-secondary: #ecebfff5;
   --fnt-primary: #000000;
   --fnt-secondary: #6f6f6f;
-  --tn-primary: #8b61ff;
-  --tn-primary-transparent: #b56aff1f;
-  --tn-secondary: #3959ff;
+  --tn-primary: #946ef9;
+  --tn-primary-transparent: #7649a21f;
+  --tn-secondary: #ce9cff;
   --disable-primary: #47455e;
   --disable-secondary: #c7b3ff70;
-  --skeleton-co: #F6F4FF;
-  --skeleton: #EFEAFF;
-
+  --skeleton-co: #f6f4ff;
+  --skeleton: #efeaff;
 
   --xl-font-size: 5em;
   --h1-font-size: 2em;
@@ -195,7 +194,7 @@ svg {
 }
 .bgr {
   background-image: $gr1;
-  color: white;
+  color: $bg1;
   opacity: 1;
   border: 1.5px solid transparent;
   font-size: $fP;

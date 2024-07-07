@@ -4,8 +4,6 @@
 
 .resume {
   @include d.flex($ali: center);
-  padding: v.$padding;
-  background-color: v.$bg2;
   &-card {
     @include d.flex($gap: v.$padding * 0.8);
     border-radius: v.$radius * 2;

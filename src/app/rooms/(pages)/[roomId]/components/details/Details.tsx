@@ -3,7 +3,6 @@ import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
 import { sansitaSwashed } from 'shared/fonts'
 import { getSlugs } from 'shared/helpers/getSlugOBJ'
-import Back from 'shared/ui/back/Back'
 import SlugTooltip from 'shared/ui/slugTooltip/slugTooltip'
 
 import { useRoomStore } from '../../store/room.store'
@@ -21,7 +20,6 @@ const Details = (): JSX.Element | null => {
 
   return (
     <>
-      <Back row />
       <Steps total={precio} id={String(room.codigo)} />
       <section className='roomDetails'>
         <aside className='slugs'>
@@ -52,6 +50,7 @@ const Details = (): JSX.Element | null => {
             <span>Ver calendario de actividades</span>
           </Link>
         </div>
+        <p className='roomDetails-description'>{room.descripcion}</p>
       </section>
     </>
   )

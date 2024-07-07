@@ -40,4 +40,9 @@ body.dark {
     border-radius: 5px;
     color: v.$success;
   }
+  &-description {
+    text-align: center;
+    text-wrap: wrap;
+    max-width: 500px;
+  }
 }
