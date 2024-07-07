@@ -1,5 +1,5 @@
 import { Star } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
 import { HOME_PATHS } from 'shared/constants'
 import { sansitaSwashed } from 'shared/fonts'

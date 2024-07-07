@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
 import { HOME_PATHS } from 'shared/constants'
 import AuthButtons from 'shared/ui/authButtons/AuthButtons'

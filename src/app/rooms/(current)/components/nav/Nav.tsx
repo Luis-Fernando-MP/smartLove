@@ -3,7 +3,7 @@
 import NavContainer from 'app/rooms/components/navContainer/NavContainer'
 import useNav from 'hooks/useNav'
 import { CircleHelp } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
 import { DASHBOARD_PATHS, HOME_PATHS, WHATSAPP_URL } from 'shared/constants'
 import { whisper } from 'shared/fonts'

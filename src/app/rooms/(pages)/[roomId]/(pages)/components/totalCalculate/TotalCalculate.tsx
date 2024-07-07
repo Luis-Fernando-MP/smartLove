@@ -2,7 +2,7 @@
 
 import dayjs from 'dayjs'
 import 'dayjs/locale/es'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { addDays, formatDate, stringToDate, today } from 'shared/helpers/formatDate'
 import { round } from 'shared/helpers/round'
 import {

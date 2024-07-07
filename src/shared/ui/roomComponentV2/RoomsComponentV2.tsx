@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ArrowUpRight, BanknoteIcon, CalendarRange } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import type { JSX, ReactNode } from 'react'
 import { IRoom } from 'services/room/room.service.types'
 import { sansitaSwashed } from 'shared/fonts'

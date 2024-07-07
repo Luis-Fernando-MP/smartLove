@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
 import { WHATSAPP_URL } from 'shared/constants'
 import { mada } from 'shared/fonts'

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import type { FC, JSX, ReactNode } from 'react'
 
 interface TLayout {

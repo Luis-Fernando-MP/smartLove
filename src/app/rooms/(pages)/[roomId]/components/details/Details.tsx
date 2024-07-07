@@ -1,5 +1,5 @@
 import { CalendarRange, DollarSignIcon, PlusIcon } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
 import { sansitaSwashed } from 'shared/fonts'
 import { getSlugs } from 'shared/helpers/getSlugOBJ'

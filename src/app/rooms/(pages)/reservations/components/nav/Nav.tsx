@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'

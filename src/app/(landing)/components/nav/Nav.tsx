@@ -1,7 +1,7 @@
 'use client'
 
 import { Menu } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { usePathname, useRouter } from 'next/navigation'
 import { type JSX, useEffect, useState } from 'react'
 import { HOME_PATHS } from 'shared/constants'

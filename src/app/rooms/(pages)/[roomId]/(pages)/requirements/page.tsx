@@ -2,7 +2,7 @@
 
 import { useClerk, useUser } from '@clerk/nextjs'
 import { useCreateReservation } from 'hooks/useReservations'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { usePathname, useRouter } from 'next/navigation'
 import { type JSX, useEffect, useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'

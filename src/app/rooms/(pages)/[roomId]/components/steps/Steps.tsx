@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { usePathname } from 'next/navigation'
 import { type JSX, type ReactNode } from 'react'
 import { switchClass } from 'shared/helpers/switchClassName'
