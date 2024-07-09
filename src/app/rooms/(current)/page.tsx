@@ -1,4 +1,5 @@
 import { type JSX } from 'react'
+import Footer from 'shared/ui/footer/Footer'
 
 import Nav from './components/nav/Nav'
 import RoomsController from './components/roomsContainer/RoomsController'
@@ -13,6 +14,7 @@ const Rooms = (): JSX.Element => {
         <article className='roomsContainer'>
           <RoomsController />
         </article>
+        <Footer />
       </section>
     </main>
   )

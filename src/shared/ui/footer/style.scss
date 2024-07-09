@@ -8,6 +8,7 @@
   background-color: v.$bg2;
   @include d.flex();
   justify-content: center;
+  border-radius: v.$radius;
   &-container {
     width: 100%;
     @include d.flex($dir: row, $ali: center);

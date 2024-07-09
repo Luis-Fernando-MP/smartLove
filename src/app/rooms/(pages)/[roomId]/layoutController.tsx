@@ -1,6 +1,7 @@
 import NavContainer from 'app/rooms/components/navContainer/NavContainer'
 import { useRoom } from 'hooks/useRooms'
 import { type JSX, type ReactNode, useEffect } from 'react'
+import Footer from 'shared/ui/footer/Footer'
 
 import Details from './components/details/Details'
 import Nav from './components/nav/Nav'
@@ -30,6 +31,7 @@ const LayoutController = ({ children, id }: ILayoutController): JSX.Element | nu
       <article className='dashboard-body'>
         <Details />
         {children}
+        <Footer className='max-w-[900px]' />
       </article>
     </>
   )

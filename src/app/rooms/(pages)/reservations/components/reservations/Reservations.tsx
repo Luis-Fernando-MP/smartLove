@@ -1,6 +1,7 @@
 'use client'
 
 import type { JSX } from 'react'
+import Footer from 'shared/ui/footer/Footer'
 import { v4 as uuidv4 } from 'uuid'
 
 import { useReservationsStore } from '../../store/reservation.store'
@@ -22,10 +23,11 @@ const Reservations = (): JSX.Element | null => {
         <b className='gr'>Promociones y Programas de lealtad</b> 🎉
       </p>
       <article className='reservations-list'>
-        {reservations.reverse().map(r => {
+        {reservations.map(r => {
           return <Reserve reserve={r} key={uuidv4()} />
         })}
       </article>
+      <Footer />
     </section>
   )
 }

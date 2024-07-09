@@ -49,4 +49,5 @@
   height: 98%;
   overflow: auto;
   border-end-start-radius: v.$radius * 2.5;
+  @include d.flex($ali: center);
 }

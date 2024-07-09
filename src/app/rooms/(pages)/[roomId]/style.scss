@@ -11,7 +11,3 @@ $navSize: 500px; //<-- important
 .dashboard-main.room {
   @include calculate.setCalculateMainSize($navSize);
 }
-
-.dashboard-body {
-  @include d.flex($ali: center);
-}

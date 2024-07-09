@@ -7,9 +7,9 @@ import { mada } from 'shared/fonts'
 import './style.scss'
 import './userMobile.scss'
 
-function Footer(): JSX.Element {
+function Footer({ className }: { className?: string }): JSX.Element {
   return (
-    <footer className='footer'>
+    <footer className={`footer ${className ?? ''}`}>
       <article className='footer-container'>
         <section className='footer-description'>
           <h3>Smart Pro</h3>

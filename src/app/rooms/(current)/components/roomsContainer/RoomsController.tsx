@@ -29,7 +29,7 @@ const ErrorComponent = ({ error, resetErrorBoundary }: FallbackProps): JSX.Eleme
 
 const LoaderComponent = (): JSX.Element => {
   return (
-    <div className='flex h-screen w-full flex-col gap-3'>
+    <div className='flex w-full flex-col gap-3'>
       <h3>
         Estamos <b className='gr'>cangando</b> el contenido :)
       </h3>
