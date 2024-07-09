@@ -1,8 +1,9 @@
 'use client'
 
-import dayjs, { Dayjs } from 'dayjs'
+import dayjs from 'dayjs'
 import { Link } from 'next-view-transitions'
 import toast from 'react-hot-toast'
+import { isDateInRange } from 'shared/helpers/roomDate'
 import { round } from 'shared/helpers/round'
 import {
   STAY_USER,
@@ -10,11 +11,11 @@ import {
   discountByStay,
   stayCases
 } from 'shared/helpers/stayUserCases'
-import { switchClass } from 'shared/helpers/switchClassName'
 
 import { useRoomStore } from '../../../store/room.store'
 import useUseTotalCalculate from '../../hooks/useTotalCalculate'
 import ConditionalDayButton from '../conditionalDayButton/ConditionalDayButton'
+import DateCrossing from '../crossing/DateCrossing'
 import './style.scss'
 
 const ADD_DAY = 0
@@ -42,95 +43,26 @@ const TotalCalculate = (): JSX.Element | null => {
   const oneNight = diffDays <= 0 + ADD_DAY
   const today = dayjs()
 
-  const isDateInRange = (date: Date | string) => {
-    return room.fechas?.some(fecha => {
-      const inicio = dayjs(fecha.fechaInicio, 'YYYY-MM-DD')
-      const fin = dayjs(fecha.fechaFin, 'YYYY-MM-DD')
-      return dayjs(date).isBetween(inicio, fin, null, '[]')
-    })
-  }
-
-  const handleFromDateChange = e => {
-    const dateValue = e.target.value
-    if (dateValue === '') return handleChangeNights(1)
+  const handleChange = (date: string) => {
+    const dateValue = date
+    if (dateValue === '' || !room) return handleChangeNights(1)
     const selectedDate = dayjs(dateValue)
-    const isDateValid = isDateInRange(dateValue)
+    const isDateValid = isDateInRange(room.fechas ?? [], dateValue)
     if (isDateValid) {
       toast.error('La fecha seleccionada no está disponible')
-      return
+      return null
     }
-    setFromDate(selectedDate.toDate())
-  }
-
-  const handleToDateChange = e => {
-    const dateValue = e.target.value
-    if (dateValue === '') return handleChangeNights(1)
-    const selectedDate = dayjs(dateValue)
-    const isDateValid = isDateInRange(dateValue)
-
-    if (isDateValid) {
-      toast.error('La fecha seleccionada no está disponible')
-
-      return
-    }
-
-    setToDate(selectedDate.toDate())
-  }
-
-  const handleTodayTomorrow = () => {
-    const tomorrow = today.add(1 + ADD_DAY, 'day')
-
-    let isTomorrowValid = true
-    if (room.fechas && room.fechas.length > 0) {
-      isTomorrowValid = !isDateInRange(tomorrow.toDate())
-    }
-    if (!isTomorrowValid) {
-      toast.error('Mañana no está disponible para hospedaje')
-      return
-    }
-    setFromDate(today.toDate())
-    setToDate(tomorrow.toDate())
-  }
-
-  const handleChangeDays = days => {
-    const newFromDate = today.toDate()
-    const newToDate = today.add(days, 'day').toDate()
-
-    if (isDateInRange(newFromDate) ?? isDateInRange(newToDate)) {
-      toast.error('Las fechas seleccionadas no están disponibles')
-      return
-    }
-    handleChangeNights(days)
+    return selectedDate.toDate()
   }
 
   return (
     <div>
-      <section className='totalCalculate'>
-        <article className='totalCalculate-days'>
+      <DateCrossing dates={room.fechas ?? []} selectFrom={fromDate} selectEnd={toDate} />
+      <article className='totalCalculate'>
+        <section className='totalCalculate-days'>
           <div className='totalCalculate-separator'>
             <h3 className='gr'>Tiempo de hospedaje:</h3>
-            <div className='totalCalculate-container time'>
-              {/* <button
-                className={`btn ${switchClass(oneNight)}`}
-                onClick={() => handleChangeDays(0 + ADD_DAY)}
-              >
-                Solo 1 día
-              </button>
-              <button
-                className={`btn ${switchClass(!oneNight)}`}
-                onClick={() => handleChangeDays(1 + ADD_DAY)}
-              >
-                +de 1 día
-              </button>
-              <button
-                className={`btn ${switchClass(
-                  diffDays === 1 + ADD_DAY && today.isSame(dayjs(fromDate), 'day')
-                )}`}
-                onClick={handleTodayTomorrow}
-              >
-                🐢 Solo hoy y mañana
-              </button> */}
-            </div>
+            <div className='totalCalculate-container time' />
           </div>
           <div className='totalCalculate-separator'>
             <h5>Desde:</h5>
@@ -143,7 +75,10 @@ const TotalCalculate = (): JSX.Element | null => {
                   .add(0 + -1 * ADD_DAY, 'day')
                   .format('YYYY-MM-DD')}
                 value={fromDate}
-                onChange={handleFromDateChange}
+                onChange={e => {
+                  const isCorrectChange = handleChange(e.target.value)
+                  if (isCorrectChange) setFromDate(isCorrectChange)
+                }}
               />
             </div>
           </div>
@@ -157,12 +92,15 @@ const TotalCalculate = (): JSX.Element | null => {
                   .add(0 + ADD_DAY, 'day')
                   .format('YYYY-MM-DD')}
                 value={toDate}
-                onChange={handleToDateChange}
+                onChange={e => {
+                  const isCorrectChange = handleChange(e.target.value)
+                  if (isCorrectChange) setToDate(isCorrectChange)
+                }}
               />
             </div>
           </div>
-        </article>
-        <article className={`totalCalculate-total ${stayUser}`}>
+        </section>
+        <section className={`totalCalculate-total ${stayUser}`}>
           <progress
             value={currentIndexCase(diffDays)}
             max={stayCases.length - 1}
@@ -217,8 +155,8 @@ const TotalCalculate = (): JSX.Element | null => {
             <Link href='/polices#taxes'>Ver detalles de impuestos</Link>
             <Link href='/polices#fees'>Ver detalles de tarifas flexibles</Link>
           </div>
-        </article>
-      </section>
+        </section>
+      </article>
     </div>
   )
 }

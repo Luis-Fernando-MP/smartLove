@@ -18,11 +18,13 @@ const Page = (): JSX.Element | null => {
   const room = useRoomStore(store => store.room)
   if (!room) return null
   const myEventsList =
-    room?.fechas?.map(f => ({
-      title: 'Ocupado',
-      start: dayjs(f.fechaInicio, 'YYYY-MM-DD HH:mm:ss').toDate(),
-      end: dayjs(f.fechaFin, 'YYYY-MM-DD HH:mm:ss').toDate()
-    })) ?? []
+    room?.fechas?.map(f => {
+      return {
+        title: 'Ocupado',
+        start: dayjs(f.fechaInicio, 'YYYY-MM-DD').toDate(),
+        end: dayjs(f.fechaFin, 'YYYY-MM-DD').add(1, 'day').toDate()
+      }
+    }) ?? []
 
   return (
     <article className='RCalendar'>
@@ -34,7 +36,6 @@ const Page = (): JSX.Element | null => {
         events={myEventsList}
         className='h-[500px] w-[800px]'
         defaultView='month'
-        step={60}
         toolbar={false}
         components={{
           event: props => {

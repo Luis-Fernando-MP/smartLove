@@ -1,0 +1,48 @@
+@use '@styles/config/vars' as v;
+@use '@styles/utils/defs' as d;
+@use '@styles/config/extraColors' as extra;
+
+.TCDateCrossing {
+  width: 100%;
+  margin-bottom: v.$padding;
+  text-align: center;
+  &,
+  &-container {
+    @include d.flex($ali: center);
+  }
+  &-container {
+    max-width: 100%;
+    background-color: v.$bg1;
+    border-radius: v.$radius;
+    padding: v.$padding;
+  }
+  &-dates {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+  &-date {
+    @include d.flex($dir: row, $ali: center);
+  }
+  &-date {
+    h4 {
+      padding: v.$padding * 0.5;
+      border-radius: v.$radius * 1.6;
+      background-color: v.$bg2;
+      color: v.$fn2;
+    }
+    &.busy h4 {
+      background-color: v.$tn1;
+      color: v.$bg1;
+    }
+    &.select h4 {
+      background-color: v.$success;
+      color: v.$success_dark;
+    }
+    &.cross h4 {
+      background-color: v.$danger;
+      color: v.$danger_dark;
+    }
+  }
+}

@@ -37,4 +37,5 @@ export interface IRoomImages {
 export interface IRoomBusyDays {
   fechaInicio: string
   fechaFin: string
+  idCliente: number
 }

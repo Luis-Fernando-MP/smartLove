@@ -10,6 +10,7 @@ import { type JSX, useEffect, useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { ISendReserveData } from 'services/reserve/reserve.service.types'
+import { noAvailableDateInRange } from 'shared/helpers/roomDate'
 import { switchClass } from 'shared/helpers/switchClassName'
 import {
   TRequirementsUser,
@@ -24,7 +25,7 @@ import useRequirementsStore from '../store/useRequirementsStore'
 import './style.scss'
 
 const Page = (): JSX.Element | null => {
-  const { totalAmount, fromDate, toDate, nights, igv, subtotal } = useRequirementsStore()
+  const { totalAmount, fromDate, toDate, nights, igv, subtotal, surcharge } = useRequirementsStore()
 
   const client = useQueryClient()
   const room = useRoomStore(store => store.room)
@@ -48,6 +49,8 @@ const Page = (): JSX.Element | null => {
     }
   }, [user])
 
+  if (!room) return null
+
   const roomID = room?.codigo ?? ''
 
   const handleContinue = () => {
@@ -56,8 +59,21 @@ const Page = (): JSX.Element | null => {
   }
 
   const handleSubmit = async (clientData: TRequirementsUser) => {
+    const noValidDateForm = [totalAmount, nights, igv, subtotal, surcharge].some(i => i < 1)
+    if (noValidDateForm) {
+      return toast.error(
+        'Deberías de completar el formulario, ¿Cuantos Dias planeas reservar esta habitación? 🤓'
+      )
+    }
+    const notAvailable = noAvailableDateInRange({
+      dates: room.fechas ?? [],
+      endDate: toDate,
+      startDate: fromDate
+    })
+    if (notAvailable) {
+      return toast.error('Tus fechas  fechas seleccionadas no están disponibles, verificabas 🤓')
+    }
     localStorage.setItem('process', '1')
-
     if (user === null) {
       return openSignIn({
         forceRedirectUrl: currentPath,

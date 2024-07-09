@@ -6,16 +6,19 @@
 - [ ]: Realizar la pagina Home
 - [ ]: Realizar la pagina Polices
 - [ ]: Validar las fechas al momento de reservar una habitación
+- [ ]: Transladar el manejo de fechas day.js
 - [ ]: Manejar el tema de los filtros
 - [ ]: Actualizar los filtros del componente SLUG
 - [ ]: Acabar la pagina detalles de reservas /rooms/reservations
+- [X]: Agregar un componente calendario en la ruta /rooms/[room_id]
+- [X]: Realizar refetch en la mutación "create_reservation"
 
 ## Medianas
 
 - [ ]: Agregar el footer en el flujo principal
 - [ ]: Actualizar el Boton (Solo hoy y mañana) presenta un error
 - [ ]: Desactivar el autocompleted en el formulario de creación de cliente
-- [ ]: Transladar el Boton Regresar de la pagina /rooms/[room_id] a la izquierda
+- [X]: Transladar el Boton Regresar de la pagina /rooms/[room_id] a la izquierda
 
 ## Cortas
 
@@ -27,7 +30,7 @@
 
 ## Largas
 
-- [ ]: Mejorar al presentación de las imágenes de Reservas
+- [X]: Mejorar al presentación de las imágenes de Reservas
 - [ ]: Actualizar los esqueletos de carga
 - [ ]: Habilitar la ruta /rooms/[room_id]/images
 - [ ]: Alzar el componente de visualización de images

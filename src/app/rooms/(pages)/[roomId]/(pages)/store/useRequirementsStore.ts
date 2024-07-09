@@ -1,7 +1,6 @@
-import { addDays, formatDate, today } from 'shared/helpers/formatDate'
+import dayjs from 'dayjs'
 import { STAY_USER } from 'shared/helpers/stayUserCases'
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
 
 interface IUseStepsRoom {
   nights: number
@@ -22,46 +21,41 @@ interface IUseStepsRoom {
   setStayUser: (stayUser: IUseStepsRoom['stayUser']) => void
 }
 
-const useRequirementsStore = create(
-  persist<IUseStepsRoom>(
-    set => ({
-      nights: 1,
-      fromDate: formatDate(today()),
-      toDate: formatDate(addDays(today(), 1)),
-      totalAmount: 0.0,
-      stayUser: STAY_USER.SHORT,
-      igv: 0.0,
-      subtotal: 0.0,
-      surcharge: 0.0,
-      setNights: nights => {
-        set(prevState => ({ ...prevState, nights }))
-      },
-      setFromDate: fromDate => {
-        set(prevState => ({ ...prevState, fromDate: formatDate(fromDate) }))
-      },
-      setToDate: toDate => {
-        set(prevState => ({ ...prevState, toDate: formatDate(toDate) }))
-      },
-      setTotalAmount: totalAmount => {
-        set(prevState => ({ ...prevState, totalAmount }))
-      },
-      setStayUser: stayUser => {
-        set(prevState => ({ ...prevState, stayUser }))
-      },
-      setIvg: igv => {
-        set(prev => ({ ...prev, igv }))
-      },
-      setSubtotal: subtotal => {
-        set(prev => ({ ...prev, subtotal }))
-      },
-      setSurcharge: surcharge => {
-        set(prev => ({ ...prev, surcharge }))
-      }
-    }),
-    {
-      name: 'howDays'
-    }
-  )
-)
+const today = dayjs()
+
+const useRequirementsStore = create<IUseStepsRoom>(set => ({
+  nights: 1,
+  fromDate: today.format('YYYY-MM-DD'),
+  toDate: today.add(1, 'day').format('YYYY-MM-DD'),
+  totalAmount: 0.0,
+  stayUser: STAY_USER.SHORT,
+  igv: 0.0,
+  subtotal: 0.0,
+  surcharge: 0.0,
+  setNights: nights => {
+    set(prevState => ({ ...prevState, nights }))
+  },
+  setFromDate: fromDate => {
+    set(prevState => ({ ...prevState, fromDate: dayjs(fromDate).format('YYYY-MM-DD') }))
+  },
+  setToDate: toDate => {
+    set(prevState => ({ ...prevState, toDate: dayjs(toDate).format('YYYY-MM-DD') }))
+  },
+  setTotalAmount: totalAmount => {
+    set(prevState => ({ ...prevState, totalAmount }))
+  },
+  setStayUser: stayUser => {
+    set(prevState => ({ ...prevState, stayUser }))
+  },
+  setIvg: igv => {
+    set(prev => ({ ...prev, igv }))
+  },
+  setSubtotal: subtotal => {
+    set(prev => ({ ...prev, subtotal }))
+  },
+  setSurcharge: surcharge => {
+    set(prev => ({ ...prev, surcharge }))
+  }
+}))
 
 export default useRequirementsStore

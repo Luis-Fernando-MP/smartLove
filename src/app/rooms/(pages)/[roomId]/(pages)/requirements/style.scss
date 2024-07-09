@@ -4,6 +4,7 @@
 .requirementsRoom {
   @include d.flex;
   padding-bottom: v.$padding * 3;
+  max-width: 900px;
   .subtitle {
     text-align: center;
   }

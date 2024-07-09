@@ -1,10 +1,11 @@
+import dayjs from 'dayjs'
 import { useCallback, useEffect, useMemo } from 'react'
 import { IRoom } from 'services/room/room.service.types'
-import { addDays, differenceDays, stringToDate } from 'shared/helpers/formatDate'
 import { round } from 'shared/helpers/round'
-import { STAY_USER, currentClassCase, discountByStay } from 'shared/helpers/stayUserCases'
+import { STAY_USER, currentClassCase } from 'shared/helpers/stayUserCases'
 
 import useRequirementsStore from '../store/useRequirementsStore'
+import { calculateDaysDifference, calculateTotalAmount } from './totalCalculate.utils'
 
 interface TProps {
   room?: IRoom
@@ -14,8 +15,10 @@ export const IGV = 0.18
 export const SURCHARGE = 0.1
 
 const useUseTotalCalculate = ({ room }: TProps) => {
-  const { fromDate, stayUser, toDate, totalAmount } = useRequirementsStore()
   const {
+    fromDate,
+    stayUser,
+    toDate,
     setFromDate,
     setToDate,
     setNights,
@@ -26,32 +29,38 @@ const useUseTotalCalculate = ({ room }: TProps) => {
     setSurcharge
   } = useRequirementsStore()
 
-  const roomPrice = useMemo(() => room?.precio ?? 0, [room])
-  const diffDays = useMemo(
-    () => differenceDays(stringToDate(fromDate), stringToDate(toDate)),
-    [fromDate, toDate]
-  )
+  const roomPrice = room?.precio ?? 0
+
+  const diffDays = useMemo(() => calculateDaysDifference(fromDate, toDate), [fromDate, toDate])
+
   const subtotal = useMemo(() => roomPrice * diffDays, [roomPrice, diffDays])
   const totalIGV = useMemo(() => subtotal * IGV, [subtotal])
   const totalSurcharge = useMemo(() => subtotal * SURCHARGE, [subtotal])
 
-  const calculateTotalAmount = useMemo(() => {
-    const tax = totalIGV + totalSurcharge
-    const total = subtotal + tax
-    const discount = discountByStay(stayUser)
-    return total - subtotal * discount
-  }, [totalIGV, totalSurcharge, subtotal, stayUser])
+  const totalAmount = useMemo(
+    () => calculateTotalAmount(subtotal, totalIGV, totalSurcharge, stayUser),
+    [subtotal, totalIGV, totalSurcharge, stayUser]
+  )
+
+  const handleChangeNights = useCallback(
+    (total: number) => {
+      if (diffDays === total) return
+      const newToDate = dayjs(fromDate).add(total, 'day').toDate()
+      setToDate(newToDate)
+    },
+    [diffDays, fromDate, setToDate]
+  )
 
   useEffect(() => {
     setNights(diffDays)
-    setTotalAmount(calculateTotalAmount)
+    setTotalAmount(totalAmount)
     setStayUser(currentClassCase(diffDays) as STAY_USER)
     setIvg(totalIGV)
     setSubtotal(subtotal)
     setSurcharge(totalSurcharge)
   }, [
     diffDays,
-    calculateTotalAmount,
+    totalAmount,
     setNights,
     setTotalAmount,
     setStayUser,
@@ -63,17 +72,24 @@ const useUseTotalCalculate = ({ room }: TProps) => {
     totalSurcharge
   ])
 
-  const handleChangeNights = useCallback(
-    (total: number) => {
-      if (diffDays === total) return
-      const newToDate = addDays(stringToDate(fromDate), total)
-      setToDate(newToDate)
-    },
-    [diffDays, fromDate, setToDate]
-  )
+  useEffect(() => {
+    if (!room) return
+    const reverseDates = structuredClone(room.fechas ?? [])?.reverse()
+    for (const date of reverseDates) {
+      const from = dayjs(date.fechaInicio, 'YYYY-MM-DD')
+      const to = dayjs(date.fechaFin, 'YYYY-MM-DD')
+      const stateFrom = dayjs(fromDate, 'YYYY-MM-DD')
+      const stateTo = dayjs(toDate, 'YYYY-MM-DD')
+      if (stateFrom.isBetween(from, to, null, '[]') || stateTo.isBetween(from, to, null, '[]')) {
+        const newToDate = to.add(1, 'day').toDate()
+        setFromDate(newToDate)
+        setToDate(newToDate)
+        break
+      }
+    }
+  }, [fromDate, room, setFromDate, setToDate, toDate])
 
   if (!room) return null
-
   return {
     subtotal: round(subtotal),
     totalIGV: round(totalIGV),
