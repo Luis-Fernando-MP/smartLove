@@ -15,7 +15,7 @@
 
 ## Medianas
 
-- [ ]: Agregar el footer en el flujo principal
+- [X]: Agregar el footer en el flujo principal
 - [X]: Actualizar el Boton (Solo hoy y mañana) presenta un error
 - [ ]: Desactivar el autocompleted en el formulario de creación de cliente
 - [X]: Transladar el Boton Regresar de la pagina /rooms/[room_id] a la izquierda
