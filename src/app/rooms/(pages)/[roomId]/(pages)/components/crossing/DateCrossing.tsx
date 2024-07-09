@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from 'dayjs'
-import { JSX, memo, useMemo } from 'react'
+import { JSX, memo } from 'react'
 import { IRoomBusyDays } from 'services/room/room.service.types'
 import { calculateDateCrossing, getDaysInMonth } from 'shared/helpers/roomDate'
 import { switchClass } from 'shared/helpers/switchClassName'
@@ -36,7 +36,7 @@ const DateCrossing = ({ dates, selectEnd, selectFrom }: IDateCrossing): JSX.Elem
         <h4>Estos días están ocupados 👩‍🏭</h4>
         <ul className='TCDateCrossing-dates'>
           {calendar.map(calendarItem => {
-            const { clientId, day, isBusy, isCrossing, isSelect } = calendarItem
+            const { day, isBusy, isCrossing, isSelect } = calendarItem
 
             return (
               <li
