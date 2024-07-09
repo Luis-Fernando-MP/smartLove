@@ -3,10 +3,10 @@
 ## Largas
 
 - [ ]: Culminar el flujo de cancelar una reserva
-- [ ]: Realizar la pagina Home
+- [~]: Realizar la pagina Home
 - [ ]: Realizar la pagina Polices
-- [ ]: Validar las fechas al momento de reservar una habitación
-- [ ]: Transladar el manejo de fechas day.js
+- [X]: Validar las fechas al momento de reservar una habitación
+- [X]: Transladar el manejo de fechas day.js
 - [ ]: Manejar el tema de los filtros
 - [ ]: Actualizar los filtros del componente SLUG
 - [ ]: Acabar la pagina detalles de reservas /rooms/reservations
@@ -16,7 +16,7 @@
 ## Medianas
 
 - [ ]: Agregar el footer en el flujo principal
-- [ ]: Actualizar el Boton (Solo hoy y mañana) presenta un error
+- [X]: Actualizar el Boton (Solo hoy y mañana) presenta un error
 - [ ]: Desactivar el autocompleted en el formulario de creación de cliente
 - [X]: Transladar el Boton Regresar de la pagina /rooms/[room_id] a la izquierda
 
