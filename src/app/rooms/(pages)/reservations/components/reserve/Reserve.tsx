@@ -1,6 +1,5 @@
 'use client'
 
-import dayjs from 'dayjs'
 import { LoaderCircle, NotebookTabs, Printer, Repeat, XIcon } from 'lucide-react'
 import { type JSX, type ReactNode } from 'react'
 import { IReservation } from 'services/reserve/reserve.service.types'

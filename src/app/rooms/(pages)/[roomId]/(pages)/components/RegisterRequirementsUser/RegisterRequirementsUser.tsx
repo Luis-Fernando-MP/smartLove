@@ -44,7 +44,7 @@ const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequiremen
           [name]: value
         })
       },
-      [err, formData, setFormData]
+      [formData, setFormData]
     )
 
     return (

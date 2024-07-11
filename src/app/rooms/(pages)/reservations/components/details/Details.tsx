@@ -14,6 +14,8 @@ import { useReservationStore } from '../../store/reservation.store'
 import { littleBoxData } from '../reserve/useReserve'
 import './style.scss'
 
+/* eslint-disable @next/next/no-img-element */
+
 dayjs.locale('es')
 
 const Details = (): JSX.Element | null => {

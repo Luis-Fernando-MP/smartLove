@@ -1,12 +1,6 @@
 import html2canvas from 'html2canvas'
 import JsPDF from 'jspdf'
-import {
-  BanknoteIcon,
-  MoonStarIcon,
-  PiggyBankIcon,
-  ShowerHeadIcon,
-  SquirrelIcon
-} from 'lucide-react'
+import { BanknoteIcon, PiggyBankIcon, ShowerHeadIcon, SquirrelIcon } from 'lucide-react'
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { IReservation } from 'services/reserve/reserve.service.types'
@@ -84,7 +78,7 @@ const useReserve = ({ reserve }: TProps) => {
 export default useReserve
 
 export function littleBoxData(reserve: IReservation) {
-  const { total, igv, subtotal, totalDias, montoServicios = 0 } = reserve
+  const { total, igv, subtotal, montoServicios = 0 } = reserve
 
   return [
     { title: 'Total:', subtitle: total, Icon: BanknoteIcon, active: true },

@@ -12,7 +12,7 @@
 - [X]: Acabar la pagina detalles de reservas /rooms/reservations
 - [X]: Agregar un componente calendario en la ruta /rooms/[room_id]
 - [X]: Realizar refetch en la mutación "create_reservation"
-- [ ]: Desactivar el autocompleted en el formulario de creación de cliente
+- [X]: Desactivar el autocompleted en el formulario de creación de cliente
 
 ## Medianas
 
