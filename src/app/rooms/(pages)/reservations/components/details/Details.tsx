@@ -1,7 +1,6 @@
 'use client'
 
 import dayjs from 'dayjs'
-import 'dayjs/locale/es'
 import { PanelRightClose } from 'lucide-react'
 import type { JSX } from 'react'
 import { sansitaSwashed } from 'shared/fonts'
@@ -16,8 +15,6 @@ import './style.scss'
 
 /* eslint-disable @next/next/no-img-element */
 
-dayjs.locale('es')
-
 const Details = (): JSX.Element | null => {
   const { reservation: r, setReservation } = useReservationStore()
 
@@ -25,8 +22,8 @@ const Details = (): JSX.Element | null => {
     setReservation(null)
   }
 
-  const fromDay = dayjs(r?.fechaIngreso)
-  const toDay = dayjs(r?.fechaSalida)
+  const fromDay = dayjs(r?.fechaIngreso).add(1, 'days')
+  const toDay = dayjs(r?.fechaSalida).add(1, 'days')
   const diffDays = toDay.diff(fromDay, 'day') + 1
 
   return (

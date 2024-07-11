@@ -1,9 +1,10 @@
 import dayjs, { Dayjs } from 'dayjs'
-import isBetween from 'dayjs/plugin/isBetween'
+import 'dayjs/locale/es'
+import localeData from 'dayjs/plugin/localeData'
 import { IRoomBusyDays } from 'services/room/room.service.types'
 
-dayjs.extend(isBetween)
-
+dayjs.locale('es')
+dayjs.extend(localeData)
 // Obtiene los días de un mes y año especificados
 export const getDaysInMonth = (year: number, month: number) => {
   const daysInMonth: string[] = []
@@ -33,6 +34,7 @@ interface ICaaDCrossing {
   selectFrom: string
   selectEnd: string
 }
+
 // Calcula el cruce entre fechas reservadas y fechas seleccionas en un mes y año especificados
 export const calculateDateCrossing = ({
   selectFrom,
@@ -40,24 +42,29 @@ export const calculateDateCrossing = ({
   monthStringDays,
   dates
 }: ICaaDCrossing) => {
-  const SFrom = dayjs(selectFrom, 'YYYY-MM-DD')
+  const firstDayOfMonth = dayjs(monthStringDays[0], 'YYYY-MM-DD')
+  const firstDayOfWeek = firstDayOfMonth.day()
   const SEnd = dayjs(selectEnd, 'YYYY-MM-DD')
+  const SFrom = dayjs(selectFrom, 'YYYY-MM-DD')
+  // Creamos los días limpios del calendario
+  const emptyDays: null[] = Array(firstDayOfWeek).fill(null)
 
-  return monthStringDays.map(stringDate => {
-    const day = dayjs(stringDate)
+  const daysOnMonth = monthStringDays.map(stringDate => {
+    const day = dayjs(stringDate, 'YYYY-MM-DD')
     let isBusy = false
     let isCrossing = false
-    let isSelect = isCrossDay(day, SFrom, SEnd)
-    let clientId: null | number = null
+    const isSelect = isCrossDay(day, SFrom, SEnd)
+    let userId: null | string = null
+    let fullName: null | string = null
 
-    dates.forEach(({ fechaInicio, fechaFin, idCliente }) => {
-      const from = dayjs(fechaInicio)
-      const to = dayjs(fechaFin)
-      isSelect = (day.isAfter(SFrom) && day.isBefore(SEnd)) || day.isSame(SFrom) || day.isSame(SEnd)
+    dates.forEach(({ fechaInicio, fechaFin, id, nombres }) => {
+      const from = dayjs(fechaInicio, 'YYYY-MM-DD')
+      const to = dayjs(fechaFin, 'YYYY-MM-DD')
       const isBetween = day.isBetween(from, to, null, '[]')
 
-      if (day.isBetween(from, to, null, '[]')) {
-        clientId = idCliente
+      if (isBetween) {
+        fullName = nombres
+        userId = id
         isBusy = true
       }
       if (isSelect && isBetween) {
@@ -66,15 +73,17 @@ export const calculateDateCrossing = ({
     })
 
     return {
-      clientId,
+      userId,
+      fullName,
       isSelect,
       day,
       isBusy,
       isCrossing
     }
   })
-}
 
+  return [...emptyDays, ...daysOnMonth]
+}
 interface INoDRangeAvailable {
   dates: IRoomBusyDays[]
   startDate: string
@@ -108,3 +117,12 @@ export const isDateInRange = (dates: IRoomBusyDays[], date: string): boolean => 
     return dayjs(date).isBetween(from, to, null, '[]')
   })
 }
+
+const shortWeekdays = dayjs.weekdaysShort()
+// Ajustar formato a 'Lu', 'Ma', 'Mi', etc.
+export const formattedShortWeekdays = shortWeekdays.map(day => {
+  if (day.length > 2) {
+    return day.charAt(0).toUpperCase() + day.charAt(1).toLowerCase()
+  }
+  return day
+})

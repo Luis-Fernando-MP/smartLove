@@ -1,3 +1,5 @@
+import dayjs from 'dayjs'
+import isBetween from 'dayjs/plugin/isBetween'
 import type { Metadata } from 'next'
 import NextTopLoader from 'nextjs-toploader'
 import TanStackProvider from 'providers/TanStackProvider'
@@ -8,6 +10,8 @@ import { robotoFlex } from 'shared/fonts'
 import Providers from './Providers'
 import './globals.css'
 import './layout.scss'
+
+dayjs.extend(isBetween)
 
 export const metadata: Metadata = {
   title: 'SmartPro',

@@ -8,13 +8,14 @@
   text-align: center;
   &,
   &-container {
+    padding: v.$padding;
     @include d.flex($ali: center);
   }
   &-container {
     max-width: 100%;
-    background-color: v.$bg1;
+    background-color: v.$bg2;
+    border: 2px solid v.$tn1T;
     border-radius: v.$radius;
-    padding: v.$padding;
   }
   &-dates {
     width: 100%;
@@ -24,8 +25,8 @@
   }
   &-date {
     @include d.flex($dir: row, $ali: center);
-  }
-  &-date {
+    position: relative;
+    padding: 5px 0;
     h4 {
       padding: v.$padding * 0.5;
       border-radius: v.$radius * 1.6;
@@ -44,5 +45,14 @@
       background-color: v.$danger;
       color: v.$danger_dark;
     }
+  }
+  &-image {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
   }
 }

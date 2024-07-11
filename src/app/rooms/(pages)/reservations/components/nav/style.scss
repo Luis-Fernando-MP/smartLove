@@ -30,6 +30,7 @@
     text-align: center;
     border-radius: 5px;
     border: 2px solid v.$tn1T;
+    font-size: v.$fH5;
   }
   &-form {
     @include d.flex();

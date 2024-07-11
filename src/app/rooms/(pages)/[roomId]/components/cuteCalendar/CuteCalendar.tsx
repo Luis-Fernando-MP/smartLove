@@ -1,13 +1,10 @@
 import dayjs from 'dayjs'
-import 'dayjs/locale/es'
 import type { JSX } from 'react'
 import DayBox from 'shared/ui/dayBox/DayBox'
 import { v4 as uuid } from 'uuid'
 
 import { useRoomStore } from '../../store/room.store'
 import './style.scss'
-
-dayjs.locale('es')
 
 const CuteCalendar = (): JSX.Element | null => {
   const { room } = useRoomStore()

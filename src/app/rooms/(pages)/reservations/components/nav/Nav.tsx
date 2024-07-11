@@ -72,9 +72,10 @@ const Nav = (): JSX.Element | null => {
       <Back row />
       <h3 className='reservationNav-subtitle'>¿Cancelar reserva?</h3>
       {reservation && (
-        <p className='reservationNav-id'>
-          La reserva con el código <h3 className='gr inline-block'>{reservation?.idReserva}</h3>{' '}
-          esta seleccionada
+        <p className=' reservationNav-id inline-block'>
+          La reserva con el código&nbsp;
+          <b className='gr'>{reservation?.idReserva}</b>
+          &nbsp;esta seleccionada
         </p>
       )}
       <h5 className='reservationNav-precaution'>

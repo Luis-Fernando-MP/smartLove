@@ -1,7 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
+import { useUser } from '@clerk/nextjs'
 import dayjs, { Dayjs } from 'dayjs'
 import { JSX, memo } from 'react'
 import { IRoomBusyDays } from 'services/room/room.service.types'
-import { calculateDateCrossing, getDaysInMonth } from 'shared/helpers/roomDate'
+import {
+  calculateDateCrossing,
+  formattedShortWeekdays,
+  getDaysInMonth,
+  noAvailableDateInRange
+} from 'shared/helpers/roomDate'
 import { switchClass } from 'shared/helpers/switchClassName'
 import { v1 as uuid } from 'uuid'
 
@@ -16,11 +23,17 @@ interface IDateCrossing {
 const DateCrossing = ({ dates, selectEnd, selectFrom }: IDateCrossing): JSX.Element => {
   const today = dayjs()
   const monthDays = getDaysInMonth(today.year(), today.month() + 1)
+  const { user } = useUser()
   const calendar = calculateDateCrossing({
     monthStringDays: monthDays,
     dates,
     selectEnd,
     selectFrom
+  })
+  const notAvailable = noAvailableDateInRange({
+    dates,
+    endDate: selectEnd,
+    startDate: selectFrom
   })
   return (
     <article className='TCDateCrossing'>
@@ -31,19 +44,40 @@ const DateCrossing = ({ dates, selectEnd, selectFrom }: IDateCrossing): JSX.Elem
         <h5>Verifica tus fechas seleccionadas</h5>
       </div>
       <section className='TCDateCrossing-container'>
-        <h4>Estos días están ocupados 👩‍🏭</h4>
+        {notAvailable && <h4>Hay un cruce en tus fechas 👩‍🏭</h4>}
         <ul className='TCDateCrossing-dates'>
+          {formattedShortWeekdays.map(dayItem => {
+            return (
+              <li key={uuid()} className='TCDateCrossing-date day'>
+                <h4 className='TCDateCrossing-date__from'>{dayItem}</h4>
+              </li>
+            )
+          })}
           {calendar.map(calendarItem => {
-            const { day, isBusy, isCrossing, isSelect } = calendarItem
+            console.log('calendarItem')
+            console.log(calendarItem)
+            if (!calendarItem) return <li key={uuid()} />
+            const { day, isBusy, isCrossing, isSelect, userId, fullName } = calendarItem
+            const isUser = userId === user?.id
+            console.log(isUser, '-', userId, '-', user?.id)
 
             return (
               <li
                 key={uuid()}
-                className={`TCDateCrossing-date 
-                ${switchClass(isBusy, 'busy')} 
-                ${switchClass(isSelect, 'select')} 
+                className={`TCDateCrossing-date
+                ${switchClass(isBusy, 'busy')}
+                ${switchClass(isSelect, 'select')}
                 ${switchClass(isCrossing, 'cross')}`}
               >
+                {userId === user?.id && (
+                  <img
+                    src={user.imageUrl}
+                    alt={`user ${fullName ?? ''}`}
+                    className='TCDateCrossing-image'
+                    title={`Mi reserva - ${fullName ?? ''}`}
+                  />
+                )}
+
                 <Round date={day} />
               </li>
             )

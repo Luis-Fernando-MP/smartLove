@@ -38,4 +38,6 @@ export interface IRoomBusyDays {
   fechaInicio: string
   fechaFin: string
   idCliente: number
+  id: string
+  nombres: string
 }

@@ -1,7 +1,6 @@
 'use client'
 
 import dayjs from 'dayjs'
-import 'dayjs/locale/es'
 import { Link } from 'next-view-transitions'
 import { useState } from 'react'
 import { Calendar, Views, dayjsLocalizer } from 'react-big-calendar'
@@ -10,8 +9,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { useRoomStore } from '../../store/room.store'
 import CalendarItem from './CalendarItem'
 import './style.scss'
-
-dayjs.locale('es')
 
 const localizer = dayjsLocalizer(dayjs)
 
