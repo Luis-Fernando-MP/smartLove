@@ -20,7 +20,6 @@ import {
 import { useRoomStore } from '../../store/room.store'
 import RegisterRequirementsUser from '../components/RegisterRequirementsUser/RegisterRequirementsUser'
 import TotalCalculate from '../components/totalCalculate/TotalCalculate'
-import { defaultFormData } from '../store/useRegisterStore'
 import useRequirementsStore from '../store/useRequirementsStore'
 import './style.scss'
 
@@ -37,12 +36,10 @@ const Page = (): JSX.Element | null => {
   const { mutate: resMutate } = useCreateReservation()
   const methods = useForm({
     resolver: requirementsUserResolver,
-    values: defaultFormData,
     mode: 'all'
   })
 
   useEffect(() => {
-    // Continuamos con la reserva
     const inProcess = localStorage.getItem('process') === '1'
     if (inProcess && user !== null) {
       handleContinue()
@@ -53,7 +50,7 @@ const Page = (): JSX.Element | null => {
 
   const roomID = room?.codigo ?? ''
 
-  const handleContinue = () => {
+  function handleContinue() {
     if (!$formRef.current) return
     $formRef.current.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }))
   }
@@ -71,9 +68,11 @@ const Page = (): JSX.Element | null => {
       startDate: fromDate
     })
     if (notAvailable) {
-      return toast.error('Tus fechas  fechas seleccionadas no están disponibles, verificabas 🤓')
+      return toast.error(
+        'Tus fechas  fechas seleccionadas no están disponibles, revisa una vez mas. 🤓'
+      )
     }
-    localStorage.setItem('process', '1')
+    // localStorage.setItem('process', '1')
     if (user === null) {
       return openSignIn({
         forceRedirectUrl: currentPath,
@@ -98,12 +97,16 @@ const Page = (): JSX.Element | null => {
       id: user?.id ?? '',
       estado: 1
     }
+
     const toId = toast.loading('Procesando reserva')
     resMutate(reserveData, {
       onSuccess() {
         client.refetchQueries({
           queryKey: [ROOM_NAME_CACHE, String(roomID)]
         })
+        if ($formRef.current) {
+          $formRef.current.reset()
+        }
         toast.success('Reserva creada', { id: toId })
         push(`/rooms/${roomID}/pay`)
       }

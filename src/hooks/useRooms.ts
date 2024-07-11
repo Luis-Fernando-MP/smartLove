@@ -11,6 +11,7 @@ export function useRooms() {
     queryKey: [ROOMS_NAME_CACHE],
     queryFn: getAllRooms,
     staleTime: 5000,
+    refetchInterval: 4000,
     retry: 2
   })
 }

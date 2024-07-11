@@ -1,5 +1,6 @@
 'use client'
 
+import dayjs from 'dayjs'
 import { LoaderCircle, NotebookTabs, Printer, Repeat, XIcon } from 'lucide-react'
 import { type JSX, type ReactNode } from 'react'
 import { IReservation } from 'services/reserve/reserve.service.types'
@@ -37,9 +38,8 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
   scroll()
 
   const { fechaIngreso, fechaSalida } = reserve
-
-  const from = breakDownDate(new Date(fechaIngreso))
-  const to = breakDownDate(new Date(fechaSalida))
+  const from = breakDownDate(fechaIngreso)
+  const to = breakDownDate(fechaSalida)
 
   return (
     <article className={`reserve ${switchClass(isReading)}`} ref={refReservePrint}>

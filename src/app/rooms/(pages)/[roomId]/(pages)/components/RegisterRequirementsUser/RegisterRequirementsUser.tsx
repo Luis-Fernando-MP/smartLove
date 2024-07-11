@@ -1,8 +1,6 @@
-import { useUser } from '@clerk/nextjs'
 import { forwardRef, useCallback, useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { cleanText } from 'shared/helpers/formatDate'
 import { switchClass } from 'shared/helpers/switchClassName'
 import { TRequirementsUser, keysValues } from 'shared/resolvers/requirementsUser.resolver'
 
@@ -19,36 +17,19 @@ const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequiremen
     const { formData, setFormData } = useRegisterStore()
     const { register, handleSubmit, formState, setValue, reset } =
       useFormContext<TRequirementsUser>()
-    const { user } = useUser()
     const { errors: err, isValid } = formState
 
     useEffect(() => {
-      let clonFormData: TRequirementsUser = structuredClone(formData)
-      function isInvalidFiled(field: string, userValue: string) {
-        const fieldClean = cleanText(field)
-        const userValeClean = cleanText(userValue)
-        if (fieldClean.length < 1) return userValeClean
-        if (fieldClean === userValeClean) return userValeClean
-
-        return fieldClean
-      }
-      if (user) {
-        const { lastName, fullName } = user
-        clonFormData = {
-          ...formData,
-          fullName: isInvalidFiled(clonFormData.fullName, fullName ?? ''),
-          lastName: isInvalidFiled(clonFormData.lastName, lastName ?? '')
-        }
-      }
-      Object.entries(clonFormData).forEach(([key, value]) => {
+      Object.entries(formData).forEach(([key, value]) => {
         setValue(key as keyof TRequirementsUser, value)
       })
-    }, [formData, setValue, user])
+    }, [formData, setValue])
 
     const onError = (): void => {
       toast.error('Completa todos los campos correctamente')
       console.error('error', err)
     }
+
     const onReset = (): void => {
       reset()
       setFormData(defaultFormData)
@@ -57,8 +38,7 @@ const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequiremen
     const handleInputChange = useCallback(
       async (name: keyof TRequirementsUser, value: string) => {
         // eslint-disable-next-line promise/param-names
-        await new Promise((re: any) => setTimeout(() => re(), 10))
-        if (err[name]) return
+        // if (err[name]) return
         setFormData({
           ...formData,
           [name]: value

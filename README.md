@@ -2,22 +2,22 @@
 
 ## Largas
 
-- [ ]: Culminar el flujo de cancelar una reserva
+- [X]: Culminar el flujo de cancelar una reserva
 - [~]: Realizar la pagina Home
 - [ ]: Realizar la pagina Polices
 - [X]: Validar las fechas al momento de reservar una habitación
 - [X]: Transladar el manejo de fechas day.js
 - [ ]: Manejar el tema de los filtros
-- [ ]: Actualizar los filtros del componente SLUG
-- [ ]: Acabar la pagina detalles de reservas /rooms/reservations
+- [~]: Actualizar los filtros del componente SLUG
+- [X]: Acabar la pagina detalles de reservas /rooms/reservations
 - [X]: Agregar un componente calendario en la ruta /rooms/[room_id]
 - [X]: Realizar refetch en la mutación "create_reservation"
+- [ ]: Desactivar el autocompleted en el formulario de creación de cliente
 
 ## Medianas
 
 - [X]: Agregar el footer en el flujo principal
 - [X]: Actualizar el Boton (Solo hoy y mañana) presenta un error
-- [ ]: Desactivar el autocompleted en el formulario de creación de cliente
 - [X]: Transladar el Boton Regresar de la pagina /rooms/[room_id] a la izquierda
 
 ## Cortas

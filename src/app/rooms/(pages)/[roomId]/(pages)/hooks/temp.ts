@@ -1,24 +1,24 @@
-import dayjs from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 
 dayjs.extend(isBetween)
 
 const fechas = [
-  {
-    fechaInicio: '2024-07-20 00:00:00.0',
-    fechaFin: '2024-07-25 00:00:00.0',
-    idCliente: 9
-  },
-  {
-    fechaInicio: '2024-07-01 00:00:00.0',
-    fechaFin: '2024-07-06 00:00:00.0',
-    idCliente: 5
-  },
-  {
-    fechaInicio: '2024-07-12 00:00:00.0',
-    fechaFin: '2024-07-15 00:00:00.0',
-    idCliente: 3
-  }
+  // {
+  //   fechaInicio: '2024-07-20 00:00:00.0',
+  //   fechaFin: '2024-07-25 00:00:00.0',
+  //   idCliente: 9
+  // },
+  // {
+  //   fechaInicio: '2024-07-01 00:00:00.0',
+  //   fechaFin: '2024-07-06 00:00:00.0',
+  //   idCliente: 5
+  // },
+  // {
+  //   fechaInicio: '2024-07-12 00:00:00.0',
+  //   fechaFin: '2024-07-15 00:00:00.0',
+  //   idCliente: 3
+  // }
 ]
 
 const getDaysInMonth = (year: number, month: number) => {
@@ -28,6 +28,10 @@ const getDaysInMonth = (year: number, month: number) => {
     daysInMonth.push(dayjs(`${year}-${month}-${day}`).format('YYYY-MM-DD'))
   }
   return daysInMonth
+}
+
+const isCrossDay = (day: Dayjs, from: Dayjs, end: Dayjs) => {
+  return (day.isAfter(from) && day.isBefore(end)) || day.isSame(from) || day.isSame(end)
 }
 
 interface ICaaDCrossing {
@@ -49,12 +53,16 @@ const calculateDateCrossing = ({
     const day = dayjs(stringDate)
     let isBusy = false
     let isCrossing = false
+    let isSelect = false
     let clientId: null | number = null
+
+    console.log(stringDate)
+    console.log(isCrossDay(day, SFrom, SEnd))
 
     dates.forEach(({ fechaInicio, fechaFin, idCliente }) => {
       const from = dayjs(fechaInicio)
       const to = dayjs(fechaFin)
-      const isSelectedDay =
+      const isCrossDay =
         (day.isAfter(SFrom) && day.isBefore(SEnd)) || day.isSame(SFrom) || day.isSame(SEnd)
       const isBetween = day.isBetween(from, to, null, '[]')
 
@@ -62,16 +70,20 @@ const calculateDateCrossing = ({
         clientId = idCliente
         isBusy = true
       }
-      if (isSelectedDay && isBetween) {
+      if (isCrossDay && isBetween) {
         isCrossing = true
       }
+      console.log(stringDate)
+
+      isSelect = isCrossDay
     })
 
     return {
-      clientId,
+      // clientId,
       date: stringDate,
       isBusy,
-      isCrossing
+      isSelect
+      // isCrossing
     }
   })
 }
@@ -86,4 +98,4 @@ const result = calculateDateCrossing({
   monthStringDays: getDaysInMonth(2024, 7),
   dates: fechas
 })
-console.log(result)
+// console.log(result)

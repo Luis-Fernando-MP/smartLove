@@ -19,16 +19,17 @@
       justify-content: flex-end;
     }
     &__reset {
-      background-color: v.$bg1;
+      background-color: v.$bg2;
+      border: 2px solid v.$tn1T;
     }
   }
   &-section {
     justify-content: center;
     padding: 10px 8px;
     border-radius: v.$radius;
-    &.error {
-      background-color: rgba(v.$danger, 0.5);
-      border-color: v.$danger_dark;
+    &.error input {
+      border: 2px solid v.$danger;
+      outline: none !important;
     }
     &.error &__error {
       display: block;
@@ -45,12 +46,9 @@
       @include d.flex($ali: center);
       flex-direction: row;
       h5 span {
-        color: v.$danger_dark;
+        color: v.$danger;
         margin-right: 5px;
         display: block;
-        @include v.toDark {
-          color: v.$danger;
-        }
       }
       h5 {
         display: inline-flex;

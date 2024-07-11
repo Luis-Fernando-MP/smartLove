@@ -1,4 +1,4 @@
-import dayjs from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 import { IRoomBusyDays } from 'services/room/room.service.types'
 
@@ -23,6 +23,10 @@ export const orderDates = (dates: IRoomBusyDays[]) => {
   })
 }
 
+const isCrossDay = (day: Dayjs, from: Dayjs, end: Dayjs) => {
+  return (day.isAfter(from) && day.isBefore(end)) || day.isSame(from) || day.isSame(end)
+}
+
 interface ICaaDCrossing {
   dates: IRoomBusyDays[]
   monthStringDays: string[]
@@ -43,7 +47,7 @@ export const calculateDateCrossing = ({
     const day = dayjs(stringDate)
     let isBusy = false
     let isCrossing = false
-    let isSelect = false
+    let isSelect = isCrossDay(day, SFrom, SEnd)
     let clientId: null | number = null
 
     dates.forEach(({ fechaInicio, fechaFin, idCliente }) => {

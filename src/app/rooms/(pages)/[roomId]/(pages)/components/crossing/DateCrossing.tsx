@@ -22,13 +22,11 @@ const DateCrossing = ({ dates, selectEnd, selectFrom }: IDateCrossing): JSX.Elem
     selectEnd,
     selectFrom
   })
-  console.log(calendar)
-
   return (
     <article className='TCDateCrossing'>
       <div className='TCDateCrossing-information'>
         <h2>
-          HAY <b className='gr'>CRUCE</b>
+          <b className='gr'>CALENDARIO</b> de la reserva
         </h2>
         <h5>Verifica tus fechas seleccionadas</h5>
       </div>
