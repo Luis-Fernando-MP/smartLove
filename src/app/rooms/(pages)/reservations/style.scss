@@ -22,19 +22,22 @@ $navSize: 400px; //<-- important
       width: 100%;
     }
     &__details {
-      position: absolute;
-      top: 0;
-      right: -600px;
-      background-color: v.$bg1;
-      height: 100%;
-      width: 500px;
-      max-width: 500px;
-      transition: t.$pong;
-      transition: all 0.5s cubic-bezier(0.79, 0.14, 0.15, 0.86);
+      @extend %scroll-hidden;
+      background-color: v.$bg2;
       border-radius: v.$radius;
+      border: 1.5px solid v.$tn1;
+      height: 100%;
+      max-width: 350px;
+      overflow: auto;
       padding: v.$padding;
+      position: absolute;
+      right: -600px;
+      top: 0;
+      transition: all 0.7s cubic-bezier(0.79, 0.14, 0.15, 0.86);
+      transition: t.$pong;
       z-index: 1;
-      border: 1.5px solid v.$tn1T;
+      padding-bottom: v.$padding * 3;
+      @include d.flex($ali: center);
       &.active {
         right: 0;
       }

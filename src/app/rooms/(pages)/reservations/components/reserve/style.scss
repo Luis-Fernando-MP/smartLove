@@ -2,17 +2,25 @@
 @use '@styles/utils/defs' as d;
 
 .reserve {
-  background-color: v.$bg1;
-  border-radius: v.$radius;
-  height: auto;
-  margin: v.$padding * 0.3;
-  padding: v.$padding;
   position: relative;
-  width: 330px;
-  z-index: 1;
-  margin-left: 25px;
-  @include d.flex($ali: center, $gap: v.$padding * 2);
-  border: 1.5px solid v.$tn1T;
+  &.active {
+    .reserve-container,
+    .reserve-actions {
+      border: 2px solid v.$tn1;
+    }
+  }
+  &-container {
+    background-color: v.$bg1;
+    border-radius: v.$radius;
+    height: auto;
+    margin: v.$padding * 0.3;
+    padding: v.$padding;
+    width: 330px;
+    z-index: 1;
+    margin-left: 25px;
+    @include d.flex($ali: center, $gap: v.$padding * 2);
+    border: 1.5px solid v.$tn1T;
+  }
   &-operations {
     width: 100%;
     display: grid;
@@ -24,7 +32,11 @@
     text-align: center;
     @include d.flex($gap: 10px);
     h4 {
+      font-size: v.$fP;
       border-bottom: 2.5px dotted v.$fn2;
+    }
+    h5 {
+      font-weight: 900;
     }
   }
   &-actions {
@@ -33,7 +45,7 @@
     border-radius: v.$radius * 2;
     position: absolute;
     top: 50%;
-    left: -20px;
+    left: -0px;
     background-color: v.$bg1;
     border-top: 1.5px solid v.$tn1T;
     border-left: 4px solid v.$tn1T;

@@ -26,6 +26,12 @@ const postAxiosReserve = axios.create({
   method: 'POST'
 })
 
+const deleteAxiosReserve = axios.create({
+  ...defaultAxiosConfig,
+  baseURL: `${API_URL}/reservas`,
+  method: 'DELETE'
+})
+
 export const getAllReservers = async (id: string): Promise<IReservation[]> => {
   try {
     delay(1000)
@@ -56,6 +62,29 @@ export const createReservation = async (reserve: ISendReserveData) => {
       throw new Error('Error al crear la reserva')
     }
     return response.data
+  } catch (error: any) {
+    let errorEvent: IError = {
+      message: error?.message,
+      status: 500
+    }
+    if (!(error instanceof AxiosError)) throw errorEvent
+    errorEvent = {
+      message: error.message,
+      status: error.response?.status ?? 500
+    }
+    throw errorEvent
+  }
+}
+
+export interface IDeleteReservation {
+  reservationId: string
+  userId: string
+}
+export const deleteReservation = async ({ reservationId, userId }: IDeleteReservation) => {
+  try {
+    await delay(3000)
+    const response = await deleteAxiosReserve({ url: `/${reservationId}` })
+    return { res: response, userId }
   } catch (error: any) {
     let errorEvent: IError = {
       message: error?.message,

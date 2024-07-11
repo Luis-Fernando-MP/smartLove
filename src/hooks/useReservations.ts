@@ -1,8 +1,11 @@
 'use client'
 
-import { useMutation, useSuspenseQuery } from '@tanstack/react-query'
-import toast from 'react-hot-toast'
-import { createReservation, getAllReservers } from 'services/reserve/reserve.service'
+import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import {
+  createReservation,
+  deleteReservation,
+  getAllReservers
+} from 'services/reserve/reserve.service'
 
 export const RESERVATIONS_NAME_CACHE = 'RESERVATIONS'
 
@@ -23,10 +26,24 @@ export function useCreateReservation() {
   const mutation = useMutation({
     mutationFn: createReservation,
     onError(error) {
-      toast.error(error.message)
-      return error
+      console.log(error)
     },
     retry: 2
   })
   return mutation
+}
+
+export const useDeleteReservation = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: deleteReservation,
+    onSuccess: ({ userId }) => {
+      queryClient.invalidateQueries({
+        queryKey: [RESERVATIONS_NAME_CACHE, userId]
+      })
+    },
+    onError: error => {
+      console.error('Error eliminando la reserva:', error)
+    }
+  })
 }

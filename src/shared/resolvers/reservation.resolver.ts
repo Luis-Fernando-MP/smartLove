@@ -3,10 +3,10 @@ import * as z from 'zod'
 
 const schemeReservationResolver = z.object(
   {
-    roomID: z.string().length(12, {
+    roomID: z.string().min(1, {
       message: 'Debe de escoger un ID valido'
     }),
-    roomName: z.string().min(5, {
+    roomName: z.string().min(1, {
       message: 'Debe de escoger un nombre de habitación valido'
     }),
     comment: z

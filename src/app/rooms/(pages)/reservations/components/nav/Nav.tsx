@@ -1,38 +1,59 @@
 'use client'
 
+import { useUser } from '@clerk/nextjs'
+import { useDeleteReservation } from 'hooks/useReservations'
 import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { HOME_PATHS } from 'shared/constants'
+import { delay } from 'shared/helpers/delay'
 import { switchClass } from 'shared/helpers/switchClassName'
 import { TReservationResolver, reservationResolver } from 'shared/resolvers/reservation.resolver'
 import Back from 'shared/ui/back/Back'
+import { v1 as uuid } from 'uuid'
 
-import { usePruneReserveStore } from '../../store/reservation.prune.store'
-import { useReservationsStore } from '../../store/reservation.store'
+import { useReservationStore, useReservationsStore } from '../../store/reservation.store'
 import './style.scss'
 
 const Nav = (): JSX.Element | null => {
   const reservations = useReservationsStore(s => s.reservations)
+  const { reservation, setReservation } = useReservationStore()
+  const { user } = useUser()
+  const { mutate } = useDeleteReservation()
   const hookForm = useForm<TReservationResolver>({
     resolver: reservationResolver,
-    defaultValues: {}
+    values: {
+      roomID: reservation ? String(reservation.idReserva) : '',
+      roomName: reservation ? String(reservation.idReserva) : '',
+      comment: ''
+    }
   })
-  const { reservation } = usePruneReserveStore()
 
   if (!reservations) return null
 
   const { register, handleSubmit, formState } = hookForm
   const { errors } = formState
   const { roomID: roomIdError, roomName: roomNameError, comment: commentError } = errors
+  const thereError = !!roomIdError || !!roomNameError || !!commentError || !reservation
 
   const getReservation = (id: string) => {
     return reservations.find(r => String(r.idReserva) === id)
   }
 
-  const onFormSubmit = (data: TReservationResolver) => {
-    toast.success('Enviando datos: \n' + JSON.stringify(data))
+  const onFormSubmit = async (data: TReservationResolver) => {
+    const toastId = toast.loading('Cancelando reserva')
+    mutate(
+      { reservationId: data.roomID, userId: user?.id ?? '' },
+      {
+        onSuccess() {
+          setReservation(null)
+          toast.success('Reserva cancelada', { id: toastId })
+        }
+      }
+    )
+    await delay(2000)
+    toast.dismiss(toastId)
   }
 
   const onErrors = errors => {
@@ -40,11 +61,22 @@ const Nav = (): JSX.Element | null => {
     console.error('error', errors)
   }
 
+  const handleChange = (id: string): void => {
+    const reservationExist = getReservation(id)
+    if (!reservationExist) return
+    setReservation(reservationExist)
+  }
+
   return (
     <>
       <Back row />
       <h3 className='reservationNav-subtitle'>¿Cancelar reserva?</h3>
-      <h1>{reservation?.idReserva}</h1>
+      {reservation && (
+        <p className='reservationNav-id'>
+          La reserva con el código <h3 className='gr inline-block'>{reservation?.idReserva}</h3>{' '}
+          esta seleccionada
+        </p>
+      )}
       <h5 className='reservationNav-precaution'>
         Te agradecemos que hayas leído correctamente nuestras{' '}
         <Link href={HOME_PATHS.Polices.link} target='_blank' rel='noreferrer'>
@@ -52,7 +84,10 @@ const Nav = (): JSX.Element | null => {
         </Link>
         &nbsp;para cancelar tu reserva 🤓
       </h5>
-      <form onSubmit={handleSubmit(onFormSubmit, onErrors)} className='reservationNav-form'>
+      <form
+        onSubmit={handleSubmit(onFormSubmit, onErrors)}
+        className={`reservationNav-form ${switchClass(!thereError, 'ok')}`}
+      >
         <section className={`reservationNav-form__section ${switchClass(roomIdError, 'error')}`}>
           <h5>ID de reserva:</h5>
           <p className='reservationNav-section__error'>{roomIdError?.message}</p>
@@ -61,11 +96,7 @@ const Nav = (): JSX.Element | null => {
               {...register('roomID', {
                 onChange(event) {
                   const id = event.target.value
-                  console.log(id)
-
-                  console.log(getReservation(id))
-
-                  // setReservation(r)
+                  handleChange(id)
                 }
               })}
             >
@@ -74,7 +105,7 @@ const Nav = (): JSX.Element | null => {
               </option>
               {reservations.map(r => {
                 return (
-                  <option key={r.idReserva} value={r.idReserva}>
+                  <option key={uuid()} value={r.idReserva}>
                     Código {r.idReserva}
                   </option>
                 )
@@ -90,14 +121,21 @@ const Nav = (): JSX.Element | null => {
             (El proceso es automático, pero puede verificar para mayor seguridad)
           </span>
           <label className='reservationNav-form__select auto'>
-            <select {...register('roomName')}>
+            <select
+              {...register('roomName', {
+                onChange(event) {
+                  const id = event.target.value
+                  handleChange(id)
+                }
+              })}
+            >
               <option value='' style={{ display: 'none' }}>
                 Selecciona una opción
               </option>
               {reservations.map(r => {
                 return (
-                  <option key={r.idReserva} value={r.idReserva}>
-                    Pago {r.total}
+                  <option key={uuid()} value={r.idReserva}>
+                    {r.habitacion.nombre} S/ {r.total}
                   </option>
                 )
               })}
@@ -114,8 +152,8 @@ const Nav = (): JSX.Element | null => {
           <textarea {...register('comment')} placeholder='¿Que estas pensando?' />
         </section>
 
-        <button type='submit' className='reservationNav-submit bgr'>
-          Cancelar reserva
+        <button type='submit' className='reservationNav-submit'>
+          {thereError ? 'Completa todo los campos' : 'Cancelar reserva'}
         </button>
       </form>
     </>

@@ -2,7 +2,6 @@ import html2canvas from 'html2canvas'
 import JsPDF from 'jspdf'
 import {
   BanknoteIcon,
-  HotelIcon,
   MoonStarIcon,
   PiggyBankIcon,
   ShowerHeadIcon,
@@ -22,20 +21,9 @@ interface TProps {
 const useReserve = ({ reserve }: TProps) => {
   const [loading, setLoading] = useState(false)
   const refReservePrint = useRef<HTMLElement>(null)
-  const { setReservation, selectedReservationId, selectReservation, deselectReservation } =
-    useReservationStore()
+  const { setReservation, reservation } = useReservationStore()
 
-  const isReading = selectedReservationId && selectedReservationId === String(reserve.idReserva)
-
-  const handleReservationSelected = () => {
-    selectReservation(String(reserve.idReserva))
-    setReservation(reserve)
-  }
-
-  const handleReservationDeselected = () => {
-    deselectReservation()
-    setReservation(null)
-  }
+  const isReading = reservation && reservation.idReserva === reserve.idReserva
 
   const handlePrint = async () => {
     if (loading || !refReservePrint.current) return
@@ -84,28 +72,25 @@ const useReserve = ({ reserve }: TProps) => {
     }
   }
 
-  const littleBoxData = () => {
-    const { total, igv, subtotal, totalDias, montoServicios = 0 } = reserve
-
-    return [
-      { title: 'Total:', subtitle: total, Icon: PiggyBankIcon, active: true },
-      { title: 'Sub Total:', subtitle: subtotal, Icon: BanknoteIcon },
-      { title: 'IGV:', subtitle: igv, Icon: SquirrelIcon },
-      { title: 'Servicios:', subtitle: montoServicios, Icon: ShowerHeadIcon },
-      { title: 'Cuartos:', subtitle: 2, Icon: HotelIcon },
-      { title: 'Días:', subtitle: totalDias, Icon: MoonStarIcon }
-    ]
-  }
-
   return {
     handlePrint,
-    handleReservationDeselected,
-    handleReservationSelected,
+    setReservation,
     isReading,
-    littleBoxData,
     loading,
     refReservePrint
   }
 }
 
 export default useReserve
+
+export function littleBoxData(reserve: IReservation) {
+  const { total, igv, subtotal, totalDias, montoServicios = 0 } = reserve
+
+  return [
+    { title: 'Total:', subtitle: total, Icon: BanknoteIcon, active: true },
+    { title: 'Sub Total:', subtitle: subtotal, Icon: PiggyBankIcon },
+    { title: 'IGV:', subtitle: igv, Icon: SquirrelIcon },
+    { title: 'Servicios:', subtitle: montoServicios, Icon: ShowerHeadIcon }
+    // { title: 'Días:', subtitle: totalDias, Icon: MoonStarIcon }
+  ]
+}
