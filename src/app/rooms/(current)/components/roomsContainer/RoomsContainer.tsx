@@ -2,7 +2,6 @@
 
 import { useRooms } from 'hooks/useRooms'
 import type { JSX } from 'react'
-import { Masonry } from 'react-masonry'
 import { v4 as uuidv4 } from 'uuid'
 
 import useFilters from '../../store/useFilters.store'
@@ -24,13 +23,13 @@ const RoomsContainer = (): JSX.Element | null => {
         <b className='gr'>{filters.classification}</b>, capacidad de
         <b className='gr'>{filters.capacity}</b> huéspedes
       </p>
-      <Masonry>
+      <section>
         {data.map(room => (
           <div key={uuidv4()}>
             <CardRoom data={room} />
           </div>
         ))}
-      </Masonry>
+      </section>
     </>
   )
 }

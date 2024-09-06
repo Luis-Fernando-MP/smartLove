@@ -1,9 +1,9 @@
-import { IReservation } from 'services/reserve/reserve.service.types'
+import { Reservation } from '@prisma/client'
 import { create } from 'zustand'
 
 interface IUsePruneReserveStore {
-  reservation: IReservation | null
-  setReservation: (reservation: IReservation | null) => void
+  reservation: Reservation | null
+  setReservation: (reservation: Reservation | null) => void
 }
 
 export const usePruneReserveStore = create<IUsePruneReserveStore>(set => ({

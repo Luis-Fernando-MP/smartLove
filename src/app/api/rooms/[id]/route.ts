@@ -20,7 +20,8 @@ export async function GET(request: Request, response: { params: Params }) {
         reservations: true
       }
     })
-    if (!room) return []
+    if (!room) throw new Error('the room not found')
+
     const temporalRoom = {
       ...room,
       services: room.RoomServices.map(roomService => roomService.ServicesRel)

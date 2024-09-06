@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { RoomCapacity, RoomClassification, RoomPricing } from '@prisma/client'
 import * as z from 'zod'
 
 const schemeRoomsValidator = z.object(
@@ -18,14 +17,14 @@ const schemeRoomsValidator = z.object(
 )
 
 export interface TFilterRoomsValidator {
-  pricing: RoomPricing
-  classification: RoomClassification
-  capacity: RoomCapacity
+  pricing: any
+  classification: any
+  capacity: any
 }
 export const roomsResolver = zodResolver(schemeRoomsValidator)
 
 interface IPricingFilter {
-  value: RoomPricing
+  value: any
   name: string
 }
 
@@ -53,7 +52,7 @@ export const pricingValues: IPricingFilter[] = [
 ]
 
 interface IClassificationsFilter {
-  value: RoomClassification
+  value: any
   name: string
 }
 
@@ -77,7 +76,7 @@ export const classificationsValues: IClassificationsFilter[] = [
 ]
 
 interface ICapacitiesFilter {
-  value: RoomCapacity
+  value: any
   name: string
 }
 
