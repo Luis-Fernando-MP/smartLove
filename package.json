@@ -11,6 +11,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "turbo": "rimraf .next && pnpm store prune && pnpm dev",
     "prisma:migrate": "pnpx prisma migrate dev --name",
+    "prisma:deploy": "pnpx prisma migrate deploy",
     "ngrok": "ngrok http http://127.0.0.1:3000"
   },
   "dependencies": {
