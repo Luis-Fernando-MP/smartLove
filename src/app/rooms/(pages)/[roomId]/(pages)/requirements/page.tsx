@@ -47,8 +47,7 @@ const Page = (): JSX.Element | null => {
   }, [user])
 
   if (!room) return null
-
-  const roomID = room?.codigo ?? ''
+  const { reservations, id: roomID } = room
 
   function handleContinue() {
     if (!$formRef.current) return
@@ -63,7 +62,7 @@ const Page = (): JSX.Element | null => {
       )
     }
     const notAvailable = noAvailableDateInRange({
-      dates: room.fechas ?? [],
+      dates: reservations,
       endDate: toDate,
       startDate: fromDate
     })
@@ -72,7 +71,6 @@ const Page = (): JSX.Element | null => {
         'Tus fechas  fechas seleccionadas no están disponibles, revisa una vez mas. 🤓'
       )
     }
-    // localStorage.setItem('process', '1')
     if (user === null) {
       return openSignIn({
         forceRedirectUrl: currentPath,
@@ -83,19 +81,19 @@ const Page = (): JSX.Element | null => {
     }
 
     const reserveData: ISendReserveData = {
-      cliente: {
+      client: {
         email: user?.emailAddresses[0].emailAddress ?? '',
         ...clientData
       },
-      habitacion: { codigo: Number(roomID) },
-      fechaIngreso: fromDate,
-      fechaSalida: toDate,
-      totalDias: nights,
+      room: { id: roomID },
+      fromDate,
+      toDate,
+      days: nights,
       subtotal,
-      total: totalAmount,
+      totalAmount,
       igv,
-      id: user?.id ?? '',
-      estado: 1
+      userId: user?.id ?? '',
+      status: 1
     }
 
     const toId = toast.loading('Procesando reserva')

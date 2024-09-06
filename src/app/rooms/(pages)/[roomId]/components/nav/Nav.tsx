@@ -10,7 +10,9 @@ import './style.scss'
 const Nav = (): JSX.Element | null => {
   const { room } = useRoomStore()
   if (!room) return null
-  const firstImage = room?.imagenesHabitacion[0]
+  const { images } = room
+
+  const firstImage = images[0]
   return (
     <div className='roomNav-container'>
       <Back row />
@@ -21,16 +23,16 @@ const Nav = (): JSX.Element | null => {
       <ul className='roomNav-images'>
         <li className='roomNav-item background'>
           <img
-            src={firstImage.urlImagen}
-            alt={firstImage.fechCreacion.toString()}
+            src={firstImage.imageUrl}
+            alt={firstImage.createdAt.toString()}
             className='roomNav-image first'
           />
         </li>
-        {room?.imagenesHabitacion.slice(1).map(image => {
-          const { urlImagen, idImgHabitacion, fechCreacion } = image
+        {images.slice(1).map(image => {
+          const { id, createdAt, imageUrl } = image
           return (
-            <li key={idImgHabitacion} className='roomNav-item'>
-              <img src={urlImagen} alt={fechCreacion.toString()} className='roomNav-image' />
+            <li key={id} className='roomNav-item'>
+              <img src={imageUrl} alt={createdAt.toString()} className='roomNav-image' />
             </li>
           )
         })}

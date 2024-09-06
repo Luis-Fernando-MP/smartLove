@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
+import { TFullDataRoom } from 'app/api/rooms/route'
 import axios, { AxiosError } from 'axios'
-import { API_URL } from 'shared/constants'
-import { delay } from 'shared/helpers/delay'
 
 import { IError } from '../error.service.types'
-import { IRoom } from './room.service.types'
 
 const axiosRoom = axios.create({
-  baseURL: `${API_URL}/habitacion`,
+  baseURL: `/api/rooms`,
   responseEncoding: 'utf8',
   responseType: 'json',
   method: 'GET',
@@ -16,15 +14,14 @@ const axiosRoom = axios.create({
   }
 })
 
-export const getAllRooms = async (): Promise<IRoom[]> => {
+export const getAllRooms = async () => {
   try {
-    await delay(500)
     const response = await axiosRoom('')
     const { data } = response
     if (!data) {
       throw new Error('No se recibieron datos válidos en la respuesta')
     }
-    return data as IRoom[]
+    return data as TFullDataRoom[]
   } catch (error: any) {
     let errorEvent: IError = {
       message: error?.message,
@@ -38,14 +35,13 @@ export const getAllRooms = async (): Promise<IRoom[]> => {
     throw errorEvent
   }
 }
-export const getRoomById = async (id: string): Promise<IRoom> => {
+export const getRoomById = async (id: string) => {
   try {
-    await delay(800)
-    const response = await axiosRoom(`/findById/${id}`)
+    const response = await axiosRoom(`/${id}`)
     if (!response.data) {
       throw new Error('No se recibieron datos válidos en la respuesta')
     }
-    return response.data as IRoom
+    return response.data as TFullDataRoom
   } catch (error: any) {
     let errorEvent: IError = {
       message: error?.message,

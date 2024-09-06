@@ -1,7 +1,7 @@
+import { Reservation } from '@prisma/client'
 import dayjs, { Dayjs } from 'dayjs'
 import 'dayjs/locale/es'
 import localeData from 'dayjs/plugin/localeData'
-import { IRoomBusyDays } from 'services/room/room.service.types'
 
 dayjs.locale('es')
 dayjs.extend(localeData)
@@ -16,10 +16,10 @@ export const getDaysInMonth = (year: number, month: number) => {
 }
 
 // Ordena acendentemente las fechas de las reservas
-export const orderDates = (dates: IRoomBusyDays[]) => {
+export const orderDates = (dates: Reservation[]) => {
   return dates.sort((a, b) => {
-    const dateA = new Date(a.fechaInicio)
-    const dateB = new Date(b.fechaInicio)
+    const dateA = new Date(a.fromDate)
+    const dateB = new Date(b.toDate)
     return dateA.getTime() - dateB.getTime()
   })
 }
@@ -29,7 +29,7 @@ const isCrossDay = (day: Dayjs, from: Dayjs, end: Dayjs) => {
 }
 
 interface ICaaDCrossing {
-  dates: IRoomBusyDays[]
+  dates: Reservation[]
   monthStringDays: string[]
   selectFrom: string
   selectEnd: string
@@ -54,16 +54,16 @@ export const calculateDateCrossing = ({
     let isBusy = false
     let isCrossing = false
     const isSelect = isCrossDay(day, SFrom, SEnd)
-    let userId: null | string = null
+    let userId: null | number = null
     let fullName: null | string = null
 
-    dates.forEach(({ fechaInicio, fechaFin, id, nombres }) => {
-      const from = dayjs(fechaInicio, 'YYYY-MM-DD')
-      const to = dayjs(fechaFin, 'YYYY-MM-DD')
+    dates.forEach(({ fromDate, toDate, id }) => {
+      const from = dayjs(fromDate, 'YYYY-MM-DD')
+      const to = dayjs(toDate, 'YYYY-MM-DD')
       const isBetween = day.isBetween(from, to, null, '[]')
 
       if (isBetween) {
-        fullName = nombres
+        fullName = 'ejm'
         userId = id
         isBusy = true
       }
@@ -85,7 +85,7 @@ export const calculateDateCrossing = ({
   return [...emptyDays, ...daysOnMonth]
 }
 interface INoDRangeAvailable {
-  dates: IRoomBusyDays[]
+  dates: Reservation[]
   startDate: string
   endDate: string
 }
@@ -96,8 +96,8 @@ export const noAvailableDateInRange = ({
   startDate
 }: INoDRangeAvailable): boolean => {
   return !!dates?.some(date => {
-    const from = dayjs(date.fechaInicio, 'YYYY-MM-DD')
-    const to = dayjs(date.fechaFin, 'YYYY-MM-DD')
+    const from = dayjs(date.fromDate, 'YYYY-MM-DD')
+    const to = dayjs(date.toDate, 'YYYY-MM-DD')
     const start = dayjs(startDate, 'YYYY-MM-DD')
     const end = dayjs(endDate, 'YYYY-MM-DD')
     return (
@@ -110,10 +110,10 @@ export const noAvailableDateInRange = ({
 
 // Si la fecha especificada se encuentre ya en un rango de reservas
 // Similar al método de noAvailableDateInRange, pero menos rígido
-export const isDateInRange = (dates: IRoomBusyDays[], date: string): boolean => {
+export const isDateInRange = (dates: Reservation[], date: string): boolean => {
   return !!dates?.some(currentDate => {
-    const from = dayjs(currentDate.fechaInicio, 'YYYY-MM-DD')
-    const to = dayjs(currentDate.fechaFin, 'YYYY-MM-DD')
+    const from = dayjs(currentDate.fromDate, 'YYYY-MM-DD')
+    const to = dayjs(currentDate.toDate, 'YYYY-MM-DD')
     return dayjs(date).isBetween(from, to, null, '[]')
   })
 }

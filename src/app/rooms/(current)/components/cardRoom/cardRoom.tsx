@@ -1,10 +1,10 @@
 'use client'
 
 /* eslint-disable @next/next/no-img-element */
+import { TFullDataRoom } from 'app/api/rooms/route'
 import { BanknoteIcon, CalendarDaysIcon, ImagesIcon, LandPlotIcon } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import type { JSX, ReactNode } from 'react'
-import { IRoom } from 'services/room/room.service.types'
 import { sansitaSwashed } from 'shared/fonts'
 import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
 import SlugRoom from 'shared/ui/slugRoom/slugRoom'
@@ -13,73 +13,66 @@ import './style.scss'
 
 interface ICardRoom {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
-  data: IRoom
+  data: TFullDataRoom
 }
 
 const CardRoom = ({ data }: ICardRoom): JSX.Element => {
-  const {
-    codigo,
-    estado,
-    imagenesHabitacion,
-    nombre,
-    precio,
-    serviciosHabitacion,
-    contadorreserva,
-    descripcion
-  } = data
+  const { reservationCount, status, name, description, price, id } = data
+  const { images, services } = data
+
   return (
     <article className='cardRoom'>
-      <SlugRoom counter={contadorreserva} itsFull={estado} />
+      <SlugRoom counter={reservationCount} itsFull={status} />
       <section className='cardRoom-images'>
-        {imagenesHabitacion.slice(0, 3).map(image => {
+        {images.slice(0, 3).map(image => {
           return (
             <img
-              key={image.idImgHabitacion}
-              src={image.urlImagen}
-              alt={image.urlImagen}
+              key={image.id}
+              src={image.imageUrl}
+              alt={image.imageUrl}
               className='cardRoom-image'
               loading='lazy'
             />
           )
         })}
         <img
-          src={imagenesHabitacion[0].urlImagen}
-          alt={nombre}
+          src={images[0].imageUrl}
+          alt={`Habitación ${name}`}
           className='cardRoom-images__background'
           loading='lazy'
         />
       </section>
 
       <div className='cardRoom-information'>
-        <h4 className={sansitaSwashed.className}>{nombre}</h4>
-        <p className='cardRoom-descriptions'>{descripcion}</p>
+        <h4 className={sansitaSwashed.className}>{name}</h4>
+        <p className='cardRoom-descriptions'>{description}</p>
       </div>
 
       <ul className='cardRoom-services'>
         <li className='cardRoom-service price'>
           <BanknoteIcon />
-          {precio}
+          {String(price)}
         </li>
-        {serviciosHabitacion.map(services => {
-          const { nombreServicio, idServHabitacion } = services
-          const { Icon } = parseServiceToIcon(services.urlImagen)
+        {services.map(service => {
+          const { id, serviceName, imageUrl } = service
+          const { Icon } = parseServiceToIcon(imageUrl)
           return (
-            <li className='cardRoom-service' key={idServHabitacion}>
+            <li className='cardRoom-service' key={id}>
               <Icon />
-              <span>{nombreServicio}</span>
+              <span>{serviceName}</span>
             </li>
           )
         })}
       </ul>
 
       <section className='cardRoom-actions'>
-        <Link href={`/rooms/${codigo}/calendar`} className='btn cardRoom-action'>
+        <Link href={`/rooms/${id}/calendar`} className='btn cardRoom-action'>
           <CalendarDaysIcon />
         </Link>
-        <Link href={`/rooms/${codigo}`} className='btn cardRoom-action'>
+        <Link href={`/rooms/${id}`} className='btn cardRoom-action'>
           <LandPlotIcon />
         </Link>
-        <Link href={`/rooms/${codigo}/images`} className='btn cardRoom-action'>
+        <Link href={`/rooms/${id}/images`} className='btn cardRoom-action'>
           <ImagesIcon />
         </Link>
       </section>

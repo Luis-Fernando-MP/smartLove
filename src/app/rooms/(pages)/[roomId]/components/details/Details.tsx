@@ -12,15 +12,15 @@ import './style.scss'
 const Details = (): JSX.Element | null => {
   const room = useRoomStore(s => s.room)
   if (!room) return null
-  const { contadorreserva, estado, precio, nombre, codigo } = room
+  const { reservationCount, price, name, id } = room
   const slugs = getSlugs({
-    counter: contadorreserva,
-    itsFull: estado
+    counter: reservationCount,
+    itsFull: false
   })
 
   return (
     <>
-      <Steps total={precio} id={String(room.codigo)} />
+      <Steps total={Number(price)} id={String(room.id)} />
       <section className='roomDetails'>
         <aside className='slugs'>
           {slugs.map(slug => {
@@ -35,22 +35,22 @@ const Details = (): JSX.Element | null => {
             )
           })}
         </aside>
-        <h1 className={`${sansitaSwashed.className} title`}>{nombre}</h1>
+        <h1 className={`${sansitaSwashed.className} title`}>{name}</h1>
         <div className='roomDetails-container'>
           <h5 className='roomDetails-characteristic'>
             <DollarSignIcon />
-            <b>{precio}xDía</b>
+            <b>{String(price)}xDía</b>
           </h5>
           <span className='roomDetails-characteristic'>
             <PlusIcon />
-            {contadorreserva} Reservas pasadas
+            {reservationCount} Reservas pasadas
           </span>
-          <Link href={`/rooms/${codigo}/calendar`} className='roomDetails-calendar gr'>
+          <Link href={`/rooms/${id}/calendar`} className='roomDetails-calendar gr'>
             <CalendarRange color='var(--tn-primary)' />
             <span>Ver calendario de actividades</span>
           </Link>
         </div>
-        <p className='roomDetails-description'>{room.descripcion}</p>
+        <p className='roomDetails-description'>{room.description}</p>
       </section>
     </>
   )

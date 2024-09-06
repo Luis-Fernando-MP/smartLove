@@ -11,21 +11,21 @@ import './style.scss'
 const Page = (): JSX.Element | null => {
   const room = useRoomStore(store => store.room)
   if (!room) return null
-  const { codigo, serviciosHabitacion } = room
+  const { id, services } = room
   return (
     <>
       <ul className='currentRoom-services'>
-        {serviciosHabitacion.map(service => {
-          const { Icon } = parseServiceToIcon(service.urlImagen)
+        {services.map(service => {
+          const { Icon } = parseServiceToIcon(service.imageUrl)
           return (
-            <li className='btn currentRoom-service' key={service.idServHabitacion}>
+            <li className='btn currentRoom-service' key={service.id}>
               <Icon />
-              <p>{service.nombreServicio}</p>
+              <p>{service.serviceName}</p>
             </li>
           )
         })}
       </ul>
-      <Link href={`/rooms/${codigo}/requirements`} className='btn currentRoom-continue bgr big'>
+      <Link href={`/rooms/${id}/requirements`} className='btn currentRoom-continue bgr big'>
         Reservar ahora 🍀
       </Link>
       <h3 className='text-center'>

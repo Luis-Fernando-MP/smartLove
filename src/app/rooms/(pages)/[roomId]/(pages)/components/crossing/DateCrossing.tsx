@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useUser } from '@clerk/nextjs'
+import { Reservation } from '@prisma/client'
 import dayjs, { Dayjs } from 'dayjs'
 import { JSX, memo } from 'react'
-import { IRoomBusyDays } from 'services/room/room.service.types'
 import {
   calculateDateCrossing,
   formattedShortWeekdays,
@@ -15,7 +15,7 @@ import { v1 as uuid } from 'uuid'
 import './style.scss'
 
 interface IDateCrossing {
-  dates: IRoomBusyDays[]
+  dates: Reservation[]
   selectFrom: string
   selectEnd: string
 }
@@ -54,13 +54,8 @@ const DateCrossing = ({ dates, selectEnd, selectFrom }: IDateCrossing): JSX.Elem
             )
           })}
           {calendar.map(calendarItem => {
-            console.log('calendarItem')
-            console.log(calendarItem)
             if (!calendarItem) return <li key={uuid()} />
             const { day, isBusy, isCrossing, isSelect, userId, fullName } = calendarItem
-            const isUser = userId === user?.id
-            console.log(isUser, '-', userId, '-', user?.id)
-
             return (
               <li
                 key={uuid()}

@@ -42,12 +42,14 @@ const TotalCalculate = (): JSX.Element | null => {
 
   const oneNight = diffDays <= 0 + ADD_DAY
   const today = dayjs()
+  const { reservations } = room
 
   const handleChange = (date: string) => {
     const dateValue = date
     if (dateValue === '' || !room) return handleChangeNights(1)
+
     const selectedDate = dayjs(dateValue)
-    const isDateValid = isDateInRange(room.fechas ?? [], dateValue)
+    const isDateValid = isDateInRange(reservations, dateValue)
     if (isDateValid) {
       toast.error('La fecha seleccionada no está disponible')
       return null
@@ -57,7 +59,7 @@ const TotalCalculate = (): JSX.Element | null => {
 
   return (
     <div>
-      <DateCrossing dates={room.fechas ?? []} selectFrom={fromDate} selectEnd={toDate} />
+      <DateCrossing dates={reservations ?? []} selectFrom={fromDate} selectEnd={toDate} />
       <article className='totalCalculate'>
         <section className='totalCalculate-days'>
           <div className='totalCalculate-separator'>

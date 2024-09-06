@@ -1,9 +1,9 @@
-import { IReservation } from 'services/reserve/reserve.service.types'
+import { TClientReservation } from 'app/api/reservation/by-user/[idUser]/route'
 import { create } from 'zustand'
 
 interface IUseReservationStore {
-  reservation: IReservation | null
-  setReservation: (reservation: IReservation | null) => void
+  reservation: TClientReservation | null
+  setReservation: (reservation: TClientReservation | null) => void
 }
 
 export const useReservationStore = create<IUseReservationStore>(set => ({
@@ -14,8 +14,8 @@ export const useReservationStore = create<IUseReservationStore>(set => ({
 }))
 
 interface IUseReservationsStore {
-  reservations: IReservation[]
-  setReservations: (reservations: IReservation[]) => void
+  reservations: TClientReservation[]
+  setReservations: (reservations: TClientReservation[]) => void
 }
 
 export const useReservationsStore = create<IUseReservationsStore>(set => {

@@ -7,7 +7,7 @@ import './userMobile.scss'
 interface ILayout {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
 }
-const Layout = ({ children }: ILayout): JSX.Element => {
+const Layout = async ({ children }: ILayout): Promise<JSX.Element> => {
   return (
     <section className='dashboard'>
       <Header />

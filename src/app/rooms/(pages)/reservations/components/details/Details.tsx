@@ -22,8 +22,8 @@ const Details = (): JSX.Element | null => {
     setReservation(null)
   }
 
-  const fromDay = dayjs(r?.fechaIngreso).add(1, 'days')
-  const toDay = dayjs(r?.fechaSalida).add(1, 'days')
+  const fromDay = dayjs(r?.checkIn).add(1, 'days')
+  const toDay = dayjs(r?.checkOut).add(1, 'days')
   const diffDays = toDay.diff(fromDay, 'day') + 1
 
   return (
@@ -52,20 +52,20 @@ const Details = (): JSX.Element | null => {
         <b>HABITACIÓN</b> reservada:
       </h4>
       <section className='RDImages'>
-        <h3 className={sansitaSwashed.className}>{r?.habitacion.nombre}</h3>
+        <h3 className={sansitaSwashed.className}>{r?.room.name}</h3>
         <div className='RDImages-container'>
           <img
             className='RDImages-container__background'
-            src={r?.habitacion.imagenesHabitacion[0].urlImagen}
-            alt={r?.habitacion.nombre}
+            src={r?.room.images[0].imageUrl}
+            alt={r?.room.name}
           />
           <div className='RDImages-container__images'>
-            {r?.habitacion.imagenesHabitacion.slice(1).map(img => {
+            {r?.room.images.slice(1).map(img => {
               return (
                 <img
                   className='RDImages-container__image'
-                  src={img.urlImagen}
-                  alt={img.urlImagen}
+                  src={img.imageUrl}
+                  alt={img.imageUrl}
                   key={uuid()}
                 />
               )
@@ -77,7 +77,19 @@ const Details = (): JSX.Element | null => {
         <b>COSTOS</b> por la reserva:
       </h4>
       <section className='RDLittleBoxes'>
-        {!!r && littleBoxData(r).map(i => <CuteLittleBox key={i.title} {...i} />)}
+        {!!r &&
+          littleBoxData(r).map(i => {
+            const { Icon, subtitle, title, active } = i
+            return (
+              <CuteLittleBox
+                key={i.title}
+                Icon={Icon}
+                subtitle={Number(subtitle)}
+                title={title}
+                active={active}
+              />
+            )
+          })}
       </section>
     </article>
   )

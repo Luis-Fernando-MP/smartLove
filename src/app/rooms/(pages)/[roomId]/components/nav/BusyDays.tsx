@@ -12,9 +12,12 @@ const BusyDays = (): JSX.Element | null => {
   const { room } = useRoomStore()
   const [active, setActive] = useState(false)
   if (!room) return null
+
+  const { reservations, id } = room
+
   const today = dayjs().add(-1, 'day')
-  const busyDays = room.fechas?.filter(f =>
-    dayjs(f.fechaFin, 'YYYY-MM-DD HH:mm:ss.S').isAfter(today)
+  const busyDays = reservations?.filter(f =>
+    dayjs(f.toDate, 'YYYY-MM-DD HH:mm:ss.S').isAfter(today)
   )
   if (!busyDays || busyDays?.length < 1) return null
 
@@ -24,7 +27,7 @@ const BusyDays = (): JSX.Element | null => {
         Hay <b className='gr'>Días ocupados</b> para esta habitación
       </h2>
       <p>Revisa su disponibilidad antes de reservar</p>
-      <Link href={`/rooms/${room?.codigo}/calendar`}>Véase el calendario de reservas</Link>
+      <Link href={`/rooms/${id}/calendar`}>Véase el calendario de reservas</Link>
       {busyDays.length > 2 && (
         <button onClick={() => setActive(!active)} className='btn RBusyDays-action'>
           {active ? <PanelTopCloseIcon /> : <PanelTopOpenIcon />}

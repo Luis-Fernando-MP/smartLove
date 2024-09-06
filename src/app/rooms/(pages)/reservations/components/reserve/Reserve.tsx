@@ -1,8 +1,9 @@
 'use client'
 
+import { TClientReservation } from 'app/api/reservation/by-user/[idUser]/route'
+import dayjs from 'dayjs'
 import { LoaderCircle, NotebookTabs, Printer, Repeat, XIcon } from 'lucide-react'
 import { type JSX, type ReactNode } from 'react'
-import { IReservation } from 'services/reserve/reserve.service.types'
 import { sansitaSwashed } from 'shared/fonts'
 import { breakDownDate } from 'shared/helpers/formatDate'
 import { switchClass } from 'shared/helpers/switchClassName'
@@ -14,7 +15,7 @@ import useReserve, { littleBoxData } from './useReserve'
 
 interface IReserve {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
-  reserve: IReservation
+  reserve: TClientReservation
 }
 
 const Reserve = ({ reserve }: IReserve): JSX.Element => {
@@ -26,7 +27,6 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
     if (typeof window === 'undefined' || refReservePrint?.current) return
     const parent = document.querySelector('.reservations.dashboard-body__reservations')
     if (!parent || parent instanceof HTMLElement) return
-    console.log('scroll', parent)
 
     parent.scrollTo({
       top: refReservePrint.current?.offsetTop,
@@ -36,9 +36,10 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
 
   scroll()
 
-  const { fechaIngreso, fechaSalida } = reserve
-  const from = breakDownDate(fechaIngreso)
-  const to = breakDownDate(fechaSalida)
+  const { checkIn, checkOut, room, id, createdAt } = reserve
+  const from = breakDownDate(dayjs(checkIn).toString())
+  const to = breakDownDate(dayjs(checkOut).toString())
+  const date = dayjs(createdAt)
 
   return (
     <article className={`reserve ${switchClass(isReading)}`} ref={refReservePrint}>
@@ -49,26 +50,35 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
         }}
       >
         <ToggleLogo />
-        <h3 className={`${sansitaSwashed.className} center`}>{reserve.habitacion.nombre}</h3>
+        <h3 className={`${sansitaSwashed.className} center`}>{room.name}</h3>
         <section className='reserve-operations'>
           <div className='reserve-operation'>
             <h4>Ope.</h4>
-            <h5 className='gr'>{reserve.idReserva}</h5>
+            <h5 className='gr'>{id}</h5>
           </div>
           <div className='reserve-operation'>
             <h4>Hora</h4>
-            <p>{reserve.fechaIngreso.slice(0, 10)}</p>
+            <p>{date.format('hh:mm A')}</p>
           </div>
           <div className='reserve-operation'>
             <h4>Fecha</h4>
-            <p>{reserve.fechaSalida.slice(0, 10)}</p>
+            {date.format('DD/MM/YY')}{' '}
           </div>
         </section>
 
         <section className='reserve-littleBoxes'>
-          {littleBoxData(reserve).map(i => (
-            <CuteLittleBox key={i.title} {...i} />
-          ))}
+          {littleBoxData(reserve).map(i => {
+            const { Icon, subtitle, title, active } = i
+            return (
+              <CuteLittleBox
+                key={i.title}
+                Icon={Icon}
+                subtitle={Number(subtitle)}
+                title={title}
+                active={active}
+              />
+            )
+          })}
         </section>
 
         <section className='reserve-date'>

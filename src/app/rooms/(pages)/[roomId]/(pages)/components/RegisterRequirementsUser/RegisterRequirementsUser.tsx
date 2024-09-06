@@ -27,7 +27,7 @@ const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequiremen
 
     const onError = (): void => {
       toast.error('Completa todos los campos correctamente')
-      console.error('error', err)
+      console.log('error', err)
     }
 
     const onReset = (): void => {
@@ -37,8 +37,6 @@ const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequiremen
 
     const handleInputChange = useCallback(
       async (name: keyof TRequirementsUser, value: string) => {
-        // eslint-disable-next-line promise/param-names
-        // if (err[name]) return
         setFormData({
           ...formData,
           [name]: value

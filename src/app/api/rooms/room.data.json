@@ -1,17 +1,14 @@
 [
   {
+    "nombre": "Habitación Simple 1",
+    "precio": 655.0,
+    "estado": true,
+
     "cantidad": 5,
     "clasificacion": "Estandar",
     "codigo": 1,
     "contadorreserva": 45,
-    "counter": 20,
-    "estado": true,
-    "nombre": "Habitación Simple 1",
-    "onSale": true,
-    "precio": 655.0,
     "preciovalor": "barato",
-    "usrcreacion": "admin",
-    "usredicion": "admin",
     "serviciosHabitacion": [
       {
         "idServHabitacion": 3,
@@ -22,26 +19,6 @@
         "fechCreacion": "2024-05-26 02:21:58",
         "usrEdicion": "admin",
         "fechEdicion": "2024-05-28 02:53:09"
-      },
-      {
-        "idServHabitacion": 6,
-        "nombreServicio": "Capacidad",
-        "urlImagen": "Capacidad",
-        "estado": true,
-        "usrCreacion": "admin",
-        "fechCreacion": "2024-05-26 02:21:59",
-        "usrEdicion": "admin",
-        "fechEdicion": "2024-05-28 02:53:10"
-      },
-      {
-        "idServHabitacion": 7,
-        "nombreServicio": "No reembolsable",
-        "urlImagen": "NoReembolsable",
-        "estado": true,
-        "usrCreacion": "admin",
-        "fechCreacion": "2024-05-26 02:21:59",
-        "usrEdicion": "admin",
-        "fechEdicion": "2024-05-29 04:27:54"
       }
     ],
     "imagenesHabitacion": [
@@ -53,33 +30,6 @@
         "fechCreacion": "2024-05-26 02:20:54",
         "usrEdicion": "admin",
         "fechEdicion": "2024-05-26 02:20:54"
-      },
-      {
-        "idImgHabitacion": 2,
-        "urlImagen": "https://www.hotelsantamariacusco.com/wp-content/uploads/2022/01/habitacion-doble-hotel-Santa-Maria-Cusco-peru01.jpg",
-        "estado": true,
-        "usrCreacion": "admin",
-        "fechCreacion": "2024-05-26 02:20:54",
-        "usrEdicion": "admin",
-        "fechEdicion": "2024-05-26 02:20:54"
-      },
-      {
-        "idImgHabitacion": 3,
-        "urlImagen": "https://www.hotelsantamariacusco.com/wp-content/uploads/2022/01/habitacion-simple-hotel-Santa-Maria-Cusco-peru.jpg",
-        "estado": true,
-        "usrCreacion": "admin",
-        "fechCreacion": "2024-05-26 02:20:54",
-        "usrEdicion": "admin",
-        "fechEdicion": "2024-05-26 02:20:54"
-      },
-      {
-        "idImgHabitacion": 4,
-        "urlImagen": "https://www.hotelsantamariacusco.com/wp-content/uploads/2022/01/habitacion-triple-hotel-Santa-Maria-Cusco-peru01.jpg",
-        "estado": true,
-        "usrCreacion": "admin",
-        "fechCreacion": "2024-05-26 02:20:55",
-        "usrEdicion": "admin",
-        "fechEdicion": "2024-05-26 02:20:55"
       }
     ]
   },

@@ -15,9 +15,9 @@ const Recommendations = (): JSX.Element | null => {
   return (
     <ul className='roomsRecommendations'>
       {data
-        .filter(r => String(r.codigo) !== String(room.codigo))
+        .filter(r => r.id !== room.id)
         .map(room => {
-          return <RoomComponentV2 key={room.codigo} room={room} />
+          return <RoomComponentV2 key={room.id} room={room} />
         })}
     </ul>
   )

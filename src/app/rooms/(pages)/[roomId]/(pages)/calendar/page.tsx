@@ -18,19 +18,21 @@ const Page = (): JSX.Element | null => {
   const [date, setDate] = useState(new Date())
 
   if (!room) return null
+  const { reservations, id } = room
+
   const myEventsList =
-    room?.fechas?.map(f => {
+    reservations?.map(f => {
       return {
         title: 'Ocupado',
-        start: dayjs(f.fechaInicio, 'YYYY-MM-DD').toDate(),
-        end: dayjs(f.fechaFin, 'YYYY-MM-DD').add(1, 'day').toDate(),
-        userId: f.idCliente
+        start: dayjs(f.fromDate, 'YYYY-MM-DD').toDate(),
+        end: dayjs(f.toDate, 'YYYY-MM-DD').add(1, 'day').toDate(),
+        userId: f.clientId
       }
     }) ?? []
 
   return (
     <article className='RCalendar'>
-      <Link href={`/rooms/${room.codigo}/requirements`} className='btn bgr big'>
+      <Link href={`/rooms/${id}/requirements`} className='btn bgr big'>
         Reservar ahora 🍀
       </Link>
       <Calendar
@@ -46,7 +48,9 @@ const Page = (): JSX.Element | null => {
           setDate(new Date(date))
         }}
         components={{
-          event: ({ event }) => <CalendarItem userId={event.userId} title={event.title} />
+          event: ({ event }) => {
+            return <CalendarItem userId={event.userId} title={event.title} />
+          }
         }}
       />
     </article>

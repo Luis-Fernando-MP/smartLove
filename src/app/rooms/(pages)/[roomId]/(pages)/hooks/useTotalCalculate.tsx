@@ -1,6 +1,6 @@
+import { TFullDataRoom } from 'app/api/rooms/route'
 import dayjs from 'dayjs'
 import { useCallback, useEffect, useMemo } from 'react'
-import { IRoom } from 'services/room/room.service.types'
 import { round } from 'shared/helpers/round'
 import { STAY_USER, currentClassCase } from 'shared/helpers/stayUserCases'
 
@@ -8,7 +8,7 @@ import useRequirementsStore from '../store/useRequirementsStore'
 import { calculateDaysDifference, calculateTotalAmount } from './totalCalculate.utils'
 
 interface TProps {
-  room?: IRoom
+  room?: TFullDataRoom
 }
 
 export const IGV = 0.18
@@ -29,7 +29,7 @@ const useUseTotalCalculate = ({ room }: TProps) => {
     setSurcharge
   } = useRequirementsStore()
 
-  const roomPrice = room?.precio ?? 0
+  const roomPrice = Number(room?.price ?? 0)
 
   const diffDays = useMemo(() => calculateDaysDifference(fromDate, toDate), [fromDate, toDate])
 
@@ -74,10 +74,12 @@ const useUseTotalCalculate = ({ room }: TProps) => {
 
   useEffect(() => {
     if (!room) return
-    const reverseDates = structuredClone(room.fechas ?? [])?.reverse()
+    const { reservations } = room
+
+    const reverseDates = structuredClone(reservations ?? [])?.reverse()
     for (const date of reverseDates) {
-      const from = dayjs(date.fechaInicio, 'YYYY-MM-DD')
-      const to = dayjs(date.fechaFin, 'YYYY-MM-DD')
+      const from = dayjs(date.fromDate, 'YYYY-MM-DD')
+      const to = dayjs(date.toDate, 'YYYY-MM-DD')
       const stateFrom = dayjs(fromDate, 'YYYY-MM-DD')
       const stateTo = dayjs(toDate, 'YYYY-MM-DD')
       if (stateFrom.isBetween(from, to, null, '[]') || stateTo.isBetween(from, to, null, '[]')) {

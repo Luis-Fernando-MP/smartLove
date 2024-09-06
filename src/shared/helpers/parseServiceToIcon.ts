@@ -107,9 +107,10 @@ export const listOfCharacteristicsIcon = [
 
 const parseServiceToIcon = (characterValue: string) => {
   const existIcon = listOfCharacteristicsIcon.find(item => {
+    const iconName = `${item.Icon.displayName?.toLowerCase() ?? ''}icon`
     return (
       item.value.toLowerCase() === characterValue.toLowerCase() ||
-      item.Icon.displayName?.toLowerCase() === characterValue.toLowerCase()
+      iconName === characterValue.toLowerCase()
     )
   })
   return existIcon ?? { value: 'default', Icon: AlertCircleIcon }

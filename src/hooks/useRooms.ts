@@ -1,27 +1,31 @@
 'use client'
 
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { TFullDataRoom } from 'app/api/rooms/route'
 import { getAllRooms, getRoomById } from 'services/room/getRoom.service'
-import { IRoom } from 'services/room/room.service.types'
 
 export const ROOMS_NAME_CACHE = 'ROOMS'
 export const ROOM_NAME_CACHE = 'ROOM'
 export function useRooms() {
+  const queryClient = useQueryClient()
+  const cacheAllRooms = queryClient.getQueryData([ROOMS_NAME_CACHE]) as TFullDataRoom[]
   return useSuspenseQuery({
     queryKey: [ROOMS_NAME_CACHE],
     queryFn: getAllRooms,
-    staleTime: 5000,
-    refetchInterval: 4000,
-    retry: 2
+    staleTime: 1000 * 60 * 60,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
+    retry: 2,
+    initialData: cacheAllRooms
   })
 }
 export function useRoom(id: string) {
   const queryClient = useQueryClient()
-  const cacheAllRooms = (queryClient.getQueryData([ROOMS_NAME_CACHE]) as IRoom[]) || []
+  const cacheAllRooms = (queryClient.getQueryData([ROOMS_NAME_CACHE]) as TFullDataRoom[]) || []
 
   return useSuspenseQuery({
     queryKey: [ROOM_NAME_CACHE, id],
-    queryFn: async ({ queryKey }): Promise<IRoom> => {
+    queryFn: async ({ queryKey }): Promise<TFullDataRoom> => {
       const [, id] = queryKey
       return await getRoomById(id)
     },
@@ -30,8 +34,6 @@ export function useRoom(id: string) {
     retry: 2,
     initialDataUpdatedAt: 500,
     initialData:
-      cacheAllRooms !== undefined
-        ? cacheAllRooms.find(room => String(room.codigo) === id)
-        : undefined
+      cacheAllRooms !== undefined ? cacheAllRooms.find(room => String(room.id) === id) : undefined
   })
 }

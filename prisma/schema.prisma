@@ -1,0 +1,122 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+  // directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Room {
+  id               Int                @id @default(autoincrement())
+  name             String             @db.VarChar(100)
+  price            Decimal            @db.Decimal(10, 2)
+  status           Boolean            @default(true)
+  reservationCount Int                @default(0)
+  description      String             @db.VarChar(200)
+  classification   RoomClassification
+  capacity         RoomCapacity
+  pricing          RoomPricing
+
+  images       RoomImage[]
+  reservations Reservation[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @default(now()) @updatedAt()
+  RoomServices RoomServices[]
+}
+
+model RoomServices {
+  id          Int      @id @default(autoincrement())
+  roomId      Int
+  serviceId   Int
+  ServicesRel Services @relation(fields: [serviceId], references: [id])
+  roomRel     Room     @relation(fields: [roomId], references: [id])
+}
+
+model Services {
+  id           Int            @id @default(autoincrement())
+  serviceName  String         @db.VarChar(200)
+  imageUrl     String         @db.VarChar(255)
+  status       Boolean        @default(true)
+  RoomServices RoomServices[]
+}
+
+model RoomImage {
+  id       Int    @id @default(autoincrement())
+  imageUrl String @db.VarChar(255)
+
+  roomId    Int
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt()
+}
+
+model Client {
+  clientId       Int    @id @default(autoincrement())
+  clerkId        String @unique
+  firstName      String @db.VarChar(100)
+  lastName       String @db.VarChar(100)
+  documentNumber String @db.VarChar(10)
+  phone          String @db.VarChar(12)
+  city           String @db.VarChar(100)
+  address        String @db.VarChar(255)
+
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @default(now()) @updatedAt()
+  reservations Reservation[]
+  User         User?
+}
+
+model Reservation {
+  id        Int      @id @default(autoincrement())
+  clientId  Int
+  roomId    Int
+  checkIn   DateTime
+  checkOut  DateTime
+  totalDays Int
+  subtotal  Decimal  @db.Decimal(10, 2)
+  tax       Decimal  @db.Decimal(10, 2)
+  total     Decimal  @db.Decimal(10, 2)
+  status    Boolean  @default(true)
+  fromDate  DateTime
+  toDate    DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt()
+
+  client Client @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+  room   Room   @relation(fields: [roomId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  userId    Int      @id @default(autoincrement())
+  email     String   @unique @db.VarChar(100)
+  photoUrl  String   @db.VarChar(255)
+  password  String   @db.VarChar(10)
+  status    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt()
+  clientId  Int      @unique
+  client    Client   @relation(fields: [clientId], references: [clientId])
+}
+
+enum RoomClassification {
+  ALL
+  EXCELLENT
+  VERY_GOOD
+  GOOD
+}
+
+enum RoomCapacity {
+  LESS_THAN_TWO
+  TWO_TO_THREE
+  FOUR_TO_SIX
+  MORE_THAN_SIX
+}
+
+enum RoomPricing {
+  LESS_THAN_40
+  BETWEEN_40_AND_89
+  BETWEEN_90_AND_140
+  MORE_THAN_140
+}

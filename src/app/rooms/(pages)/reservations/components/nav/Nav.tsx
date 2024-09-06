@@ -20,12 +20,12 @@ const Nav = (): JSX.Element | null => {
   const reservations = useReservationsStore(s => s.reservations)
   const { reservation, setReservation } = useReservationStore()
   const { user } = useUser()
-  const { mutate } = useDeleteReservation()
+  const { mutate, isPending } = useDeleteReservation()
   const hookForm = useForm<TReservationResolver>({
     resolver: reservationResolver,
     values: {
-      roomID: reservation ? String(reservation.idReserva) : '',
-      roomName: reservation ? String(reservation.idReserva) : '',
+      roomID: reservation ? String(reservation.id) : '',
+      roomName: reservation ? String(reservation.id) : '',
       comment: ''
     }
   })
@@ -38,7 +38,7 @@ const Nav = (): JSX.Element | null => {
   const thereError = !!roomIdError || !!roomNameError || !!commentError || !reservation
 
   const getReservation = (id: string) => {
-    return reservations.find(r => String(r.idReserva) === id)
+    return reservations.find(r => String(r.id) === id)
   }
 
   const onFormSubmit = async (data: TReservationResolver) => {
@@ -73,8 +73,7 @@ const Nav = (): JSX.Element | null => {
       <h3 className='reservationNav-subtitle'>¿Cancelar reserva?</h3>
       {reservation && (
         <p className=' reservationNav-id inline-block'>
-          La reserva con el código&nbsp;
-          <b className='gr'>{reservation?.idReserva}</b>
+          La reserva con el código&nbsp; <b className='gr'>{reservation.id}</b>
           &nbsp;esta seleccionada
         </p>
       )}
@@ -106,8 +105,8 @@ const Nav = (): JSX.Element | null => {
               </option>
               {reservations.map(r => {
                 return (
-                  <option key={uuid()} value={r.idReserva}>
-                    Código {r.idReserva}
+                  <option key={uuid()} value={r.id}>
+                    Código {r.id}
                   </option>
                 )
               })}
@@ -135,8 +134,8 @@ const Nav = (): JSX.Element | null => {
               </option>
               {reservations.map(r => {
                 return (
-                  <option key={uuid()} value={r.idReserva}>
-                    {r.habitacion.nombre} S/ {r.total}
+                  <option key={uuid()} value={r.id}>
+                    {r.room.name} S/ {Number(r.total)}
                   </option>
                 )
               })}
@@ -152,10 +151,11 @@ const Nav = (): JSX.Element | null => {
           </span>
           <textarea {...register('comment')} placeholder='¿Que estas pensando?' />
         </section>
-
-        <button type='submit' className='reservationNav-submit'>
-          {thereError ? 'Completa todo los campos' : 'Cancelar reserva'}
-        </button>
+        {!isPending && (
+          <button type='submit' className='reservationNav-submit'>
+            {thereError ? 'Completa todo los campos' : 'Cancelar reserva'}
+          </button>
+        )}
       </form>
     </>
   )

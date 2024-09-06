@@ -9,17 +9,16 @@ import './style.scss'
 const CuteCalendar = (): JSX.Element | null => {
   const { room } = useRoomStore()
   if (!room) return null
+  const { reservations } = room
 
   const today = dayjs().add(-1, 'day')
-  const busyDays = room.fechas?.filter(f =>
-    dayjs(f.fechaFin, 'YYYY-MM-DD HH:mm:ss.S').isAfter(today)
-  )
+  const busyDays = reservations.filter(f => dayjs(f.toDate, 'YYYY-MM-DD HH:mm:ss.S').isAfter(today))
 
   return (
     <article className='CCalendar'>
-      {busyDays?.reverse().map(f => {
-        const from = dayjs(f.fechaInicio)
-        const to = dayjs(f.fechaFin)
+      {busyDays.map(f => {
+        const from = dayjs(f.fromDate)
+        const to = dayjs(f.toDate)
         return (
           <section key={uuid()} className='CCalendar-data'>
             <DayBox day={from} />

@@ -1,8 +1,8 @@
-import { IRoom } from 'services/room/room.service.types'
+import { TFullDataRoom } from 'app/api/rooms/route'
 import { create } from 'zustand'
 
 interface IUseRoomStore {
-  room: IRoom
+  room: TFullDataRoom
   setRoom: (room: IUseRoomStore['room']) => void
 }
 

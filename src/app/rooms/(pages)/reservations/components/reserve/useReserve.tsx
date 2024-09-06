@@ -1,15 +1,15 @@
+import { TClientReservation } from 'app/api/reservation/by-user/[idUser]/route'
 import html2canvas from 'html2canvas'
 import JsPDF from 'jspdf'
 import { BanknoteIcon, PiggyBankIcon, ShowerHeadIcon, SquirrelIcon } from 'lucide-react'
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
-import { IReservation } from 'services/reserve/reserve.service.types'
 import PreviewToast from 'shared/previewToast/PreviewToast'
 
 import { useReservationStore } from '../../store/reservation.store'
 
 interface TProps {
-  reserve: IReservation
+  reserve: TClientReservation
 }
 
 const useReserve = ({ reserve }: TProps) => {
@@ -17,7 +17,7 @@ const useReserve = ({ reserve }: TProps) => {
   const refReservePrint = useRef<HTMLElement>(null)
   const { setReservation, reservation } = useReservationStore()
 
-  const isReading = reservation && reservation.idReserva === reserve.idReserva
+  const isReading = reservation && reservation.id === reserve.id
 
   const handlePrint = async () => {
     if (loading || !refReservePrint.current) return
@@ -77,14 +77,13 @@ const useReserve = ({ reserve }: TProps) => {
 
 export default useReserve
 
-export function littleBoxData(reserve: IReservation) {
-  const { total, igv, subtotal, montoServicios = 0 } = reserve
+export function littleBoxData(reserve: TClientReservation) {
+  const { total, subtotal, tax } = reserve
 
   return [
     { title: 'Total:', subtitle: total, Icon: BanknoteIcon, active: true },
     { title: 'Sub Total:', subtitle: subtotal, Icon: PiggyBankIcon },
-    { title: 'IGV:', subtitle: igv, Icon: SquirrelIcon },
-    { title: 'Servicios:', subtitle: montoServicios, Icon: ShowerHeadIcon }
-    // { title: 'Días:', subtitle: totalDias, Icon: MoonStarIcon }
+    { title: 'IGV:', subtitle: tax, Icon: SquirrelIcon },
+    { title: 'Servicios:', subtitle: 0.0, Icon: ShowerHeadIcon }
   ]
 }
