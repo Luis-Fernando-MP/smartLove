@@ -10,13 +10,13 @@ export function useRooms() {
   const queryClient = useQueryClient()
   const cacheAllRooms = queryClient.getQueryData([ROOMS_NAME_CACHE]) as TFullDataRoom[]
   return useSuspenseQuery({
+    initialData: cacheAllRooms ?? null,
     queryKey: [ROOMS_NAME_CACHE],
     queryFn: getAllRooms,
     staleTime: 1000 * 60 * 60,
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,
-    retry: 5,
-    initialData: cacheAllRooms
+    retry: 5
   })
 }
 export function useRoom(id: string) {
@@ -32,8 +32,7 @@ export function useRoom(id: string) {
     staleTime: 500,
     retry: 5,
     initialDataUpdatedAt: 500,
-    initialData:
-      cacheAllRooms !== undefined ? cacheAllRooms.find(room => String(room.id) === id) : undefined
+    initialData: cacheAllRooms !== null ? cacheAllRooms.find(room => String(room.id) === id) : null
   })
 }
 
