@@ -15,7 +15,7 @@ export function useRooms() {
     staleTime: 1000 * 60 * 60,
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,
-    retry: 2,
+    retry: 5,
     initialData: cacheAllRooms
   })
 }
@@ -29,9 +29,8 @@ export function useRoom(id: string) {
       const [, id] = queryKey
       return await getRoomById(id)
     },
-
     staleTime: 500,
-    retry: 2,
+    retry: 5,
     initialDataUpdatedAt: 500,
     initialData:
       cacheAllRooms !== undefined ? cacheAllRooms.find(room => String(room.id) === id) : undefined
@@ -44,7 +43,7 @@ export function useFilterRooms() {
     onError(error) {
       console.log(error)
     },
-    retry: 2
+    retry: 5
   })
   return mutation
 }

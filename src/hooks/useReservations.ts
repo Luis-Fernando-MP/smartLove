@@ -17,7 +17,7 @@ export function useReservations(id: string) {
       return await getAllReservers(id)
     },
     staleTime: 2000,
-    retry: 2
+    retry: 5
   })
   return { ...query }
 }
@@ -28,7 +28,7 @@ export function useCreateReservation() {
     onError(error) {
       console.log(error)
     },
-    retry: 2
+    retry: 5
   })
   return mutation
 }
