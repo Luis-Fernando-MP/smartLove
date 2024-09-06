@@ -1,8 +1,8 @@
 'use client'
 
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { TFullDataRoom } from 'app/api/rooms/route'
-import { getAllRooms, getRoomById } from 'services/room/getRoom.service'
+import { filterRooms, getAllRooms, getRoomById } from 'services/room/getRoom.service'
 
 export const ROOMS_NAME_CACHE = 'ROOMS'
 export const ROOM_NAME_CACHE = 'ROOM'
@@ -36,4 +36,15 @@ export function useRoom(id: string) {
     initialData:
       cacheAllRooms !== undefined ? cacheAllRooms.find(room => String(room.id) === id) : undefined
   })
+}
+
+export function useFilterRooms() {
+  const mutation = useMutation({
+    mutationFn: filterRooms,
+    onError(error) {
+      console.log(error)
+    },
+    retry: 2
+  })
+  return mutation
 }

@@ -13,9 +13,9 @@ interface IFiltersStore {
 
 const useFilters = create<IFiltersStore>(set => ({
   filters: {
-    pricing: pricingValues[1].value,
-    classification: classificationsValues[1].value,
-    capacity: capacitiesValues[1].value
+    pricing: pricingValues[0].value,
+    classification: classificationsValues[0].value,
+    capacity: capacitiesValues[0].value
   },
   setFIlters: (newFilters: TFilterRoomsValidator) => set(state => ({ filters: newFilters }))
 }))

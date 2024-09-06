@@ -33,7 +33,7 @@ const Page = (): JSX.Element | null => {
   const { openSignIn } = useClerk()
   const currentPath = usePathname()
   const { push } = useRouter()
-  const { mutate: resMutate } = useCreateReservation()
+  const { mutate: resMutate, isPending } = useCreateReservation()
   const methods = useForm({
     resolver: requirementsUserResolver,
     mode: 'all'
@@ -120,12 +120,14 @@ const Page = (): JSX.Element | null => {
         <Link href={`/rooms/${roomID}/`} className='btn'>
           Regresar a los detalles
         </Link>
-        <button
-          onClick={handleContinue}
-          className={`btn bgr  ${switchClass(!isValid, 'inactive')}`}
-        >
-          {isValid ? 'Procesar la reserva' : 'Requerimos todos tus datos'}
-        </button>
+        {!isPending && (
+          <button
+            onClick={handleContinue}
+            className={`btn bgr  ${switchClass(!isValid, 'inactive')}`}
+          >
+            {isValid ? 'Procesar la reserva' : 'Requerimos todos tus datos'}
+          </button>
+        )}
       </div>
       <TotalCalculate />
       <div className='subtitle'>
@@ -133,7 +135,7 @@ const Page = (): JSX.Element | null => {
         <span>Completa tus datos personales, para reservar la habitación</span>
       </div>
       <FormProvider {...methods}>
-        <RegisterRequirementsUser onSubmit={handleSubmit} ref={$formRef} />
+        <RegisterRequirementsUser onSubmit={handleSubmit} ref={$formRef} showSubmit={!isPending} />
       </FormProvider>
     </section>
   )

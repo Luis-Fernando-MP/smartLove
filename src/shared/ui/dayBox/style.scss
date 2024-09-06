@@ -40,7 +40,8 @@
         color: v.$bg1;
       }
       p {
-        text-transform: uppercase;
+        text-transform: capitalize;
+        font-size: v.$fSmall;
       }
     }
   }

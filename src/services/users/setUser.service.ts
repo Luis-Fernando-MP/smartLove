@@ -2,7 +2,6 @@
 import axios, { AxiosError } from 'axios'
 import { IError } from 'services/error.service.types'
 import { API_URL } from 'shared/constants'
-import { delay } from 'shared/helpers/delay'
 
 import { IClient, IUser } from './user.service.types'
 
@@ -43,7 +42,6 @@ export const createClient = async (clientData: IClient) => {
     //   throw new Error('Error al guardar el usuario')
     // }
     // return response.data
-    await delay(1500)
   } catch (error: any) {
     let errorEvent: IError = {
       message: error?.message,

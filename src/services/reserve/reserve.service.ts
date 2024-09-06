@@ -2,7 +2,6 @@
 import { TClientReservation } from 'app/api/reservation/by-user/[idUser]/route'
 import axios, { AxiosError, CreateAxiosDefaults } from 'axios'
 import { API_URL } from 'shared/constants'
-import { delay } from 'shared/helpers/delay'
 
 import { IError } from '../error.service.types'
 import { ISendReserveData } from './reserve.service.types'
@@ -58,7 +57,6 @@ export const getAllReservers = async (id: string) => {
 
 export const createReservation = async (reserve: ISendReserveData) => {
   try {
-    await delay(3000)
     const response = await postAxiosReserve.post('', reserve)
     if (!response.data) {
       throw new Error('Error al crear la reserva')
@@ -84,7 +82,6 @@ export interface IDeleteReservation {
 }
 export const deleteReservation = async ({ reservationId, userId }: IDeleteReservation) => {
   try {
-    await delay(3000)
     const response = await deleteAxiosReserve.delete(`?id=${reservationId}`)
     return { res: response, userId }
   } catch (error: any) {

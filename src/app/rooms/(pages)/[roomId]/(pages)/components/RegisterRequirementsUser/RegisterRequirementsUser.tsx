@@ -9,11 +9,12 @@ import './style.scss'
 
 interface IRegisterRequirementsUser {
   onSubmit: (data: any) => void
+  showSubmit: boolean
 }
 
 // eslint-disable-next-line react/display-name
 const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequirementsUser>(
-  ({ onSubmit }, ref) => {
+  ({ onSubmit, showSubmit }, ref) => {
     const { formData, setFormData } = useRegisterStore()
     const { register, handleSubmit, formState, setValue, reset } =
       useFormContext<TRequirementsUser>()
@@ -71,12 +72,17 @@ const RegisterRequirementsUser = forwardRef<HTMLFormElement, IRegisterRequiremen
           </section>
         ))}
         <div className='regRequirements-form__actions'>
-          <button
-            type='submit'
-            className={`regRequirements-form__submit btn bgr ${switchClass(!isValid, 'inactive')}`}
-          >
-            {isValid ? 'Continuar con la reserva' : 'Requerimos todos tus datos'}
-          </button>
+          {showSubmit && (
+            <button
+              type='submit'
+              className={`regRequirements-form__submit btn bgr ${switchClass(
+                !isValid,
+                'inactive'
+              )}`}
+            >
+              {isValid ? 'Continuar con la reserva' : 'Requerimos todos tus datos'}
+            </button>
+          )}
           <button type='button' onClick={onReset} className='regRequirements-form__reset btn'>
             Limpiar campos
           </button>

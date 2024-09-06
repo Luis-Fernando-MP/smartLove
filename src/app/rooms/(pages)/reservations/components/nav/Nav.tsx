@@ -7,7 +7,6 @@ import { type JSX } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { HOME_PATHS } from 'shared/constants'
-import { delay } from 'shared/helpers/delay'
 import { switchClass } from 'shared/helpers/switchClassName'
 import { TReservationResolver, reservationResolver } from 'shared/resolvers/reservation.resolver'
 import Back from 'shared/ui/back/Back'
@@ -52,7 +51,6 @@ const Nav = (): JSX.Element | null => {
         }
       }
     )
-    await delay(2000)
     toast.dismiss(toastId)
   }
 
