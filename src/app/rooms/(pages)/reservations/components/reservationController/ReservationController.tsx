@@ -34,7 +34,7 @@ const LoaderComponent = (): JSX.Element => {
     <>
       <NavContainer className='reservationNav'>
         <h2>
-          Estamos <b className='gr'>cangando</b> Las imágenes del hotel :)
+          Estamos <b className='gr'>cangando</b> Las imágenes del hotel :D
         </h2>
         <p className='gr'>Cargando...</p>
         <span>Por favor espere</span>

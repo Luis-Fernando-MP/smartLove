@@ -3,34 +3,63 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
-  // directUrl = env("POSTGRES_URL_NON_POOLING")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model Room {
-  id               Int            @id @default(autoincrement())
-  name             String         @db.VarChar(100)
-  price            Decimal        @db.Decimal(10, 2)
-  status           Boolean        @default(true)
-  reservationCount Int            @default(0)
-  description      String         @db.VarChar(200)
-  classification   String[]       @default(["ALL"])
-  capacity         String[]       @default(["ALL"])
-  pricing          String[]       @default(["ALL"])
-  images           RoomImage[]
+  id               Int                  @id @default(autoincrement())
+  name             String               @db.VarChar(100)
+  price            Decimal              @db.Decimal(10, 2)
+  status           Boolean              @default(true)
+  reservationCount Int                  @default(0)
+  description      String               @db.VarChar(200)
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @default(now()) @updatedAt
   reservations     Reservation[]
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @default(now()) @updatedAt()
+  capacities       RoomCapacity[]
+  classifications  RoomClassification[]
+  images           RoomImage[]
+  pricings         RoomPricing[]
   RoomServices     RoomServices[]
+}
+
+model RoomClassification {
+  id             Int                    @id @default(autoincrement())
+  roomId         Int
+  classification RoomClassificationEnum
+  room           Room                   @relation(fields: [roomId], references: [id])
+
+  @@index([roomId], map: "RoomClassification_roomId_fkey")
+}
+
+model RoomCapacity {
+  id       Int              @id @default(autoincrement())
+  roomId   Int
+  capacity RoomCapacityEnum
+  room     Room             @relation(fields: [roomId], references: [id])
+
+  @@index([roomId], map: "RoomCapacity_roomId_fkey")
+}
+
+model RoomPricing {
+  id      Int             @id @default(autoincrement())
+  roomId  Int
+  pricing RoomPricingEnum
+  room    Room            @relation(fields: [roomId], references: [id])
+
+  @@index([roomId], map: "RoomPricing_roomId_fkey")
 }
 
 model RoomServices {
   id          Int      @id @default(autoincrement())
   roomId      Int
   serviceId   Int
-  ServicesRel Services @relation(fields: [serviceId], references: [id])
   roomRel     Room     @relation(fields: [roomId], references: [id])
+  ServicesRel Services @relation(fields: [serviceId], references: [id])
+
+  @@index([roomId], map: "RoomServices_roomId_fkey")
+  @@index([serviceId], map: "RoomServices_serviceId_fkey")
 }
 
 model Services {
@@ -42,29 +71,29 @@ model Services {
 }
 
 model RoomImage {
-  id       Int    @id @default(autoincrement())
-  imageUrl String @db.VarChar(255)
-
+  id        Int      @id @default(autoincrement())
+  imageUrl  String   @db.VarChar(255)
   roomId    Int
-  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt()
+  updatedAt DateTime @default(now()) @updatedAt
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@index([roomId], map: "RoomImage_roomId_fkey")
 }
 
 model Client {
-  clientId       Int    @id @default(autoincrement())
-  clerkId        String @unique
-  firstName      String @db.VarChar(100)
-  lastName       String @db.VarChar(100)
-  documentNumber String @db.VarChar(10)
-  phone          String @db.VarChar(12)
-  city           String @db.VarChar(100)
-  address        String @db.VarChar(255)
-
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @default(now()) @updatedAt()
-  reservations Reservation[]
-  User         User?
+  clientId       Int           @id @default(autoincrement())
+  clerkId        String        @unique
+  firstName      String        @db.VarChar(100)
+  lastName       String        @db.VarChar(100)
+  documentNumber String        @db.VarChar(10)
+  phone          String        @db.VarChar(12)
+  city           String        @db.VarChar(100)
+  address        String        @db.VarChar(255)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @default(now()) @updatedAt
+  reservations   Reservation[]
+  User           User?
 }
 
 model Reservation {
@@ -81,10 +110,12 @@ model Reservation {
   fromDate  DateTime
   toDate    DateTime
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt()
+  updatedAt DateTime @default(now()) @updatedAt
+  client    Client   @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
 
-  client Client @relation(fields: [clientId], references: [clientId], onDelete: Cascade)
-  room   Room   @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  @@index([clientId], map: "Reservation_clientId_fkey")
+  @@index([roomId], map: "Reservation_roomId_fkey")
 }
 
 model User {
@@ -94,19 +125,19 @@ model User {
   password  String   @db.VarChar(10)
   status    Boolean  @default(true)
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt()
+  updatedAt DateTime @default(now()) @updatedAt
   clientId  Int      @unique
   client    Client   @relation(fields: [clientId], references: [clientId])
 }
 
-enum RoomClassification {
+enum RoomClassificationEnum {
   ALL
   EXCELLENT
   VERY_GOOD
   GOOD
 }
 
-enum RoomCapacity {
+enum RoomCapacityEnum {
   ALL
   LESS_THAN_TWO
   TWO_TO_THREE
@@ -114,7 +145,7 @@ enum RoomCapacity {
   MORE_THAN_SIX
 }
 
-enum RoomPricing {
+enum RoomPricingEnum {
   ALL
   LESS_THAN_40
   BETWEEN_40_AND_89

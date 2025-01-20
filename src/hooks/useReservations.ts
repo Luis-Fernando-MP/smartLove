@@ -9,11 +9,12 @@ import {
 
 export const RESERVATIONS_NAME_CACHE = 'RESERVATIONS'
 
-export function useReservations(id: string) {
+export function useReservations(id?: string) {
   const query = useSuspenseQuery({
     queryKey: [RESERVATIONS_NAME_CACHE, id],
     queryFn: async ({ queryKey }) => {
       const [, id] = queryKey
+      if (!id || id === undefined) throw new Error('no id')
       return await getAllReservers(id)
     },
     staleTime: 2000,

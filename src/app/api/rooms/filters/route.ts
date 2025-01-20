@@ -18,10 +18,28 @@ export async function POST(request: Request) {
     const rooms = await prisma.room.findMany({
       where: {
         AND: [
-          { classification: { has: classification !== 'ALL' ? classification : 'ALL' } },
-          { capacity: { has: capacity !== 'ALL' ? capacity : 'ALL' } },
-          { pricing: { has: pricing !== 'ALL' ? pricing : 'ALL' } }
-        ]
+          classification !== 'ALL' && {
+            classifications: {
+              some: {
+                classification: classification
+              }
+            }
+          },
+          capacity !== 'ALL' && {
+            capacities: {
+              some: {
+                capacity: capacity
+              }
+            }
+          },
+          pricing !== 'ALL' && {
+            pricings: {
+              some: {
+                pricing: pricing
+              }
+            }
+          }
+        ].filter(Boolean) as Prisma.RoomWhereInput[]
       },
       include: {
         RoomServices: {
@@ -33,16 +51,22 @@ export async function POST(request: Request) {
         reservations: true
       }
     })
+
     if (rooms.length < 1) return Response.json([])
 
     const parseRooms = rooms.map(room => {
-      const temporalRoom = {
+      // Verifica que RoomServices existe y tiene datos
+      const services = room.RoomServices?.map(roomService => roomService.ServicesRel) || []
+
+      // Crea el nuevo objeto excluyendo RoomServices
+      const { RoomServices, ...newRoom } = {
         ...room,
-        services: room.RoomServices.map(roomService => roomService.ServicesRel)
+        services // Añade los servicios parseados
       }
-      const { RoomServices, ...newRoom } = temporalRoom
-      return newRoom
+
+      return newRoom // Devuelve la habitación sin RoomServices, pero con servicios
     })
+
     return Response.json(parseRooms ?? [])
   } catch (error) {
     console.log(error)

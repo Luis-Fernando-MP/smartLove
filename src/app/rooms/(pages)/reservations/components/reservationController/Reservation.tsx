@@ -11,7 +11,7 @@ import Reservations from '../reservations/Reservations'
 
 const Reservation = (): JSX.Element | null => {
   const { user } = useUser()
-  const { data, isError } = useReservations(user?.id ?? '1')
+  const { data, isError } = useReservations(user?.id)
   const setStore = useReservationsStore(s => s.setReservations)
   if (!data || isError) return null
   setStore(data)
