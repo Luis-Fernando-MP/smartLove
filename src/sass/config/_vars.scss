@@ -1,5 +1,30 @@
 @use 'sass:color';
 
+:root {
+  --bg-primary: #f4f2fff5;
+  --bg-secondary: #ecebfff5;
+  --fnt-primary: #000;
+  --fnt-secondary: #6f6f6f;
+  --tn-primary: #946ef9;
+  --tn-primary-transparent: #7649a21f;
+  --tn-secondary: #ce9cff;
+  --disable-primary: #47455e;
+  --disable-secondary: #c7b3ff70;
+  --skeleton-co: #f6f4ff;
+  --skeleton: #efeaff;
+
+  // Fonts
+  --xl-font-size: 5em;
+  --h1-font-size: 2em;
+  --h2-font-size: 1.8em;
+  --h3-font-size: 1.6em;
+  --h4-font-size: 1.4em;
+  --h5-font-size: 1.3em;
+  --p-font-size: 1.1em;
+  --span-font-size: 1em;
+  --small-font-size: 0.9em;
+}
+
 $fXl: var(--xl-font-size);
 $fH1: var(--h1-font-size);
 $fH2: var(--h2-font-size);
@@ -39,9 +64,7 @@ $radius: 7px;
 $padding: 15px;
 $icon: 20px;
 $family-size: 12px;
-$family:
-  var(--roboto-flex), 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', monospace,
-  'Segoe UI Emoji';
+$family: var(--font1), 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', monospace;
 $gr1: linear-gradient(90deg, $tn1 0%, $tn2 100%);
 $imgFilter: brightness(0.5) opacity(0.5);
 

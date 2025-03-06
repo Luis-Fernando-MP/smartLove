@@ -1,8 +1,8 @@
 'use client'
 
+import { useReservations } from '@/hooks/useReservations'
 import { useUser } from '@clerk/nextjs'
 import NavContainer from 'app/rooms/components/navContainer/NavContainer'
-import { useReservations } from 'hooks/useReservations'
 
 import { useReservationsStore } from '../../store/reservation.store'
 import Details from '../details/Details'

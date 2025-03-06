@@ -4,29 +4,6 @@
 @use '@sass/utils/text' as t;
 @use '@sass/utils/hover' as h;
 
-:root {
-  --bg-primary: #f4f2fff5;
-  --bg-secondary: #ecebfff5;
-  --fnt-primary: #000;
-  --fnt-secondary: #6f6f6f;
-  --tn-primary: #946ef9;
-  --tn-primary-transparent: #7649a21f;
-  --tn-secondary: #ce9cff;
-  --disable-primary: #47455e;
-  --disable-secondary: #c7b3ff70;
-  --skeleton-co: #f6f4ff;
-  --skeleton: #efeaff;
-  --xl-font-size: 5em;
-  --h1-font-size: 2em;
-  --h2-font-size: 1.8em;
-  --h3-font-size: 1.6em;
-  --h4-font-size: 1.4em;
-  --h5-font-size: 1.3em;
-  --p-font-size: 1.1em;
-  --span-font-size: 1em;
-  --small-font-size: 0.9em;
-}
-
 *,
 ::before,
 ::after {

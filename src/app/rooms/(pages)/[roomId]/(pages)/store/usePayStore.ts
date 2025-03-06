@@ -1,4 +1,4 @@
-import { ISendReserveData } from 'services/reserve/reserve.service.types'
+import { ISendReserveData } from '@/services/reserve/reserve.service.types'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 

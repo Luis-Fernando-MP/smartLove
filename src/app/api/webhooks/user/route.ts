@@ -1,8 +1,8 @@
+import { createUser } from '@/services/users/setUser.service'
 import { USER_WEBHOOK } from '@/shared/constants'
 import { IncomingHttpHeaders } from 'http'
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { createUser } from 'services/users/setUser.service'
 import { Webhook, WebhookRequiredHeaders } from 'svix'
 
 import { IDeletedUser, IWebhookEvent, TWebhookEventType } from './clerk.types'

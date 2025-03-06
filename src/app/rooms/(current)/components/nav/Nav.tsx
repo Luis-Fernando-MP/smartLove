@@ -1,11 +1,10 @@
 'use client'
 
+import NavContainer from '@/app/rooms/components/navContainer/NavContainer'
+import useNav from '@/hooks/useNav'
 import { DASHBOARD_PATHS, HOME_PATHS, WHATSAPP_URL } from '@/shared/constants'
-import { whisper } from '@/shared/fonts'
 import { switchClass } from '@/shared/helpers/switchClassName'
 import Social from '@/shared/ui/social/Social'
-import NavContainer from 'app/rooms/components/navContainer/NavContainer'
-import useNav from 'hooks/useNav'
 import { CircleHelp } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
@@ -53,7 +52,7 @@ const Nav = (): JSX.Element => {
         </Link>
         <div className='roomNav-consulting__social'>
           <Social />
-          <h3 className={whisper.className}>Smart Love</h3>
+          <h3>Smart Love</h3>
         </div>
       </section>
     </NavContainer>

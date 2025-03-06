@@ -1,6 +1,6 @@
 'use client'
 
-import { useRooms } from 'hooks/useRooms'
+import { useRooms } from '@/hooks/useRooms'
 import type { JSX } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 

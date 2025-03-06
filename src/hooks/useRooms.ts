@@ -1,8 +1,8 @@
 'use client'
 
+import { filterRooms, getAllRooms, getRoomById } from '@/services/room/getRoom.service'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { TFullDataRoom } from 'app/api/rooms/route'
-import { filterRooms, getAllRooms, getRoomById } from 'services/room/getRoom.service'
 
 export const ROOMS_NAME_CACHE = 'ROOMS'
 export const ROOM_NAME_CACHE = 'ROOM'

@@ -1,5 +1,6 @@
 'use client'
 
+import { ROOMS_NAME_CACHE, useFilterRooms } from '@/hooks/useRooms'
 import { switchClass } from '@/shared/helpers/switchClassName'
 import {
   TFilterRoomsValidator,
@@ -9,7 +10,6 @@ import {
   roomsResolver
 } from '@/shared/resolvers/rooms.resolver'
 import { useQueryClient } from '@tanstack/react-query'
-import { ROOMS_NAME_CACHE, useFilterRooms } from 'hooks/useRooms'
 import type { JSX } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'

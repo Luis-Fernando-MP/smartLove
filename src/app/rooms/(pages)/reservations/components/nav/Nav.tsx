@@ -1,11 +1,11 @@
 'use client'
 
+import { useDeleteReservation } from '@/hooks/useReservations'
 import { HOME_PATHS } from '@/shared/constants'
 import { switchClass } from '@/shared/helpers/switchClassName'
 import { TReservationResolver, reservationResolver } from '@/shared/resolvers/reservation.resolver'
 import Back from '@/shared/ui/back/Back'
 import { useUser } from '@clerk/nextjs'
-import { useDeleteReservation } from 'hooks/useReservations'
 import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
 import { useForm } from 'react-hook-form'
