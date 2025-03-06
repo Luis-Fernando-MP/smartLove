@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $fXl: var(--xl-font-size);
 $fH1: var(--h1-font-size);
 $fH2: var(--h2-font-size);
@@ -7,57 +9,42 @@ $fH5: var(--h5-font-size);
 $fP: var(--p-font-size);
 $fSpan: var(--span-font-size);
 $fSmall: var(--small-font-size);
-
 $bg1: var(--bg-primary);
 $bg2: var(--bg-secondary);
-
 $sk1: var(--skeleton-co);
 $sk2: var(--skeleton);
-
 $fn1: var(--fnt-primary);
 $fn2: var(--fnt-secondary);
-
 $tn1: var(--tn-primary);
 $tn1T: var(--tn-primary-transparent);
 $tn2: var(--tn-secondary);
-
 $dis1: var(--disable-primary);
 $dis2: var(--disable-secondary);
-
-$success: rgba(195, 236, 220, 0.96);
+$success: rgb(195 236 220 / 96%);
 $warning: #f4d460d8;
 $info: #a2a1ffcb;
 $danger: #f86e6ebc;
+$success_dark: rgb(19 85 58 / 83%);
+$warning_dark: color.adjust($warning, $lightness: -40%);
+$info_dark: color.adjust($info, $lightness: -40%);
+$danger_dark: color.adjust($danger, $lightness: -50%);
 
-$success_dark: rgba(19, 85, 58, 0.83);
-$warning_dark: darken($warning, 40);
-$info_dark: darken($info, 40);
-$danger_dark: darken($danger, 50);
-
-//other
+// other
 $min-small-screen: 450px;
 $small-screen: 576px;
 $medium-screen: 820px;
 $large-screen: 992px;
 $extra-large-screen: 1200px;
-
 $radius: 7px;
 $padding: 15px;
 $icon: 20px;
 $family-size: 12px;
-$family: var(--roboto-flex), 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Monospace', 'Source Code Pro',
-  'Fira Mono', monospace, 'Segoe UI Emoji';
-
+$family:
+  var(--roboto-flex), 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', monospace,
+  'Segoe UI Emoji';
 $gr1: linear-gradient(90deg, $tn1 0%, $tn2 100%);
 $imgFilter: brightness(0.5) opacity(0.5);
-@mixin color($color, $property: color) {
-  body.dark & {
-    #{$property}: $color;
-  }
-  & {
-    #{$property}: darken($color, 30);
-  }
-}
+
 @mixin toDark {
   body.dark & {
     @content;

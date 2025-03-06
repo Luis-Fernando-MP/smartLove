@@ -2,8 +2,8 @@
   // calculate the width where the child "nav" change of state, it's calculate: 100% current view port + nav size
   position: relative; // <-- fixed
   &:has(> nav.dashboard-nav.show-menu) {
-    width: calc(100dvw + $navSize);
     left: -1 * $navSize;
+    width: calc(100dvw + $navSize);
     @content;
   }
 }

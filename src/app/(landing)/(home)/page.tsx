@@ -12,14 +12,12 @@ const Resume = (): JSX.Element => {
           Acerca de <b className='gr'>nosotros</b>
         </h2>
         <p>
-          Nos ubicamos en San Juan Miraflores, en el sector Alipio Ponce lote 6, somos un centro de
-          encanto tecnológico, el cual cuenta con habitaciones luminosas equipadas con tecnología
-          LED y sensores; que permiten controlar la iluminación según las preferencias del huésped,
-          y con conectividad gratuita a servicios de streaming como: HBO, Netflix y Prime video.
-          Además, contamos con una terraza Rooftop, el cual es nuestro escenario celestial donde la
-          música se fusiona con la noche y las luces bailan al ritmo de la diversión. Nuestro
-          espacio está diseñado para eventos inolvidables, donde cada detalle, desde la iluminación
-          hasta el sonido, crean una atmósfera única de celebración y alegría.
+          Nos ubicamos en San Juan Miraflores, en el sector Alipio Ponce lote 6, somos un centro de encanto tecnológico, el cual
+          cuenta con habitaciones luminosas equipadas con tecnología LED y sensores; que permiten controlar la iluminación según
+          las preferencias del huésped, y con conectividad gratuita a servicios de streaming como: HBO, Netflix y Prime video.
+          Además, contamos con una terraza Rooftop, el cual es nuestro escenario celestial donde la música se fusiona con la noche
+          y las luces bailan al ritmo de la diversión. Nuestro espacio está diseñado para eventos inolvidables, donde cada
+          detalle, desde la iluminación hasta el sonido, crean una atmósfera única de celebración y alegría.
         </p>
       </section>
       <section className='resume-card'>
@@ -27,8 +25,8 @@ const Resume = (): JSX.Element => {
           Facilidades de <b className='gr'>Acceso</b>
         </h2>
         <p>
-          Si tienes solicitudes de acceso especial, contactanos mediante nuestras redes sociales:
-          puedes emplear Whatsapp, Facebook o Tik tok, estaremos al pendiente de ti.
+          Si tienes solicitudes de acceso especial, contactanos mediante nuestras redes sociales: puedes emplear Whatsapp,
+          Facebook o Tik tok, estaremos al pendiente de ti.
         </p>
         <ul className='resume-card__list'>
           <li className='resume-card__item'>

@@ -1,6 +1,7 @@
 @use '@sass/config/vars' as v;
 @use '@sass/config/extraColors' as extra;
 @use '@sass/utils/defs' as d;
+@use 'sass:color';
 
 .roomSlugs {
   position: absolute;
@@ -60,13 +61,13 @@
 
       summary {
         font-weight: 500;
-        color: darken($value, 80);
+        color: color.adjust($value, $lightness: -80%);
       }
 
       p,
       svg {
-        color: darken($value, 60);
-        stroke: darken($value, 70);
+        color: color.adjust($value, $lightness: -60%);
+        stroke: color.adjust($value, $lightness: -70%);
       }
     }
   }

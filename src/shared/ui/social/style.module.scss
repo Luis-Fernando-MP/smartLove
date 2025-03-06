@@ -1,10 +1,11 @@
 .social {
   display: flex;
-  align-items: center;
   gap: 10px;
+  align-items: center;
+
   svg {
+    display: block;
     width: 20px;
     height: 20px;
-    display: block;
   }
 }

@@ -10,13 +10,7 @@ interface TDismissErrorToast {
   icon?: string
 }
 
-export function DismissErrorToast({
-  icon = '🤖',
-  id,
-  message,
-  onclick,
-  buttonTitle
-}: TDismissErrorToast) {
+export function DismissErrorToast({ icon = '🤖', id, message, onclick, buttonTitle }: TDismissErrorToast) {
   const handleClick = (t: Toast): void => {
     toast.dismiss(t.id)
     onclick()

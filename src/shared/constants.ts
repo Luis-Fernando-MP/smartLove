@@ -6,9 +6,7 @@ export const TIKTOK_URL = 'https://www.tiktok.com/@hotel.smart.love'
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:300/api'
 export const IS_PRODUCTION = process.env.NEXT_PUBLIC_PRODUCTION !== 'false'
-export const USER_WEBHOOK = IS_PRODUCTION
-  ? process.env.CLERK_WEBHOOK_USER_EVENTS!
-  : process.env.CLERK_WEBHOOK_USER_EVENTS_DEV!
+export const USER_WEBHOOK = IS_PRODUCTION ? process.env.CLERK_WEBHOOK_USER_EVENTS! : process.env.CLERK_WEBHOOK_USER_EVENTS_DEV!
 
 export const HOME_PATHS = {
   Resume: {

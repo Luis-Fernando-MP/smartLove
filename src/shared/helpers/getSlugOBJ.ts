@@ -10,8 +10,7 @@ export const slugDictionary = ({ counter, itsFull, maxResults }: ISlugOBJ) => [
   {
     condition: itsFull,
     IconSlug: CircleOffIcon,
-    slugDescription:
-      'Esta habitación esta ocupada estos días, revisa el calendario de la habitación',
+    slugDescription: 'Esta habitación esta ocupada estos días, revisa el calendario de la habitación',
     tagSlug: 'Agotado estos Dias ❌',
     classSlug: 'its-full'
   },

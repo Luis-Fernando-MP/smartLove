@@ -33,13 +33,18 @@
     padding: 10px 8px;
     border-radius: v.$radius;
 
+    input {
+      width: 100%;
+      padding: 5px;
+      border-radius: v.$radius;
+
+      background-color: v.$bg1;
+      outline: none;
+    }
+
     &.error input {
       border: 2px solid v.$danger;
       outline: none !important;
-    }
-
-    &.error &__error {
-      display: block;
     }
 
     &__error {
@@ -49,6 +54,10 @@
       @include v.toDark {
         color: v.$danger;
       }
+    }
+
+    &.error &__error {
+      display: block;
     }
 
     &__field {
@@ -66,15 +75,6 @@
         display: inline-flex;
         width: fit-content;
         text-wrap: nowrap;
-      }
-
-      input {
-        width: 100%;
-        padding: 5px;
-        border-radius: v.$radius;
-
-        background-color: v.$bg1;
-        outline: none;
       }
     }
   }

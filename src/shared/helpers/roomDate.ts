@@ -36,12 +36,7 @@ interface ICaaDCrossing {
 }
 
 // Calcula el cruce entre fechas reservadas y fechas seleccionas en un mes y año especificados
-export const calculateDateCrossing = ({
-  selectFrom,
-  selectEnd,
-  monthStringDays,
-  dates
-}: ICaaDCrossing) => {
+export const calculateDateCrossing = ({ selectFrom, selectEnd, monthStringDays, dates }: ICaaDCrossing) => {
   const firstDayOfMonth = dayjs(monthStringDays[0], 'YYYY-MM-DD')
   const firstDayOfWeek = firstDayOfMonth.day()
   const SEnd = dayjs(selectEnd, 'YYYY-MM-DD')
@@ -90,20 +85,14 @@ interface INoDRangeAvailable {
   endDate: string
 }
 // Si las fechas de inicio y salida están cruzándose con las fechas de reserva
-export const noAvailableDateInRange = ({
-  dates,
-  endDate,
-  startDate
-}: INoDRangeAvailable): boolean => {
+export const noAvailableDateInRange = ({ dates, endDate, startDate }: INoDRangeAvailable): boolean => {
   return !!dates?.some(date => {
     const from = dayjs(date.fromDate, 'YYYY-MM-DD')
     const to = dayjs(date.toDate, 'YYYY-MM-DD')
     const start = dayjs(startDate, 'YYYY-MM-DD')
     const end = dayjs(endDate, 'YYYY-MM-DD')
     return (
-      start.isBetween(from, to, null, '[]') ||
-      end.isBetween(from, to, null, '[]') ||
-      (start.isBefore(from) && end.isAfter(to))
+      start.isBetween(from, to, null, '[]') || end.isBetween(from, to, null, '[]') || (start.isBefore(from) && end.isAfter(to))
     )
   })
 }

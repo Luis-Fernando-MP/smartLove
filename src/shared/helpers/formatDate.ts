@@ -13,20 +13,7 @@ export const breakDownDate = (date: string) => {
 
   const monthIndex = parseDate.month()
 
-  const monthNames = [
-    'ENE',
-    'FEB',
-    'MAR',
-    'ABR',
-    'MAY',
-    'JUN',
-    'JUL',
-    'AGO',
-    'SEP',
-    'OCT',
-    'NOV',
-    'DIC'
-  ]
+  const monthNames = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC']
   const monthAbbr = monthNames[monthIndex]
   return { year, month, day, monthAbbr }
 }

@@ -1,6 +1,7 @@
 @use '@sass/config/vars' as v;
 @use '@sass/config/extraColors' as extra;
 @use '@sass/utils/defs' as d;
+@use 'sass:color';
 
 .conditionalDayButton {
   @include d.flex($dir: row);
@@ -13,7 +14,7 @@
 
       p,
       svg {
-        color: darken($value, 70);
+        color: color.adjust($value, $lightness: -70%);
       }
     }
   }

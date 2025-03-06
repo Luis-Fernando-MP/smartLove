@@ -1,6 +1,7 @@
 @use '@sass/config/vars' as v;
 @use '@sass/utils/defs' as d;
 @use '@sass/config/extraColors' as extra;
+@use 'sass:color';
 
 .totalCalculate {
   justify-content: space-around;
@@ -78,8 +79,8 @@
         .tach {
           display: inline-flex;
           text-decoration: line-through 2.5px;
-
-          @include v.color(v.$danger, text-decoration-color);
+          text-decoration-color: v.$danger;
+          background-color: yellow;
         }
       }
     }
@@ -111,7 +112,7 @@
   @each $tag, $value in extra.$listStayUsers {
     &-total {
       &#{$tag} {
-        border: 1.5px solid darken($value, 20);
+        border: 1.5px solid color.adjust($value, $lightness: -20%);
       }
     }
 
@@ -122,7 +123,7 @@
 
         &::-webkit-progress-value,
         &::-moz-progress-bar {
-          background-color: darken($value, 20);
+          background-color: color.adjust($value, $lightness: -20%);
         }
       }
     }

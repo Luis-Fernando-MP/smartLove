@@ -5,6 +5,10 @@
 .back {
   width: 100%;
 
+  svg {
+    display: block;
+  }
+
   &-action {
     width: fit-content;
     margin-left: 0;
@@ -25,9 +29,5 @@
 
   &.row a {
     @include d.flex($dir: row, $ali: center);
-  }
-
-  svg {
-    display: block;
   }
 }

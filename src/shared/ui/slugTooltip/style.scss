@@ -1,6 +1,7 @@
 @use '@sass/config/vars' as v;
 @use '@sass/config/extraColors' as extra;
 @use '@sass/utils/defs' as d;
+@use 'sass:color';
 
 .tooltip {
   &-tag {
@@ -13,33 +14,6 @@
     font-size: v.$fH5;
 
     background-color: v.$bg2;
-  }
-
-  &-container {
-    position: relative;
-    height: auto;
-
-    &:hover .tooltip-float {
-      top: -100%;
-      visibility: visible;
-      opacity: 1;
-      animation: shake 0.3s ease-in-out forwards;
-    }
-
-    @each $tag, $value in extra.$listSlugs {
-      &#{$tag} {
-        .tooltip-float {
-          color: darken($value, 70);
-          background-color: $value;
-        }
-
-        @include v.toDark {
-          .tooltip-float {
-            background-color: darken($value, 15);
-          }
-        }
-      }
-    }
   }
 
   &-float {
@@ -60,6 +34,33 @@
     opacity: 0;
 
     transition: all 0.5s;
+  }
+
+  &-container {
+    position: relative;
+    height: auto;
+
+    &:hover .tooltip-float {
+      top: -100%;
+      visibility: visible;
+      opacity: 1;
+      animation: shake 0.3s ease-in-out forwards;
+    }
+
+    @each $tag, $value in extra.$listSlugs {
+      &#{$tag} {
+        .tooltip-float {
+          color: color.adjust($value, $lightness: -70%);
+          background-color: $value;
+        }
+
+        @include v.toDark {
+          .tooltip-float {
+            background-color: color.adjust($value, $lightness: -15%);
+          }
+        }
+      }
+    }
   }
 
   @keyframes shake {

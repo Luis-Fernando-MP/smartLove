@@ -14,14 +14,7 @@ const Facebook = (): JSX.Element => {
         />
       </g>
       <defs>
-        <linearGradient
-          id='paint0_linear_430_662'
-          x1='1000.95'
-          y1='1930.77'
-          x2='1000.95'
-          y2='0'
-          gradientUnits='userSpaceOnUse'
-        >
+        <linearGradient id='paint0_linear_430_662' x1='1000.95' y1='1930.77' x2='1000.95' y2='0' gradientUnits='userSpaceOnUse'>
           <stop stopColor='#0062E0' />
           <stop offset='1' stopColor='#2E7BF9' />
         </linearGradient>

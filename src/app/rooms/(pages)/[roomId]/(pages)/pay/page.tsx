@@ -19,11 +19,7 @@ const Page = (): JSX.Element => {
 
   return (
     <article className='pay-success'>
-      <h3>
-        {isNewPay === '1'
-          ? 'Su reserva ha sido registrada correctamente'
-          : 'Verifique todas sus Reservas'}
-      </h3>
+      <h3>{isNewPay === '1' ? 'Su reserva ha sido registrada correctamente' : 'Verifique todas sus Reservas'}</h3>
       <p>Puede ver más detalles en /reserves</p>
       <Link href='/rooms/reservations' className='btn bgr'>
         Mis reservas

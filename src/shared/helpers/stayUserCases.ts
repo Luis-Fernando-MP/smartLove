@@ -14,11 +14,9 @@ export const stayCases = [
   { min: 15, max: Infinity, className: STAY_USER.EXTENDED, discount: 0.045 }
 ]
 
-export const currentClassCase = (day: number) =>
-  stayCases.find(({ min, max }) => between(day, min, max))?.className ?? ''
+export const currentClassCase = (day: number) => stayCases.find(({ min, max }) => between(day, min, max))?.className ?? ''
 
-export const currentIndexCase = (day: number) =>
-  stayCases.findIndex(({ min, max }) => between(day, min, max))
+export const currentIndexCase = (day: number) => stayCases.findIndex(({ min, max }) => between(day, min, max))
 
 export const discountByStay = (stay: STAY_USER): number => {
   const existUserStay = stayCases.find(({ className }) => className === stay)

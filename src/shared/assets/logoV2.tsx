@@ -2,14 +2,7 @@ import type { JSX } from 'react'
 
 const LogoV2 = ({ className = '' }: { className?: string }): JSX.Element => {
   return (
-    <svg
-      className={className}
-      width='248'
-      height='151'
-      viewBox='0 0 248 151'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-    >
+    <svg className={className} width='248' height='151' viewBox='0 0 248 151' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M37.8404 2.59119L41.7352 14.032H53.9062L43.926 21.3346L47.8207 32.7754L37.8404 25.7162L28.1036 32.7754L31.9983 21.3346L22.0181 14.032H34.1891L37.8404 2.59119Z'
         fill='url(#paint0_linear_361_30)'
@@ -64,25 +57,11 @@ const LogoV2 = ({ className = '' }: { className?: string }): JSX.Element => {
           <stop stopColor='#FBB040' />
           <stop offset='1' stopColor='#F9ED32' />
         </linearGradient>
-        <linearGradient
-          id='paint3_linear_361_30'
-          x1='81.6763'
-          y1='0'
-          x2='243.096'
-          y2='0'
-          gradientUnits='userSpaceOnUse'
-        >
+        <linearGradient id='paint3_linear_361_30' x1='81.6763' y1='0' x2='243.096' y2='0' gradientUnits='userSpaceOnUse'>
           <stop stopColor='#FBB040' />
           <stop offset='1' stopColor='#F9ED32' />
         </linearGradient>
-        <linearGradient
-          id='paint4_linear_361_30'
-          x1='0'
-          y1='52.1824'
-          x2='247.344'
-          y2='52.1824'
-          gradientUnits='userSpaceOnUse'
-        >
+        <linearGradient id='paint4_linear_361_30' x1='0' y1='52.1824' x2='247.344' y2='52.1824' gradientUnits='userSpaceOnUse'>
           <stop stopColor='#FBB040' />
           <stop offset='1' stopColor='#F9ED32' />
         </linearGradient>

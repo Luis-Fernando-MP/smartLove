@@ -5,7 +5,27 @@
 
 $dashboardMenuSize: 40px;
 
-// international nav styles
+.dashboard-menu {
+  position: absolute;
+  z-index: 10;
+  right: calc(-1 * $dashboardMenuSize - v.$padding - 5px);
+  bottom: 20px;
+  transform: scale(0);
+
+  display: grid;
+  place-content: center;
+
+  width: $dashboardMenuSize;
+  height: $dashboardMenuSize;
+  border-radius: 50%;
+
+  visibility: hidden;
+  opacity: 0;
+  background-color: v.$tn1;
+
+  transition: t.$pong;
+}
+
 .dashboard-nav {
   position: relative;
   height: 100%;
@@ -66,26 +86,4 @@ $dashboardMenuSize: 40px;
       opacity: 1;
     }
   }
-}
-
-.dashboard-menu {
-  position: absolute;
-  z-index: 10;
-  right: calc(-1 * $dashboardMenuSize - v.$padding - 5px); // <-- it's calculate (size - padding - gap)
-
-  bottom: 20px;
-  transform: scale(0);
-
-  display: grid;
-  place-content: center;
-
-  width: $dashboardMenuSize;
-  height: $dashboardMenuSize;
-  border-radius: 50%;
-
-  visibility: hidden;
-  opacity: 0;
-  background-color: v.$tn1;
-
-  transition: t.$pong;
 }

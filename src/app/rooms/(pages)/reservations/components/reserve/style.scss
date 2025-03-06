@@ -4,13 +4,6 @@
 .reserve {
   position: relative;
 
-  &.active {
-    .reserve-container,
-    .reserve-actions {
-      border: 2px solid v.$tn1;
-    }
-  }
-
   &-container {
     z-index: 1;
 
@@ -25,6 +18,31 @@
     background-color: v.$bg1;
 
     @include d.flex($ali: center, $gap: v.$padding * 2);
+  }
+
+  &-actions {
+    @include d.flex;
+
+    position: absolute;
+    top: 50%;
+    left: -0;
+    transform: translateY(-50%);
+
+    padding: v.$padding;
+    border-top: 1.5px solid v.$tn1T;
+    border-right: 1px solid v.$tn1T;
+    border-bottom: 1.5px solid v.$tn1T;
+    border-left: 4px solid v.$tn1T;
+    border-radius: v.$radius * 2;
+
+    background-color: v.$bg1;
+  }
+
+  &.active {
+    .reserve-container,
+    .reserve-actions {
+      border: 2px solid v.$tn1;
+    }
   }
 
   &-operations {
@@ -50,24 +68,6 @@
     h5 {
       font-weight: 900;
     }
-  }
-
-  &-actions {
-    @include d.flex;
-
-    position: absolute;
-    top: 50%;
-    left: -0;
-    transform: translateY(-50%);
-
-    padding: v.$padding;
-    border-top: 1.5px solid v.$tn1T;
-    border-right: 1px solid v.$tn1T;
-    border-bottom: 1.5px solid v.$tn1T;
-    border-left: 4px solid v.$tn1T;
-    border-radius: v.$radius * 2;
-
-    background-color: v.$bg1;
   }
 
   &-action {

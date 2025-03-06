@@ -2,14 +2,7 @@ import type { JSX } from 'react'
 
 const Logo = ({ className = '' }: { className?: string }): JSX.Element => {
   return (
-    <svg
-      width='248'
-      height='306'
-      viewBox='0 0 248 306'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-      className={className}
-    >
+    <svg width='248' height='306' viewBox='0 0 248 306' fill='none' xmlns='http://www.w3.org/2000/svg' className={className}>
       <g clipPath='url(#clip0_355_644)'>
         <path
           d='M124.209 0.920044L135.638 34.4946H171.356L142.067 55.9251L153.497 89.4996L124.209 68.7834L95.6347 89.4996L107.064 55.9251L77.7759 34.4946H113.493L124.209 0.920044Z'
@@ -89,12 +82,7 @@ const Logo = ({ className = '' }: { className?: string }): JSX.Element => {
           <stop offset='1' stopColor='#F9ED32' />
         </linearGradient>
         <clipPath id='clip0_355_644'>
-          <rect
-            width='247.344'
-            height='304.92'
-            fill='white'
-            transform='translate(0.344238 0.920044)'
-          />
+          <rect width='247.344' height='304.92' fill='white' transform='translate(0.344238 0.920044)' />
         </clipPath>
       </defs>
     </svg>

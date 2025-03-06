@@ -1,8 +1,4 @@
-export type TWebhookEventType =
-  | 'user.created'
-  | 'user.updated'
-  | 'user.deleted'
-  | 'user.createdAtEdge'
+export type TWebhookEventType = 'user.created' | 'user.updated' | 'user.deleted' | 'user.createdAtEdge'
 
 export interface IWebhookEvent {
   data: IModifyUser

@@ -5,23 +5,25 @@
   @include d.flex($dir: row, $ali: center);
 
   button {
-    & &:first-child {
-      background-color: transparent;
-    }
+    background-color: red;
 
-    &:last-child {
-      padding: 5px;
-      font-weight: 700;
-      background-color: v.$tn1;
+    // & &:first-child {
+    //   background-color: transparent;
+    // }
 
-      &.btn {
-        padding: 10px;
-      }
+    // &:last-child {
+    //   padding: 5px;
+    //   font-weight: 700;
+    //   background-color: v.$tn1;
 
-      &,
-      span {
-        color: v.$bg1;
-      }
-    }
+    //   &.btn {
+    //     padding: 10px;
+    //   }
+
+    //   &,
+    //   span {
+    //     color: v.$bg1;
+    //   }
+    // }
   }
 }

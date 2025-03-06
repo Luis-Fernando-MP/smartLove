@@ -1,11 +1,7 @@
 'use client'
 
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
-import {
-  createReservation,
-  deleteReservation,
-  getAllReservers
-} from 'services/reserve/reserve.service'
+import { createReservation, deleteReservation, getAllReservers } from 'services/reserve/reserve.service'
 
 export const RESERVATIONS_NAME_CACHE = 'RESERVATIONS'
 

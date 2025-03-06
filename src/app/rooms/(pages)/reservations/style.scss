@@ -4,7 +4,7 @@
 @use '@sass/utils/scrollbar' as *;
 @use '@sass/utils/transitions' as t;
 
-$navSize: 400px; //<-- important
+$navSize: 400px; // <-- important
 
 .reservationNav {
   min-width: $navSize;

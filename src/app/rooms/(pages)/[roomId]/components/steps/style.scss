@@ -47,14 +47,10 @@ $widthSeparator: v.$padding * 2;
       @include d.flex($ali: center);
     }
 
-    &:last-child div {
-      @include d.flex($gap: 0, $ali: flex-start);
-
-      flex-direction: column;
-    }
-
-    &:last-child::after {
-      display: none;
+    &,
+    &::after,
+    &::before {
+      transition: t.$pong;
     }
 
     &:last-child {
@@ -63,10 +59,14 @@ $widthSeparator: v.$padding * 2;
       }
     }
 
-    &,
-    &::after,
-    &::before {
-      transition: t.$pong;
+    &:last-child::after {
+      display: none;
+    }
+
+    &:last-child div {
+      @include d.flex($gap: 0, $ali: flex-start);
+
+      flex-direction: column;
     }
 
     &.active::before {

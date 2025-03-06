@@ -12,11 +12,7 @@ interface IErrorContainer {
   LoadingComponent: ReactNode
 }
 
-const ErrorContainer = ({
-  ErrorComponent,
-  LoadingComponent,
-  children
-}: IErrorContainer): JSX.Element => {
+const ErrorContainer = ({ ErrorComponent, LoadingComponent, children }: IErrorContainer): JSX.Element => {
   const onFallbackError = (errorProps: FallbackProps) => {
     return (
       <FallbackError errorProps={errorProps}>
@@ -28,11 +24,7 @@ const ErrorContainer = ({
   return (
     <QueryErrorResetBoundary>
       {({ reset }) => (
-        <ErrorBoundary
-          fallbackRender={onFallbackError}
-          onReset={reset}
-          onError={error => console.error('Error: ', error)}
-        >
+        <ErrorBoundary fallbackRender={onFallbackError} onReset={reset} onError={error => console.error('Error: ', error)}>
           <Suspense fallback={LoadingComponent}>{children}</Suspense>
         </ErrorBoundary>
       )}

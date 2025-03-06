@@ -7,7 +7,7 @@
 }
 
 @mixin smallScreen($mediaMin: false) {
-  @if ($mediaMin) {
+  @if $mediaMin {
     @media screen and (min-width: $min-small-screen) and (max-width: $small-screen) {
       @content;
     }
@@ -19,7 +19,7 @@
 }
 
 @mixin mediumScreen($mediaMin: false) {
-  @if ($mediaMin) {
+  @if $mediaMin {
     @media screen and (min-width: $small-screen) and (max-width: $medium-screen) {
       @content;
     }
@@ -31,7 +31,7 @@
 }
 
 @mixin largeScreen($mediaMin: false) {
-  @if ($mediaMin) {
+  @if $mediaMin {
     @media screen and (min-width: $medium-screen) and (max-width: $large-screen) {
       @content;
     }
@@ -43,7 +43,7 @@
 }
 
 @mixin extraLargeScreen($mediaMin: false) {
-  @if ($mediaMin) {
+  @if $mediaMin {
     @media screen and (min-width: $large-screen) and (max-width: $extra-large-screen) {
       @content;
     }
