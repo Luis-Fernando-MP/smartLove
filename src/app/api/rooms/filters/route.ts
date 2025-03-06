@@ -54,9 +54,9 @@ export async function POST(request: Request) {
 
     if (rooms.length < 1) return Response.json([])
 
-    const parseRooms = rooms.map(room => {
+    const parseRooms = rooms.map((room: any) => {
       // Verifica que RoomServices existe y tiene datos
-      const services = room.RoomServices?.map(roomService => roomService.ServicesRel) || []
+      const services = room.RoomServices?.map((roomService: any) => roomService.ServicesRel) || []
 
       // Crea el nuevo objeto excluyendo RoomServices
       const { RoomServices, ...newRoom } = {

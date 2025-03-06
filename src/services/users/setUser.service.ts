@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
+import { IError } from '@/services/error.service.types'
 import { API_URL } from '@/shared/constants'
 import axios, { AxiosError } from 'axios'
-import { IError } from 'services/error.service.types'
 
 import { IClient, IUser } from './user.service.types'
 
@@ -22,6 +22,7 @@ export const createUser = async (userData: IUser) => {
     }
     return response.data
   } catch (error: any) {
+    console.log(error)
     let errorEvent: IError = {
       message: error?.message,
       status: 500
@@ -37,6 +38,7 @@ export const createUser = async (userData: IUser) => {
 
 export const createClient = async (clientData: IClient) => {
   try {
+    console.log(clientData)
     // const response = await UserAxios.post('', { clientData })
     // if (!response.data) {
     //   throw new Error('Error al guardar el usuario')

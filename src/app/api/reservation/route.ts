@@ -17,6 +17,7 @@ export async function POST(request: Request) {
     const data = (await request.json()) as ISendReserveData
     if (!data) throw new Error('Missing props')
     const { client, room, userId, ...reservation } = data
+    console.log(client, room, userId, reservation)
     const clientData = await prisma.client.findUnique({
       where: {
         clerkId: userId

@@ -24,6 +24,7 @@ export const slugDictionary = ({ counter, itsFull, maxResults }: ISlugOBJ) => [
 ]
 
 export function getSlugs({ maxResults = 10, ...slugConditions }: ISlugOBJ) {
+  console.log(slugConditions, maxResults)
   const defaultSlug = {
     IconSlug: Sparkles,
     slugDescription: 'Este habitación te esta esperando!! no la desaproveches',

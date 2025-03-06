@@ -32,6 +32,7 @@ function getUserThemePreferences(): ITheme {
     const parseLocalTheme = JSON.parse(localTheme) as ITheme
     return parseLocalTheme === 'light' ? 'light' : 'dark'
   } catch (error) {
+    console.error(error)
     return 'dark'
   }
 }

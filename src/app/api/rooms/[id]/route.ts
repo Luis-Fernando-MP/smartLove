@@ -24,9 +24,10 @@ export async function GET(request: Request, response: { params: Params }) {
 
     const temporalRoom = {
       ...room,
-      services: room.RoomServices.map(roomService => roomService.ServicesRel)
+      services: room.RoomServices.map((roomService: any) => roomService.ServicesRel)
     }
     const { RoomServices, ...newRoom } = temporalRoom
+    console.log(RoomServices)
     return Response.json(newRoom ?? {})
   } catch (error) {
     console.log(error)

@@ -1,8 +1,7 @@
 import TanStackProvider from '@/providers/TanStackProvider'
-import { robotoFlex } from '@/shared/fonts'
+import { bodyFonts } from '@/shared/fonts'
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
-import type { Metadata } from 'next'
 import NextTopLoader from 'nextjs-toploader'
 import type { JSX, ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
@@ -10,14 +9,9 @@ import { Toaster } from 'react-hot-toast'
 import Providers from './Providers'
 import './globals.css'
 import './layout.scss'
+import { metadata, viewport } from './metadata'
 
 dayjs.extend(isBetween)
-
-export const metadata: Metadata = {
-  title: 'SmartPro',
-  description: 'Sistema de gestión de reservas para la empresa de hotel "Smart Love"',
-  icons: '/logoV3.svg'
-}
 
 interface TRootLayout {
   children?: ReactNode[] | null | ReactNode
@@ -27,15 +21,18 @@ function RootLayout({ children }: TRootLayout): JSX.Element {
   return (
     <Providers>
       <html lang='es'>
-        <body className={robotoFlex.className}>
-          <NextTopLoader zIndex={100} height={5} color='var(--tn-primary)' />
+        <body className={`${bodyFonts} antialiased`}>
+          <NextTopLoader color='var(--tn-primary)' showSpinner={false} />
           <TanStackProvider>{children}</TanStackProvider>
           <Toaster
             position='top-center'
-            reverseOrder={false}
             toastOptions={{
               className: 'toast',
-              style: { background: 'var(--bg-primary)', color: 'var(--fnt-primary)' }
+              position: 'top-right',
+              style: {
+                background: 'rgb(var(--bg-primary))',
+                color: 'rgb(var(--fnt-primary))'
+              }
             }}
           />
         </body>
@@ -45,3 +42,5 @@ function RootLayout({ children }: TRootLayout): JSX.Element {
 }
 
 export default RootLayout
+
+export { metadata, viewport }

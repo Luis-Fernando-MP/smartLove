@@ -1,14 +1,14 @@
 'use client'
 
 import { sansitaSwashed } from '@/shared/fonts'
-import type { JSX, ReactNode } from 'react'
+import type { JSX } from 'react'
 
 interface IToggleLogo {
   className?: string
-  children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
 }
 
 const ToggleLogo = ({ className = 'logo' }: IToggleLogo): JSX.Element => {
+  console.log('ToggleLogo', className)
   // const theme = useStoreTheme(store => store.theme)
   // if (theme === 'dark') return <Logo className={className} />
   return (

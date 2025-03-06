@@ -25,3 +25,5 @@ export const whisper = Whisper({
   subsets: ['latin'],
   weight: ['400']
 })
+
+export const bodyFonts = `${yesevaOne.className} ${mada.className} ${robotoFlex.variable} ${sansitaSwashed.className} ${whisper.className}`
