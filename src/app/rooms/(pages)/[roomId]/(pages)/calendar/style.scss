@@ -1,53 +1,68 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .RCalendar {
   width: 900px;
   min-height: 700px;
-  background-color: v.$bg1;
   padding: v.$padding;
   border-radius: v.$radius;
+
+  background-color: v.$bg1;
+
   @include d.flex($ali: center);
+
   .rbc-month-view,
   .rbc-month-row,
   .rbc-header,
   .rbc-day-bg {
     border: 2px solid v.$tn1T;
   }
+
   .rbc-date-cell {
     padding: 10px;
-    color: v.$fn1;
     font-weight: 600;
+    color: v.$fn1;
   }
+
   .rbc-today {
     background-color: v.$tn1T;
   }
+
   .rbc-off-range-bg {
-    background-color: v.$dis2;
     opacity: 0.3;
+    background-color: v.$dis2;
   }
+
   .rbc-header {
     padding: 10px;
+
     span {
       font-size: v.$fH5;
       font-weight: 500;
     }
   }
+
   .rbc-event {
     background-color: v.$tn1;
+
     div,
     svg {
       color: v.$fn1;
     }
   }
+
   .rbc-btn-group {
     @include d.flex($dir: row, $gap: 10px);
+
     button {
-      background-color: v.$bg2;
-      color: v.$fn1;
-      border-radius: v.$radius;
       padding: 8px v.$padding;
       border: 2px solid v.$tn1T;
+      border-radius: v.$radius;
+
+      color: v.$fn1;
+
+      background-color: v.$bg2;
+
       &:hover {
         border-color: v.$tn1;
         background-color: v.$bg2;

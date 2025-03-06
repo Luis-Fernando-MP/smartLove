@@ -1,97 +1,129 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .reservationNav {
   padding: 0 v.$padding;
   background-image: linear-gradient(0deg, v.$tn1T 10%, v.$bg2 100%);
+
   &-form.ok {
     border: 2px solid v.$tn1;
+
     .reservationNav-submit {
-      background-color: v.$tn1;
       color: v.$bg1;
+      background-color: v.$tn1;
     }
   }
+
   &-submit {
     padding: v.$padding * 0.8 0;
     border-radius: v.$radius;
-    background-color: v.$bg2;
+
     font-size: v.$fH5;
     font-weight: 600;
+
+    background-color: v.$bg2;
   }
+
   &-precaution {
     font-weight: 300;
+
     a {
       color: v.$tn1;
     }
   }
+
   &-id {
-    background-color: v.$bg2;
     padding: 5px 10px;
-    text-align: center;
-    border-radius: 5px;
     border: 2px solid v.$tn1T;
+    border-radius: 5px;
+
     font-size: v.$fH5;
+    text-align: center;
+
+    background-color: v.$bg2;
   }
+
   &-form {
-    @include d.flex();
-    background-color: v.$bg1;
-    border-radius: v.$radius;
+    @include d.flex;
+
     padding: v.$padding;
+    border-radius: v.$radius;
+    background-color: v.$bg1;
     background-image: linear-gradient(0deg, v.$tn1T 10%, v.$bg2 100%);
+
     &__section {
       padding: v.$padding * 0.5;
-      border-radius: v.$radius;
       border: 1px solid transparent;
+      border-radius: v.$radius;
+
       &.error {
-        background-color: rgba(v.$danger, 0.5);
         border-color: v.$danger_dark;
+        background-color: rgba(v.$danger, 0.5);
       }
+
       &__error {
         color: v.$danger_dark;
         color: green;
       }
+
       @include d.flex($gap: 10px);
+
       textarea {
         width: 100%;
         height: 100px;
-        border-radius: v.$radius;
         padding: 10px;
+        border-radius: v.$radius;
+
         background-color: v.$bg1;
       }
     }
+
     &__select {
-      background-color: v.$bg1;
-      display: grid;
-      min-height: 50px;
-      position: relative;
-      width: 100%;
       cursor: pointer;
+
+      position: relative;
+
+      display: grid;
+
+      width: 100%;
+      min-height: 50px;
+
+      background-color: v.$bg1;
+
+      &::after {
+        pointer-events: none;
+        content: '➽';
+
+        position: absolute;
+        top: calc(50% - 5px);
+        right: 10px;
+        transform: translateX(-50%);
+        rotate: 90deg;
+
+        color: v.$dis1;
+
+        animation: oscillation 0.5s ease infinite alternate paused;
+      }
+
       &.auto {
         select {
           background-color: v.$dis2;
         }
       }
+
       select {
-        border-radius: v.$radius;
-        background-color: transparent;
-        appearance: none;
         cursor: pointer;
-        outline: 0;
+
         padding: v.$padding;
+        border-radius: v.$radius;
+
+        appearance: none;
+        background-color: transparent;
+        outline: 0;
+
         &::-ms-expand {
           display: none;
         }
-      }
-      &::after {
-        content: '➽';
-        color: v.$dis1;
-        position: absolute;
-        right: 10px;
-        top: calc(50% - 5px);
-        transform: translateX(-50%);
-        pointer-events: none;
-        rotate: 90deg;
-        animation: oscillation 0.5s ease infinite alternate paused;
       }
     }
   }

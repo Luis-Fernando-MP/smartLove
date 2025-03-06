@@ -1,8 +1,8 @@
+import { HOME_PATHS } from '@/shared/constants'
+import AuthButtons from '@/shared/ui/authButtons/AuthButtons'
+import ToggleLogo from '@/shared/ui/colorSchemeButton/ToggleLogo'
 import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
-import { HOME_PATHS } from 'shared/constants'
-import AuthButtons from 'shared/ui/authButtons/AuthButtons'
-import ToggleLogo from 'shared/ui/colorSchemeButton/ToggleLogo'
 
 import './style.scss'
 

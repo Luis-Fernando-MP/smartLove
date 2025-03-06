@@ -1,76 +1,99 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
-@use '@styles/utils/transitions' as t;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+@use '@sass/utils/transitions' as t;
 
 $widthSeparator: v.$padding * 2;
 
 .room {
   &-steps {
     @include d.flex($dir: row, $ali: stretch, $gap: $widthSeparator);
+
     justify-content: center;
     width: 100%;
     border-radius: v.$radius;
   }
+
   &-step {
-    padding: 0 v.$padding;
     counter-increment: step;
-    @include d.flex($dir: row, $ali: center);
     position: relative;
+    padding: 0 v.$padding;
+
+    &::after {
+      content: '';
+
+      position: absolute;
+      right: -1 * $widthSeparator;
+
+      width: $widthSeparator;
+      height: 5px;
+
+      background-color: v.$dis2;
+    }
+
+    &::before {
+      content: counters(step, '.', numeric);
+
+      display: block;
+      justify-content: center;
+
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+
+      font-size: v.$fH5;
+
+      background-color: v.$dis2;
+
+      @include d.flex($ali: center);
+    }
+
     &:last-child div {
       @include d.flex($gap: 0, $ali: flex-start);
+
       flex-direction: column;
     }
-    &:last-child:after {
+
+    &:last-child::after {
       display: none;
     }
+
     &:last-child {
       h5 {
         color: v.$success_dark;
       }
     }
+
     &,
     &::after,
     &::before {
       transition: t.$pong;
     }
-    &::after {
-      content: '';
-      position: absolute;
-      width: $widthSeparator;
-      height: 5px;
-      background-color: v.$dis2;
-      right: -1 * $widthSeparator;
-    }
-    &::before {
-      content: counters(step, '.', numeric);
-      background-color: v.$dis2;
-      display: block;
-      width: 30px;
-      font-size: v.$fH5;
-      height: 30px;
-      border-radius: 50%;
-      @include d.flex($ali: center);
-      justify-content: center;
-    }
+
     &.active::before {
-      background-color: v.$tn1;
       color: v.$bg1;
+      background-color: v.$tn1;
     }
+
     &.active::after {
       background-color: v.$tn1;
     }
+
     &.inactive {
-      user-select: none;
       pointer-events: none;
+      user-select: none;
       opacity: 0.7;
+
       &::before {
         color: v.$fn2;
       }
+
       &::after,
       &::before {
         background-color: v.$dis2;
       }
     }
+
+    @include d.flex($dir: row, $ali: center);
   }
 }
 

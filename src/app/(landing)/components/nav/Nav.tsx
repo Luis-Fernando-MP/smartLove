@@ -1,13 +1,13 @@
 'use client'
 
+import { HOME_PATHS } from '@/shared/constants'
+import { switchClass } from '@/shared/helpers/switchClassName'
+import AuthButtons from '@/shared/ui/authButtons/AuthButtons'
+import ToggleLogo from '@/shared/ui/colorSchemeButton/ToggleLogo'
 import { Menu } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { usePathname, useRouter } from 'next/navigation'
 import { type JSX, useEffect, useState } from 'react'
-import { HOME_PATHS } from 'shared/constants'
-import { switchClass } from 'shared/helpers/switchClassName'
-import AuthButtons from 'shared/ui/authButtons/AuthButtons'
-import ToggleLogo from 'shared/ui/colorSchemeButton/ToggleLogo'
 
 import './style.scss'
 import './userMobile.scss'
@@ -53,11 +53,7 @@ const Nav = (): JSX.Element => {
             const isActive = switchClass(pathname === link)
             return (
               <li key={name}>
-                <Link
-                  href={link}
-                  className={`btn landingNav-link ${isActive}`}
-                  onClick={() => handleNavigate(link)}
-                >
+                <Link href={link} className={`btn landingNav-link ${isActive}`} onClick={() => handleNavigate(link)}>
                   <Icon />
                   <p>{name}</p>
                 </Link>

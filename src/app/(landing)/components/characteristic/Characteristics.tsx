@@ -1,5 +1,5 @@
+import parseServiceToIcon from '@/shared/helpers/parseServiceToIcon'
 import type { JSX, ReactNode } from 'react'
-import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
 
 import './style.scss'
 

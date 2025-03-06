@@ -1,83 +1,109 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .reserve {
   position: relative;
+
   &.active {
     .reserve-container,
     .reserve-actions {
       border: 2px solid v.$tn1;
     }
   }
+
   &-container {
-    background-color: v.$bg1;
-    border-radius: v.$radius;
+    z-index: 1;
+
+    width: 330px;
     height: auto;
     margin: v.$padding * 0.3;
-    padding: v.$padding;
-    width: 330px;
-    z-index: 1;
     margin-left: 25px;
-    @include d.flex($ali: center, $gap: v.$padding * 2);
+    padding: v.$padding;
     border: 1.5px solid v.$tn1T;
+    border-radius: v.$radius;
+
+    background-color: v.$bg1;
+
+    @include d.flex($ali: center, $gap: v.$padding * 2);
   }
+
   &-operations {
-    width: 100%;
     display: grid;
     grid-template-columns: min-content 1fr 1fr;
-    background-color: v.$bg2;
+
+    width: 100%;
     padding: 5px v.$padding;
+
+    background-color: v.$bg2;
   }
+
   &-operation {
     text-align: center;
+
     @include d.flex($gap: 10px);
+
     h4 {
-      font-size: v.$fP;
       border-bottom: 2.5px dotted v.$fn2;
+      font-size: v.$fP;
     }
+
     h5 {
       font-weight: 900;
     }
   }
+
   &-actions {
     @include d.flex;
-    padding: v.$padding;
-    border-radius: v.$radius * 2;
+
     position: absolute;
     top: 50%;
-    left: -0px;
-    background-color: v.$bg1;
-    border-top: 1.5px solid v.$tn1T;
-    border-left: 4px solid v.$tn1T;
-    border-bottom: 1.5px solid v.$tn1T;
-    border-right: 1px solid v.$tn1T;
-
+    left: -0;
     transform: translateY(-50%);
+
+    padding: v.$padding;
+    border-top: 1.5px solid v.$tn1T;
+    border-right: 1px solid v.$tn1T;
+    border-bottom: 1.5px solid v.$tn1T;
+    border-left: 4px solid v.$tn1T;
+    border-radius: v.$radius * 2;
+
+    background-color: v.$bg1;
   }
+
   &-action {
     border: none;
+
     &:hover {
       color: v.$tn1;
     }
   }
+
   &-littleBoxes {
-    width: 100%;
-    @include d.flex($gap: 10px, $dir: row, $ali: center);
     flex-wrap: wrap;
     justify-content: center;
-  }
-  &-date {
     width: 100%;
-    background-color: v.$bg2;
-    @include d.flex($dir: row, $ali: center);
+
+    @include d.flex($gap: 10px, $dir: row, $ali: center);
+  }
+
+  &-date {
     justify-content: space-evenly;
+
+    width: 100%;
     padding: v.$padding;
     border-radius: v.$radius;
+
+    background-color: v.$bg2;
+
+    @include d.flex($dir: row, $ali: center);
+
     h3 {
       @include d.flex($dir: row, $gap: 5px);
+
       b {
         color: v.$tn1;
       }
+
       span {
         font-size: v.$fSmall;
       }

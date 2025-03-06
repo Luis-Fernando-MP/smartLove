@@ -1,7 +1,8 @@
-@use '@styles/config/vars' as v;
+@use '@sass/config/vars' as v;
 
 @mixin textGradient($gr: v.$gr1) {
   background: $gr;
   background-clip: text;
+
   -webkit-text-fill-color: transparent;
 }

@@ -1,5 +1,5 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .regRequirements {
   &-form,
@@ -7,30 +7,37 @@
   &-section {
     @include d.flex;
   }
+
   &-form {
-    border-radius: v.$radius;
-    background-color: v.$bg1;
+    width: 60%;
     height: auto;
     margin: 0 auto;
     padding: v.$padding * 2 v.$padding;
-    width: 60%;
+    border-radius: v.$radius;
+
+    background-color: v.$bg1;
+
     &__actions {
       flex-direction: row;
       justify-content: flex-end;
     }
+
     &__reset {
-      background-color: v.$bg2;
       border: 2px solid v.$tn1T;
+      background-color: v.$bg2;
     }
   }
+
   &-section {
     justify-content: center;
     padding: 10px 8px;
     border-radius: v.$radius;
+
     &.error input {
       border: 2px solid v.$danger;
       outline: none !important;
     }
+
     &.error &__error {
       display: block;
     }
@@ -38,27 +45,34 @@
     &__error {
       display: none;
       color: v.$danger_dark;
+
       @include v.toDark {
         color: v.$danger;
       }
     }
+
     &__field {
       @include d.flex($ali: center);
+
       flex-direction: row;
+
       h5 span {
-        color: v.$danger;
-        margin-right: 5px;
         display: block;
+        margin-right: 5px;
+        color: v.$danger;
       }
+
       h5 {
         display: inline-flex;
         width: fit-content;
         text-wrap: nowrap;
       }
+
       input {
         width: 100%;
         padding: 5px;
         border-radius: v.$radius;
+
         background-color: v.$bg1;
         outline: none;
       }

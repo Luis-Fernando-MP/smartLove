@@ -1,7 +1,7 @@
 'use client'
 
+import Footer from '@/shared/ui/footer/Footer'
 import type { JSX } from 'react'
-import Footer from 'shared/ui/footer/Footer'
 import { v4 as uuidv4 } from 'uuid'
 
 import { useReservationsStore } from '../../store/reservation.store'
@@ -18,8 +18,8 @@ const Reservations = (): JSX.Element | null => {
         Has realizado <b className='gr'> {reservations.length} Reservas</b>
       </h3>
       <p>
-        Ten encenta que la <b className='gr'>Cantidad de Reservas</b> de nuestros huéspedes son
-        importantes... En futuras versiones se aplicaran&nbsp;
+        Ten encenta que la <b className='gr'>Cantidad de Reservas</b> de nuestros huéspedes son importantes... En futuras
+        versiones se aplicaran&nbsp;
         <b className='gr'>Promociones y Programas de lealtad</b> 🎉
       </p>
       <article className='reservations-list'>

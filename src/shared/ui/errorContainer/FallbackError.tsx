@@ -1,6 +1,6 @@
+import { DismissErrorToast } from '@/shared/ui/DismissErrorToast'
 import type { JSX, ReactNode } from 'react'
 import { FallbackProps } from 'react-error-boundary'
-import { DismissErrorToast } from 'shared/ui/DismissErrorToast'
 
 interface IFallbackError {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>

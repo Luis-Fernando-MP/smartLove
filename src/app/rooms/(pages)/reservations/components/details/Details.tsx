@@ -1,12 +1,12 @@
 'use client'
 
+import { sansitaSwashed } from '@/shared/fonts'
+import { switchClass } from '@/shared/helpers/switchClassName'
+import CuteLittleBox from '@/shared/ui/cuteLittleBox/CuteLittleBox'
+import DayBox from '@/shared/ui/dayBox/DayBox'
 import dayjs from 'dayjs'
 import { PanelRightClose } from 'lucide-react'
 import type { JSX } from 'react'
-import { sansitaSwashed } from 'shared/fonts'
-import { switchClass } from 'shared/helpers/switchClassName'
-import CuteLittleBox from 'shared/ui/cuteLittleBox/CuteLittleBox'
-import DayBox from 'shared/ui/dayBox/DayBox'
 import { v1 as uuid } from 'uuid'
 
 import { useReservationStore } from '../../store/reservation.store'
@@ -54,21 +54,10 @@ const Details = (): JSX.Element | null => {
       <section className='RDImages'>
         <h3 className={sansitaSwashed.className}>{r?.room.name}</h3>
         <div className='RDImages-container'>
-          <img
-            className='RDImages-container__background'
-            src={r?.room.images[0].imageUrl}
-            alt={r?.room.name}
-          />
+          <img className='RDImages-container__background' src={r?.room.images[0].imageUrl} alt={r?.room.name} />
           <div className='RDImages-container__images'>
             {r?.room.images.slice(1).map(img => {
-              return (
-                <img
-                  className='RDImages-container__image'
-                  src={img.imageUrl}
-                  alt={img.imageUrl}
-                  key={uuid()}
-                />
-              )
+              return <img className='RDImages-container__image' src={img.imageUrl} alt={img.imageUrl} key={uuid()} />
             })}
           </div>
         </div>
@@ -80,15 +69,7 @@ const Details = (): JSX.Element | null => {
         {!!r &&
           littleBoxData(r).map(i => {
             const { Icon, subtitle, title, active } = i
-            return (
-              <CuteLittleBox
-                key={i.title}
-                Icon={Icon}
-                subtitle={Number(subtitle)}
-                title={title}
-                active={active}
-              />
-            )
+            return <CuteLittleBox key={i.title} Icon={Icon} subtitle={Number(subtitle)} title={title} active={active} />
           })}
       </section>
     </article>

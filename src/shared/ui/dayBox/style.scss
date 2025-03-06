@@ -1,47 +1,60 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .DayBox {
   &-item {
     position: relative;
-    background-color: v.$bg1;
-    border-radius: v.$radius;
+
+    width: 85px;
     height: 230px;
     padding-top: v.$padding;
-    text-align: center;
-    width: 85px;
     border: 2px solid v.$tn1T;
+    border-radius: v.$radius;
+
+    text-align: center;
+
+    background-color: v.$bg1;
+
     span {
       font-weight: 900;
     }
+
     &,
     &__sep {
       @include d.flex($ali: center, $gap: 5px);
     }
+
     &__sep {
       justify-content: center;
-      border-radius: v.$radius;
-      padding: v.$padding;
-      background-color: v.$tn1;
+
       width: 100%;
       height: 100%;
+      padding: v.$padding;
+      border-radius: v.$radius;
+
       text-align: center;
+
+      background-color: v.$tn1;
+
       h5 {
         font-size: v.$fP;
       }
+
       svg {
         scale: 1.5;
         margin-bottom: 5px;
       }
+
       svg,
       h5,
       h2,
       p {
         color: v.$bg1;
       }
+
       p {
-        text-transform: capitalize;
         font-size: v.$fSmall;
+        text-transform: capitalize;
       }
     }
   }

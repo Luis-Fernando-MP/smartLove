@@ -1,13 +1,5 @@
 {
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
-  "extends": [
-    "next/core-web-vitals",
-    "./node_modules/ts-standard/eslintrc.json",
-    "prettier",
-    "plugin:tailwindcss/recommended"
-  ],
+  "extends": ["next/core-web-vitals", "next/typescript", "plugin:tailwindcss/recommended", "prettier"],
   "plugins": ["tailwindcss"],
   "rules": {
     "tailwindcss/no-custom-classname": "off",
@@ -15,21 +7,8 @@
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/no-floating-promises": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
-  },
-  "settings": {
-    "tailwindcss": {
-      "callees": ["cn"],
-      "config": "tailwind.config.js"
-    },
-    "next": {
-      "rootDir": ["./"]
-    }
-  },
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "parser": "@typescript-eslint/parser"
-    }
-  ]
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@next/next/no-img-element": "off"
+  }
 }

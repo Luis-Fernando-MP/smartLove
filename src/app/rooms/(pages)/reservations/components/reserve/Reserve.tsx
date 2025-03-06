@@ -1,14 +1,14 @@
 'use client'
 
+import { sansitaSwashed } from '@/shared/fonts'
+import { breakDownDate } from '@/shared/helpers/formatDate'
+import { switchClass } from '@/shared/helpers/switchClassName'
+import ToggleLogo from '@/shared/ui/colorSchemeButton/ToggleLogo'
+import CuteLittleBox from '@/shared/ui/cuteLittleBox/CuteLittleBox'
 import { TClientReservation } from 'app/api/reservation/by-user/[idUser]/route'
 import dayjs from 'dayjs'
 import { LoaderCircle, NotebookTabs, Printer, Repeat, XIcon } from 'lucide-react'
 import { type JSX, type ReactNode } from 'react'
-import { sansitaSwashed } from 'shared/fonts'
-import { breakDownDate } from 'shared/helpers/formatDate'
-import { switchClass } from 'shared/helpers/switchClassName'
-import ToggleLogo from 'shared/ui/colorSchemeButton/ToggleLogo'
-import CuteLittleBox from 'shared/ui/cuteLittleBox/CuteLittleBox'
 
 import './style.scss'
 import useReserve, { littleBoxData } from './useReserve'
@@ -69,15 +69,7 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
         <section className='reserve-littleBoxes'>
           {littleBoxData(reserve).map(i => {
             const { Icon, subtitle, title, active } = i
-            return (
-              <CuteLittleBox
-                key={i.title}
-                Icon={Icon}
-                subtitle={Number(subtitle)}
-                title={title}
-                active={active}
-              />
-            )
+            return <CuteLittleBox key={i.title} Icon={Icon} subtitle={Number(subtitle)} title={title} active={active} />
           })}
         </section>
 

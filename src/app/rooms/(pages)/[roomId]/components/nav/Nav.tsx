@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+import { sansitaSwashed } from '@/shared/fonts'
+import Back from '@/shared/ui/back/Back'
 import type { JSX } from 'react'
-import { sansitaSwashed } from 'shared/fonts'
-import Back from 'shared/ui/back/Back'
 
 import { useRoomStore } from '../../store/room.store'
 import BusyDays from './BusyDays'
@@ -22,11 +22,7 @@ const Nav = (): JSX.Element | null => {
       </h3>
       <ul className='roomNav-images'>
         <li className='roomNav-item background'>
-          <img
-            src={firstImage.imageUrl}
-            alt={firstImage.createdAt.toString()}
-            className='roomNav-image first'
-          />
+          <img src={firstImage.imageUrl} alt={firstImage.createdAt.toString()} className='roomNav-image first' />
         </li>
         {images.slice(1).map(image => {
           const { id, createdAt, imageUrl } = image

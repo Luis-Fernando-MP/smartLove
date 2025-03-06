@@ -1,12 +1,13 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/media' as m;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/media' as m;
 
-@include m.smallScreen() {
+@include m.smallScreen {
   .footer {
     &-container {
       flex-direction: column;
       justify-content: center;
     }
+
     span,
     &-paths,
     &-description {

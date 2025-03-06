@@ -1,19 +1,23 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .authOptions {
   @include d.flex($dir: row, $ali: center);
+
   button {
     & &:first-child {
       background-color: transparent;
     }
+
     &:last-child {
+      padding: 5px;
       font-weight: 700;
       background-color: v.$tn1;
-      padding: 5px;
+
       &.btn {
         padding: 10px;
       }
+
       &,
       span {
         color: v.$bg1;

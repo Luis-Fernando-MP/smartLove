@@ -1,60 +1,73 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/media' as m;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/media' as m;
 
-@include m.extraLargeScreen() {
+@include m.extraLargeScreen {
   .landingNav {
     width: 100%;
     padding: v.$padding v.$padding * 1.5;
   }
 }
 
-@include m.largeScreen() {
+@include m.largeScreen {
   .landingNav {
     position: fixed;
-    height: 100vh;
-    background-color: v.$bg1;
-    justify-content: center;
-    transition: clip-path 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     top: 0;
     right: 0;
+
+    justify-content: center;
+
+    height: 100vh;
+
+    background-color: v.$bg1;
     clip-path: circle(0% at 100% 0%);
+
+    transition: clip-path 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
     &.show-menu {
       clip-path: circle(150% at 50% 50%);
     }
+
     &-brand {
       h2 {
         font-size: 3em;
       }
+
       span {
         font-size: v.$fH5;
       }
     }
+
     &-menu {
-      user-select: all;
       pointer-events: all;
+      user-select: all;
       display: block;
     }
+
     &,
     &-paths {
       flex-direction: column;
     }
+
     &-paths {
       align-items: self-start;
     }
+
     &-link {
       &.active {
         border: none;
+
         &,
         p {
           color: v.$tn1;
         }
       }
     }
+
     &-account {
       button {
         &:last-child {
-          background-color: v.$tn1;
           color: white;
+          background-color: v.$tn1;
         }
       }
     }

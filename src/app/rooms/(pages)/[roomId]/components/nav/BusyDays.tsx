@@ -1,9 +1,9 @@
+import { sansitaSwashed } from '@/shared/fonts'
+import { switchClass } from '@/shared/helpers/switchClassName'
 import dayjs from 'dayjs'
 import { PanelTopCloseIcon, PanelTopOpenIcon } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { type JSX, useState } from 'react'
-import { sansitaSwashed } from 'shared/fonts'
-import { switchClass } from 'shared/helpers/switchClassName'
 
 import { useRoomStore } from '../../store/room.store'
 import CuteCalendar from '../cuteCalendar/CuteCalendar'
@@ -16,9 +16,7 @@ const BusyDays = (): JSX.Element | null => {
   const { reservations, id } = room
 
   const today = dayjs().add(-1, 'day')
-  const busyDays = reservations?.filter(f =>
-    dayjs(f.toDate, 'YYYY-MM-DD HH:mm:ss.S').isAfter(today)
-  )
+  const busyDays = reservations?.filter(f => dayjs(f.toDate, 'YYYY-MM-DD HH:mm:ss.S').isAfter(today))
   if (!busyDays || busyDays?.length < 1) return null
 
   return (

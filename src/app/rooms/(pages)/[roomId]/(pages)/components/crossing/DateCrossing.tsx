@@ -1,15 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
+import { calculateDateCrossing, formattedShortWeekdays, getDaysInMonth, noAvailableDateInRange } from '@/shared/helpers/roomDate'
+import { switchClass } from '@/shared/helpers/switchClassName'
 import { useUser } from '@clerk/nextjs'
 import { Reservation } from '@prisma/client'
 import dayjs, { Dayjs } from 'dayjs'
 import { JSX, memo } from 'react'
-import {
-  calculateDateCrossing,
-  formattedShortWeekdays,
-  getDaysInMonth,
-  noAvailableDateInRange
-} from 'shared/helpers/roomDate'
-import { switchClass } from 'shared/helpers/switchClassName'
 import { v1 as uuid } from 'uuid'
 
 import './style.scss'
@@ -59,10 +54,7 @@ const DateCrossing = ({ dates, selectEnd, selectFrom }: IDateCrossing): JSX.Elem
             return (
               <li
                 key={uuid()}
-                className={`TCDateCrossing-date
-                ${switchClass(isBusy, 'busy')}
-                ${switchClass(isSelect, 'select')}
-                ${switchClass(isCrossing, 'cross')}`}
+                className={`TCDateCrossing-date ${switchClass(isBusy, 'busy')} ${switchClass(isSelect, 'select')} ${switchClass(isCrossing, 'cross')}`}
               >
                 {userId === user?.id && (
                   <img

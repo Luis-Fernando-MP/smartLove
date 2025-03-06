@@ -1,37 +1,27 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/media' as m;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/media' as m;
 
-@include m.mediumScreen() {
+@include m.mediumScreen {
   .main {
     &-speed {
-      text-align: center;
       padding: v.$padding * 0.5 0;
+      text-align: center;
     }
   }
 }
 
-@include m.mediumScreen() {
+@include m.mediumScreen {
   .main-static-header {
     &::after {
-      background: radial-gradient(
-        circle 400px at 100% 100px,
-        rgb(112, 61, 230) 0%,
-        v.$tn2 50%,
-        transparent
-      );
+      background: radial-gradient(circle 400px at 100% 100px, rgb(112 61 230) 0%, v.$tn2 50%, transparent);
     }
   }
 }
 
-@include m.smallScreen() {
+@include m.smallScreen {
   .main-static-header {
     &::after {
-      background: radial-gradient(
-        circle 300px at 100% 0px,
-        rgb(112, 61, 230) 0%,
-        v.$tn2 50%,
-        transparent
-      );
+      background: radial-gradient(circle 300px at 100% 0, rgb(112 61 230) 0%, v.$tn2 50%, transparent);
     }
   }
 }

@@ -1,5 +1,5 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 @use '../setCalculateMainSize' as calculate;
 
 $navSize: 250px; //<-- important
@@ -15,5 +15,6 @@ $navSize: 250px; //<-- important
 
 .room-container {
   @include d.flex($dir: row);
+
   flex-wrap: wrap;
 }

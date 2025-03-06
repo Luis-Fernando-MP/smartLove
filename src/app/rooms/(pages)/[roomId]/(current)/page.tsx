@@ -1,8 +1,8 @@
 'use client'
 
+import parseServiceToIcon from '@/shared/helpers/parseServiceToIcon'
 import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
-import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
 
 import { useRoomStore } from '../store/room.store'
 import RecommendationController from './components/recommendation/RecommendationController'

@@ -1,10 +1,10 @@
+import PreviewToast from '@/shared/previewToast/PreviewToast'
 import { TClientReservation } from 'app/api/reservation/by-user/[idUser]/route'
 import html2canvas from 'html2canvas'
 import JsPDF from 'jspdf'
 import { BanknoteIcon, PiggyBankIcon, ShowerHeadIcon, SquirrelIcon } from 'lucide-react'
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
-import PreviewToast from 'shared/previewToast/PreviewToast'
 
 import { useReservationStore } from '../../store/reservation.store'
 

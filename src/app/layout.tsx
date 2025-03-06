@@ -1,11 +1,11 @@
+import TanStackProvider from '@/providers/TanStackProvider'
+import { robotoFlex } from '@/shared/fonts'
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 import type { Metadata } from 'next'
 import NextTopLoader from 'nextjs-toploader'
-import TanStackProvider from 'providers/TanStackProvider'
 import type { JSX, ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
-import { robotoFlex } from 'shared/fonts'
 
 import Providers from './Providers'
 import './globals.css'
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 }
 
 interface TRootLayout {
-  children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
+  children?: ReactNode[] | null | ReactNode
 }
 
 function RootLayout({ children }: TRootLayout): JSX.Element {

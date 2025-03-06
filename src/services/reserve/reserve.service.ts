@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
+import { API_URL } from '@/shared/constants'
 import { TClientReservation } from 'app/api/reservation/by-user/[idUser]/route'
 import axios, { AxiosError, CreateAxiosDefaults } from 'axios'
-import { API_URL } from 'shared/constants'
 
 import { IError } from '../error.service.types'
 import { ISendReserveData } from './reserve.service.types'

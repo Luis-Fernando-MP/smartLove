@@ -1,4 +1,4 @@
-import { TRequirementsUser } from 'shared/resolvers/requirementsUser.resolver'
+import { TRequirementsUser } from '@/shared/resolvers/requirementsUser.resolver'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 

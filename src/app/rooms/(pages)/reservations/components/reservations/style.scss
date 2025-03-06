@@ -1,11 +1,12 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .reservations {
   &-list {
+    flex-wrap: wrap;
     width: 100%;
     height: auto;
+
     @include d.flex($dir: row);
-    flex-wrap: wrap;
   }
 }

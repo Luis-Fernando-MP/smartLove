@@ -1,44 +1,58 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
-@use '@styles/utils/border' as b;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+@use '@sass/utils/border' as b;
 
 .resume {
   @include d.flex($ali: center);
+
   &-card {
     @include d.flex($gap: v.$padding * 0.8);
-    border-radius: v.$radius * 2;
-    padding: v.$padding;
+
     width: 50%;
+    padding: v.$padding;
+    border-radius: v.$radius * 2;
+
     @include b.gradientBorder($size: 2px);
+
     &__list {
       @include d.flex;
-      width: 100%;
+
       counter-reset: custom-counter;
+      width: 100%;
+
       span {
         color: v.$tn2;
         text-decoration: underline;
       }
+
       i {
         color: v.$tn1;
       }
     }
+
     &__item {
       position: relative;
+
+      &::before {
+        content: counter(custom-counter);
+        counter-increment: custom-counter;
+
+        justify-content: center;
+
+        width: 20px;
+        height: 20px;
+        border-radius: v.$radius;
+
+        font-size: v.$fP;
+        font-weight: 500;
+        color: v.$bg1;
+
+        background-color: v.$tn2;
+      }
+
       &,
       &::before {
         @include d.flex($dir: row, $ali: center);
-      }
-      &::before {
-        justify-content: center;
-        content: counter(custom-counter);
-        counter-increment: custom-counter;
-        background-color: v.$tn2;
-        color: v.$bg1;
-        font-size: v.$fP;
-        width: 20px;
-        font-weight: 500;
-        height: 20px;
-        border-radius: v.$radius;
       }
     }
   }

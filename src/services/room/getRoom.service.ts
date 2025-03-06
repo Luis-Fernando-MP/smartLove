@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
+import { API_URL } from '@/shared/constants'
+import { TFilterRoomsValidator } from '@/shared/resolvers/rooms.resolver'
 import { TFullDataRoom } from 'app/api/rooms/route'
 import axios, { AxiosError } from 'axios'
-import { API_URL } from 'shared/constants'
-import { TFilterRoomsValidator } from 'shared/resolvers/rooms.resolver'
 
 import { IError } from '../error.service.types'
 

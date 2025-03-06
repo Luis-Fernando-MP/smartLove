@@ -1,9 +1,9 @@
 'use client'
 
+import { switchClass } from '@/shared/helpers/switchClassName'
 import { Link } from 'next-view-transitions'
 import { usePathname } from 'next/navigation'
 import { type JSX, type ReactNode } from 'react'
-import { switchClass } from 'shared/helpers/switchClassName'
 
 import './style.scss'
 
@@ -23,10 +23,7 @@ const Steps = ({ total, id }: ISteps): JSX.Element => {
       <Link href={baseUrlSteps} className='room-step active'>
         <p>Habitación</p>
       </Link>
-      <Link
-        href={`${baseUrlSteps}/requirements`}
-        className={`room-step ${switchClass(activeStep2)}`}
-      >
+      <Link href={`${baseUrlSteps}/requirements`} className={`room-step ${switchClass(activeStep2)}`}>
         <p>Requisitos</p>
       </Link>
       <Link href={`${baseUrlSteps}/pay`} className={`room-step ${switchClass(activeStep3)}`}>

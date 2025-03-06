@@ -1,16 +1,11 @@
 'use client'
 
+import { isDateInRange } from '@/shared/helpers/roomDate'
+import { round } from '@/shared/helpers/round'
+import { STAY_USER, currentIndexCase, discountByStay, stayCases } from '@/shared/helpers/stayUserCases'
 import dayjs from 'dayjs'
 import { Link } from 'next-view-transitions'
 import toast from 'react-hot-toast'
-import { isDateInRange } from 'shared/helpers/roomDate'
-import { round } from 'shared/helpers/round'
-import {
-  STAY_USER,
-  currentIndexCase,
-  discountByStay,
-  stayCases
-} from 'shared/helpers/stayUserCases'
 
 import { useRoomStore } from '../../../store/room.store'
 import useUseTotalCalculate from '../../hooks/useTotalCalculate'
@@ -144,9 +139,7 @@ const TotalCalculate = (): JSX.Element | null => {
                 <h3>TOTAL**</h3>
 
                 {(stayUser === STAY_USER.LONG || stayUser === STAY_USER.EXTENDED) && (
-                  <h4 className='tach'>
-                    {totalAmount + roomPrice * diffDays * discountByStay(stayUser)}
-                  </h4>
+                  <h4 className='tach'>{totalAmount + roomPrice * diffDays * discountByStay(stayUser)}</h4>
                 )}
               </div>
               <h2>PEN {totalAmount}</h2>

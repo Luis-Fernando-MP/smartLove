@@ -1,8 +1,8 @@
 'use client'
 
+import { switchClass } from '@/shared/helpers/switchClassName'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { switchClass } from 'shared/helpers/switchClassName'
 
 const useNav = () => {
   const [show, setShow] = useState(false)

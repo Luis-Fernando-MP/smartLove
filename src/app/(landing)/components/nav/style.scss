@@ -1,47 +1,61 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
-@use '@styles/config/index' as i;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+@use '@sass/config/index' as i;
 
 .landingNav {
-  height: 60px;
-  justify-content: space-evenly;
-  backdrop-filter: opacity(0.5);
   position: sticky;
-  top: 0;
   z-index: i.$nav;
-  background-color: v.$bg1;
+  top: 0;
+
+  justify-content: space-evenly;
+
+  height: 60px;
   padding: v.$padding;
+
+  background-color: v.$bg1;
+  backdrop-filter: opacity(0.5);
+
   &-menu {
-    user-select: none;
     pointer-events: none;
-    display: none;
+    user-select: none;
+
     position: fixed;
+    z-index: i.$nav-menu;
     top: 25px;
     right: 25px;
-    z-index: i.$nav-menu;
-    background-color: v.$tn1;
-    border-radius: v.$radius;
+
+    display: none;
+
     padding: 5px;
+    border-radius: v.$radius;
+
+    background-color: v.$tn1;
   }
+
   &,
   &-link,
   &-paths {
     @include d.flex($dir: row, $ali: center);
   }
+
   &-brand {
     text-align: center;
+
     span {
-      text-transform: uppercase;
       font-size: 0.8em;
+      text-transform: uppercase;
     }
   }
+
   &-link {
     justify-content: center;
+    border: 2px solid v.$bg1;
     border-radius: 5px;
     background-color: transparent;
-    border: 2px solid v.$bg1;
+
     &.active {
       border-color: v.$tn1;
+
       &,
       p {
         color: v.$tn1;

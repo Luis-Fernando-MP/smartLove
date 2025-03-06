@@ -1,14 +1,14 @@
 'use client'
 
+import { DASHBOARD_PATHS, HOME_PATHS, WHATSAPP_URL } from '@/shared/constants'
+import { whisper } from '@/shared/fonts'
+import { switchClass } from '@/shared/helpers/switchClassName'
+import Social from '@/shared/ui/social/Social'
 import NavContainer from 'app/rooms/components/navContainer/NavContainer'
 import useNav from 'hooks/useNav'
 import { CircleHelp } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
-import { DASHBOARD_PATHS, HOME_PATHS, WHATSAPP_URL } from 'shared/constants'
-import { whisper } from 'shared/fonts'
-import { switchClass } from 'shared/helpers/switchClassName'
-import Social from 'shared/ui/social/Social'
 
 import Filters from '../filters/Filters'
 import './style.scss'
@@ -25,11 +25,7 @@ const Nav = (): JSX.Element => {
           let isActive = ''
           if (link === '/') isActive = 'active'
           return (
-            <Link
-              key={name}
-              href={`/rooms/${link}`}
-              className={`roomNav-summary__path btn ${isActive}`}
-            >
+            <Link key={name} href={`/rooms/${link}`} className={`roomNav-summary__path btn ${isActive}`}>
               <Icon />
               <p>{name}</p>
             </Link>
@@ -51,12 +47,7 @@ const Nav = (): JSX.Element => {
       </details>
       <Filters />
       <section className='roomNav-consulting'>
-        <Link
-          href={WHATSAPP_URL}
-          target='_blank'
-          rel='noreferrer'
-          className='roomNav-consulting__go'
-        >
+        <Link href={WHATSAPP_URL} target='_blank' rel='noreferrer' className='roomNav-consulting__go'>
           <CircleHelp />
           Consultar
         </Link>

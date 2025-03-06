@@ -1,7 +1,7 @@
+import { switchClass } from '@/shared/helpers/switchClassName'
 import { ArrowLeft } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import type { JSX, ReactNode } from 'react'
-import { switchClass } from 'shared/helpers/switchClassName'
 
 import './style.scss'
 

@@ -1,9 +1,4 @@
-import {
-  TFilterRoomsValidator,
-  capacitiesValues,
-  classificationsValues,
-  pricingValues
-} from 'shared/resolvers/rooms.resolver'
+import { TFilterRoomsValidator, capacitiesValues, classificationsValues, pricingValues } from '@/shared/resolvers/rooms.resolver'
 import { create } from 'zustand'
 
 interface IFiltersStore {

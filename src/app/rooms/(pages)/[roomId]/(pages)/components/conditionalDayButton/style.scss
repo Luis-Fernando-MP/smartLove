@@ -1,13 +1,16 @@
-@use '@styles/config/vars' as v;
-@use '@styles/config/extraColors' as extra;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/config/extraColors' as extra;
+@use '@sass/utils/defs' as d;
 
 .conditionalDayButton {
   @include d.flex($dir: row);
+
   background-color: v.$bg1;
+
   @each $tag, $value in extra.$listStayUsers {
     &#{$tag} {
       background-color: $value;
+
       p,
       svg {
         color: darken($value, 70);

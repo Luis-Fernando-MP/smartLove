@@ -1,31 +1,38 @@
-@use '@styles/config/vars' as v;
-@use '@styles/config/extraColors' as extra;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/config/extraColors' as extra;
+@use '@sass/utils/defs' as d;
 
 .tooltip {
   &-tag {
-    border-radius: v.$radius;
-    font-size: v.$fH5;
-    padding: v.$padding * 0.6 v.$padding;
-    background-color: v.$bg2;
     display: block;
+
     height: fit-content;
+    padding: v.$padding * 0.6 v.$padding;
+    border-radius: v.$radius;
+
+    font-size: v.$fH5;
+
+    background-color: v.$bg2;
   }
+
   &-container {
     position: relative;
     height: auto;
+
     &:hover .tooltip-float {
       top: -100%;
-      opacity: 1;
       visibility: visible;
+      opacity: 1;
       animation: shake 0.3s ease-in-out forwards;
     }
+
     @each $tag, $value in extra.$listSlugs {
       &#{$tag} {
         .tooltip-float {
           color: darken($value, 70);
           background-color: $value;
         }
+
         @include v.toDark {
           .tooltip-float {
             background-color: darken($value, 15);
@@ -34,28 +41,36 @@
       }
     }
   }
+
   &-float {
-    opacity: 0;
-    border-radius: v.$radius;
-    left: -30%;
-    padding: v.$padding * 0.3 v.$padding;
     pointer-events: none;
+
     position: absolute;
-    text-wrap: wrap;
-    top: 0;
-    transform: translateX(50%);
-    transition: all 0.5s;
-    width: 200px;
     z-index: 1;
+    top: 0;
+    left: -30%;
+    transform: translateX(50%);
+
+    width: 200px;
+    padding: v.$padding * 0.3 v.$padding;
+    border-radius: v.$radius;
+
+    text-wrap: wrap;
+
+    opacity: 0;
+
+    transition: all 0.5s;
   }
 
   @keyframes shake {
     0% {
       transform: rotate(2deg);
     }
+
     50% {
       transform: rotate(-3deg);
     }
+
     70% {
       transform: rotate(3deg);
     }

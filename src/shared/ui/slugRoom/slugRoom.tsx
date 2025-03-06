@@ -1,5 +1,5 @@
+import { getSlugs } from '@/shared/helpers/getSlugOBJ'
 import type { JSX, ReactNode } from 'react'
-import { getSlugs } from 'shared/helpers/getSlugOBJ'
 
 import './style.scss'
 

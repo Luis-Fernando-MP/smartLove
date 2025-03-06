@@ -1,13 +1,13 @@
-@use '@styles/utils/scrollbar';
-@use '@styles/config/vars' as *;
-@use '@styles/utils/media' as m;
-@use '@styles/utils/text' as t;
-@use '@styles/utils/hover' as h;
+@use '@sass/utils/scrollbar';
+@use '@sass/config/vars' as *;
+@use '@sass/utils/media' as m;
+@use '@sass/utils/text' as t;
+@use '@sass/utils/hover' as h;
 
 :root {
   --bg-primary: #f4f2fff5;
   --bg-secondary: #ecebfff5;
-  --fnt-primary: #000000;
+  --fnt-primary: #000;
   --fnt-secondary: #6f6f6f;
   --tn-primary: #946ef9;
   --tn-primary-transparent: #7649a21f;
@@ -16,7 +16,6 @@
   --disable-secondary: #c7b3ff70;
   --skeleton-co: #f6f4ff;
   --skeleton: #efeaff;
-
   --xl-font-size: 5em;
   --h1-font-size: 2em;
   --h2-font-size: 1.8em;
@@ -32,22 +31,27 @@
 ::before,
 ::after {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
   outline: none;
 }
 
 body {
-  width: 100vw;
-  overflow: hidden auto;
-  height: 100vh;
-  font-size: $family-size;
-  background-color: $bg1;
-  font-family: $family;
-  color: $fn1;
   @extend %scroll-hidden;
+
   position: relative;
+
+  overflow: hidden auto;
+
+  width: 100vw;
+  height: 100vh;
+
+  font-family: $family;
+  font-size: $family-size;
   line-height: 1.25;
+  color: $fn1;
+
+  background-color: $bg1;
 }
 
 $listOfFontsSize: (
@@ -84,8 +88,8 @@ input,
 textarea,
 button,
 select {
-  color: $fn2;
   font-family: $family;
+  color: $fn2;
 }
 
 h1 {
@@ -110,8 +114,8 @@ input,
 textarea,
 button,
 select {
-  font-weight: 400;
   font-size: $fP;
+  font-weight: 400;
 }
 
 span,
@@ -139,8 +143,9 @@ select {
 }
 
 textarea {
-  resize: none;
   @extend %scroll-hidden;
+
+  resize: none;
 }
 
 ul {
@@ -152,9 +157,10 @@ a {
 }
 
 button {
-  background: transparent;
-  border: none;
   cursor: pointer;
+  border: none;
+  background: transparent;
+
   @include h.border;
 }
 
@@ -162,6 +168,7 @@ input,
 textarea,
 select {
   border: none;
+
   &:focus {
     box-shadow: 0 0 0 2px $tn2;
   }
@@ -174,16 +181,17 @@ small {
 .btn {
   padding: 8px 10px;
   border-radius: $radius;
+
   @include h.border;
 }
 
 svg {
+  display: block;
   width: 20px;
   height: 20px;
-  display: block;
 }
 
-@include m.smallerScreen() {
+@include m.smallerScreen {
   body {
     font-size: 10px;
   }
@@ -192,52 +200,67 @@ svg {
 .gr {
   @include t.textGradient;
 }
+
 .bgr {
-  background-image: $gr1;
-  color: $bg1;
-  opacity: 1;
   border: 2px solid transparent;
+
   font-size: $fH5;
   font-weight: 400;
+  color: $bg1;
+
+  opacity: 1;
+  background-image: $gr1;
+
   &.inactive {
-    background-image: none;
-    background-color: $sk2;
-    color: $fn1;
-    user-select: none;
-    border-color: $sk1;
-    opacity: 0.6;
     cursor: not-allowed;
+    user-select: none;
+
+    border-color: $sk1;
+
+    color: $fn1;
+
+    opacity: 0.6;
+    background-color: $sk2;
+    background-image: none;
   }
+
   &.big {
-    text-align: center;
     font-size: $fH5;
     font-weight: 500;
+    text-align: center;
   }
 }
 
 .logo {
+  display: block;
+
   min-width: 60px;
   height: 100%;
-  object-fit: cover;
   padding: 5px 0;
-  display: block;
+
+  object-fit: cover;
+
   &-container {
     text-align: center;
   }
 }
+
 .skeleton {
+  display: block;
+  min-width: 20px;
+  min-height: 20px;
+  background-color: $sk2;
+
   &,
   &-co {
     border-radius: $radius;
     animation: bounce 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
   &-co {
     background-color: $sk1;
   }
-  display: block;
-  background-color: $sk2;
-  min-height: 20px;
-  min-width: 20px;
+
   @keyframes bounce {
     50% {
       opacity: 0.5;

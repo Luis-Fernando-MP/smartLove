@@ -1,9 +1,9 @@
 'use client'
 
+import ErrorContainer from '@/shared/ui/errorContainer/ErrorContainer'
 import NavContainer from 'app/rooms/components/navContainer/NavContainer'
 import { type JSX, ReactNode } from 'react'
 import { FallbackProps } from 'react-error-boundary'
-import ErrorContainer from 'shared/ui/errorContainer/ErrorContainer'
 import { v4 as uuid } from 'uuid'
 
 import LayoutController from './layoutController'
@@ -47,16 +47,16 @@ const LoaderComponent = (): JSX.Element => {
         </h3>
         <div className='flex w-full flex-wrap gap-2'>
           {new Array(5).fill(Math.random()).map(key => (
-            <div key={uuid()} className='skeleton-co -lg flex h-96 w-64  flex-col gap-1 p-4'>
+            <div key={uuid()} className='skeleton-co -lg flex h-96 w-64 flex-col gap-1 p-4'>
               <div className='skeleton -md h-full w-full' />
-              <div className='skeleton mt-4 h-7 w-full ' />
+              <div className='skeleton mt-4 h-7 w-full' />
             </div>
           ))}
         </div>
       </NavContainer>
       <article className='dashboard-body'>
         <div className='h-full w-full'>
-          <button className='skeleton mt-2 h-8 w-20 ' />
+          <button className='skeleton mt-2 h-8 w-20' />
           <div className='skeleton mx-auto mt-2 h-10 w-1/2' />
           <div className='skeleton mx-auto mt-3 h-14 w-1/3' role='none' />
           <p className='skeleton mx-auto mt-2 h-5 w-1/6' role='none' />

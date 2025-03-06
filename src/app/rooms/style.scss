@@ -1,31 +1,33 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
-@use '@styles/utils/transitions' as t;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+@use '@sass/utils/transitions' as t;
 
 .dashboard {
   @include d.flex($gap: 0, $ali: stretch);
-  background-color: v.$bg2;
+
   position: relative;
-  height: 100vh;
-  overflow: hidden;
   z-index: 1;
+
+  overflow: hidden;
+
   width: 100%;
+  height: 100vh;
+
+  background-color: v.$bg2;
+
   &::before {
     content: '';
-    z-index: -2;
+
     position: absolute;
+    z-index: -2;
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
-    background: radial-gradient(
-      150% 90% at 50% 0%,
-      v.$tn1T 0%,
-      v.$bg2 10%,
-      v.$tn1T 30%,
-      v.$tn1T 50%,
-      v.$tn1T 120%
-    );
+
+    background: radial-gradient(150% 90% at 50% 0%, v.$tn1T 0%, v.$bg2 10%, v.$tn1T 30%, v.$tn1T 50%, v.$tn1T 120%);
+
     // transparent 90%,
   }
 }
@@ -33,21 +35,26 @@
 // international main styles
 .dashboard-main {
   @include d.flex($dir: row, $gap: 0);
-  height: calc(100% - 60px);
+
   left: 0;
-  transition: t.$pong;
   width: 100%;
+  height: calc(100% - 60px);
+  transition: t.$pong;
 }
 
 //international body styles
 .dashboard-body {
-  background-image: linear-gradient(0deg, v.$tn1T 10%, v.$bg2 100%);
-  background-color: v.$bg2;
   position: relative;
-  padding: v.$padding;
+
+  overflow: auto;
+
   width: 100%;
   height: 98%;
-  overflow: auto;
+  padding: v.$padding;
   border-end-start-radius: v.$radius * 2.5;
+
+  background-color: v.$bg2;
+  background-image: linear-gradient(0deg, v.$tn1T 10%, v.$bg2 100%);
+
   @include d.flex($ali: center);
 }

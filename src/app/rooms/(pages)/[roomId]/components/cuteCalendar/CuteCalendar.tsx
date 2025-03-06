@@ -1,6 +1,6 @@
+import DayBox from '@/shared/ui/dayBox/DayBox'
 import dayjs from 'dayjs'
 import type { JSX } from 'react'
-import DayBox from 'shared/ui/dayBox/DayBox'
 import { v4 as uuid } from 'uuid'
 
 import { useRoomStore } from '../../store/room.store'

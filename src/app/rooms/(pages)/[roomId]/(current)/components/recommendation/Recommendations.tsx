@@ -1,8 +1,8 @@
 'use client'
 
+import RoomComponentV2 from '@/shared/ui/roomComponentV2/RoomsComponentV2'
 import { useRooms } from 'hooks/useRooms'
 import type { JSX } from 'react'
-import RoomComponentV2 from 'shared/ui/roomComponentV2/RoomsComponentV2'
 
 import { useRoomStore } from '../../../store/room.store'
 import './style.scss'

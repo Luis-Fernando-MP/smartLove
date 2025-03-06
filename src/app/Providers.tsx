@@ -1,10 +1,10 @@
 'use client'
 
+import { IS_PRODUCTION } from '@/shared/constants'
 import { ClerkProvider } from '@clerk/nextjs'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ViewTransitions } from 'next-view-transitions'
 import type { JSX, ReactNode } from 'react'
-import { IS_PRODUCTION } from 'shared/constants'
 
 interface IProviders {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>

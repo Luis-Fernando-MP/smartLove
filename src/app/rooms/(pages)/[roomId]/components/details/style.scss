@@ -1,48 +1,61 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 body.dark {
   h4.roomDetails-characteristic {
     color: v.$success;
   }
 }
+
 .roomDetails {
   @include d.flex($ali: center);
-  border-radius: v.$radius;
-  height: auto;
-  max-width: fit-content;
-  min-width: 900px;
-  padding: v.$padding * 2 0;
+
   position: relative;
+
+  min-width: 900px;
+  max-width: fit-content;
+  height: auto;
+  padding: v.$padding * 2 0;
+  border-radius: v.$radius;
+
   text-align: center;
+
   background-color: v.$bg1;
+
   .slugs {
     position: absolute;
     top: 5px;
     right: 10px;
+
     @include d.flex($ali: flex-end, $gap: v.$padding);
   }
+
   &-container {
     @include d.flex($dir: row);
   }
+
   h1.title {
-    display: block;
     position: relative;
+    display: block;
   }
+
   &-characteristic,
   &-calendar {
     @include d.flex($dir: row, $gap: 5px, $ali: center);
+
     justify-content: center;
   }
+
   h5.roomDetails-characteristic {
-    background-color: v.$success_dark;
     padding: 5px 10px;
     border-radius: 5px;
     color: v.$success;
+    background-color: v.$success_dark;
   }
+
   &-description {
+    max-width: 500px;
     text-align: center;
     text-wrap: wrap;
-    max-width: 500px;
   }
 }

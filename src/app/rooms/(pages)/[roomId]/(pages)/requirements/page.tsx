@@ -1,5 +1,8 @@
 'use client'
 
+import { noAvailableDateInRange } from '@/shared/helpers/roomDate'
+import { switchClass } from '@/shared/helpers/switchClassName'
+import { TRequirementsUser, requirementsUserResolver } from '@/shared/resolvers/requirementsUser.resolver'
 import { useClerk, useUser } from '@clerk/nextjs'
 import { useQueryClient } from '@tanstack/react-query'
 import { useCreateReservation } from 'hooks/useReservations'
@@ -10,12 +13,6 @@ import { type JSX, useEffect, useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { ISendReserveData } from 'services/reserve/reserve.service.types'
-import { noAvailableDateInRange } from 'shared/helpers/roomDate'
-import { switchClass } from 'shared/helpers/switchClassName'
-import {
-  TRequirementsUser,
-  requirementsUserResolver
-} from 'shared/resolvers/requirementsUser.resolver'
 
 import { useRoomStore } from '../../store/room.store'
 import RegisterRequirementsUser from '../components/RegisterRequirementsUser/RegisterRequirementsUser'
@@ -57,9 +54,7 @@ const Page = (): JSX.Element | null => {
   const handleSubmit = async (clientData: TRequirementsUser) => {
     const noValidDateForm = [totalAmount, nights, igv, subtotal, surcharge].some(i => i < 1)
     if (noValidDateForm) {
-      return toast.error(
-        'Deberías de completar el formulario, ¿Cuantos Dias planeas reservar esta habitación? 🤓'
-      )
+      return toast.error('Deberías de completar el formulario, ¿Cuantos Dias planeas reservar esta habitación? 🤓')
     }
     const notAvailable = noAvailableDateInRange({
       dates: reservations,
@@ -67,9 +62,7 @@ const Page = (): JSX.Element | null => {
       startDate: fromDate
     })
     if (notAvailable) {
-      return toast.error(
-        'Tus fechas  fechas seleccionadas no están disponibles, revisa una vez mas. 🤓'
-      )
+      return toast.error('Tus fechas  fechas seleccionadas no están disponibles, revisa una vez mas. 🤓')
     }
     if (user === null) {
       return openSignIn({
@@ -121,10 +114,7 @@ const Page = (): JSX.Element | null => {
           Regresar a los detalles
         </Link>
         {!isPending && (
-          <button
-            onClick={handleContinue}
-            className={`btn bgr  ${switchClass(!isValid, 'inactive')}`}
-          >
+          <button onClick={handleContinue} className={`btn bgr ${switchClass(!isValid, 'inactive')}`}>
             {isValid ? 'Procesar la reserva' : 'Requerimos todos tus datos'}
           </button>
         )}

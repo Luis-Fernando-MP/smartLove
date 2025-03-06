@@ -1,8 +1,8 @@
+import { HOME_PATHS } from '@/shared/constants'
+import Footer from '@/shared/ui/footer/Footer'
 import { Link } from 'next-view-transitions'
 import type { JSX, ReactNode } from 'react'
 import Marquee from 'react-fast-marquee'
-import { HOME_PATHS } from 'shared/constants'
-import Footer from 'shared/ui/footer/Footer'
 
 import characteristics from './characteristics.json'
 import Characteristic from './components/characteristic/Characteristics'

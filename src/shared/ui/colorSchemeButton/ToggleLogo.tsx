@@ -1,7 +1,7 @@
 'use client'
 
+import { sansitaSwashed } from '@/shared/fonts'
 import type { JSX, ReactNode } from 'react'
-import { sansitaSwashed } from 'shared/fonts'
 
 interface IToggleLogo {
   className?: string

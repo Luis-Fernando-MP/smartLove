@@ -1,8 +1,8 @@
+import { USER_WEBHOOK } from '@/shared/constants'
 import { IncomingHttpHeaders } from 'http'
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { createUser } from 'services/users/setUser.service'
-import { USER_WEBHOOK } from 'shared/constants'
 import { Webhook, WebhookRequiredHeaders } from 'svix'
 
 import { IDeletedUser, IWebhookEvent, TWebhookEventType } from './clerk.types'
@@ -21,10 +21,7 @@ async function handler(request: Request) {
   let evt: IWebhookEvent | null = null
 
   try {
-    evt = wh.verify(
-      JSON.stringify(payload),
-      heads as IncomingHttpHeaders & WebhookRequiredHeaders
-    ) as IWebhookEvent
+    evt = wh.verify(JSON.stringify(payload), heads as IncomingHttpHeaders & WebhookRequiredHeaders) as IWebhookEvent
   } catch (err) {
     console.error((err as Error).message)
     return NextResponse.json({}, { status: 400 })

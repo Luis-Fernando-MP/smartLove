@@ -1,28 +1,36 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .requirementsRoom {
   @include d.flex;
+
+  width: 900px;
   padding-top: v.$padding;
   padding-bottom: v.$padding * 3;
-  width: 900px;
   border-radius: v.$radius;
+
   background: none;
   background-image: linear-gradient(180deg, v.$bg1 0%, v.$bg2 60%, transparent 85%);
+
   .subtitle {
     text-align: center;
   }
+
   &-actions {
     @include d.flex($dir: row, $ali: center);
+
     justify-content: center;
+
     a {
       font-size: v.$fH5;
       font-weight: 500;
     }
+
     a:last-child {
-      background-color: v.$tn1;
       color: v.$bg1;
+      background-color: v.$tn1;
     }
+
     a:first-child {
       background-color: v.$bg2;
     }

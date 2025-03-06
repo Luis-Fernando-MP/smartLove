@@ -1,7 +1,7 @@
+import Footer from '@/shared/ui/footer/Footer'
 import NavContainer from 'app/rooms/components/navContainer/NavContainer'
 import { useRoom } from 'hooks/useRooms'
 import { type JSX, type ReactNode, useEffect } from 'react'
-import Footer from 'shared/ui/footer/Footer'
 
 import Details from './components/details/Details'
 import Nav from './components/nav/Nav'

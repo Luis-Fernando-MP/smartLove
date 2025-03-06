@@ -1,6 +1,6 @@
+import { switchClass } from '@/shared/helpers/switchClassName'
 import { PiIcon } from 'lucide-react'
 import type { JSX, ReactNode } from 'react'
-import { switchClass } from 'shared/helpers/switchClassName'
 
 import './style.scss'
 

@@ -1,6 +1,6 @@
+import { currentClassCase } from '@/shared/helpers/stayUserCases'
 import { CalendarRange } from 'lucide-react'
 import { type JSX, type ReactNode } from 'react'
-import { currentClassCase } from 'shared/helpers/stayUserCases'
 
 import './style.scss'
 

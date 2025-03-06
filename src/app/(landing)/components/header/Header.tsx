@@ -1,8 +1,8 @@
+import { HOME_PATHS } from '@/shared/constants'
+import { sansitaSwashed } from '@/shared/fonts'
 import { HandPlatter, Star } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
-import { HOME_PATHS } from 'shared/constants'
-import { sansitaSwashed } from 'shared/fonts'
 
 import './style.scss'
 import './userMobile.scss'

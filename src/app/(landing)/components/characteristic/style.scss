@@ -1,19 +1,24 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .characteristic {
+  pointer-events: none;
+  user-select: none;
+
+  justify-content: center;
+
   max-width: 200px;
   height: 80px;
+  margin: 0 v.$padding;
   padding: 0 v.$padding * 1.5;
   border-radius: v.$radius;
-  margin: 0 v.$padding;
-  @include d.flex($ali: center, $dir: row);
-  justify-content: center;
+
   background-color: v.$bg1;
-  user-select: none;
-  pointer-events: none;
+
+  @include d.flex($ali: center, $dir: row);
+
   p {
-    text-wrap: wrap;
     text-align: center;
+    text-wrap: wrap;
   }
 }

@@ -1,16 +1,20 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
-@use '@styles/utils/hover' as h;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+@use '@sass/utils/hover' as h;
 
 .back {
   width: 100%;
+
   &-action {
     width: fit-content;
-    background-color: v.$bg1;
+    margin-left: 0;
     padding: v.$padding;
     border-radius: v.$radius;
+
+    background-color: v.$bg1;
+
     @include d.flex($ali: flex-start, $gap: 5px);
-    margin-left: 0;
+
     &:hover {
       svg,
       p {
@@ -18,9 +22,11 @@
       }
     }
   }
+
   &.row a {
     @include d.flex($dir: row, $ali: center);
   }
+
   svg {
     display: block;
   }

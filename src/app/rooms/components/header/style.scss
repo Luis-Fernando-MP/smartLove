@@ -1,13 +1,16 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .header {
+  justify-content: space-between;
+
   width: 100%;
   min-height: 60px;
   max-height: 60px;
-  justify-content: space-between;
   padding: 0 v.$padding * 3;
-  background-color: v.$bg2;
-  @include d.flex($dir: row, $ali: center);
   border-end-start-radius: v.$radius * 2.5;
+
+  background-color: v.$bg2;
+
+  @include d.flex($dir: row, $ali: center);
 }

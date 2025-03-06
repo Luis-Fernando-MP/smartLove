@@ -1,15 +1,15 @@
 'use client'
 
+import { HOME_PATHS } from '@/shared/constants'
+import { switchClass } from '@/shared/helpers/switchClassName'
+import { TReservationResolver, reservationResolver } from '@/shared/resolvers/reservation.resolver'
+import Back from '@/shared/ui/back/Back'
 import { useUser } from '@clerk/nextjs'
 import { useDeleteReservation } from 'hooks/useReservations'
 import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { HOME_PATHS } from 'shared/constants'
-import { switchClass } from 'shared/helpers/switchClassName'
-import { TReservationResolver, reservationResolver } from 'shared/resolvers/reservation.resolver'
-import Back from 'shared/ui/back/Back'
 import { v1 as uuid } from 'uuid'
 
 import { useReservationStore, useReservationsStore } from '../../store/reservation.store'
@@ -70,7 +70,7 @@ const Nav = (): JSX.Element | null => {
       <Back row />
       <h3 className='reservationNav-subtitle'>¿Cancelar reserva?</h3>
       {reservation && (
-        <p className=' reservationNav-id inline-block'>
+        <p className='reservationNav-id inline-block'>
           La reserva con el código&nbsp; <b className='gr'>{reservation.id}</b>
           &nbsp;esta seleccionada
         </p>
@@ -82,10 +82,7 @@ const Nav = (): JSX.Element | null => {
         </Link>
         &nbsp;para cancelar tu reserva 🤓
       </h5>
-      <form
-        onSubmit={handleSubmit(onFormSubmit, onErrors)}
-        className={`reservationNav-form ${switchClass(!thereError, 'ok')}`}
-      >
+      <form onSubmit={handleSubmit(onFormSubmit, onErrors)} className={`reservationNav-form ${switchClass(!thereError, 'ok')}`}>
         <section className={`reservationNav-form__section ${switchClass(roomIdError, 'error')}`}>
           <h5>ID de reserva:</h5>
           <p className='reservationNav-section__error'>{roomIdError?.message}</p>
@@ -115,9 +112,7 @@ const Nav = (): JSX.Element | null => {
         <section className={`reservationNav-form__section ${switchClass(roomNameError, 'error')}`}>
           <h5>Escoge la reserva a cancelar:</h5>
           <p className='reservationNav-section__error'>{roomNameError?.message}</p>
-          <span className='reservationNav-form__info'>
-            (El proceso es automático, pero puede verificar para mayor seguridad)
-          </span>
+          <span className='reservationNav-form__info'>(El proceso es automático, pero puede verificar para mayor seguridad)</span>
           <label className='reservationNav-form__select auto'>
             <select
               {...register('roomName', {

@@ -1,13 +1,13 @@
 'use client'
 
 /* eslint-disable @next/next/no-img-element */
+import { sansitaSwashed } from '@/shared/fonts'
+import parseServiceToIcon from '@/shared/helpers/parseServiceToIcon'
+import SlugRoom from '@/shared/ui/slugRoom/slugRoom'
 import { TFullDataRoom } from 'app/api/rooms/route'
 import { BanknoteIcon, CalendarDaysIcon, ImagesIcon, LandPlotIcon } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import type { JSX, ReactNode } from 'react'
-import { sansitaSwashed } from 'shared/fonts'
-import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
-import SlugRoom from 'shared/ui/slugRoom/slugRoom'
 
 import './style.scss'
 
@@ -25,22 +25,9 @@ const CardRoom = ({ data }: ICardRoom): JSX.Element => {
       <SlugRoom counter={reservationCount} itsFull={status} />
       <section className='cardRoom-images'>
         {images.slice(0, 3).map(image => {
-          return (
-            <img
-              key={image.id}
-              src={image.imageUrl}
-              alt={image.imageUrl}
-              className='cardRoom-image'
-              loading='lazy'
-            />
-          )
+          return <img key={image.id} src={image.imageUrl} alt={image.imageUrl} className='cardRoom-image' loading='lazy' />
         })}
-        <img
-          src={images[0].imageUrl}
-          alt={`Habitación ${name}`}
-          className='cardRoom-images__background'
-          loading='lazy'
-        />
+        <img src={images[0].imageUrl} alt={`Habitación ${name}`} className='cardRoom-images__background' loading='lazy' />
       </section>
 
       <div className='cardRoom-information'>

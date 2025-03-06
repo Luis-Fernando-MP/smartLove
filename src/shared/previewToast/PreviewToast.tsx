@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+import { sansitaSwashed } from '@/shared/fonts'
 import type { ReactNode } from 'react'
 import toast, { Toast } from 'react-hot-toast'
-import { sansitaSwashed } from 'shared/fonts'
 import { v4 as uuidv4 } from 'uuid'
 
 import './style.scss'
@@ -25,12 +25,7 @@ const PreviewToast = ({ src, title, buttonTitle, onClick, id, children }: IPrevi
     (t: Toast) => (
       <section className='PreviewToast'>
         <div className='PreviewToast-container'>
-          <img
-            className='PreviewToast-container__image'
-            src={src}
-            typeof='blob'
-            alt='PDF preview'
-          />
+          <img className='PreviewToast-container__image' src={src} typeof='blob' alt='PDF preview' />
           <article className='PreviewToast-container__description'>
             <h5 className={`${sansitaSwashed.className} PreviewToast-title`}>{title}</h5>
             {children}

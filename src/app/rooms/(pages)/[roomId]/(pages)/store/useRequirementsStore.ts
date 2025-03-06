@@ -1,5 +1,5 @@
+import { STAY_USER } from '@/shared/helpers/stayUserCases'
 import dayjs from 'dayjs'
-import { STAY_USER } from 'shared/helpers/stayUserCases'
 import { create } from 'zustand'
 
 interface IUseStepsRoom {

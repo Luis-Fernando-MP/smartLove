@@ -1,58 +1,70 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
-@use '@styles/config/extraColors' as extra;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+@use '@sass/config/extraColors' as extra;
 
 .TCDateCrossing {
   width: 100%;
   margin-bottom: v.$padding;
   text-align: center;
+
   &,
   &-container {
     padding: v.$padding;
+
     @include d.flex($ali: center);
   }
+
   &-container {
     max-width: 100%;
-    background-color: v.$bg2;
     border: 2px solid v.$tn1T;
     border-radius: v.$radius;
+    background-color: v.$bg2;
   }
+
   &-dates {
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
+    width: 100%;
   }
+
   &-date {
     @include d.flex($dir: row, $ali: center);
+
     position: relative;
     padding: 5px 0;
+
     h4 {
       padding: v.$padding * 0.5;
       border-radius: v.$radius * 1.6;
-      background-color: v.$bg2;
       color: v.$fn2;
+      background-color: v.$bg2;
     }
+
     &.busy h4 {
-      background-color: v.$tn1;
       color: v.$bg1;
+      background-color: v.$tn1;
     }
+
     &.select h4 {
-      background-color: v.$success;
       color: v.$success_dark;
+      background-color: v.$success;
     }
+
     &.cross h4 {
-      background-color: v.$danger;
       color: v.$danger_dark;
+      background-color: v.$danger;
     }
   }
+
   &-image {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
     position: absolute;
     z-index: 2;
     top: 0;
     right: 0;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
   }
 }

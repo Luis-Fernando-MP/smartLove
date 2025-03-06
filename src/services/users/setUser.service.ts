@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
+import { API_URL } from '@/shared/constants'
 import axios, { AxiosError } from 'axios'
 import { IError } from 'services/error.service.types'
-import { API_URL } from 'shared/constants'
 
 import { IClient, IUser } from './user.service.types'
 

@@ -1,9 +1,9 @@
+import { sansitaSwashed } from '@/shared/fonts'
+import { getSlugs } from '@/shared/helpers/getSlugOBJ'
+import SlugTooltip from '@/shared/ui/slugTooltip/slugTooltip'
 import { CalendarRange, DollarSignIcon, PlusIcon } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
-import { sansitaSwashed } from 'shared/fonts'
-import { getSlugs } from 'shared/helpers/getSlugOBJ'
-import SlugTooltip from 'shared/ui/slugTooltip/slugTooltip'
 
 import { useRoomStore } from '../../store/room.store'
 import Steps from '../steps/Steps'
@@ -25,14 +25,7 @@ const Details = (): JSX.Element | null => {
         <aside className='slugs'>
           {slugs.map(slug => {
             const { classSlug, tagSlug, slugDescription } = slug
-            return (
-              <SlugTooltip
-                key={tagSlug}
-                description={slugDescription}
-                tag={tagSlug}
-                className={classSlug}
-              />
-            )
+            return <SlugTooltip key={tagSlug} description={slugDescription} tag={tagSlug} className={classSlug} />
           })}
         </aside>
         <h1 className={`${sansitaSwashed.className} title`}>{name}</h1>

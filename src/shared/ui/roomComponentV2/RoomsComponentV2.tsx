@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
+import { sansitaSwashed } from '@/shared/fonts'
+import parseServiceToIcon from '@/shared/helpers/parseServiceToIcon'
 import { TFullDataRoom } from 'app/api/rooms/route'
 import { ArrowUpRight, BanknoteIcon, CalendarRange } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { ReactNode } from 'react'
-import { sansitaSwashed } from 'shared/fonts'
-import parseServiceToIcon from 'shared/helpers/parseServiceToIcon'
 
 import SlugRoom from '../slugRoom/slugRoom'
 import './style.scss'
@@ -20,24 +20,11 @@ const RoomComponentV2 = ({ room }: IRoomsComponentV2): JSX.Element => {
     <li className='roomComponentV2' key={id}>
       <SlugRoom counter={reservationCount} itsFull={status} />
       <header className='roomComponentV2-header'>
-        <img
-          src={images[0].imageUrl}
-          alt={name}
-          loading='lazy'
-          className='roomComponentV2-header__background'
-        />
+        <img src={images[0].imageUrl} alt={name} loading='lazy' className='roomComponentV2-header__background' />
         <section className='roomComponentV2-header__images'>
           {images.map(image => {
             const { id, imageUrl } = image
-            return (
-              <img
-                key={id}
-                src={imageUrl}
-                alt={imageUrl}
-                loading='lazy'
-                className='roomComponentV2-header__image'
-              />
-            )
+            return <img key={id} src={imageUrl} alt={imageUrl} loading='lazy' className='roomComponentV2-header__image' />
           })}
         </section>
       </header>
@@ -59,17 +46,11 @@ const RoomComponentV2 = ({ room }: IRoomsComponentV2): JSX.Element => {
           })}
         </ul>
         <div className='roomComponentV2-actions'>
-          <Link
-            href={`/rooms/${id}/calendar`}
-            className='btn  roomComponentV2-action roomComponentV2-calendar'
-          >
+          <Link href={`/rooms/${id}/calendar`} className='btn roomComponentV2-action roomComponentV2-calendar'>
             Ver calendario
             <CalendarRange />
           </Link>
-          <Link
-            href={`/rooms/${id}`}
-            className='btn roomComponentV2-action roomComponentV2-reserve'
-          >
+          <Link href={`/rooms/${id}`} className='btn roomComponentV2-action roomComponentV2-reserve'>
             Quiero reservarlo
             <ArrowUpRight />
           </Link>

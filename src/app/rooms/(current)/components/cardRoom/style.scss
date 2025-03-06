@@ -1,62 +1,80 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .cardRoom {
   @include d.flex;
-  background-color: v.$bg1;
-  border-radius: v.$radius;
-  border: 2px solid v.$tn1T;
+
+  position: relative;
+  z-index: 1;
+
+  width: 290px;
   height: auto;
   margin: 0 0 40px 10px;
   padding: v.$padding;
   padding-bottom: 50px;
-  position: relative;
-  width: 290px;
-  z-index: 1;
+  border: 2px solid v.$tn1T;
+  border-radius: v.$radius;
+
+  background-color: v.$bg1;
+
   &-information {
-    text-align: center;
     display: block;
     padding: 0 5px;
+    text-align: center;
+
     p {
+      overflow: hidden;
+      display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 3;
-      display: -webkit-box;
       line-clamp: 3;
+
       max-height: 50px;
-      overflow: hidden;
+
       text-overflow: ellipsis;
     }
   }
 
   &-images {
     @include d.flex($dir: row, $ali: flex-end, $gap: 10px);
-    border-radius: v.$radius;
-    height: 250px;
-    justify-content: center;
-    object-fit: cover;
-    overflow: hidden;
-    padding: 10px;
+
     position: relative;
+
+    overflow: hidden;
+    justify-content: center;
+
     width: 100%;
+    height: 250px;
+    padding: 10px;
+    border-radius: v.$radius;
+
+    object-fit: cover;
+
     img {
       object-fit: cover;
     }
+
     &__background {
-      filter: v.$imgFilter;
-      height: 120%;
       position: absolute;
-      right: 0;
-      top: 0;
-      width: 100%;
       z-index: -1;
+      top: 0;
+      right: 0;
+
+      width: 100%;
+      height: 120%;
+
+      filter: v.$imgFilter;
     }
+
     .cardRoom-image {
-      height: 90%;
       width: calc(100% / 3);
+      height: 90%;
     }
+
     img.cardRoom-image:nth-child(2) {
       height: 80%;
     }
+
     img.cardRoom-image:nth-child(3) {
       height: 60%;
     }
@@ -64,43 +82,55 @@
 
   &-services {
     @include d.flex($gap: 7px, $dir: row);
+
     flex-wrap: wrap;
-    height: auto;
     width: 100%;
+    height: auto;
   }
+
   &-service {
     @include d.flex($dir: row, $ali: center, $gap: 5px);
-    background-color: v.$bg2;
-    border-radius: v.$radius;
+
     padding: 5px 10px;
+    border-radius: v.$radius;
+    background-color: v.$bg2;
   }
 
   &-actions {
+    position: absolute;
+    z-index: 5;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    justify-content: space-evenly;
+
     width: max-content;
     height: 50px;
     margin: 0 auto;
     padding: 0 10px;
-    border-radius: v.$radius * 2;
-    position: absolute;
-    bottom: -25px;
-    background-color: v.$bg1;
-    left: 50%;
-    transform: translateX(-50%);
     border: 2px solid v.$tn1T;
+    border-radius: v.$radius * 2;
+
+    background-color: v.$bg1;
+
     @include d.flex($dir: row, $ali: center, $gap: 10px);
-    z-index: 5;
-    justify-content: space-evenly;
+
     .cardRoom-action:hover {
       scale: 0.9;
     }
+
     a:nth-child(2).cardRoom-action {
-      height: 70px;
-      width: 70px;
       display: grid;
       place-content: center;
-      background-color: v.$tn1;
-      color: v.$bg1;
+
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
+
+      color: v.$bg1;
+
+      background-color: v.$tn1;
     }
   }
 }

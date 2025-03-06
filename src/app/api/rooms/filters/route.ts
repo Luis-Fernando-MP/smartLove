@@ -1,7 +1,7 @@
+import { TFilterRoomsValidator } from '@/shared/resolvers/rooms.resolver'
 import { Prisma, Services } from '@prisma/client'
 import { prisma } from 'db/prisma'
 import { NextResponse } from 'next/server'
-import { TFilterRoomsValidator } from 'shared/resolvers/rooms.resolver'
 
 export type TFullDataRoom = Prisma.RoomGetPayload<{
   include: {

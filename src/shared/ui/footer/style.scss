@@ -1,21 +1,28 @@
-@use '@styles/config/vars' as v;
-@use '@styles/utils/defs' as d;
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
 
 .footer {
+  justify-content: center;
+
   width: 100%;
   min-height: 150px;
   padding: v.$padding * 3 v.$padding * 2;
-  background-color: v.$bg2;
-  @include d.flex();
-  justify-content: center;
   border-radius: v.$radius;
+
+  background-color: v.$bg2;
+
+  @include d.flex;
+
   &-container {
-    width: 100%;
-    @include d.flex($dir: row, $ali: center);
     justify-content: space-between;
+    width: 100%;
+
+    @include d.flex($dir: row, $ali: center);
   }
+
   &-paths {
     @include d.flex($ali: right, $gap: 5px);
+
     text-align: right;
   }
 }
