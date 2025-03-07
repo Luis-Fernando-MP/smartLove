@@ -8,19 +8,21 @@
 
 .roomNav {
   &-details {
+    cursor: pointer;
     user-select: none;
+
     padding: v.$padding v.$padding * 0.5;
     border-radius: v.$radius;
+
     transition: t.$pong;
 
     &[open],
     &:hover {
-      background: v.$bg1;
+      background-color: v.$bg1;
     }
   }
 
   &-summary {
-    cursor: pointer;
     list-style-position: inside;
     list-style-type: '⬐ ';
 
@@ -28,25 +30,30 @@
       font-size: v.$fP;
       color: v.$fn1;
     }
-
-    &__path {
-      justify-content: center;
-      margin-bottom: v.$padding;
-
-      @include d.flex($dir: row, $ali: center);
-
-      &.active,
-      &:hover {
-        svg,
-        p {
-          color: v.$tn1;
-        }
-      }
-    }
   }
 
   &-details[open] &-summary {
     list-style-type: '⬑ ';
+  }
+
+  &-paths {
+    @include d.flex($gap: v.$padding * 0.5, $ali: center);
+
+    padding-top: v.$padding;
+  }
+
+  &-path {
+    width: 150px;
+
+    @include d.flex($dir: row, $ali: center, $gap: 5px);
+
+    &.active,
+    &:hover {
+      svg,
+      p {
+        color: v.$tn1;
+      }
+    }
   }
 
   &-consulting {

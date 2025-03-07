@@ -36,7 +36,7 @@
   left: 0;
   width: 100%;
   height: calc(100% - 60px);
-  transition: t.$pong;
+  transition: left t.$pong;
 }
 
 .dashboard-body {

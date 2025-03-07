@@ -78,6 +78,7 @@
     @include d.flex($gap: v.$padding * 0.5, $dir: row);
 
     flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
     height: fit-content;
   }
@@ -85,14 +86,14 @@
   &-service {
     @include d.flex($dir: row, $ali: center, $gap: 5px);
 
-    padding: 5px 10px;
+    padding: 5px;
     border-radius: v.$radius;
     background-color: v.$bg2;
   }
 
   &-actions {
     position: absolute;
-    z-index: 5;
+    z-index: 1;
     bottom: -25px;
     left: 50%;
     transform: translateX(-50%);
@@ -109,22 +110,40 @@
     background-color: v.$bg1;
 
     @include d.flex($dir: row, $ali: center, $gap: 10px);
+  }
 
-    .cardRoom-action:hover {
-      scale: 0.9;
+  &-action svg {
+    transition:
+      stroke 0.3s ease-in-out,
+      scale 0.3s ease-in-out;
+  }
+
+  &-action.middle {
+    display: grid;
+    place-content: center;
+
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+
+    color: v.$bg1;
+
+    background-color: v.$tn1;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &-action {
+    &:hover svg {
+      scale: 1.3;
+      stroke: v.$tn1;
     }
 
-    a:nth-child(2).cardRoom-action {
-      display: grid;
-      place-content: center;
-
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-
-      color: v.$bg1;
-
-      background-color: v.$tn1;
+    &.middle:hover svg {
+      stroke: v.$bg1;
     }
   }
 }

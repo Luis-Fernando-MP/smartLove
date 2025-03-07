@@ -3,7 +3,6 @@
 import { useRooms } from '@/hooks/useRooms'
 import { newKey } from '@/shared/key'
 import type { JSX } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 
 import useFilters from '../../store/useFilters.store'
 import CardRoom from '../cardRoom/cardRoom'

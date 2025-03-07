@@ -45,7 +45,7 @@ $navSize: 400px; // <-- important
       background-color: v.$bg2;
 
       transition: all 0.7s cubic-bezier(0.79, 0.14, 0.15, 0.86);
-      transition: t.$pong;
+      transition: all t.$pong;
 
       @include d.flex($ali: center);
 

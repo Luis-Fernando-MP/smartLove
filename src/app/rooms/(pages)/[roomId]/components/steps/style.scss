@@ -50,7 +50,7 @@ $widthSeparator: v.$padding * 2;
     &,
     &::after,
     &::before {
-      transition: t.$pong;
+      transition: all t.$pong;
     }
 
     &:last-child {

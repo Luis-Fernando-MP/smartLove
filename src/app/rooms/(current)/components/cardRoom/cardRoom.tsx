@@ -6,7 +6,7 @@ import { sansitaSwashed } from '@/shared/fonts'
 import parseServiceToIcon from '@/shared/helpers/parseServiceToIcon'
 import SlugRoom from '@/shared/ui/slugRoom/slugRoom'
 import { Image } from '@unpic/react'
-import { BanknoteIcon, CalendarDaysIcon, ImagesIcon, LandPlotIcon } from 'lucide-react'
+import { BanknoteIcon, CalendarDaysIcon, ImagesIcon, KeyIcon, LandPlotIcon } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
 
@@ -72,8 +72,8 @@ const CardRoom = ({ data, className }: ICardRoom): JSX.Element => {
         <Link href={`/rooms/${id}/calendar`} className='btn cardRoom-action'>
           <CalendarDaysIcon />
         </Link>
-        <Link href={`/rooms/${id}`} className='btn cardRoom-action'>
-          <LandPlotIcon />
+        <Link href={`/rooms/${id}`} className='btn cardRoom-action middle'>
+          <KeyIcon />
         </Link>
         <Link href={`/rooms/${id}/images`} className='btn cardRoom-action'>
           <ImagesIcon />
