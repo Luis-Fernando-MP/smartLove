@@ -3,10 +3,10 @@
 import NavContainer from '@/app/rooms/components/navContainer/NavContainer'
 import useNav from '@/hooks/useNav'
 import { DASHBOARD_PATHS, HOME_PATHS, WHATSAPP_URL } from '@/shared/constants'
-import { mada, sansitaSwashed } from '@/shared/fonts'
+import { sansitaSwashed } from '@/shared/fonts'
 import { switchClass } from '@/shared/helpers/switchClassName'
 import Social from '@/shared/ui/social/Social'
-import { CircleHelp, MessageCircleQuestion } from 'lucide-react'
+import { MessageCircleQuestion } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
 
@@ -19,7 +19,9 @@ const Nav = (): JSX.Element => {
   return (
     <NavContainer className='roomsNav'>
       <details className='roomNav-details' name='paths' open>
-        <summary className='roomNav-summary'>Dashboard</summary>
+        <summary className='roomNav-summary'>
+          <h5>Dashboard</h5>
+        </summary>
         <div className='roomNav-paths'>
           {DASHBOARD_PATHS.map(path => {
             const { name, link, Icon } = path
@@ -34,7 +36,9 @@ const Nav = (): JSX.Element => {
         </div>
       </details>
       <details className='roomNav-details' name='paths'>
-        <summary className='roomNav-summary'>Inicio</summary>
+        <summary className='roomNav-summary'>
+          <h5>Inicio</h5>
+        </summary>
         <div className='roomNav-paths'>
           {Object.values(HOME_PATHS).map(path => {
             const { name, link, Icon } = path

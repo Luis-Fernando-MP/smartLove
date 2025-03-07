@@ -16,11 +16,11 @@
   // Fonts
   --xl-font-size: 5em;
   --h1-font-size: 2em;
-  --h2-font-size: 1.8em;
-  --h3-font-size: 1.6em;
-  --h4-font-size: 1.4em;
-  --h5-font-size: 1.3em;
-  --p-font-size: 1.1em;
+  --h2-font-size: 1.4em;
+  --h3-font-size: 1.3em;
+  --h4-font-size: 1.2em;
+  --h5-font-size: 1.1em;
+  --p-font-size: 1em;
   --span-font-size: 1em;
   --small-font-size: 0.9em;
 }
@@ -64,7 +64,10 @@ $radius: 7px;
 $padding: 15px;
 $icon: 20px;
 $family-size: 12px;
-$family: var(--font1), 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', monospace;
+$family: 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', monospace;
+$font1: var(--font1), $family;
+$font2: var(--font2), $family;
+$font3: var(--font3);
 $gr1: linear-gradient(90deg, $tn1 0%, $tn2 100%);
 $imgFilter: brightness(0.5) opacity(0.5);
 

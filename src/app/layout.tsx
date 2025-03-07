@@ -28,10 +28,10 @@ function RootLayout({ children }: TRootLayout): JSX.Element {
             position='top-center'
             toastOptions={{
               className: 'toast',
-              position: 'top-right',
+              position: 'top-center',
               style: {
-                background: 'rgb(var(--bg-primary))',
-                color: 'rgb(var(--fnt-primary))'
+                background: 'var(--bg-primary)',
+                color: 'var(--fnt-primary)'
               }
             }}
           />

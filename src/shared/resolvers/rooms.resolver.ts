@@ -18,18 +18,14 @@ const schemeRoomsValidator = z.object(
 )
 
 export interface TFilterRoomsValidator {
-  pricing: any
-  classification: any
-  capacity: any
+  pricing: string
+  classification: string
+  capacity: string
 }
+
 export const roomsResolver = zodResolver(schemeRoomsValidator)
 
-interface IPricingFilter {
-  value: any
-  name: string
-}
-
-export const pricingValues: IPricingFilter[] = [
+export const pricingValues = [
   {
     value: 'ALL',
     name: 'Todos'
@@ -52,12 +48,7 @@ export const pricingValues: IPricingFilter[] = [
   }
 ]
 
-interface IClassificationsFilter {
-  value: any
-  name: string
-}
-
-export const classificationsValues: IClassificationsFilter[] = [
+export const classificationsValues = [
   {
     value: 'ALL',
     name: 'Todos'
@@ -76,12 +67,7 @@ export const classificationsValues: IClassificationsFilter[] = [
   }
 ]
 
-interface ICapacitiesFilter {
-  value: any
-  name: string
-}
-
-export const capacitiesValues: ICapacitiesFilter[] = [
+export const capacitiesValues = [
   {
     value: 'ALL',
     name: 'Todos'

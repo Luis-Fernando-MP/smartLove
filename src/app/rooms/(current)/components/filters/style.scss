@@ -11,8 +11,13 @@
   @include d.flex($ali: flex-start);
 
   &-reset {
-    color: v.$fn2;
+    padding: v.$padding * 0.5 v.$padding;
+    border: 1.5px dashed v.$tn1;
+    border-radius: v.$radius;
+
+    color: v.$tn1;
     text-decoration: underline;
+
     background-color: transparent;
   }
 
@@ -20,6 +25,7 @@
     font-weight: 700;
     color: v.$bg1;
     background-color: v.$tn1;
+    transition: none;
   }
 
   &-form {
@@ -73,7 +79,10 @@
 
         opacity: 0;
 
-        transition: all t.$pong;
+        transition:
+          scale t.$pong,
+          opacity t.$pong,
+          color t.$pong;
       }
     }
 

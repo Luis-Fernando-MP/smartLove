@@ -1,5 +1,4 @@
 import { WHATSAPP_URL } from '@/shared/constants'
-import { mada } from '@/shared/fonts'
 import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
 
@@ -12,7 +11,7 @@ function Footer({ className }: { className?: string }): JSX.Element {
       <article className='footer-container'>
         <section className='footer-description'>
           <h3>Smart Pro</h3>
-          <h5 className={mada.className}>
+          <h5>
             Tu hotel favorito en la ciudad, donde la
             <br /> comodidad y la tecnología se unen para <br />
             ofrecerte una experiencia única.

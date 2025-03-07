@@ -1,6 +1,5 @@
 @use '@sass/config/vars' as v;
 @use '@sass/utils/defs' as d;
-@use '@sass/utils/transitions' as t;
 
 .dashboard-nav__container {
   padding-bottom: 50px;
@@ -10,11 +9,8 @@
   &-details {
     cursor: pointer;
     user-select: none;
-
     padding: v.$padding v.$padding * 0.5;
     border-radius: v.$radius;
-
-    transition: t.$pong;
 
     &[open],
     &:hover {
@@ -29,6 +25,11 @@
     &::marker {
       font-size: v.$fP;
       color: v.$fn1;
+    }
+
+    h5 {
+      display: inline-block;
+      margin-left: v.$padding * 0.5;
     }
   }
 

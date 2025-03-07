@@ -1,7 +1,6 @@
 @use '@sass/config/vars' as v;
 @use '@sass/utils/defs' as d;
 @use '@sass/utils/scrollbar' as *;
-@use '@sass/utils/transitions' as t;
 
 $dashboardMenuSize: 40px;
 
@@ -22,16 +21,12 @@ $dashboardMenuSize: 40px;
   visibility: hidden;
   opacity: 0;
   background-color: v.$tn1;
-
-  transition: all t.$pong;
 }
 
 .dashboard-nav {
   position: relative;
   height: 100%;
 
-  // min-width: 250px; <-- one nav have an different width and height
-  // max-width: 250px; <--ç
   &::after {
     content: '';
 
@@ -68,9 +63,12 @@ $dashboardMenuSize: 40px;
     justify-content: flex-end;
 
     padding: v.$padding * 0.5;
+    border: 1.5px dashed v.$tn1;
     border-radius: v.$radius;
 
     background-color: v.$bg1;
+
+    transition: none;
 
     @include d.flex($dir: row);
 
