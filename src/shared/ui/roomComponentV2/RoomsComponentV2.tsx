@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+import { TFullDataRoom } from '@/app/api/rooms/route'
 import { sansitaSwashed } from '@/shared/fonts'
 import parseServiceToIcon from '@/shared/helpers/parseServiceToIcon'
-import { TFullDataRoom } from 'app/api/rooms/route'
 import { ArrowUpRight, BanknoteIcon, CalendarRange } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { ReactNode } from 'react'

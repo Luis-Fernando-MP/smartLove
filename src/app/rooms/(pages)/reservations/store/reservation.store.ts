@@ -1,4 +1,4 @@
-import { TClientReservation } from 'app/api/reservation/by-user/[idUser]/route'
+import { TClientReservation } from '@/app/api/reservation/by-user/[idUser]/route'
 import { create } from 'zustand'
 
 interface IUseReservationStore {

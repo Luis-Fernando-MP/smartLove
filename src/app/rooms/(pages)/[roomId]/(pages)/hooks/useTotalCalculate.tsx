@@ -1,6 +1,6 @@
+import { TFullDataRoom } from '@/app/api/rooms/route'
 import { round } from '@/shared/helpers/round'
 import { STAY_USER, currentClassCase } from '@/shared/helpers/stayUserCases'
-import { TFullDataRoom } from 'app/api/rooms/route'
 import dayjs from 'dayjs'
 import { useCallback, useEffect, useMemo } from 'react'
 

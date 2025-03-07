@@ -1,33 +1,49 @@
 'use client'
 
 /* eslint-disable @next/next/no-img-element */
+import { TFullDataRoom } from '@/app/api/rooms/route'
 import { sansitaSwashed } from '@/shared/fonts'
 import parseServiceToIcon from '@/shared/helpers/parseServiceToIcon'
 import SlugRoom from '@/shared/ui/slugRoom/slugRoom'
-import { TFullDataRoom } from 'app/api/rooms/route'
+import { Image } from '@unpic/react'
 import { BanknoteIcon, CalendarDaysIcon, ImagesIcon, LandPlotIcon } from 'lucide-react'
 import { Link } from 'next-view-transitions'
-import type { JSX, ReactNode } from 'react'
+import type { JSX } from 'react'
 
 import './style.scss'
 
 interface ICardRoom {
-  children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
+  className?: string
   data: TFullDataRoom
 }
 
-const CardRoom = ({ data }: ICardRoom): JSX.Element => {
+const CardRoom = ({ data, className }: ICardRoom): JSX.Element => {
   const { reservationCount, status, name, description, price, id } = data
   const { images, services } = data
 
   return (
-    <article className='cardRoom'>
+    <article className={`cardRoom ${className}`}>
       <SlugRoom counter={reservationCount} itsFull={status} />
       <section className='cardRoom-images'>
+        <Image
+          src={images[0].imageUrl}
+          alt={`Habitación ${name}`}
+          className='cardRoom-background'
+          layout='fullWidth'
+          fetchPriority='low'
+        />
         {images.slice(0, 3).map(image => {
-          return <img key={image.id} src={image.imageUrl} alt={image.imageUrl} className='cardRoom-image' loading='lazy' />
+          return (
+            <Image
+              key={image.id}
+              src={image.imageUrl}
+              alt={image.imageUrl}
+              className='cardRoom-image'
+              layout='fullWidth'
+              fetchPriority='low'
+            />
+          )
         })}
-        <img src={images[0].imageUrl} alt={`Habitación ${name}`} className='cardRoom-images__background' loading='lazy' />
       </section>
 
       <div className='cardRoom-information'>

@@ -1,4 +1,4 @@
-import { TFullDataRoom } from 'app/api/rooms/route'
+import { TFullDataRoom } from '@/app/api/rooms/route'
 import { create } from 'zustand'
 
 interface IUseRoomStore {

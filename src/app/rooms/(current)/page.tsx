@@ -2,7 +2,7 @@ import Footer from '@/shared/ui/footer/Footer'
 import { type JSX } from 'react'
 
 import Nav from './components/nav/Nav'
-import RoomsController from './components/roomsContainer/RoomsController'
+import RoomsContainer from './components/roomsContainer/RoomsContainer'
 import './style.scss'
 import './userMobile.scss'
 
@@ -11,9 +11,7 @@ const Rooms = (): JSX.Element => {
     <main className='dashboard-main rooms'>
       <Nav />
       <section className='dashboard-body'>
-        <article className='roomsContainer'>
-          <RoomsController />
-        </article>
+        <RoomsContainer />
         <Footer />
       </section>
     </main>
