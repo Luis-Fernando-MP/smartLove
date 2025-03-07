@@ -28,19 +28,21 @@ const Details = (): JSX.Element | null => {
             return <SlugTooltip key={tagSlug} description={slugDescription} tag={tagSlug} className={classSlug} />
           })}
         </aside>
+
         <h1 className={`${sansitaSwashed.className} title`}>{name}</h1>
+
         <div className='roomDetails-container'>
-          <h5 className='roomDetails-characteristic'>
+          <h5 className='roomDetails-dolar'>
             <DollarSignIcon />
             <b>{String(price)}xDía</b>
           </h5>
-          <span className='roomDetails-characteristic'>
+          <div className='roomDetails-characteristic'>
             <PlusIcon />
-            {reservationCount} Reservas pasadas
-          </span>
-          <Link href={`/rooms/${id}/calendar`} className='roomDetails-calendar gr'>
+            <h4>{reservationCount} Reservas pasadas</h4>
+          </div>
+          <Link href={`/rooms/${id}/calendar`} className='roomDetails-calendar'>
             <CalendarRange color='var(--tn-primary)' />
-            <span>Ver calendario de actividades</span>
+            <h4>Ver calendario</h4>
           </Link>
         </div>
         <p className='roomDetails-description'>{room.description}</p>

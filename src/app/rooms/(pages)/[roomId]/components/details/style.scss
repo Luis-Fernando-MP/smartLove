@@ -20,7 +20,7 @@ body.dark {
 
   text-align: center;
 
-  background-color: v.$bg1;
+  background-image: linear-gradient(0deg, transparent, v.$bg1 50%);
 
   .slugs {
     position: absolute;
@@ -40,21 +40,39 @@ body.dark {
   }
 
   &-characteristic,
-  &-calendar {
+  &-calendar,
+  &-dolar {
     @include d.flex($dir: row, $gap: 5px, $ali: center);
 
     justify-content: center;
   }
 
-  h5.roomDetails-characteristic {
-    padding: 5px 10px;
-    border-radius: 5px;
+  &-dolar {
+    padding: v.$padding * 0.5 v.$padding;
+    border-radius: v.$radius;
     color: v.$success;
     background-color: v.$success_dark;
   }
 
+  &-calendar {
+    padding: v.$padding * 0.5 v.$padding;
+    border-radius: v.$radius;
+    background-color: v.$tn1;
+
+    h4 {
+      color: v.$bg1;
+    }
+
+    svg {
+      stroke: v.$bg1;
+    }
+  }
+
   &-description {
     max-width: 500px;
+
+    font-size: v.$fH4;
+    font-weight: 500;
     text-align: center;
     text-wrap: wrap;
   }
