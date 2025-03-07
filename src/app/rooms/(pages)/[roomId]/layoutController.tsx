@@ -1,8 +1,11 @@
+'use client'
+
+import NavContainer from '@/app/rooms/components/navContainer/NavContainer'
 import { useRoom } from '@/hooks/useRooms'
 import Footer from '@/shared/ui/footer/Footer'
-import NavContainer from 'app/rooms/components/navContainer/NavContainer'
-import { type JSX, type ReactNode, useEffect } from 'react'
+import { type JSX, type ReactNode, useLayoutEffect } from 'react'
 
+import LoaderRoomPage from './LoaderRoomPage'
 import Details from './components/details/Details'
 import Nav from './components/nav/Nav'
 import { useRoomStore } from './store/room.store'
@@ -13,18 +16,17 @@ interface ILayoutController {
 }
 
 const LayoutController = ({ children, id }: ILayoutController): JSX.Element | null => {
-  const { data, isError } = useRoom(id)
+  const { data, isError, isLoading } = useRoom(id)
   const { setRoom } = useRoomStore()
 
-  useEffect(() => {
-    if (data === null) return
-    setRoom(data)
+  useLayoutEffect(() => {
+    if (data !== null) setRoom(data)
   }, [data, isError, setRoom])
-
-  if (!data || isError) return <p>loading...</p>
+  if (isLoading) return <LoaderRoomPage />
+  if (isError || !data) return null
 
   return (
-    <>
+    <main className='dashboard-main room'>
       <NavContainer className='roomNav'>
         <Nav />
       </NavContainer>
@@ -33,7 +35,7 @@ const LayoutController = ({ children, id }: ILayoutController): JSX.Element | nu
         {children}
         <Footer className='max-w-[900px]' />
       </article>
-    </>
+    </main>
   )
 }
 

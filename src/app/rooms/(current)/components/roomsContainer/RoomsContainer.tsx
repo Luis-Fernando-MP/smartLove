@@ -18,7 +18,7 @@ const RoomsContainer = (): JSX.Element | null => {
   const areFiltersApplied = filters.pricing !== 'ALL' || filters.classification !== 'ALL' || filters.capacity !== 'ALL'
   return (
     <article className='roomsContainer'>
-      <h3>
+      <h3 className='font3'>
         <b className='gr'>{data.length} Resultados</b> encontrados
       </h3>
       {areFiltersApplied && (

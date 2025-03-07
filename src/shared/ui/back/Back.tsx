@@ -15,7 +15,7 @@ const Back = ({ row = false }: IBack): JSX.Element => {
     <section className={`back ${switchClass(row, 'row')}`}>
       <Link href='/rooms' className='back-action'>
         <ArrowLeft />
-        <p>Regresar</p>
+        <h3>Regresar</h3>
       </Link>
     </section>
   )

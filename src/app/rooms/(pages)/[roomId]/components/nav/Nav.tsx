@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 import { sansitaSwashed } from '@/shared/fonts'
 import Back from '@/shared/ui/back/Back'
+import { Image } from '@unpic/react'
 import type { JSX } from 'react'
 
 import { useRoomStore } from '../../store/room.store'
@@ -14,26 +14,26 @@ const Nav = (): JSX.Element | null => {
 
   const firstImage = images[0]
   return (
-    <div className='roomNav-container'>
+    <article className='roomNav-container'>
       <Back row />
       <BusyDays />
-      <h3 className={`${sansitaSwashed.className}`}>
+      <h2 className='font3'>
         <b className='gr'>Imágenes</b> de la habitación
-      </h3>
-      <ul className='roomNav-images'>
-        <li className='roomNav-item background'>
-          <img src={firstImage.imageUrl} alt={firstImage.createdAt.toString()} className='roomNav-image first' />
-        </li>
+      </h2>
+      <section className='roomNav-background'>
+        <Image src={firstImage.imageUrl} alt={firstImage.createdAt.toString()} layout='fullWidth' />
+      </section>
+      <section className='roomNav-images'>
         {images.slice(1).map(image => {
           const { id, createdAt, imageUrl } = image
           return (
-            <li key={id} className='roomNav-item'>
-              <img src={imageUrl} alt={createdAt.toString()} className='roomNav-image' />
+            <li key={id} className='roomNav-image'>
+              <Image src={imageUrl} alt={createdAt.toString()} layout='fullWidth' />
             </li>
           )
         })}
-      </ul>
-    </div>
+      </section>
+    </article>
   )
 }
 

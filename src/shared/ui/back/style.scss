@@ -10,24 +10,35 @@
   }
 
   &-action {
+    scale: 1;
+
     width: fit-content;
     margin-left: 0;
-    padding: v.$padding;
+    padding: v.$padding * 0.7 v.$padding;
+    border: 1.5px dashed v.$tn1;
     border-radius: v.$radius;
 
     background-color: v.$bg1;
 
-    @include d.flex($ali: flex-start, $gap: 5px);
+    transition: scale 0.3s ease-in-out;
+
+    @include d.flex($ali: center, $gap: 0);
+
+    h3 {
+      text-transform: uppercase;
+    }
 
     &:hover {
+      scale: 1.05;
+
       svg,
-      p {
+      h3 {
         color: v.$tn1;
       }
     }
   }
 
   &.row a {
-    @include d.flex($dir: row, $ali: center);
+    @include d.flex($dir: row, $ali: center, $gap: v.$padding * 0.5);
   }
 }

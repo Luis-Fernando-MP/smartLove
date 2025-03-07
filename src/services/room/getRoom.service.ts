@@ -29,7 +29,6 @@ const roomAxiosPost = axios.create({
 
 export const getAllRooms = async () => {
   try {
-    await delay(10000)
     const response = await axiosRoom('')
     const { data } = response
     if (!data) {

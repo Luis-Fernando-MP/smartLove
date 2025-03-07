@@ -1,6 +1,7 @@
 'use client'
 
 import parseServiceToIcon from '@/shared/helpers/parseServiceToIcon'
+import { ArrowUpRight } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
 
@@ -25,10 +26,11 @@ const Page = (): JSX.Element | null => {
           )
         })}
       </ul>
-      <Link href={`/rooms/${id}/requirements`} className='btn currentRoom-continue bgr big'>
+      <Link href={`/rooms/${id}/requirements`} className='currentRoom-continue'>
         Reservar ahora 🍀
+        <ArrowUpRight />
       </Link>
-      <h3 className='text-center'>
+      <h3 className='font3 text-center'>
         <b className='gr'>Otras Habitaciones</b> Recomendadas 🛎️
       </h3>
       <RecommendationController />

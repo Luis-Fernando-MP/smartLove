@@ -6,7 +6,7 @@ import { sansitaSwashed } from '@/shared/fonts'
 import parseServiceToIcon from '@/shared/helpers/parseServiceToIcon'
 import SlugRoom from '@/shared/ui/slugRoom/slugRoom'
 import { Image } from '@unpic/react'
-import { BanknoteIcon, CalendarDaysIcon, ImagesIcon, KeyIcon, LandPlotIcon } from 'lucide-react'
+import { BanknoteIcon, CalendarDaysIcon, ImagesIcon, KeyIcon } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
 
@@ -25,29 +25,14 @@ const CardRoom = ({ data, className }: ICardRoom): JSX.Element => {
     <article className={`cardRoom ${className}`}>
       <SlugRoom counter={reservationCount} itsFull={status} />
       <section className='cardRoom-images'>
-        <Image
-          src={images[0].imageUrl}
-          alt={`Habitación ${name}`}
-          className='cardRoom-background'
-          layout='fullWidth'
-          fetchPriority='low'
-        />
+        <Image src={images[0].imageUrl} alt={`Habitación ${name}`} className='cardRoom-background' layout='fullWidth' />
         {images.slice(0, 3).map(image => {
-          return (
-            <Image
-              key={image.id}
-              src={image.imageUrl}
-              alt={image.imageUrl}
-              className='cardRoom-image'
-              layout='fullWidth'
-              fetchPriority='low'
-            />
-          )
+          return <Image key={image.id} src={image.imageUrl} alt={image.imageUrl} className='cardRoom-image' layout='fullWidth' />
         })}
       </section>
 
       <div className='cardRoom-information'>
-        <h4 className={sansitaSwashed.className}>{name}</h4>
+        <h3 className={sansitaSwashed.className}>{name}</h3>
         <p className='cardRoom-descriptions'>{description}</p>
       </div>
 

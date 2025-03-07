@@ -20,8 +20,7 @@ export function useRooms() {
     initialData: cacheAllRooms,
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,
-    retry: 5,
-    refetchOnMount: true
+    retry: 5
   })
 }
 
@@ -35,10 +34,13 @@ export function useRoom(id: string) {
       const [, id] = queryKey
       return await getRoomById(id)
     },
-    staleTime: 500,
-    retry: 5,
     initialDataUpdatedAt: 500,
-    initialData: cacheAllRooms !== null ? cacheAllRooms.find(room => String(room.id) === id) : null
+    initialData: cacheAllRooms !== null ? cacheAllRooms.find(room => String(room.id) === id) : null,
+    staleTime: HOUR_IN_MS,
+    gcTime: HOUR_IN_MS * 2,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
+    retry: 5
   })
 }
 

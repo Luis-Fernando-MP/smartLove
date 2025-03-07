@@ -1,7 +1,7 @@
 'use client'
 
+import NavContainer from '@/app/rooms/components/navContainer/NavContainer'
 import ErrorContainer from '@/shared/ui/errorContainer/ErrorContainer'
-import NavContainer from 'app/rooms/components/navContainer/NavContainer'
 import type { JSX } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 

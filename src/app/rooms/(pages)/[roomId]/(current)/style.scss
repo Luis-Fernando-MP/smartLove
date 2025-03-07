@@ -3,25 +3,43 @@
 
 .currentRoom {
   &-continue {
-    min-width: 200px;
+    justify-content: center;
+
+    padding: v.$padding;
+    border-radius: v.$radius;
+
+    font-weight: bold;
+    color: v.$bg1;
+    text-transform: uppercase;
+
+    background-color: v.$tn1;
+
+    @include d.flex($dir: row, $ali: center, $gap: v.$padding * 0.5);
+
+    transition: scale 0.3s ease-in-out;
+
+    &:hover {
+      scale: 0.98;
+    }
   }
 
   &-services {
     flex-wrap: wrap;
     justify-content: center;
-
-    width: fit-content;
     max-width: 900px;
-    border-radius: v.$radius;
-
-    background-color: v.$bg1;
 
     @include d.flex($dir: row);
   }
 
   &-service {
-    @include d.flex($dir: row, $ali: center);
+    @include d.flex($dir: row, $ali: center, $gap: v.$padding * 0.5);
+
+    padding: v.$padding * 0.5 v.$padding;
+    border: 1px solid v.$bg2;
+    border-radius: v.$radius;
 
     color: v.$fn2;
+
+    background-color: v.$bg1;
   }
 }
