@@ -25,19 +25,6 @@ const Nav = (): JSX.Element => {
     setShow(!show)
   }
 
-  const handleNavigate = (path: string) => {
-    if (typeof window === 'undefined') return
-    setShow(!show)
-    if (path === HOME_PATHS.Rooms.link) return
-    const targetElement = document.querySelector('section.main-content')
-    if (targetElement && targetElement instanceof HTMLElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop,
-        behavior: 'smooth'
-      })
-    }
-  }
-
   return (
     <>
       <button className='landingNav-menu' onClick={handleShowMenu}>
@@ -53,7 +40,7 @@ const Nav = (): JSX.Element => {
             const isActive = switchClass(pathname === link)
             return (
               <li key={name}>
-                <Link href={link} className={`btn landingNav-link ${isActive}`} onClick={() => handleNavigate(link)}>
+                <Link href={link} className={`btn landingNav-link ${isActive}`}>
                   <Icon />
                   <p>{name}</p>
                 </Link>

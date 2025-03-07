@@ -1,5 +1,5 @@
+import { prisma } from '@/db/prisma'
 import { Prisma, Services } from '@prisma/client'
-import { prisma } from 'db/prisma'
 import { NextResponse } from 'next/server'
 
 export type TFullDataRoom = Prisma.RoomGetPayload<{

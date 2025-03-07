@@ -16,12 +16,12 @@ export const HOME_PATHS = {
   },
   Rooms: {
     name: 'Habitaciones',
-    link: '/rooms',
+    link: '/rooms/#section-view',
     Icon: Hotel
   },
   Polices: {
     name: 'Políticas',
-    link: '/polices',
+    link: '/polices/#section-view',
     Icon: Siren
   }
 }

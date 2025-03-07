@@ -6,7 +6,7 @@ import './style.scss'
 
 const Resume = (): JSX.Element => {
   return (
-    <article className='resume'>
+    <article className='resume' id='section-view'>
       <section className='resume-card'>
         <h2>
           Acerca de <b className='gr'>nosotros</b>

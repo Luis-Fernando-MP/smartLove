@@ -1,7 +1,7 @@
+import { prisma } from '@/db/prisma'
 import { ISendReserveData } from '@/services/reserve/reserve.service.types'
 import { Prisma, Services } from '@prisma/client'
 import dayjs from 'dayjs'
-import { prisma } from 'db/prisma'
 import { NextResponse } from 'next/server'
 
 export type TFullDataRoom = Prisma.RoomGetPayload<{

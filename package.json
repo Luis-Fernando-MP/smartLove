@@ -14,7 +14,8 @@
     "prisma:migrate": "pnpx prisma migrate dev --name",
     "prisma:deploy": "pnpx prisma migrate deploy",
     "prisma:generate": "pnpx prisma generate",
-    "ngrok": "ngrok http http://127.0.0.1:3000"
+    "ngrok": "ngrok http http://127.0.0.1:3000",
+    "studio": "pnpx prisma studio"
   },
   "dependencies": {
     "@lucide/lab": "0.1.2",

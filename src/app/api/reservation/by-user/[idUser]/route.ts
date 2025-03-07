@@ -1,5 +1,5 @@
+import { prisma } from '@/db/prisma'
 import { Prisma } from '@prisma/client'
-import { prisma } from 'db/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 
 export type TClientReservation = Prisma.ReservationGetPayload<{
