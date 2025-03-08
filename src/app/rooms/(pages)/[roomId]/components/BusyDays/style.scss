@@ -1,0 +1,43 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+@use '@sass/utils/scrollbar' as *;
+
+.busyDays {
+  padding: v.$padding;
+  border-radius: v.$radius;
+  background-color: v.$bg2;
+
+  @include d.flex($gap: 5px, $ali: center);
+
+  &-calendar,
+  &-extend {
+    @include d.flex($dir: row, $ali: center, $gap: 5px);
+  }
+
+  &-calendar {
+    padding: v.$padding * 0.5 v.$padding;
+    border-radius: v.$radius;
+
+    font-size: v.$fH5;
+    font-weight: b;
+    color: v.$bg1;
+
+    background-color: v.$tn1;
+  }
+
+  &-extend {
+    width: fit-content;
+    background-color: v.$bg1;
+  }
+
+  &.active &-miniCalendar {
+    height: 100%;
+  }
+
+  > h2,
+  > p,
+  > a {
+    margin: auto;
+    text-align: center;
+  }
+}

@@ -6,7 +6,13 @@ import { v4 as uuid } from 'uuid'
 import { useRoomStore } from '../../store/room.store'
 import './style.scss'
 
-const CuteCalendar = (): JSX.Element | null => {
+dayjs.locale('es')
+
+interface IProps {
+  className?: string
+}
+
+const CuteCalendar = ({ className }: IProps): JSX.Element | null => {
   const { room } = useRoomStore()
   if (!room) return null
   const { reservations } = room
@@ -15,12 +21,12 @@ const CuteCalendar = (): JSX.Element | null => {
   const busyDays = reservations.filter(f => dayjs(f.toDate, 'YYYY-MM-DD HH:mm:ss.S').isAfter(today))
 
   return (
-    <article className='CCalendar'>
+    <article className={`cuteCalendar ${className}`}>
       {busyDays.map(f => {
         const from = dayjs(f.fromDate)
         const to = dayjs(f.toDate)
         return (
-          <section key={uuid()} className='CCalendar-data'>
+          <section key={uuid()} className='cuteCalendar-item'>
             <DayBox day={from} />
             <DayBox day={to} isFrom={false} />
           </section>

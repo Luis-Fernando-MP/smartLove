@@ -12,10 +12,10 @@ interface IDayBox {
 
 const DayBox = ({ day, isFrom = true }: IDayBox): JSX.Element => {
   return (
-    <div className='DayBox-item'>
+    <div className='dayBox'>
       <span>{isFrom ? 'Desde' : 'Hasta'}:</span>
       <h5>{day.year()}</h5>
-      <div className='DayBox-item__sep'>
+      <div className='dayBox-sep'>
         {isFrom ? <CalendarClockIcon /> : <LucideCalendarCheck />}
         <h5>{day.format('dddd')}</h5>
         <h2>{day.format('DD')}</h2>

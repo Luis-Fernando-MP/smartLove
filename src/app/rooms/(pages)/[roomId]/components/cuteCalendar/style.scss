@@ -4,7 +4,7 @@
 
 $CCalendarHeight: 230px + v.$padding;
 
-.CCalendar {
+.cuteCalendar {
   @extend %scroll-hidden;
 
   overflow-y: auto;
@@ -12,12 +12,11 @@ $CCalendarHeight: 230px + v.$padding;
   justify-content: center;
 
   width: 100%;
-  height: $CCalendarHeight;
-  padding-bottom: v.$padding;
+  height: 230px;
 
-  @include d.flex($dir: row, $gap: v.$padding * 1.5);
+  @include d.flex($dir: row);
 
-  &-data {
+  &-item {
     @include d.flex($dir: row, $ali: center);
 
     position: relative;
@@ -26,46 +25,12 @@ $CCalendarHeight: 230px + v.$padding;
       content: '';
 
       position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
 
-      width: 100%;
-      height: 10px;
+      width: 30px;
+      height: 20px;
       border: 3.5px dotted v.$tn1;
     }
-  }
-}
-
-.RBusyDays {
-  padding: v.$padding;
-  border-radius: v.$radius;
-  background-color: v.$bg2;
-
-  @include d.flex($gap: 5px, $ali: flex-end);
-
-  > a {
-    font-size: v.$fH5;
-    font-weight: 500;
-    color: v.$tn1;
-  }
-
-  &-action {
-    width: fit-content;
-    margin-right: v.$padding * 2;
-    margin-bottom: v.$padding;
-    background-color: v.$bg1;
-
-    @include d.flex($dir: row, $ali: center, $gap: 5px);
-  }
-
-  &.active {
-    .CCalendar {
-      height: $CCalendarHeight * 2.2;
-    }
-  }
-
-  > h2,
-  > p,
-  > a {
-    margin: auto;
-    text-align: center;
   }
 }

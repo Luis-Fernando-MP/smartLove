@@ -3,7 +3,7 @@ import { Image } from '@unpic/react'
 import type { JSX } from 'react'
 
 import { useRoomStore } from '../../store/room.store'
-import BusyDays from './BusyDays'
+import BusyDays from '../BusyDays'
 import './style.scss'
 
 const Nav = (): JSX.Element | null => {

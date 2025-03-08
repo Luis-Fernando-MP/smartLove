@@ -1,39 +1,43 @@
-import { sansitaSwashed } from '@/shared/fonts'
 import { switchClass } from '@/shared/helpers/switchClassName'
 import dayjs from 'dayjs'
-import { PanelTopCloseIcon, PanelTopOpenIcon } from 'lucide-react'
+import { CalendarIcon, PanelTopCloseIcon, PanelTopOpenIcon } from 'lucide-react'
 import { Link } from 'next-view-transitions'
-import { type JSX, useState } from 'react'
+import { type FC, useState } from 'react'
 
 import { useRoomStore } from '../../store/room.store'
 import CuteCalendar from '../cuteCalendar/CuteCalendar'
+import './style.scss'
 
-const BusyDays = (): JSX.Element | null => {
+const BusyDays: FC = () => {
   const { room } = useRoomStore()
   const [active, setActive] = useState(false)
   if (!room) return null
 
   const { reservations, id } = room
-
   const today = dayjs().add(-1, 'day')
   const busyDays = reservations?.filter(f => dayjs(f.toDate, 'YYYY-MM-DD HH:mm:ss.S').isAfter(today))
   if (!busyDays || busyDays?.length < 1) return null
 
   return (
-    <section className={`RBusyDays ${switchClass(active)}`}>
-      <h2 className={`${sansitaSwashed.className}`}>
+    <section className={`busyDays ${switchClass(active)}`}>
+      <h2 className='font3'>
         Hay <b className='gr'>Días ocupados</b> para esta habitación
       </h2>
       <p>Revisa su disponibilidad antes de reservar</p>
-      <Link href={`/rooms/${id}/calendar`}>Véase el calendario de reservas</Link>
-      {busyDays.length > 2 && (
-        <button onClick={() => setActive(!active)} className='btn RBusyDays-action'>
+
+      <Link href={`/rooms/${id}/calendar`} className='busyDays-calendar'>
+        <CalendarIcon />
+        Véase el calendario
+      </Link>
+
+      {busyDays.length >= 2 && (
+        <button onClick={() => setActive(!active)} className='btn busyDays-extend'>
           {active ? <PanelTopCloseIcon /> : <PanelTopOpenIcon />}
           {active ? 'Contraer' : 'Extender'}
         </button>
       )}
 
-      <CuteCalendar />
+      <CuteCalendar className='busyDays-miniCalendar' />
     </section>
   )
 }
