@@ -33,7 +33,7 @@ const LayoutController = ({ children, id }: ILayoutController): JSX.Element | nu
       <article className='dashboard-body'>
         <Details />
         {children}
-        <Footer className='max-w-[900px]' />
+        <Footer />
       </article>
     </main>
   )

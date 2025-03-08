@@ -3,22 +3,21 @@
 @use '@sass/config/extraColors' as extra;
 
 .TCDateCrossing {
-  width: 100%;
-  margin-bottom: v.$padding;
+  width: fit-content;
+  height: fit-content;
   text-align: center;
 
-  &,
+  @include d.flex($ali: center);
+
   &-container {
+    width: 100%;
     padding: v.$padding;
-
-    @include d.flex($ali: center);
-  }
-
-  &-container {
-    max-width: 100%;
     border: 2px solid v.$tn1T;
     border-radius: v.$radius;
-    background-color: v.$bg2;
+
+    background-color: v.$bg1;
+
+    @include d.flex($ali: center);
   }
 
   &-dates {
@@ -32,12 +31,18 @@
     @include d.flex($dir: row, $ali: center);
 
     position: relative;
-    padding: 5px 0;
+    justify-content: center;
 
     h4 {
-      padding: v.$padding * 0.5;
-      border-radius: v.$radius * 1.6;
+      display: grid;
+      place-items: center;
+
+      width: 30px;
+      height: 30px;
+      border-radius: v.$radius * 0.5;
+
       color: v.$fn2;
+
       background-color: v.$bg2;
     }
 

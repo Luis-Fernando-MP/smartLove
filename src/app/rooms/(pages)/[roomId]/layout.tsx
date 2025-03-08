@@ -5,11 +5,11 @@ import './style.scss'
 
 interface TLayout {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
-  params: { roomId: string }
+  params: Promise<{ roomId: string }>
 }
 
 const Layout = async ({ params, children }: TLayout) => {
-  const roomId = params.roomId
+  const { roomId } = await params
   return <LayoutController id={roomId}>{children}</LayoutController>
 }
 

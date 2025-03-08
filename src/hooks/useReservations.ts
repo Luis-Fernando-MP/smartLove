@@ -22,10 +22,7 @@ export function useReservations(id?: string) {
 export function useCreateReservation() {
   const mutation = useMutation({
     mutationFn: createReservation,
-    onError(error) {
-      console.log(error)
-    },
-    retry: 5
+    retry: 3
   })
   return mutation
 }

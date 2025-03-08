@@ -231,8 +231,8 @@ svg {
 
 .lucide {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
 }
 
 .skeleton {
@@ -259,10 +259,5 @@ svg {
 }
 
 .loading {
-  pointer-events: none;
-  touch-action: none;
-
   @include loader.loader;
-
-  user-select: none;
 }

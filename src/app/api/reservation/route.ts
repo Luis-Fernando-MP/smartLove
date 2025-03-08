@@ -15,21 +15,15 @@ export type TFullDataRoom = Prisma.RoomGetPayload<{
 export async function POST(request: Request) {
   try {
     const data = (await request.json()) as ISendReserveData
-    if (!data) throw new Error('Missing props')
+    if (!data) return Response.json({ message: 'Missing props' }, { status: 400 })
+
     const { client, room, userId, ...reservation } = data
-    console.log(client, room, userId, reservation)
-    const clientData = await prisma.client.findUnique({
-      where: {
-        clerkId: userId
-      }
-    })
-    if (!clientData) throw new Error("The client account don't exist")
-    const roomData = await prisma.room.findUnique({
-      where: {
-        id: room.id
-      }
-    })
-    if (!roomData) throw new Error("The room don't exist")
+    const clientData = await prisma.client.findUnique({ where: { clerkId: userId } })
+    if (!clientData) return Response.json({ message: "The client account don't exist" }, { status: 404 })
+
+    const roomData = await prisma.room.findUnique({ where: { id: room.id } })
+    if (!roomData) return Response.json({ message: "The room don't exist" }, { status: 404 })
+
     const reserved = await prisma.reservation.create({
       data: {
         clientId: clientData.clientId,
@@ -47,9 +41,9 @@ export async function POST(request: Request) {
     })
     if (!reserved) throw new Error('Reservation not created')
     return Response.json({ statusText: 'OK', ...reserved })
-  } catch (error) {
-    console.log(error)
-    return new NextResponse('INTERNAL SERVER ERROR', { status: 501 })
+  } catch (error: any) {
+    console.log('from api/reservation POST', error)
+    return new NextResponse(error.message ?? 'INTERNAL SERVER ERROR', { status: 501 })
   }
 }
 
@@ -63,16 +57,11 @@ export type TFullReservation = Prisma.ReservationGetPayload<{
 }
 export async function GET() {
   try {
-    const reservations = await prisma.reservation.findMany({
-      include: {
-        room: true,
-        client: true
-      }
-    })
+    const reservations = await prisma.reservation.findMany({ include: { room: true, client: true } })
     return Response.json(reservations ?? [])
-  } catch (error) {
+  } catch (error: any) {
     console.log(error)
-    return new NextResponse('INTERNAL SERVER ERROR', { status: 501 })
+    return new NextResponse(error.message ?? 'INTERNAL SERVER ERROR', { status: 501 })
   }
 }
 
@@ -80,20 +69,18 @@ export async function DELETE(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
     const reservationId = searchParams.get('id')
-    if (!reservationId) {
-      throw new Error('Reservation ID is missing')
-    }
+    if (!reservationId) return Response.json({ message: 'Reservation ID is missing' }, { status: 400 })
+
     const deletedReservation = await prisma.reservation.delete({
-      where: {
-        id: Number(reservationId)
-      }
+      where: { id: Number(reservationId) }
     })
-    if (!deletedReservation) throw new Error('Reservation not found')
+    if (!deletedReservation) return Response.json({ message: 'Reservation not found' }, { status: 404 })
+
     return new NextResponse(JSON.stringify({ statusText: 'Reservation deleted successfully' }), {
       status: 200
     })
-  } catch (error) {
+  } catch (error: any) {
     console.log(error)
-    return new NextResponse('INTERNAL SERVER ERROR', { status: 501 })
+    return new NextResponse(error.message ?? 'INTERNAL SERVER ERROR', { status: 501 })
   }
 }

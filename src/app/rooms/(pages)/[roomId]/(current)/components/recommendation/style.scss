@@ -2,13 +2,10 @@
 @use '@sass/utils/defs' as d;
 
 .roomsRecommendations {
+  flex-wrap: wrap;
   width: 100%;
-  max-width: 900px;
   height: auto;
-  padding: v.$padding;
   border-radius: v.$radius;
 
-  background-color: v.$bg1;
-
-  @include d.flex($ali: center);
+  @include d.flex($ali: center, $dir: row);
 }

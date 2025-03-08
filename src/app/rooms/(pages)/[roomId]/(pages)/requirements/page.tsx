@@ -8,6 +8,7 @@ import { switchClass } from '@/shared/helpers/switchClassName'
 import { TRequirementsUser, requirementsUserResolver } from '@/shared/resolvers/requirementsUser.resolver'
 import { useClerk, useUser } from '@clerk/nextjs'
 import { useQueryClient } from '@tanstack/react-query'
+import { AlertCircleIcon, ArrowLeftIcon, CheckCircle2Icon } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { usePathname, useRouter } from 'next/navigation'
 import { type JSX, useEffect, useRef } from 'react'
@@ -16,32 +17,29 @@ import toast from 'react-hot-toast'
 
 import { useRoomStore } from '../../store/room.store'
 import RegisterRequirementsUser from '../components/RegisterRequirementsUser/RegisterRequirementsUser'
+import DateCrossing from '../components/crossing/DateCrossing'
 import TotalCalculate from '../components/totalCalculate/TotalCalculate'
 import useRequirementsStore from '../store/useRequirementsStore'
 import './style.scss'
 
 const Page = (): JSX.Element | null => {
   const { totalAmount, fromDate, toDate, nights, igv, subtotal, surcharge } = useRequirementsStore()
-
-  const client = useQueryClient()
+  const { mutate: resMutate, isPending } = useCreateReservation()
+  const methods = useForm({ resolver: requirementsUserResolver, mode: 'all' })
   const room = useRoomStore(store => store.room)
+  const { openSignIn } = useClerk()
+
   const $formRef = useRef<HTMLFormElement>(null)
   const { user } = useUser()
-  const { openSignIn } = useClerk()
   const currentPath = usePathname()
   const { push } = useRouter()
-  const { mutate: resMutate, isPending } = useCreateReservation()
-  const methods = useForm({
-    resolver: requirementsUserResolver,
-    mode: 'all'
-  })
+  const client = useQueryClient()
+  const { isValid } = methods.formState
 
   useEffect(() => {
     const inProcess = localStorage.getItem('process') === '1'
-    if (inProcess && user !== null) {
-      handleContinue()
-    }
-  }, [user])
+    if (inProcess && user !== null && room !== null) handleContinue()
+  }, [user, room])
 
   if (!room) return null
   const { reservations, id: roomID } = room
@@ -53,23 +51,21 @@ const Page = (): JSX.Element | null => {
 
   const handleSubmit = async (clientData: TRequirementsUser) => {
     const noValidDateForm = [totalAmount, nights, igv, subtotal, surcharge].some(i => i < 1)
-    if (noValidDateForm) {
-      return toast.error('Deberías de completar el formulario, ¿Cuantos Dias planeas reservar esta habitación? 🤓')
-    }
+    if (noValidDateForm) return toast.error('Complete el formulario por favor')
+
     const notAvailable = noAvailableDateInRange({
       dates: reservations,
       endDate: toDate,
       startDate: fromDate
     })
-    if (notAvailable) {
-      return toast.error('Tus fechas  fechas seleccionadas no están disponibles, revisa una vez mas. 🤓')
-    }
+    if (notAvailable) return toast.error('Las fechas seleccionadas no están disponibles')
+
     if (user === null) {
+      toast.error('Necesitas iniciar sesión para continuar')
       return openSignIn({
         forceRedirectUrl: currentPath,
         afterSignOutUrl: currentPath,
-        signUpForceRedirectUrl: currentPath,
-        routing: 'virtual'
+        signUpForceRedirectUrl: currentPath
       })
     }
 
@@ -89,44 +85,58 @@ const Page = (): JSX.Element | null => {
       status: 1
     }
 
-    const toId = toast.loading('Procesando reserva')
-    resMutate(reserveData, {
+    handleReservation(reserveData)
+  }
+
+  const handleReservation = (data: ISendReserveData) => {
+    const toastId = toast.loading('🚀 Estamos Procesando tu reserva')
+    resMutate(data, {
       onSuccess() {
-        client.refetchQueries({
-          queryKey: [ROOM_NAME_CACHE, String(roomID)]
-        })
-        if ($formRef.current) {
-          $formRef.current.reset()
-        }
-        toast.success('Reserva creada', { id: toId })
+        client.refetchQueries({ queryKey: [ROOM_NAME_CACHE, String(roomID)] })
+        if ($formRef.current) $formRef.current.reset()
+
+        toast.success('Reserva creada correctamente', { id: toastId })
         push(`/rooms/${roomID}/pay`)
+      },
+      onError() {
+        toast.error('Error al crear la reserva', { id: toastId })
       }
     })
     localStorage.removeItem('process')
   }
 
-  const { isValid } = methods.formState
-
   return (
     <section className='requirementsRoom'>
       <div className='requirementsRoom-actions'>
-        <Link href={`/rooms/${roomID}/`} className='btn'>
-          Regresar a los detalles
+        <Link href={`/rooms/${roomID}/`} className='requirementsRoom-back'>
+          <ArrowLeftIcon />
+          Ir a los detalles
         </Link>
-        {!isPending && (
-          <button onClick={handleContinue} className={`btn bgr ${switchClass(!isValid, 'inactive')}`}>
-            {isValid ? 'Procesar la reserva' : 'Requerimos todos tus datos'}
-          </button>
-        )}
+
+        <button onClick={handleContinue} className={`requirementsRoom-go ${switchClass(!isValid, 'inactive')}`}>
+          {isValid && (
+            <>
+              <CheckCircle2Icon />
+              Procesar la reserva
+            </>
+          )}
+
+          {!isValid && (
+            <>
+              <AlertCircleIcon />
+              Requerimos todos tus datos
+            </>
+          )}
+        </button>
       </div>
+
       <TotalCalculate />
-      <div className='subtitle'>
-        <h2 className='gr'>Datos de usuario</h2>
-        <span>Completa tus datos personales, para reservar la habitación</span>
-      </div>
-      <FormProvider {...methods}>
-        <RegisterRequirementsUser onSubmit={handleSubmit} ref={$formRef} showSubmit={!isPending} />
-      </FormProvider>
+      <section className='requirementsRoom-wrapper'>
+        <DateCrossing dates={reservations ?? []} selectFrom={fromDate} selectEnd={toDate} />
+        <FormProvider {...methods}>
+          <RegisterRequirementsUser ref={$formRef} onSubmit={handleSubmit} showSubmit={!isPending} />
+        </FormProvider>
+      </section>
     </section>
   )
 }

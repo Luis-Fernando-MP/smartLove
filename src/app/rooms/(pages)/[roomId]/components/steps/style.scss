@@ -18,6 +18,8 @@ $widthSeparator: v.$padding * 2;
     position: relative;
     padding: 0 v.$padding;
 
+    @include d.flex($dir: row, $ali: center);
+
     &::after {
       content: '';
 
@@ -92,8 +94,6 @@ $widthSeparator: v.$padding * 2;
         background-color: v.$dis2;
       }
     }
-
-    @include d.flex($dir: row, $ali: center);
   }
 }
 

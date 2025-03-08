@@ -57,10 +57,9 @@ export const getAllReservers = async (id: string) => {
 
 export const createReservation = async (reserve: ISendReserveData) => {
   try {
-    const response = await postAxiosReserve.post('', reserve)
-    if (!response.data) {
-      throw new Error('Error al crear la reserva')
-    }
+    const response = await postAxiosReserve.post('/', reserve)
+    if (!response.data) throw new Error('Error al crear la reserva')
+
     return response.data
   } catch (error: any) {
     let errorEvent: IError = {

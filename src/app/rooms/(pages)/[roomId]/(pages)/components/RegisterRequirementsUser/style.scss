@@ -2,50 +2,25 @@
 @use '@sass/utils/defs' as d;
 
 .regRequirements {
-  &-form,
-  &-form__actions,
-  &-section {
-    @include d.flex;
-  }
+  width: fit-content;
+
+  @include d.flex($ali: center);
 
   &-form {
-    width: 60%;
-    height: auto;
-    margin: 0 auto;
-    padding: v.$padding * 2 v.$padding;
+    width: 350px;
+    height: fit-content;
+    padding: v.$padding;
+    border: 2px solid v.$tn1T;
     border-radius: v.$radius;
 
     background-color: v.$bg1;
 
-    &__actions {
-      flex-direction: row;
-      justify-content: flex-end;
-    }
-
-    &__reset {
-      border: 2px solid v.$tn1T;
-      background-color: v.$bg2;
-    }
+    @include d.flex;
   }
 
   &-section {
     justify-content: center;
-    padding: 10px 8px;
     border-radius: v.$radius;
-
-    input {
-      width: 100%;
-      padding: 5px;
-      border-radius: v.$radius;
-
-      background-color: v.$bg1;
-      outline: none;
-    }
-
-    &.error input {
-      border: 2px solid v.$danger;
-      outline: none !important;
-    }
 
     &__error {
       display: none;
@@ -58,24 +33,66 @@
 
     &.error &__error {
       display: block;
+      margin-top: 5px;
+    }
+  }
+
+  &-field {
+    @include d.flex;
+
+    input {
+      width: 100%;
+      padding: v.$padding * 0.7 v.$padding * 0.5;
+      border: 1.5px solid v.$tn1T;
+      border-radius: v.$radius;
+
+      background-color: v.$bg2;
     }
 
-    &__field {
-      @include d.flex($ali: center);
+    h5 span {
+      display: block;
+      margin-right: 5px;
+      color: v.$danger;
+    }
 
-      flex-direction: row;
+    h5 {
+      display: inline-flex;
+      width: fit-content;
+      text-wrap: nowrap;
+    }
+  }
 
-      h5 span {
-        display: block;
-        margin-right: 5px;
-        color: v.$danger;
-      }
+  &-section.error input {
+    border: 2px solid v.$danger;
+    outline: none !important;
+  }
 
-      h5 {
-        display: inline-flex;
-        width: fit-content;
-        text-wrap: nowrap;
-      }
+  &-actions {
+    @include d.flex;
+  }
+
+  &-btn {
+    justify-content: center;
+
+    padding: v.$padding * 0.5 v.$padding;
+    border: 1.5px solid v.$tn1T;
+    border-radius: v.$radius;
+
+    font-size: v.$fH5;
+    font-weight: bold;
+
+    background-color: v.$bg2;
+
+    @include d.flex($dir: row, $gap: 5px);
+
+    &.submit {
+      color: v.$bg1;
+      background-color: v.$tn1;
+    }
+
+    &.inactive {
+      color: v.$fn2;
+      background-color: v.$tn1T;
     }
   }
 }

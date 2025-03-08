@@ -6,7 +6,7 @@ import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
 
 import { useRoomStore } from '../store/room.store'
-import RecommendationController from './components/recommendation/RecommendationController'
+import Recommendations from './components/recommendation/Recommendations'
 import './style.scss'
 
 const Page = (): JSX.Element | null => {
@@ -33,7 +33,7 @@ const Page = (): JSX.Element | null => {
       <h3 className='font3 text-center'>
         <b className='gr'>Otras Habitaciones</b> Recomendadas 🛎️
       </h3>
-      <RecommendationController />
+      <Recommendations />
     </>
   )
 }

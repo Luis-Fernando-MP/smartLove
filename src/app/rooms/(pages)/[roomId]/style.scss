@@ -2,7 +2,7 @@
 @use '@sass/utils/defs' as d;
 @use '../../setCalculateMainSize' as calculate;
 
-$navSize: 450px; // <-- important
+$navSize: 400px; // <-- important
 
 .roomNav {
   min-width: $navSize;

@@ -2,37 +2,54 @@
 @use '@sass/utils/defs' as d;
 
 .requirementsRoom {
-  @include d.flex;
+  @include d.flex($gap: v.$padding * 2);
 
-  width: 900px;
-  padding-top: v.$padding;
-  padding-bottom: v.$padding * 3;
-  border-radius: v.$radius;
-
-  background: none;
-  background-image: linear-gradient(180deg, v.$bg1 0%, v.$bg2 60%, transparent 85%);
-
-  .subtitle {
-    text-align: center;
-  }
+  width: 100%;
+  padding: v.$padding;
 
   &-actions {
     @include d.flex($dir: row, $ali: center);
 
     justify-content: center;
 
-    a {
+    a,
+    button {
+      @include d.flex($dir: row, $ali: center, $gap: v.$padding * 0.5);
+
+      padding: v.$padding * 0.5 v.$padding;
+      border-radius: v.$radius;
       font-size: v.$fH5;
-      font-weight: 500;
+      font-weight: bold;
     }
+  }
 
-    a:last-child {
-      color: v.$bg1;
-      background-color: v.$tn1;
-    }
+  &-back {
+    border: 1.5px dashed v.$fn2;
+    background-color: v.$bg2;
+  }
 
-    a:first-child {
-      background-color: v.$bg2;
+  &-go {
+    border: 1.5px dashed transparent;
+    color: v.$bg1;
+    background-color: v.$tn1;
+
+    &.inactive {
+      border-color: v.$tn1;
+      color: v.$tn1;
+      background-color: v.$bg1;
     }
+  }
+
+  .subtitle {
+    text-align: center;
+  }
+
+  &-wrapper {
+    @include d.flex($dir: row);
+
+    overflow: hidden;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   }
 }

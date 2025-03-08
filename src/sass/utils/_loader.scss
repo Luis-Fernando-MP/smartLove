@@ -4,7 +4,10 @@
   position: relative;
 
   &::after {
+    pointer-events: none;
+    touch-action: none;
     content: '';
+    user-select: none;
 
     position: absolute;
     top: 0;

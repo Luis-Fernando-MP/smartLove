@@ -2,55 +2,63 @@
 import { TFullDataRoom } from '@/app/api/rooms/route'
 import { sansitaSwashed } from '@/shared/fonts'
 import parseServiceToIcon from '@/shared/helpers/parseServiceToIcon'
+import { Image } from '@unpic/react'
 import { ArrowUpRight, BanknoteIcon, CalendarRange } from 'lucide-react'
 import { Link } from 'next-view-transitions'
-import { ReactNode } from 'react'
 
 import SlugRoom from '../slugRoom/slugRoom'
 import './style.scss'
 
-interface IRoomsComponentV2 {
-  children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
+interface IRoomItem {
   room: TFullDataRoom
 }
 
-const RoomComponentV2 = ({ room }: IRoomsComponentV2): JSX.Element => {
+const RoomItem = ({ room }: IRoomItem) => {
   const { images, reservationCount, status, services, price, name, id } = room
   return (
-    <li className='roomComponentV2' key={id}>
+    <li className='roomItem' key={id}>
       <SlugRoom counter={reservationCount} itsFull={status} />
-      <header className='roomComponentV2-header'>
-        <img src={images[0].imageUrl} alt={name} loading='lazy' className='roomComponentV2-header__background' />
-        <section className='roomComponentV2-header__images'>
+
+      <header className='roomItem-header'>
+        <Image src={images[0].imageUrl} alt={name} loading='lazy' className='roomItem-background' layout='fullWidth' />
+
+        <section className='roomItem-images'>
           {images.map(image => {
             const { id, imageUrl } = image
-            return <img key={id} src={imageUrl} alt={imageUrl} loading='lazy' className='roomComponentV2-header__image' />
+            return (
+              <div className='roomItem-image' key={id}>
+                <Image src={imageUrl} alt={imageUrl} layout='constrained' width={80} height={80} />
+              </div>
+            )
           })}
         </section>
       </header>
-      <article className='roomComponentV2-details'>
+
+      <article className='roomItem-details'>
         <h3 className={sansitaSwashed.className}>{name}</h3>
         <p>Servicios de la habitación:</p>
-        <ul className='roomComponentV2-services'>
-          <li className='roomComponentV2-service price'>
+
+        <ul className='roomItem-services'>
+          <li className='roomItem-service price'>
             <BanknoteIcon />
             <h5>{String(price)}xNoche</h5>
           </li>
+
           {services.map(service => {
             const { Icon } = parseServiceToIcon(service.imageUrl)
             return (
-              <li key={service.id} className='roomComponentV2-service'>
+              <li key={service.id} className='roomItem-service'>
                 <Icon /> <p>{service.serviceName}</p>
               </li>
             )
           })}
         </ul>
-        <div className='roomComponentV2-actions'>
-          <Link href={`/rooms/${id}/calendar`} className='btn roomComponentV2-action roomComponentV2-calendar'>
+        <div className='roomItem-actions'>
+          <Link href={`/rooms/${id}/calendar`} className='btn roomItem-action roomItem-calendar'>
             Ver calendario
             <CalendarRange />
           </Link>
-          <Link href={`/rooms/${id}`} className='btn roomComponentV2-action roomComponentV2-reserve'>
+          <Link href={`/rooms/${id}`} className='btn roomItem-action roomItem-reserve'>
             Quiero reservarlo
             <ArrowUpRight />
           </Link>
@@ -60,4 +68,4 @@ const RoomComponentV2 = ({ room }: IRoomsComponentV2): JSX.Element => {
   )
 }
 
-export default RoomComponentV2
+export default RoomItem

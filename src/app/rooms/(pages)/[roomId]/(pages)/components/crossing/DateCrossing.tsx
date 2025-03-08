@@ -1,11 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
 import { calculateDateCrossing, formattedShortWeekdays, getDaysInMonth, noAvailableDateInRange } from '@/shared/helpers/roomDate'
 import { switchClass } from '@/shared/helpers/switchClassName'
+import { newKey } from '@/shared/key'
 import { useUser } from '@clerk/nextjs'
 import { Reservation } from '@prisma/client'
 import dayjs, { Dayjs } from 'dayjs'
 import { JSX, memo } from 'react'
-import { v1 as uuid } from 'uuid'
 
 import './style.scss'
 
@@ -33,27 +32,29 @@ const DateCrossing = ({ dates, selectEnd, selectFrom }: IDateCrossing): JSX.Elem
   return (
     <article className='TCDateCrossing'>
       <div className='TCDateCrossing-information'>
-        <h2>
-          <b className='gr'>CALENDARIO</b> de la reserva
+        <h2 className='font3'>
+          <b className='gr'>Calendario</b> de la reserva
         </h2>
-        <h5>Verifica tus fechas seleccionadas</h5>
+        <h4>Verifica tus fechas seleccionadas</h4>
       </div>
+
       <section className='TCDateCrossing-container'>
         {notAvailable && <h4>Hay un cruce en tus fechas 👩‍🏭</h4>}
+
         <ul className='TCDateCrossing-dates'>
           {formattedShortWeekdays.map(dayItem => {
             return (
-              <li key={uuid()} className='TCDateCrossing-date day'>
-                <h4 className='TCDateCrossing-date__from'>{dayItem}</h4>
+              <li key={newKey()} className='TCDateCrossing-date day'>
+                <h4>{dayItem}</h4>
               </li>
             )
           })}
           {calendar.map(calendarItem => {
-            if (!calendarItem) return <li key={uuid()} />
+            if (!calendarItem) return <li key={newKey()} />
             const { day, isBusy, isCrossing, isSelect, userId, fullName } = calendarItem
             return (
               <li
-                key={uuid()}
+                key={newKey()}
                 className={`TCDateCrossing-date ${switchClass(isBusy, 'busy')} ${switchClass(isSelect, 'select')} ${switchClass(isCrossing, 'cross')}`}
               >
                 {userId === user?.id && (
@@ -80,7 +81,7 @@ interface IRound {
   className?: string
 }
 const Round = ({ date, className }: IRound): JSX.Element => {
-  return <h4 className={`TCDateCrossing-date__from ${className ?? ''}`}>{date.format('DD')}</h4>
+  return <h4 className={`${className ?? ''}`}>{date.format('DD')}</h4>
 }
 
 export default memo(DateCrossing)

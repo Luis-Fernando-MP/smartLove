@@ -12,7 +12,9 @@ import './style.scss'
 
 const localizer = dayjsLocalizer(dayjs)
 
-const Page = (): JSX.Element | null => {
+const EventComponent = ({ event }: { event: any }) => <CalendarItem userId={event.userId} title={event.title} />
+
+const Page = () => {
   const room = useRoomStore(store => store.room)
   const [view, setView] = useState(Views.MONTH)
   const [date, setDate] = useState(new Date())
@@ -48,9 +50,7 @@ const Page = (): JSX.Element | null => {
           setDate(new Date(date))
         }}
         components={{
-          event: ({ event }) => {
-            return <CalendarItem userId={event.userId} title={event.title} />
-          }
+          event: EventComponent
         }}
       />
     </article>
