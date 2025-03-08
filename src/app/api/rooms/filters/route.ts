@@ -11,6 +11,7 @@ export type TFullDataRoom = Prisma.RoomGetPayload<{
 }> & {
   services: Services[]
 }
+
 export async function POST(request: Request) {
   try {
     const data = (await request.json()) as TFilterRoomsValidator
@@ -55,16 +56,10 @@ export async function POST(request: Request) {
     if (rooms.length < 1) return Response.json([])
 
     const parseRooms = rooms.map((room: any) => {
-      // Verifica que RoomServices existe y tiene datos
       const services = room.RoomServices?.map((roomService: any) => roomService.ServicesRel) || []
-
-      // Crea el nuevo objeto excluyendo RoomServices
-      const { RoomServices, ...newRoom } = {
-        ...room,
-        services // Añade los servicios parseados
-      }
-
-      return newRoom // Devuelve la habitación sin RoomServices, pero con servicios
+      delete room.RoomServices
+      const newRoom = { ...room, services }
+      return newRoom
     })
 
     return Response.json(parseRooms ?? [])

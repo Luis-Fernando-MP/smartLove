@@ -10,7 +10,7 @@ const recommendationLoader = (): JSX.Element => {
         Estamos <b className='gr'>cangando</b> el contenido 🏙️
       </h5>
       {new Array(10).fill(Math.random()).map(key => (
-        <section key={newKey()} className='skeleton h-90 flex w-[750px] flex-col items-center justify-center gap-2 p-4'>
+        <section key={newKey(key)} className='skeleton h-90 flex w-[750px] flex-col items-center justify-center gap-2 p-4'>
           <div className='skeleton-co mx-auto mb-1 h-[100px] w-full' />
           <div className='skeleton-co mx-auto mb-1 h-6 w-3/4' />
           <div className='skeleton-co mx-auto mb-1 h-6 w-2/5' />

@@ -13,6 +13,7 @@ const ColorSchemeButton = (): JSX.Element => {
   useLayoutEffect(() => {
     if (typeof window === 'undefined' || !theme) return
     document.documentElement.setAttribute('data-theme', theme)
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [setTheme])
 
   const toggleTheme = (checked: boolean): void => {

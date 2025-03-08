@@ -12,7 +12,7 @@ const useFilters = create<IFiltersStore>(set => ({
     classification: classificationsValues[0].value,
     capacity: capacitiesValues[0].value
   },
-  setFIlters: (newFilters: TFilterRoomsValidator) => set(state => ({ filters: newFilters }))
+  setFIlters: (newFilters: TFilterRoomsValidator) => set(() => ({ filters: newFilters }))
 }))
 
 export default useFilters

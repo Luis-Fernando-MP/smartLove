@@ -12,15 +12,15 @@ const LoaderRoomPage = (): JSX.Element => {
         </h3>
         <div className='flex w-full flex-wrap gap-2'>
           {new Array(5).fill(Math.random()).map(key => (
-            <div key={newKey()} className='skeleton-co -lg flex h-96 w-64 flex-col gap-1 p-4'>
-              <div className='skeleton -md h-full w-full' />
+            <div key={newKey(key)} className='skeleton-co -lg flex h-96 w-64 flex-col gap-1 p-4'>
+              <div className='skeleton -md size-full' />
               <div className='skeleton mt-4 h-7 w-full' />
             </div>
           ))}
         </div>
       </NavContainer>
       <article className='dashboard-body'>
-        <div className='h-full w-full'>
+        <div className='size-full'>
           <button className='skeleton mt-2 h-8 w-20' />
           <div className='skeleton mx-auto mt-2 h-10 w-1/2' />
           <div className='skeleton mx-auto mt-3 h-14 w-1/3' role='none' />

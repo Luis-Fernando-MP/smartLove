@@ -16,6 +16,8 @@
 
     background-color: v.$bg1;
 
+    @include d.flex($ali: flex-start, $gap: 5px);
+
     &::before {
       content: '';
 
@@ -54,8 +56,6 @@
     &.success::before {
       background-color: rgba(v.$success, 0.6);
     }
-
-    @include d.flex($ali: flex-start, $gap: 5px);
   }
 
   &-success {

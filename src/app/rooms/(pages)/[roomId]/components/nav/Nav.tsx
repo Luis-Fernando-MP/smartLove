@@ -1,4 +1,3 @@
-import { sansitaSwashed } from '@/shared/fonts'
 import Back from '@/shared/ui/back/Back'
 import { Image } from '@unpic/react'
 import type { JSX } from 'react'

@@ -1,11 +1,15 @@
 'use client'
 
 import { ClerkLoaded, ClerkLoading, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import { type JSX } from 'react'
 
-import ColorSchemeButton from '../ColorSchemeButton'
 import './style.scss'
+
+const ColorSchemeButton = dynamic(() => import('../ColorSchemeButton'), {
+  ssr: false
+})
 
 const AuthButtons = (): JSX.Element => {
   const currentPath = usePathname()

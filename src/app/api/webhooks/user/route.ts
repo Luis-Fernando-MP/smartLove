@@ -10,7 +10,7 @@ import { IDeletedUser, IWebhookEvent, TWebhookEventType } from './clerk.types'
 // /api/webhooks/user
 async function handler(request: Request) {
   const payload = await request.json()
-  const headersList = headers()
+  const headersList = await headers()
   const heads = {
     'svix-id': headersList.get('svix-id'),
     'svix-timestamp': headersList.get('svix-timestamp'),

@@ -13,10 +13,10 @@ import { useReservationStore } from '../../store/reservation.store'
 import { littleBoxData } from '../reserve/useReserve'
 import './style.scss'
 
-/* eslint-disable @next/next/no-img-element */
-
-const Details = (): JSX.Element | null => {
+const Details = () => {
   const { reservation: r, setReservation } = useReservationStore()
+
+  if (!r) return null
 
   const handleCloseDetails = (): void => {
     setReservation(null)
@@ -56,7 +56,7 @@ const Details = (): JSX.Element | null => {
         <div className='RDImages-container'>
           <img className='RDImages-container__background' src={r?.room.images[0].imageUrl} alt={r?.room.name} />
           <div className='RDImages-container__images'>
-            {r?.room.images.slice(1).map(img => {
+            {r.room.images.slice(1).map((img: any) => {
               return <img className='RDImages-container__image' src={img.imageUrl} alt={img.imageUrl} key={uuid()} />
             })}
           </div>

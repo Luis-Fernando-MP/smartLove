@@ -83,7 +83,7 @@ const Nav = (): JSX.Element | null => {
         &nbsp;para cancelar tu reserva 🤓
       </h5>
       <form onSubmit={handleSubmit(onFormSubmit, onErrors)} className={`reservationNav-form ${switchClass(!thereError, 'ok')}`}>
-        <section className={`reservationNav-form__section ${switchClass(roomIdError, 'error')}`}>
+        <section className={`reservationNav-form__section ${switchClass(!!roomIdError, 'error')}`}>
           <h5>ID de reserva:</h5>
           <p className='reservationNav-section__error'>{roomIdError?.message}</p>
           <label className='reservationNav-form__select'>
@@ -109,7 +109,7 @@ const Nav = (): JSX.Element | null => {
           </label>
         </section>
 
-        <section className={`reservationNav-form__section ${switchClass(roomNameError, 'error')}`}>
+        <section className={`reservationNav-form__section ${switchClass(!!roomNameError, 'error')}`}>
           <h5>Escoge la reserva a cancelar:</h5>
           <p className='reservationNav-section__error'>{roomNameError?.message}</p>
           <span className='reservationNav-form__info'>(El proceso es automático, pero puede verificar para mayor seguridad)</span>
@@ -136,7 +136,7 @@ const Nav = (): JSX.Element | null => {
           </label>
         </section>
 
-        <section className={`reservationNav-form__section ${switchClass(commentError, 'error')}`}>
+        <section className={`reservationNav-form__section ${switchClass(!!commentError, 'error')}`}>
           <h5>Coméntanos tu razón:</h5>
           <p className='reservationNav-section__error'>{commentError?.message}</p>
           <span className='reservationNav-form__info'>

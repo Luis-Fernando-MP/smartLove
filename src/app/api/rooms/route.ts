@@ -30,6 +30,7 @@ export async function GET() {
         services: room.RoomServices.map(roomService => roomService.ServicesRel)
       }
       const { RoomServices, ...newRoom } = temporalRoom
+      console.log(RoomServices)
       return newRoom
     })
     return Response.json(parseRooms ?? [])

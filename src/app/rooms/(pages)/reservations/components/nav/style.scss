@@ -56,6 +56,8 @@
       border: 1px solid transparent;
       border-radius: v.$radius;
 
+      @include d.flex($gap: 10px);
+
       &.error {
         border-color: v.$danger_dark;
         background-color: rgba(v.$danger, 0.5);
@@ -65,8 +67,6 @@
         color: v.$danger_dark;
         color: green;
       }
-
-      @include d.flex($gap: 10px);
 
       textarea {
         width: 100%;

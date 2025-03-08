@@ -6,13 +6,13 @@ export type TClientReservation = Prisma.ReservationGetPayload<{
   include: { room: { include: { images: true } }; client: true }
 }>
 
-interface IGetReservationParams {
-  params: { idUser: string }
+interface Params {
+  params: Promise<{ idUser: string }>
 }
 
-export async function GET(req: NextRequest, { params }: IGetReservationParams) {
+export async function GET(req: NextRequest, { params }: Params) {
   try {
-    const { idUser } = params
+    const { idUser } = await params
     const clientData = await prisma.client.findUnique({
       where: { clerkId: idUser ?? '' }
     })

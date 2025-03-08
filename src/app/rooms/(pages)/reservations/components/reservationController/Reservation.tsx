@@ -9,7 +9,7 @@ import Details from '../details/Details'
 import Nav from '../nav/Nav'
 import Reservations from '../reservations/Reservations'
 
-const Reservation = (): JSX.Element | null => {
+const Reservation = () => {
   const { user } = useUser()
   const { data, isError } = useReservations(user?.id)
   const setStore = useReservationsStore(s => s.setReservations)

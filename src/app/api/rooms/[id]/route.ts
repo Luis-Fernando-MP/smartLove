@@ -1,13 +1,13 @@
 import { prisma } from '@/db/prisma'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 interface Params {
-  id: string
+  params: Promise<{ id: string }>
 }
 
-export async function GET(request: Request, response: { params: Params }) {
+export async function GET(_: NextRequest, response: Params) {
   try {
-    const { id } = response.params
+    const { id } = await response.params
     const room = await prisma.room.findUnique({
       where: { id: Number(id) },
       include: {

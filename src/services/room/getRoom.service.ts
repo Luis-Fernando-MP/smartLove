@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-throw-literal */
 import { TFullDataRoom } from '@/app/api/rooms/route'
 import { API_URL } from '@/shared/constants'
-import { delay } from '@/shared/helpers/delay'
 import { TFilterRoomsValidator } from '@/shared/resolvers/rooms.resolver'
 import axios, { AxiosError } from 'axios'
 

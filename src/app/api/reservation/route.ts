@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     const data = (await request.json()) as ISendReserveData
     if (!data) return Response.json({ message: 'Missing props' }, { status: 400 })
 
-    const { client, room, userId, ...reservation } = data
+    const { room, userId, ...reservation } = data
     const clientData = await prisma.client.findUnique({ where: { clerkId: userId } })
     if (!clientData) return Response.json({ message: "The client account don't exist" }, { status: 404 })
 

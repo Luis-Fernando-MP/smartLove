@@ -25,7 +25,7 @@ const Nav = (): JSX.Element => {
         <div className='roomNav-paths'>
           {DASHBOARD_PATHS.map(path => {
             const { name, link, Icon } = path
-            let isActive = link === '/' ? 'active' : ''
+            const isActive = link === '/' ? 'active' : ''
             return (
               <Link key={name} href={`/rooms/${link}`} className={`roomNav-path btn ${isActive}`}>
                 <Icon />
