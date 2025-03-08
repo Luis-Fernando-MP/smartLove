@@ -1,4 +1,5 @@
 import TanStackProvider from '@/providers/TanStackProvider'
+import Hydration from '@/shared/Components/Hydration'
 import { bodyFonts } from '@/shared/fonts'
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
@@ -23,7 +24,9 @@ function RootLayout({ children }: TRootLayout): JSX.Element {
       <html lang='es'>
         <body className={`${bodyFonts} antialiased`}>
           <NextTopLoader color='var(--tn-primary)' showSpinner={false} />
-          <TanStackProvider>{children}</TanStackProvider>
+          <Hydration>
+            <TanStackProvider>{children}</TanStackProvider>
+          </Hydration>
           <Toaster
             position='top-center'
             toastOptions={{

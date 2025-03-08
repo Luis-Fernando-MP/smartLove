@@ -2,8 +2,8 @@
 
 import { HOME_PATHS } from '@/shared/constants'
 import { switchClass } from '@/shared/helpers/switchClassName'
+import ToggleLogo from '@/shared/ui/ColorSchemeButton/ToggleLogo'
 import AuthButtons from '@/shared/ui/authButtons/AuthButtons'
-import ToggleLogo from '@/shared/ui/colorSchemeButton/ToggleLogo'
 import { Menu } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { usePathname, useRouter } from 'next/navigation'

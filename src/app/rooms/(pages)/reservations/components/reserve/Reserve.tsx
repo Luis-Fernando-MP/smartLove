@@ -4,7 +4,7 @@ import { TClientReservation } from '@/app/api/reservation/by-user/[idUser]/route
 import { sansitaSwashed } from '@/shared/fonts'
 import { breakDownDate } from '@/shared/helpers/formatDate'
 import { switchClass } from '@/shared/helpers/switchClassName'
-import ToggleLogo from '@/shared/ui/colorSchemeButton/ToggleLogo'
+import ToggleLogo from '@/shared/ui/ColorSchemeButton/ToggleLogo'
 import CuteLittleBox from '@/shared/ui/cuteLittleBox/CuteLittleBox'
 import dayjs from 'dayjs'
 import { LoaderCircle, NotebookTabs, Printer, Repeat, XIcon } from 'lucide-react'
