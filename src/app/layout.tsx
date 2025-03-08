@@ -24,9 +24,9 @@ function RootLayout({ children }: TRootLayout): JSX.Element {
       <html lang='es'>
         <body className={`${bodyFonts} antialiased`}>
           <NextTopLoader color='var(--tn-primary)' showSpinner={false} />
-          <Hydration>
-            <TanStackProvider>{children}</TanStackProvider>
-          </Hydration>
+          <TanStackProvider>
+            <Hydration>{children}</Hydration>
+          </TanStackProvider>
           <Toaster
             position='top-center'
             toastOptions={{

@@ -22,6 +22,7 @@ const LayoutController = ({ children, id }: ILayoutController): JSX.Element | nu
   useLayoutEffect(() => {
     if (data !== null) setRoom(data)
   }, [data, isError, setRoom])
+
   if (isLoading) return <LoaderRoomPage />
   if (isError || !data) return null
 

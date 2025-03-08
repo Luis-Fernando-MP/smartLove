@@ -14,6 +14,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { type JSX, useEffect, useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useLocalStorage } from 'usehooks-ts'
 
 import { useRoomStore } from '../../store/room.store'
 import RegisterRequirementsUser from '../components/RegisterRequirementsUser/RegisterRequirementsUser'
@@ -23,6 +24,7 @@ import useRequirementsStore from '../store/useRequirementsStore'
 import './style.scss'
 
 const Page = (): JSX.Element | null => {
+  const [_, setIsNewPay] = useLocalStorage('newPay', '')
   const { totalAmount, fromDate, toDate, nights, igv, subtotal, surcharge } = useRequirementsStore()
   const { mutate: resMutate, isPending } = useCreateReservation()
   const methods = useForm({ resolver: requirementsUserResolver, mode: 'all' })
@@ -96,12 +98,15 @@ const Page = (): JSX.Element | null => {
         if ($formRef.current) $formRef.current.reset()
 
         toast.success('Reserva creada correctamente', { id: toastId })
+        setIsNewPay('new pay')
         push(`/rooms/${roomID}/pay`)
       },
       onError() {
         toast.error('Error al crear la reserva', { id: toastId })
       }
     })
+
+    setTimeout(() => toast.dismiss(toastId), 5000)
     localStorage.removeItem('process')
   }
 

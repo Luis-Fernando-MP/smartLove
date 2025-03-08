@@ -2,68 +2,85 @@
 @use '@sass/utils/defs' as d;
 
 .pay {
-  width: 900px;
+  width: 100%;
+  max-width: 900px;
+  padding: v.$padding 0;
+  text-align: center;
 
   @include d.flex($ali: center);
 
-  &-item {
-    position: relative;
-
-    width: 50%;
-    padding: v.$padding;
-    padding-left: 60px;
-    border-radius: v.$radius * 2;
-
-    background-color: v.$bg1;
-
-    @include d.flex($ali: flex-start, $gap: 5px);
-
-    &::before {
-      content: '';
-
-      position: absolute;
-      top: 50%;
-      left: 20px;
-      transform: translateY(-50%);
-
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-
-      background-color: v.$tn1;
-    }
-
-    &__loader {
-      position: absolute;
-      top: 40%;
-      right: 20px;
-      color: v.$gr1;
-    }
-
-    &__info,
-    &__info p {
-      @include d.flex($dir: row, $gap: 10px, $ali: center);
-    }
-
-    &.error::before {
-      background-color: rgba(v.$danger, 0.6);
-    }
-
-    &.pending::before {
-      background-color: rgba(v.$info, 0.6);
-    }
-
-    &.success::before {
-      background-color: rgba(v.$success, 0.6);
-    }
+  &.success {
+    background-color: v.$success;
   }
 
-  &-success {
-    width: 900px;
-    padding: v.$padding;
+  &-link {
+    @include d.flex($dir: row, $gap: v.$padding * 0.5, $ali: center);
+
+    padding: v.$padding * 0.5 v.$padding;
+    border: 1.5px solid v.$bg2;
     border-radius: v.$radius;
     background-color: v.$bg1;
 
-    @include d.flex($ali: center);
+    &.tn1 {
+      background-color: v.$tn1;
+
+      h3 {
+        color: v.$bg1;
+      }
+
+      svg {
+        stroke: v.$bg1;
+      }
+    }
+  }
+
+  &-title {
+    font-size: v.$fH1;
+  }
+
+  &-images {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  &-images,
+  &-actions {
+    @include d.flex($dir: row, $ali: center);
+  }
+
+  &-image {
+    width: 100%;
+    max-width: 150px;
+    height: 100%;
+    max-height: 150px;
+    padding: v.$padding * 0.5;
+    border: 1px solid v.$bg2;
+    border-radius: v.$radius;
+
+    background-color: v.$bg1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: v.$radius;
+      object-fit: cover;
+    }
+  }
+
+  &-info {
+    width: fit-content;
+    padding: v.$padding;
+    border: 1.5px solid v.$bg2;
+    border-radius: v.$radius;
+
+    background-color: v.$bg1;
+
+    @include d.flex;
+
+    &__item {
+      @include d.flex($dir: row, $gap: v.$padding * 0.5, $ali: center);
+    }
   }
 }

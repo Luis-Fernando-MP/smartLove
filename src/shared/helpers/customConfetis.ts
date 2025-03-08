@@ -13,7 +13,7 @@ const dollarText = confetti.shapeFromText({ text: '💵' })
 const moneyText = confetti.shapeFromText({ text: '🪙' })
 const startText = confetti.shapeFromText({ text: '🌟' })
 
-export const moneyConfetti = async () => {
+export const moneyConfetti = () => {
   confetti({
     ...defaultConfetti,
     shapes: [dollarText],
@@ -32,7 +32,7 @@ const startConfig: Options = {
   ...defaultConfetti,
   colors: ['FFE400', 'FFBD00', 'E89400', 'FFCA6C', 'FDFFB8']
 }
-export const startsConfetti = async () => {
+export const startsConfetti = () => {
   confetti({
     ...startConfig,
     particleCount: 20,
