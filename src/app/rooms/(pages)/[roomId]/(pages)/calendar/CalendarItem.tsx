@@ -1,4 +1,7 @@
-import { CalendarOffIcon } from 'lucide-react'
+import { switchClass } from '@/shared/helpers/switchClassName'
+import { useUser } from '@clerk/nextjs'
+import { Image } from '@unpic/react'
+import { CalendarOffIcon, Link } from 'lucide-react'
 import type { JSX, ReactNode } from 'react'
 
 interface ICalendarItem {
@@ -7,11 +10,19 @@ interface ICalendarItem {
   title: string
 }
 
-const CalendarItem = ({ userId }: ICalendarItem): JSX.Element => {
+const CalendarItem = ({ userId, title }: ICalendarItem) => {
+  const { user } = useUser()
+  if (!user) return null
+  const isOwner = user?.id === userId.toString()
+
   return (
-    <div className='flex items-center gap-1'>
-      <CalendarOffIcon />
-      {userId}
+    <div className={`calendarItem ${switchClass(isOwner, 'owner')}`}>
+      {isOwner ? (
+        <Image src={user?.imageUrl} alt='user' width={20} height={20} className='calendarItem-avatar' />
+      ) : (
+        <CalendarOffIcon />
+      )}
+      <h5>{title}</h5>
     </div>
   )
 }

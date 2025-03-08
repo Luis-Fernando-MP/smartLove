@@ -5,7 +5,15 @@ import { NextResponse } from 'next/server'
 export type TFullDataRoom = Prisma.RoomGetPayload<{
   include: {
     images: true
-    reservations: true
+    reservations: {
+      include: {
+        client: {
+          select: {
+            clerkId: true
+          }
+        }
+      }
+    }
   }
 }> & {
   services: Services[]

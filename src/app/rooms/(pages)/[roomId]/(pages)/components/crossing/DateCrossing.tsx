@@ -3,6 +3,7 @@ import { switchClass } from '@/shared/helpers/switchClassName'
 import { newKey } from '@/shared/key'
 import { useUser } from '@clerk/nextjs'
 import { Reservation } from '@prisma/client'
+import { Image } from '@unpic/react'
 import dayjs, { Dayjs } from 'dayjs'
 import { JSX, memo } from 'react'
 
@@ -24,6 +25,7 @@ const DateCrossing = ({ dates, selectEnd, selectFrom }: IDateCrossing): JSX.Elem
     selectEnd,
     selectFrom
   })
+
   const notAvailable = noAvailableDateInRange({
     dates,
     endDate: selectEnd,
@@ -58,11 +60,13 @@ const DateCrossing = ({ dates, selectEnd, selectFrom }: IDateCrossing): JSX.Elem
                 className={`TCDateCrossing-date ${switchClass(isBusy, 'busy')} ${switchClass(isSelect, 'select')} ${switchClass(isCrossing, 'cross')}`}
               >
                 {userId === user?.id && (
-                  <img
+                  <Image
                     src={user.imageUrl}
                     alt={`user ${fullName ?? ''}`}
                     className='TCDateCrossing-image'
-                    title={`Mi reserva - ${fullName ?? ''}`}
+                    title='Mi reserva'
+                    width={20}
+                    height={20}
                   />
                 )}
 

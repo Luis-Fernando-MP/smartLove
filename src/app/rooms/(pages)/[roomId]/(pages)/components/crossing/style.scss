@@ -65,11 +65,10 @@
   &-image {
     position: absolute;
     z-index: 2;
-    top: 0;
-    right: 0;
+    top: -8px;
+    right: -8px;
+    transform: rotateZ(10deg);
 
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+    border-radius: v.$radius;
   }
 }

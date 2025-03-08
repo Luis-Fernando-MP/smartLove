@@ -29,7 +29,7 @@ const isCrossDay = (day: Dayjs, from: Dayjs, end: Dayjs) => {
 }
 
 interface ICaaDCrossing {
-  dates: Reservation[]
+  dates: any[]
   monthStringDays: string[]
   selectFrom: string
   selectEnd: string
@@ -52,14 +52,14 @@ export const calculateDateCrossing = ({ selectFrom, selectEnd, monthStringDays, 
     let userId: null | number = null
     let fullName: null | string = null
 
-    dates.forEach(({ fromDate, toDate, id }) => {
+    dates.forEach(({ fromDate, toDate, client }) => {
       const from = dayjs(fromDate, 'YYYY-MM-DD')
       const to = dayjs(toDate, 'YYYY-MM-DD')
       const isBetween = day.isBetween(from, to, null, '[]')
 
       if (isBetween) {
         fullName = 'ejm'
-        userId = id
+        userId = client.clerkId
         isBusy = true
       }
       if (isSelect && isBetween) {

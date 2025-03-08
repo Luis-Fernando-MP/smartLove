@@ -42,15 +42,6 @@
     }
   }
 
-  .rbc-event {
-    background-color: v.$tn1;
-
-    div,
-    svg {
-      color: v.$fn1;
-    }
-  }
-
   .rbc-btn-group {
     @include d.flex($dir: row, $gap: 10px);
 
@@ -68,5 +59,39 @@
         background-color: v.$bg2;
       }
     }
+  }
+}
+
+.rbc-event {
+  padding: 0;
+  background: none;
+}
+
+.calendarItem {
+  position: relative;
+  padding: 5px;
+  border-radius: v.$radius;
+  background-color: v.$bg1;
+
+  @include d.flex($dir: row, $gap: v.$padding * 0.5);
+
+  h5 {
+    color: v.$fn1;
+  }
+
+  &.owner {
+    background-color: v.$tn1;
+
+    h5 {
+      color: v.$bg1;
+    }
+
+    svg {
+      stroke: v.$bg1;
+    }
+  }
+
+  &-avatar {
+    border-radius: v.$radius;
   }
 }

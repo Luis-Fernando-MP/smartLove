@@ -17,7 +17,15 @@ export async function GET(_: NextRequest, response: Params) {
           }
         },
         images: true,
-        reservations: true
+        reservations: {
+          include: {
+            client: {
+              select: {
+                clerkId: true
+              }
+            }
+          }
+        }
       }
     })
     if (!room) throw new Error('the room not found')
