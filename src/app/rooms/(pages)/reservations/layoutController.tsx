@@ -27,6 +27,7 @@ const LayoutController = ({ children, userId }: ILayoutController): JSX.Element 
   if (isLoading) return <ReservationLoader />
   if (isError || !data) return null
 
+  // return <ReservationLoader />
   return <main className='dashboard-main reservation'>{children}</main>
 }
 

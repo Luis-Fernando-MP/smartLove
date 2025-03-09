@@ -47,7 +47,7 @@ const CardRoom = ({ data, className }: ICardRoom): JSX.Element => {
           return (
             <li className='cardRoom-service' key={id}>
               <Icon />
-              <span>{serviceName}</span>
+              <p>{serviceName}</p>
             </li>
           )
         })}
