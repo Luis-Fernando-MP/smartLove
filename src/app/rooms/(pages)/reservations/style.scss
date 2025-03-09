@@ -11,6 +11,19 @@ $navSize: 400px; // <-- important
   max-width: $navSize;
 }
 
+// -->.dashboard-main.reservation .dashboard-body {
+//   &__reservations {
+// -    @extend %scroll-hidden;
+//  -   overflow: auto;
+//    - width: 100%;
+//   -  height: 100%;
+//  -   padding: v.$padding;
+//   -  border-end-start-radius: v.$radius * 2.5;
+//    - border-end-end-radius: v.$radius * 2.5;
+//    - @include d.flex;
+//   }
+// }
+
 .dashboard-main.reservation {
   @include calculate.setCalculateMainSize($navSize);
 

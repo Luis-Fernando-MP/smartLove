@@ -16,7 +16,7 @@ import { useReservationStore, useReservationsStore } from '../../store/reservati
 import './style.scss'
 
 const Nav = (): JSX.Element | null => {
-  const reservations = useReservationsStore(s => s.reservations)
+  const { reservations } = useReservationsStore()
   const { reservation, setReservation } = useReservationStore()
   const { user } = useUser()
   const { mutate, isPending } = useDeleteReservation()
@@ -28,8 +28,9 @@ const Nav = (): JSX.Element | null => {
       comment: ''
     }
   })
-
   if (!reservations) return null
+
+  console.log('reservations', reservations)
 
   const { register, handleSubmit, formState } = hookForm
   const { errors } = formState

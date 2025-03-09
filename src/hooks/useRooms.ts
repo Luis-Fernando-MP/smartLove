@@ -2,7 +2,7 @@
 
 import { TFullDataRoom } from '@/app/api/rooms/route'
 import { filterRooms, getAllRooms, getRoomById } from '@/services/room/getRoom.service'
-import { useMutation, useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 const HOUR_IN_MS = 1000 * 60 * 60
 
@@ -28,7 +28,7 @@ export function useRoom(id: string) {
   const queryClient = useQueryClient()
   const cacheAllRooms = (queryClient.getQueryData([ROOMS_NAME_CACHE]) as TFullDataRoom[]) || []
 
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: [ROOM_NAME_CACHE, id],
     queryFn: async ({ queryKey }): Promise<TFullDataRoom> => {
       const [, id] = queryKey

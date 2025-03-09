@@ -2,14 +2,22 @@
 
 import type { JSX } from 'react'
 
-import ReservationsController from './components/reservationController/ReservationController'
-import './style.scss'
+import NavContainer from '../../components/navContainer/NavContainer'
+import Details from './components/Details'
+import Nav from './components/Nav'
+import Reservations from './components/Reservation'
 
 const Page = (): JSX.Element => {
   return (
-    <main className='dashboard-main reservation'>
-      <ReservationsController />
-    </main>
+    <>
+      <NavContainer className='reservationNav'>
+        <Nav />
+      </NavContainer>
+      <article className='dashboard-body'>
+        <Reservations />
+        <Details />
+      </article>
+    </>
   )
 }
 

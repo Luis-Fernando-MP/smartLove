@@ -1,16 +1,16 @@
 'use client'
 
 import { createReservation, deleteReservation, getAllReservers } from '@/services/reserve/reserve.service'
-import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
-export const RESERVATIONS_NAME_CACHE = 'RESERVATIONS'
+export const RESERVATIONS_NAME_CACHE = 'USER_RESERVATIONS'
 
 export function useReservations(id?: string) {
-  const query = useSuspenseQuery({
+  if (!id) return null
+  const query = useQuery({
     queryKey: [RESERVATIONS_NAME_CACHE, id],
     queryFn: async ({ queryKey }) => {
       const [, id] = queryKey
-      if (!id || id === undefined) throw new Error('no id')
       return await getAllReservers(id)
     },
     staleTime: 2000,

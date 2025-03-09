@@ -1,5 +1,6 @@
 'use client'
 
+import { TFullDataRoom } from '@/app/api/rooms/route'
 import NavContainer from '@/app/rooms/components/navContainer/NavContainer'
 import { useRoom } from '@/hooks/useRooms'
 import Footer from '@/shared/ui/footer/Footer'
@@ -20,7 +21,7 @@ const LayoutController = ({ children, id }: ILayoutController): JSX.Element | nu
   const { setRoom } = useRoomStore()
 
   useLayoutEffect(() => {
-    if (data !== null) setRoom(data)
+    if (data !== null) setRoom(data as TFullDataRoom)
   }, [data, isError, setRoom])
 
   if (isLoading) return <LoaderRoomPage />

@@ -1,35 +1,9 @@
 'use client'
 
 import NavContainer from '@/app/rooms/components/navContainer/NavContainer'
-import ErrorContainer from '@/shared/ui/errorContainer/ErrorContainer'
 import type { JSX } from 'react'
-import { FallbackProps } from 'react-error-boundary'
 
-import Reservation from './Reservation'
-import './style.scss'
-
-const ReservationsController = (): JSX.Element => {
-  return (
-    <ErrorContainer LoadingComponent={<LoaderComponent />} ErrorComponent={ErrorComponent}>
-      <Reservation />
-    </ErrorContainer>
-  )
-}
-export default ReservationsController
-
-const ErrorComponent = ({ error, resetErrorBoundary }: FallbackProps): JSX.Element => {
-  return (
-    <p>
-      <h2>Ha ocurrido un error</h2>
-      <pre>{JSON.stringify(error)}</pre>
-      <button className='btn gr' onClick={resetErrorBoundary}>
-        reset
-      </button>
-    </p>
-  )
-}
-
-const LoaderComponent = (): JSX.Element => {
+const ReservationLoader = (): JSX.Element => {
   return (
     <>
       <NavContainer className='reservationNav'>
@@ -58,3 +32,5 @@ const LoaderComponent = (): JSX.Element => {
     </>
   )
 }
+
+export default ReservationLoader
