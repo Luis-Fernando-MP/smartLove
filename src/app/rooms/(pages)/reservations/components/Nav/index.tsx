@@ -17,6 +17,7 @@ import toast from 'react-hot-toast'
 import { useReservationStore, useReservationsStore } from '../../store/reservation.store'
 import './style.scss'
 
+const toastId = 'cancel-reservation'
 const Nav = (): JSX.Element | null => {
   const { reservation, setReservation } = useReservationStore()
   const { mutate, isPending } = useDeleteReservation()
@@ -50,22 +51,21 @@ const Nav = (): JSX.Element | null => {
 
   const onFormSubmit = useCallback(
     async (data: TReservationResolver) => {
-      const toastId = toast.loading('Cancelando reserva')
+      toast.loading('Cancelando reserva', { id: toastId })
       mutate(
         { reservationId: data.roomID, userId: user?.id ?? '' },
         {
           onSuccess() {
-            setReservation(null)
+            console.log('Reserva cancelada')
             toast.success('Reserva cancelada', { id: toastId })
+            setReservation(null)
           },
           onError() {
             toast.error('Error al cancelar la reserva', { id: toastId })
-          },
-          onSettled() {
-            toast.dismiss(toastId)
           }
         }
       )
+      setTimeout(() => toast.dismiss(toastId), 5000)
     },
     [mutate, setReservation, user?.id]
   )
