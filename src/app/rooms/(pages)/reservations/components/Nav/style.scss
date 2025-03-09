@@ -5,126 +5,171 @@
   padding: 0 v.$padding;
   background-image: linear-gradient(0deg, v.$tn1T 10%, v.$bg2 100%);
 
-  &-submit {
-    padding: v.$padding * 0.8 0;
+  &-link {
+    color: v.$tn1;
+    text-decoration: underline;
+  }
+
+  &-selected {
+    padding: v.$padding;
+    border: 2px solid v.$tn1;
     border-radius: v.$radius;
 
-    font-size: v.$fH5;
-    font-weight: 600;
-
-    background-color: v.$bg2;
-  }
-
-  &-form.ok {
-    border: 2px solid v.$tn1;
-
-    .reservationNav-submit {
-      color: v.$bg1;
-      background-color: v.$tn1;
-    }
-  }
-
-  &-precaution {
-    font-weight: 300;
-
-    a {
-      color: v.$tn1;
-    }
-  }
-
-  &-id {
-    padding: 5px 10px;
-    border: 2px solid v.$tn1T;
-    border-radius: 5px;
-
-    font-size: v.$fH5;
+    color: v.$fn1;
     text-align: center;
 
+    background-color: v.$bg1;
+  }
+}
+
+.reservationForm {
+  @include d.flex;
+
+  padding: v.$padding;
+  border: 2px solid v.$tn1T;
+  border-radius: v.$radius;
+  background-color: v.$bg1;
+
+  &-section {
+    padding: v.$padding v.$padding * 0.5;
+    border: 1.5px solid transparent;
+    border-radius: v.$radius;
+
+    @include d.flex;
+
+    &.error {
+      border-color: v.$danger_dark;
+      background-color: rgba(v.$danger, 0.2);
+
+      @include v.toDark {
+        border-color: rgba(v.$danger, 0.8);
+        background-color: rgba(v.$danger_dark, 0.2);
+      }
+    }
+  }
+
+  &-caution {
+    @include d.flex($dir: row, $gap: v.$padding * 0.5);
+
+    padding: v.$padding * 0.5;
+    border: 1.5px solid v.$warning_dark;
+    border-radius: v.$radius;
+
+    font-size: v.$fH5;
+    font-weight: 400;
+    color: v.$warning_dark;
+
+    background-color: rgba(v.$warning, 0.3);
+
+    @include v.toDark {
+      border-color: rgba(v.$warning, 0.8);
+      color: rgba(v.$warning, 0.8);
+      background-color: rgba(v.$warning_dark, 0.3);
+    }
+  }
+
+  &-title {
+    @include d.flex($dir: row, $gap: v.$padding * 0.5);
+
+    font-weight: bold;
+  }
+
+  &-error {
+    color: v.$danger_dark;
+
+    @include v.toDark {
+      color: rgba(v.$danger, 0.8);
+    }
+  }
+
+  &-select {
+    cursor: pointer;
+
+    position: relative;
+
+    overflow: hidden;
+    display: grid;
+
+    width: 100%;
+    height: 50px;
+
+    &::after {
+      pointer-events: none;
+      content: '\2193';
+
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+
+      font-size: v.$fH2;
+      color: v.$dis1;
+
+      transition: transform 0.2s ease;
+    }
+
+    &:has(.reservationForm-input:active)::after {
+      content: '\2191';
+    }
+  }
+
+  &-input {
+    cursor: pointer;
+
+    padding: v.$padding;
+    border: 1.5px solid v.$tn1T;
+    border-radius: v.$radius;
+
+    appearance: none;
+    background-color: v.$bg1;
+    outline: 0;
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:active {
+      border-color: v.$tn1;
+    }
+  }
+
+  &-area {
+    resize: none;
+
+    width: 100%;
+    height: 100px;
+    padding: v.$padding;
+    border-radius: v.$radius;
+
+    font-size: v.$fH4;
+
+    background-color: v.$tn1T;
+  }
+
+  &-submit {
+    @include d.flex($dir: row, $gap: v.$padding * 0.5, $ali: center);
+
+    justify-content: center;
+
+    padding: v.$padding;
+    border: 1.5px dashed v.$fn2;
+    border-radius: v.$radius;
+
+    font-weight: bold;
+
     background-color: v.$bg2;
   }
 
-  &-form {
-    @include d.flex;
+  &.ok {
+    border-color: v.$tn1;
 
-    padding: v.$padding;
-    border-radius: v.$radius;
-    background-color: v.$bg1;
-    background-image: linear-gradient(0deg, v.$tn1T 10%, v.$bg2 100%);
-
-    &__section {
-      padding: v.$padding * 0.5;
-      border: 1px solid transparent;
-      border-radius: v.$radius;
-
-      @include d.flex($gap: 10px);
-
-      &.error {
-        border-color: v.$danger_dark;
-        background-color: rgba(v.$danger, 0.5);
-      }
-
-      &__error {
-        color: v.$danger_dark;
-        color: green;
-      }
-
-      textarea {
-        width: 100%;
-        height: 100px;
-        padding: 10px;
-        border-radius: v.$radius;
-
-        background-color: v.$bg1;
-      }
-    }
-
-    &__select {
-      cursor: pointer;
-
-      position: relative;
-
-      display: grid;
-
-      width: 100%;
-      min-height: 50px;
-
-      background-color: v.$bg1;
-
-      &::after {
-        pointer-events: none;
-        content: '➽';
-
-        position: absolute;
-        top: calc(50% - 5px);
-        right: 10px;
-        transform: translateX(-50%);
-        rotate: 90deg;
-
-        color: v.$dis1;
-
-        animation: oscillation 0.5s ease infinite alternate paused;
-      }
-
-      select {
-        cursor: pointer;
-
-        padding: v.$padding;
-        border-radius: v.$radius;
-
-        appearance: none;
-        background-color: transparent;
-        outline: 0;
-
-        &::-ms-expand {
-          display: none;
-        }
-      }
-
-      &.auto {
-        select {
-          background-color: v.$dis2;
-        }
-      }
+    .reservationForm-submit {
+      color: v.$bg1;
+      background-color: v.$tn1;
     }
   }
 }

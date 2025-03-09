@@ -75,7 +75,7 @@ $medium-screen: 820px;
 $large-screen: 992px;
 $extra-large-screen: 1200px;
 $radius: 7px;
-$padding: 15px;
+$padding: 10px;
 $icon: 20px;
 $family-size: 12px;
 $family: 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', monospace;
@@ -86,7 +86,7 @@ $gr1: linear-gradient(90deg, $tn1 0%, $tn2 100%);
 $imgFilter: brightness(0.5) opacity(0.5);
 
 @mixin toDark {
-  body.dark & {
+  [data-theme='dark'] & {
     @content;
   }
 }

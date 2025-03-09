@@ -4,8 +4,6 @@
   position: relative;
 
   &::after {
-    pointer-events: none;
-    touch-action: none;
     content: '';
     user-select: none;
 
