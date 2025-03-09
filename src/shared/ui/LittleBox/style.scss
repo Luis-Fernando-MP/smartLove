@@ -1,0 +1,34 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+
+.littleBox {
+  position: relative;
+
+  justify-content: center;
+
+  width: fit-content;
+  min-width: 100px;
+  height: fit-content;
+  padding: v.$padding;
+  border: 1.5px solid v.$tn1T;
+  border-radius: v.$radius;
+
+  background-color: v.$bg2;
+
+  @include d.flex($ali: center, $gap: v.$padding * 0.5);
+
+  &-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  &.active {
+    background-color: v.$tn1;
+
+    p,
+    h3,
+    svg {
+      color: v.$bg1;
+    }
+  }
+}

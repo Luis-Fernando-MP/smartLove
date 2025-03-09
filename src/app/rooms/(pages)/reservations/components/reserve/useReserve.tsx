@@ -2,7 +2,7 @@ import { TClientReservation } from '@/app/api/reservation/by-user/[idUser]/route
 import PreviewToast from '@/shared/previewToast/PreviewToast'
 import html2canvas from 'html2canvas'
 import JsPDF from 'jspdf'
-import { BanknoteIcon, PiggyBankIcon, ShowerHeadIcon, SquirrelIcon } from 'lucide-react'
+import { BanknoteIcon, CalendarDaysIcon, PiggyBankIcon, ShowerHeadIcon, SquirrelIcon } from 'lucide-react'
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -78,12 +78,12 @@ const useReserve = ({ reserve }: TProps) => {
 export default useReserve
 
 export function littleBoxData(reserve: TClientReservation) {
-  const { total, subtotal, tax } = reserve
+  const { total, subtotal, tax, totalDays } = reserve
 
   return [
-    { title: 'Total:', subtitle: total, Icon: BanknoteIcon, active: true },
-    { title: 'Sub Total:', subtitle: subtotal, Icon: PiggyBankIcon },
-    { title: 'IGV:', subtitle: tax, Icon: SquirrelIcon },
-    { title: 'Servicios:', subtitle: 0.0, Icon: ShowerHeadIcon }
+    { title: 'Total:', subtitle: `S/. ${total}`, Icon: BanknoteIcon, active: true },
+    { title: 'Sub Total:', subtitle: `S/. ${subtotal}`, Icon: PiggyBankIcon },
+    { title: 'IGV:', subtitle: `S/. ${tax}`, Icon: SquirrelIcon },
+    { title: 'Noches:', subtitle: `${totalDays}N.`, Icon: CalendarDaysIcon }
   ]
 }

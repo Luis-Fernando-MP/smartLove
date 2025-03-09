@@ -2,11 +2,10 @@
 
 import { sansitaSwashed } from '@/shared/fonts'
 import { switchClass } from '@/shared/helpers/switchClassName'
-import CuteLittleBox from '@/shared/ui/cuteLittleBox/CuteLittleBox'
+import LittleBox from '@/shared/ui/LittleBox'
 import DayBox from '@/shared/ui/dayBox/DayBox'
 import dayjs from 'dayjs'
 import { PanelRightClose } from 'lucide-react'
-import type { JSX } from 'react'
 import { v1 as uuid } from 'uuid'
 
 import { useReservationStore } from '../../store/reservation.store'
@@ -69,7 +68,7 @@ const Details = () => {
         {!!r &&
           littleBoxData(r).map(i => {
             const { Icon, subtitle, title, active } = i
-            return <CuteLittleBox key={i.title} Icon={Icon} subtitle={Number(subtitle)} title={title} active={active} />
+            return <LittleBox key={i.title} Icon={Icon} subtitle={Number(subtitle)} title={title} active={active} />
           })}
       </section>
     </article>

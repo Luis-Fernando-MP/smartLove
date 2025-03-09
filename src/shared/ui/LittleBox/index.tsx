@@ -4,22 +4,22 @@ import type { JSX, ReactNode } from 'react'
 
 import './style.scss'
 
-interface ICuteLittleBox {
+interface Props {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
   title: string
-  subtitle: string | number
+  subtitle: string
   Icon: typeof PiIcon
   active?: boolean
 }
 
-const CuteLittleBox = ({ Icon, subtitle, title, active = false }: ICuteLittleBox): JSX.Element => {
+const LittleBox = ({ Icon, subtitle, title, active = false }: Props): JSX.Element => {
   return (
-    <section className={`cuteLittleBox ${switchClass(active)}`}>
-      <Icon className='cuteLittleBox-icon' />
-      <p className='cuteLittleBox-title'>{title}</p>
+    <section className={`littleBox ${switchClass(active)}`}>
+      <Icon className='littleBox-icon' />
+      <p className='littleBox-title'>{title}</p>
       <h3>{subtitle}</h3>
     </section>
   )
 }
 
-export default CuteLittleBox
+export default LittleBox

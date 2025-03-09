@@ -4,18 +4,22 @@ import isBetween from 'dayjs/plugin/isBetween'
 dayjs.extend(isBetween)
 
 export const breakDownDate = (date: string) => {
-  const parseDate = dayjs(date, 'DD/MM/YYYY')
-  if (!parseDate.isValid()) throw new Error('Invalid Date')
+  const parseDate = dayjs(date)
+  if (!parseDate.isValid()) throw new Error('Fecha inválida')
 
   const year = parseDate.year()
-  const month = parseDate.month()
-  const day = parseDate.add(1, 'day').format('DD')
-
+  const day = parseDate.format('DD')
   const monthIndex = parseDate.month()
 
   const monthNames = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC']
   const monthAbbr = monthNames[monthIndex]
-  return { year, month, day, monthAbbr }
+
+  return {
+    year,
+    month: monthIndex,
+    day,
+    monthAbbr
+  }
 }
 
 type Comparable = number | Date

@@ -34,7 +34,7 @@
   }
 
   &-go {
-    @include d.flex($dir: row, $ali: center, $gap: 10px);
+    @include d.flex($dir: row, $ali: center);
 
     font-size: v.$fH3;
     font-weight: 600;

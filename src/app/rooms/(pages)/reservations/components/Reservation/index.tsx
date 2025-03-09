@@ -1,8 +1,8 @@
 'use client'
 
+import { newKey } from '@/shared/key'
 import Footer from '@/shared/ui/footer/Footer'
 import type { JSX } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 
 import { useReservationsStore } from '../../store/reservation.store'
 import Reserve from '../reserve/Reserve'
@@ -13,21 +13,23 @@ const Reservations = (): JSX.Element | null => {
   if (!reservations) return null
 
   return (
-    <section className='reservations dashboard-body__reservations'>
-      <h3>
-        Has realizado <b className='gr'> {reservations.length} Reservas</b>
-      </h3>
-      <p>
-        Ten encenta que la <b className='gr'>Cantidad de Reservas</b> de nuestros huéspedes son importantes... En futuras
-        versiones se aplicaran&nbsp;
-        <b className='gr'>Promociones y Programas de lealtad</b> 🎉
-      </p>
+    <section className='reservations'>
+      <div className='reservations-info'>
+        <h2 className='font3'>
+          Has realizado <b className='gr'> {reservations.length} Reservas</b>
+        </h2>
+        <h3>
+          Ten encenta que la <b className='gr'>Cantidad de Reservas</b> de nuestros huéspedes son importantes...
+          <br />
+          En futuras versiones se aplicaran&nbsp;<b className='gr'>Promociones y Programas de lealtad</b> 🎉
+        </h3>
+      </div>
+
       <article className='reservations-list'>
         {reservations.map(r => {
-          return <Reserve reserve={r} key={uuidv4()} />
+          return <Reserve reserve={r} key={newKey()} />
         })}
       </article>
-      <Footer />
     </section>
   )
 }

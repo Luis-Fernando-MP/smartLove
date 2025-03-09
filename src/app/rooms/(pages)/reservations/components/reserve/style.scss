@@ -3,21 +3,140 @@
 
 .reserve {
   position: relative;
+  width: 300px;
+  height: 470px;
 
   &-container {
-    z-index: 1;
+    position: relative;
 
-    width: 330px;
-    height: auto;
-    margin: v.$padding * 0.3;
-    margin-left: 25px;
+    overflow: hidden;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
     padding: v.$padding;
     border: 1.5px solid v.$tn1T;
     border-radius: v.$radius;
 
+    text-align: center;
+
     background-color: v.$bg1;
 
-    @include d.flex($ali: center, $gap: v.$padding * 2);
+    @include d.flex($ali: center);
+  }
+
+  &-container.past {
+    opacity: 0.9;
+    filter: sepia(0.3) contrast(0.9) brightness(0.9);
+    box-shadow: inset 0 0 30px rgb(0 0 0 / 10%);
+
+    &::before {
+      pointer-events: none;
+      content: '';
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background:
+        repeating-linear-gradient(45deg, rgb(0 0 0 / 5%) 0, rgb(0 0 0 / 5%) 1px, transparent 1px, transparent 3px),
+        radial-gradient(circle at 50% 50%, transparent 5%, rgb(0 0 0 / 5%) 80%);
+    }
+
+    &::after {
+      pointer-events: none;
+      content: 'CANCELADO';
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+
+      width: 100%;
+
+      font-size: 3rem;
+      font-weight: 900;
+      color: rgb(255 0 0 / 50%);
+      text-transform: uppercase;
+    }
+  }
+
+  &-logo {
+    position: absolute;
+    top: v.$padding;
+    left: 0;
+    transform: rotateZ(-15deg);
+
+    padding: v.$padding * 0.5 v.$padding * 2;
+  }
+
+  &-operations {
+    display: grid;
+    grid-template-columns: min-content 1fr 1fr;
+
+    width: 100%;
+    height: fit-content;
+    padding: 5px v.$padding;
+    border: 1.5px solid v.$tn1T;
+    border-radius: v.$radius;
+
+    background-color: v.$bg2;
+  }
+
+  &-operation {
+    text-align: center;
+
+    @include d.flex;
+
+    h4 {
+      padding-bottom: v.$padding * 0.5;
+      border-bottom: 2.5px dotted v.$fn2;
+      font-size: v.$fP;
+      font-weight: bold;
+    }
+  }
+
+  &-littleBoxes {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+
+    @include d.flex($dir: row, $ali: center);
+  }
+
+  &-action {
+    border: none;
+
+    &:hover {
+      color: v.$tn1;
+    }
+  }
+
+  &-date {
+    justify-content: space-evenly;
+
+    width: 100%;
+    padding: v.$padding;
+    border-radius: v.$radius;
+
+    background-color: v.$bg2;
+
+    @include d.flex($dir: row, $ali: center);
+
+    h3 {
+      @include d.flex($dir: row, $gap: 5px);
+
+      b {
+        color: v.$tn1;
+      }
+
+      span {
+        font-size: v.$fSmall;
+      }
+    }
   }
 
   &-actions {
@@ -42,71 +161,6 @@
     .reserve-container,
     .reserve-actions {
       border: 2px solid v.$tn1;
-    }
-  }
-
-  &-operations {
-    display: grid;
-    grid-template-columns: min-content 1fr 1fr;
-
-    width: 100%;
-    padding: 5px v.$padding;
-
-    background-color: v.$bg2;
-  }
-
-  &-operation {
-    text-align: center;
-
-    @include d.flex($gap: 10px);
-
-    h4 {
-      border-bottom: 2.5px dotted v.$fn2;
-      font-size: v.$fP;
-    }
-
-    h5 {
-      font-weight: 900;
-    }
-  }
-
-  &-action {
-    border: none;
-
-    &:hover {
-      color: v.$tn1;
-    }
-  }
-
-  &-littleBoxes {
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-
-    @include d.flex($gap: 10px, $dir: row, $ali: center);
-  }
-
-  &-date {
-    justify-content: space-evenly;
-
-    width: 100%;
-    padding: v.$padding;
-    border-radius: v.$radius;
-
-    background-color: v.$bg2;
-
-    @include d.flex($dir: row, $ali: center);
-
-    h3 {
-      @include d.flex($dir: row, $gap: 5px);
-
-      b {
-        color: v.$tn1;
-      }
-
-      span {
-        font-size: v.$fSmall;
-      }
     }
   }
 }

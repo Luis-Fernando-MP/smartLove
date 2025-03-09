@@ -13,7 +13,7 @@
   background-color: v.$bg1;
 
   &-images {
-    @include d.flex($dir: row, $ali: flex-end, $gap: 10px);
+    @include d.flex($dir: row, $ali: flex-end);
 
     position: relative;
 
@@ -109,7 +109,7 @@
 
     background-color: v.$bg1;
 
-    @include d.flex($dir: row, $ali: center, $gap: 10px);
+    @include d.flex($dir: row, $ali: center);
   }
 
   &-action svg {

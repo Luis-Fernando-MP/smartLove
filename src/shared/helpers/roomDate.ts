@@ -59,7 +59,7 @@ export const calculateDateCrossing = ({ selectFrom, selectEnd, monthStringDays, 
 
       if (isBetween) {
         fullName = 'ejm'
-        userId = client.clerkId
+        userId = client?.clerkId ?? ''
         isBusy = true
       }
       if (isSelect && isBetween) {

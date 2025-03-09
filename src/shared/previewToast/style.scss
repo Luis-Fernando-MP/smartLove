@@ -52,7 +52,7 @@
   }
 
   &-actions {
-    @include d.flex($dir: row, $gap: 10px);
+    @include d.flex($dir: row);
 
     button:first-child {
       color: v.$danger_dark;

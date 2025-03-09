@@ -1,5 +1,6 @@
 'use client'
 
+import Footer from '@/shared/ui/footer/Footer'
 import type { JSX } from 'react'
 
 import Details from './components/Details'
@@ -10,9 +11,10 @@ const Page = (): JSX.Element => {
   return (
     <>
       <Nav />
-      <article className='dashboard-body'>
+      <article className='dashboard-body reservations-container'>
         <Reservations />
         <Details />
+        <Footer />
       </article>
     </>
   )

@@ -5,10 +5,10 @@ import { sansitaSwashed } from '@/shared/fonts'
 import { breakDownDate } from '@/shared/helpers/formatDate'
 import { switchClass } from '@/shared/helpers/switchClassName'
 import ToggleLogo from '@/shared/ui/ColorSchemeButton/ToggleLogo'
-import CuteLittleBox from '@/shared/ui/cuteLittleBox/CuteLittleBox'
+import LittleBox from '@/shared/ui/LittleBox'
 import dayjs from 'dayjs'
 import { LoaderCircle, NotebookTabs, Printer, Repeat, XIcon } from 'lucide-react'
-import { type JSX } from 'react'
+import { type JSX, useCallback, useEffect, useMemo } from 'react'
 
 import './style.scss'
 import useReserve, { littleBoxData } from './useReserve'
@@ -22,53 +22,69 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
     reserve
   })
 
-  const scroll = () => {
-    if (typeof window === 'undefined' || refReservePrint?.current) return
+  useEffect(() => {
+    if (typeof window === 'undefined' || !refReservePrint?.current) return
+
     const parent = document.querySelector('.reservations.dashboard-body__reservations')
     if (!parent || parent instanceof HTMLElement) return
 
     parent.scrollTo({
-      top: refReservePrint.current?.offsetTop,
+      top: refReservePrint.current.offsetTop,
       behavior: 'smooth'
     })
-  }
-
-  scroll()
+  }, [refReservePrint])
 
   const { checkIn, checkOut, room, id, createdAt } = reserve
-  const from = breakDownDate(dayjs(checkIn).toString())
-  const to = breakDownDate(dayjs(checkOut).toString())
-  const date = dayjs(createdAt)
+
+  const dates = useMemo(() => {
+    const from = breakDownDate(dayjs(checkIn).toString())
+    const to = breakDownDate(dayjs(checkOut).toString())
+    const date = dayjs(createdAt)
+    return {
+      from,
+      to,
+      date
+    }
+  }, [checkIn, checkOut, createdAt])
+
+  const handleReservationClick = useCallback(() => {
+    setReservation(isReading ? null : reserve)
+  }, [isReading, reserve, setReservation])
+
+  const littleBoxItems = useMemo(() => littleBoxData(reserve), [reserve])
+
+  const pastDate = useMemo(() => {
+    const now = dayjs().startOf('day')
+    const checkOutDate = dayjs(checkOut).startOf('day')
+
+    return now.isAfter(checkOutDate)
+  }, [checkOut])
 
   return (
     <article className={`reserve ${switchClass(!!isReading)}`} ref={refReservePrint}>
-      <button
-        className='reserve-container'
-        onClick={() => {
-          setReservation(isReading ? null : reserve)
-        }}
-      >
-        <ToggleLogo />
-        <h3 className={`${sansitaSwashed.className} center`}>{room.name}</h3>
+      <button className={`reserve-container ${switchClass(pastDate, 'past')}`} onClick={handleReservationClick}>
+        <ToggleLogo className='reserve-logo' />
+        <h3 className='font3'>{room.name}</h3>
+
         <section className='reserve-operations'>
           <div className='reserve-operation'>
             <h4>Ope.</h4>
-            <h5 className='gr'>{id}</h5>
+            <h2 className='gr'>{id}</h2>
           </div>
           <div className='reserve-operation'>
             <h4>Hora</h4>
-            <p>{date.format('hh:mm A')}</p>
+            <p>{dates.date.format('hh:mm A')}</p>
           </div>
           <div className='reserve-operation'>
             <h4>Fecha</h4>
-            {date.format('DD/MM/YY')}{' '}
+            {dates.date.format('DD/MM/YY')}{' '}
           </div>
         </section>
 
         <section className='reserve-littleBoxes'>
-          {littleBoxData(reserve).map(i => {
+          {littleBoxItems.map(i => {
             const { Icon, subtitle, title, active } = i
-            return <CuteLittleBox key={i.title} Icon={Icon} subtitle={Number(subtitle)} title={title} active={active} />
+            return <LittleBox key={i.title} Icon={Icon} subtitle={subtitle} title={title} active={active} />
           })}
         </section>
 
@@ -76,38 +92,32 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
           <div className='reserve-date__from'>
             <h5>Desde:</h5>
             <h3>
-              <b>{from.day}</b>
-              <span>{from.monthAbbr}</span>
-              {from.year}
+              <b>{dates.from.day}</b>
+              <span>{dates.from.monthAbbr}</span>
+              {dates.from.year}
             </h3>
           </div>
           <div className='reserve-date__to'>
             <h5>Hasta:</h5>
             <h3>
-              <b>{to.day}</b>
-              <span>{to.monthAbbr}</span>
-              {to.year}
+              <b>{dates.to.day}</b>
+              <span>{dates.to.monthAbbr}</span>
+              {dates.to.year}
             </h3>
           </div>
         </section>
       </button>
-      <aside className='reserve-actions'>
+      {/* <aside className='reserve-actions'>
         <button className='reserve-action hidden' title='Repetir reservación'>
           <Repeat />
         </button>
-        <button
-          className='reserve-action'
-          title='Detalles'
-          onClick={() => {
-            setReservation(isReading ? null : reserve)
-          }}
-        >
+        <button className='reserve-action' title='Detalles' onClick={handleReservationClick}>
           {isReading ? <XIcon /> : <NotebookTabs />}
         </button>
         <button className='reserve-action print' title='Imprimir' onClick={handlePrint}>
           {loading ? <LoaderCircle className='animate-spin' /> : <Printer />}
         </button>
-      </aside>
+      </aside> */}
     </article>
   )
 }

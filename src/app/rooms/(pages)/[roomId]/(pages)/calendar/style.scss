@@ -43,7 +43,7 @@
   }
 
   .rbc-btn-group {
-    @include d.flex($dir: row, $gap: 10px);
+    @include d.flex($dir: row);
 
     button {
       padding: 8px v.$padding;
