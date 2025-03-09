@@ -3,6 +3,8 @@
 
 .roomsRecommendations {
   flex-wrap: wrap;
+  justify-content: center;
+
   width: 100%;
   height: auto;
   border-radius: v.$radius;
