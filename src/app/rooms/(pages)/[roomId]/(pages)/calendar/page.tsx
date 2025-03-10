@@ -24,11 +24,14 @@ const Page = () => {
 
   const myEventsList =
     reservations?.map(f => {
+      const startDate = dayjs(f.fromDate).startOf('day')
+      const endDate = dayjs(f.toDate).endOf('day')
+
       return {
         title: 'Reservado',
         userId: f.client.clerkId,
-        start: dayjs(f.fromDate, 'YYYY-MM-DD').toDate(),
-        end: dayjs(f.toDate, 'YYYY-MM-DD').add(1, 'day').toDate()
+        start: startDate.toDate(),
+        end: endDate.toDate()
       }
     }) ?? []
 

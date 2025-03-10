@@ -1,3 +1,5 @@
+'use client'
+
 import Back from '@/shared/ui/back/Back'
 import { Image } from '@unpic/react'
 import type { JSX } from 'react'

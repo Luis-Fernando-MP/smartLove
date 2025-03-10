@@ -19,10 +19,26 @@ export async function POST(request: Request) {
 
     const { room, userId, ...reservation } = data
     const clientData = await prisma.client.findUnique({ where: { clerkId: userId } })
+
     if (!clientData) return Response.json({ message: "The client account don't exist" }, { status: 404 })
 
     const roomData = await prisma.room.findUnique({ where: { id: room.id } })
     if (!roomData) return Response.json({ message: "The room don't exist" }, { status: 404 })
+
+    const { fullName, lastName, country, location, passportOrID, phone } = reservation.client
+
+    const updatedClientData = await prisma.client.update({
+      where: { clientId: clientData.clientId },
+      data: {
+        firstName: fullName ?? clientData.firstName,
+        lastName: lastName ?? clientData.lastName,
+        phone: phone ?? clientData.phone,
+        city: country ?? clientData.city,
+        address: location ?? clientData.address,
+        documentNumber: passportOrID ?? clientData.documentNumber
+      }
+    })
+    if (!updatedClientData) throw new Error('Client not updated')
 
     const reserved = await prisma.reservation.create({
       data: {
@@ -42,7 +58,7 @@ export async function POST(request: Request) {
     if (!reserved) throw new Error('Reservation not created')
     return Response.json({ statusText: 'OK', ...reserved })
   } catch (error: any) {
-    console.log('from api/reservation POST', error)
+    console.error('from api/reservation POST', error)
     return new NextResponse(error.message ?? 'INTERNAL SERVER ERROR', { status: 501 })
   }
 }
@@ -60,7 +76,7 @@ export async function GET() {
     const reservations = await prisma.reservation.findMany({ include: { room: true, client: true } })
     return Response.json(reservations ?? [])
   } catch (error: any) {
-    console.log(error)
+    console.error(error)
     return new NextResponse(error.message ?? 'INTERNAL SERVER ERROR', { status: 501 })
   }
 }
@@ -80,7 +96,7 @@ export async function DELETE(request: Request) {
       status: 200
     })
   } catch (error: any) {
-    console.log(error)
+    console.error(error)
     return new NextResponse(error.message ?? 'INTERNAL SERVER ERROR', { status: 501 })
   }
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import useNav from '@/hooks/useNav'
 import { Menu, PanelLeftClose } from 'lucide-react'
 import { type JSX, type ReactNode } from 'react'

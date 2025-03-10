@@ -1,8 +1,8 @@
 import { switchClass } from '@/shared/helpers/switchClassName'
 import { useUser } from '@clerk/nextjs'
 import { Image } from '@unpic/react'
-import { CalendarOffIcon, Link } from 'lucide-react'
-import type { JSX, ReactNode } from 'react'
+import { CalendarOffIcon } from 'lucide-react'
+import type { ReactNode } from 'react'
 
 interface ICalendarItem {
   children?: Readonly<ReactNode[]> | null | Readonly<ReactNode>
