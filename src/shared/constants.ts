@@ -8,6 +8,8 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:300/
 export const IS_PRODUCTION = process.env.NEXT_PUBLIC_PRODUCTION !== 'false'
 export const USER_WEBHOOK = IS_PRODUCTION ? process.env.CLERK_WEBHOOK_USER_EVENTS! : process.env.CLERK_WEBHOOK_USER_EVENTS_DEV!
 
+export const SHUN_DEV = 'https://luisjp.vercel.app'
+
 export const HOME_PATHS = {
   Resume: {
     name: 'Resumen',
