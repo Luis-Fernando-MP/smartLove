@@ -6,11 +6,11 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 export const RESERVATIONS_NAME_CACHE = 'USER_RESERVATIONS'
 
 export function useReservations(id?: string) {
-  if (!id) return null
   const query = useQuery({
     queryKey: [RESERVATIONS_NAME_CACHE, id],
     queryFn: async ({ queryKey }) => {
       const [, id] = queryKey
+      if (!id) return []
       return await getAllReservers(id)
     },
     staleTime: 2000,

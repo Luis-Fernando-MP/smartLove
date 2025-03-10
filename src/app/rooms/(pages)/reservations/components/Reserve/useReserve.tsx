@@ -26,6 +26,7 @@ const useReserve = ({ reserve }: TProps) => {
   const refReservePrint = useRef<HTMLButtonElement>(null)
   const { setReservation, reservation } = useReservationStore()
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const isReading = useMemo(() => reservation && reservation.id === reserve.id, [reservation?.id, reserve.id])
 
   const handlePrint = useCallback(async () => {
