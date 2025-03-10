@@ -1,99 +1,106 @@
-# TAREAS
+# Smart Love Hotel 🏨
 
-## Largas
+<div style="padding: 20px; border: 2px solid #ddd; max-width: 900px; border-radius: 10px; margin: 20px 0;">
+  <img src="./public/assets/1.png" alt="Smart Love Hotel" style="width: 100%; max-width: 900px; margin-bottom: 15px; border-radius: 8px"/>
+  <img src="./public/assets/2.png" alt="Smart Love Hotel" style="width: 100%; max-width: 900px; margin-bottom: 15px; border-radius: 8px"/>
+  <img src="./public/assets/3.png" alt="Smart Love Hotel" style="width: 100%; max-width: 900px; margin-bottom: 15px; border-radius: 8px"/>
+</div>
 
-- [X]: Culminar el flujo de cancelar una reserva
-- [~]: Realizar la pagina Home
-- [ ]: Realizar la pagina Polices
-- [X]: Validar las fechas al momento de reservar una habitación
-- [X]: Transladar el manejo de fechas day.js
-- [ ]: Manejar el tema de los filtros
-- [~]: Actualizar los filtros del componente SLUG
-- [X]: Acabar la pagina detalles de reservas /rooms/reservations
-- [X]: Agregar un componente calendario en la ruta /rooms/[room_id]
-- [X]: Realizar refetch en la mutación "create_reservation"
-- [X]: Desactivar el autocompleted en el formulario de creación de cliente
+[![Website](https://img.shields.io/badge/Website-smart--pro.vercel.app-blue?style=for-the-badge&logo=vercel)](https://smart-pro.vercel.app)
+[![Figma](https://img.shields.io/badge/Figma-Design-F24E1E?style=for-the-badge&logo=figma)](https://www.figma.com/design/J7di2I31IH4OcXnNOmwgAe/Hotel---Smart-Love?node-id=218-1065&t=mRZzxxdUouw2DlMM-1)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-## Medianas
+# 🌟 Smart Love Hotel
 
-- [X]: Agregar el footer en el flujo principal
-- [X]: Actualizar el Boton (Solo hoy y mañana) presenta un error
-- [X]: Transladar el Boton Regresar de la pagina /rooms/[room_id] a la izquierda
+## 🎯 Sobre el Proyecto
 
-## Cortas
+Smart Love Hotel es una plataforma moderna de reservas hoteleras ubicada en Lima, Perú. Desarrollada con tecnologías morder, ofrece un sistema eficiente y seguro para la gestión de reservas y administración hotelera.
+El proyecto se centra en proporcionar una experiencia de usuario óptima mediante una interfaz intuitiva y funcionalidades avanzadas.
 
-- [X]: Cambiar los iconos de la presentación inicial
-- [X]: Actualizar la navegación (Home, Rooms, Polices)ç
-- [X]: Agregar la descripción de las reservas
+## ✨ Características
 
-# Extras
+- 🏷️ Reserva de habitaciones en tiempo real
+- 📅 Calendario interactivo para selección de fechas
+- 🔍 Filtros avanzados de búsqueda
+- 📱 Diseño responsive y moderno
+- 🌙 Modo oscuro/claro
+- 🔒 Autenticación de usuarios
+- 💳 Gestión de reservas
+- 📊 Panel de administración intuitivo
+- 🔄 Sincronización en tiempo real
+- 📈 Análisis de disponibilidad
 
-## Largas
+## 🛠️ Tecnologías
 
-- [X]: Mejorar al presentación de las imágenes de Reservas
-- [ ]: Actualizar los esqueletos de carga
-- [ ]: Habilitar la ruta /rooms/[room_id]/images
-- [ ]: Alzar el componente de visualización de images
+[![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![SASS](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass)](https://sass-lang.com/)
+[![DayJS](https://img.shields.io/badge/Day.js-fb6052?style=for-the-badge)](https://day.js.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma)](https://www.prisma.io/)
+[![React Hook Form](https://img.shields.io/badge/React_Hook_Form-EC5990?style=for-the-badge&logo=react&logoColor=white)](https://react-hook-form.com/)
+[![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=for-the-badge&logo=react-query&logoColor=white)](https://tanstack.com/query)
 
-## Cortas
+## 👨‍💻 Desarrolladores
 
-- [X]: Cambiar los colores de día:
-  --bg-primary: #f4f2fff5;
-  --bg-secondary: #ecebfff5;
-  --fnt-primary: #000000;
-  --fnt-secondary: #6f6f6f;
-  --tn-primary: #8b61ff;
-  --tn-primary-transparent: #b56aff1f;
-  --tn-secondary: #3959ff;
-  --disable-primary: #47455e;
-  --disable-secondary: #5950c426;
-  --skeleton-co: #E3F1FF;
-  --skeleton: #CFDDEB;
+[![Luis Fernando](https://img.shields.io/badge/Luis_Fernando-Shun-181717?style=for-the-badge&logo=github)](https://github.com/Luis-Fernando-MP)
+[![Arian Reyes](https://img.shields.io/badge/Arian_Reyes-Dev-181717?style=for-the-badge&logo=github)](https://github.com/arianr2014)
 
-# Proyecto Smart Pro
+## 🚀 Instalación
 
-![alt text](./assets/fondo1.png)
-![alt text](./assets/fondo2.png)
-![alt text](./assets/fondo3.png)
-![alt text](./assets/fondo4.png)
-Para levantar la aplicación sigue los siguientes pasos.
+1. Instala [Node.js v20](https://nodejs.org/en/)
 
-1. Instala [nodeJS v20](https://nodejs.org/en/), ademas verifica tener al menos un sistema de gestor de paquetes:
+2. Instala PNPM globalmente:
 
-- [npm v10.7.0](https://www.npmjs.com/)
-- [pnpm v20.12.2](https://pnpm.io/installation)
+   ```bash
+   npm install -g pnpm
+   ```
 
-2. clona el repositorio o realiza un fork
-3. Crea un archivo .env en la raíz del proyecto y agrega la URL:
+3. Clona el repositorio:
 
-![Raíz del proyecto](./assets/image.png)
+   ```bash
+   git clone https://github.com/Luis-Fernando-MP/smartLove.git
+   cd smart-love-hotel
+   ```
 
-```env
-  NEXT_PUBLIC_API_URL="http..."
-```
+4. Instala las dependencias:
 
-4. dentro del proyecto instala las dependencias:
+   ```bash
+   pnpm install
+   ```
 
-```bash
-  npm i
-  # or
-  pnpm i
-```
+5. Configura las variables de entorno:
 
-5. Ejecuta el proyecto en modo desarrollo
+   - Crea un archivo `.env` en la raíz del proyecto
+   - Copia las siguientes variables y configura sus valores:
 
-```bash
-  npm run turbo
-  # or
-  pnpm turbo
-```
+   ```env
+   # API URL
+   NEXT_PUBLIC_API_URL=
 
-# Paginas
+   # Clerk Authentication
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+   CLERK_SECRET_KEY=
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+   CLERK_WEBHOOK_USER_EVENTS=
+   CLERK_WEBHOOK_USER_EVENTS_DEV=
 
-- Todas las rutas se encuentran dentro de la carpeta /src/app
+   # Database
+   DATABASE_URL=
+   ```
 
-![alt text](./assets/image2.png)
+6. Ejecuta el proyecto en modo desarrollo:
 
--La conexión a los servicios de la api se encuentran dentro de la carpeta /src/service y los estilos se crean por cada componente, se empleo el formato "style.scss"
+   ```bash
+   pnpm dev
+   ```
 
-![alt text](./assets/image3.png)
+7. Para compilar el proyecto para producción:
+   ```bash
+   pnpm build
+   pnpm start
+   ```
