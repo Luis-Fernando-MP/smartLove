@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://smart-love.vercel.app'),
+  metadataBase: new URL('https://smart-pro.vercel.app/'),
   title: 'Smart Love Hotel',
   description:
     'Bienvenido a Smart Love Hotel, tu destino ideal en el corazón de la ciudad. Ofrecemos habitaciones modernas con tecnología de punta, servicio personalizado las 24 horas, y la mejor experiencia en hospedaje. Ubicados estratégicamente para tu comodidad.',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: 'Smart Love Hotel - Experiencia única en hospedaje en Lima',
     description:
       'Descubre el hotel más innovador de Lima. Habitaciones inteligentes equipadas con la última tecnología, ubicación privilegiada cerca de centros comerciales y zonas turísticas, servicio personalizado 24/7, y las mejores tarifas garantizadas. Nuestros huéspedes nos califican con 4.8 estrellas por nuestra excelente atención y modernas instalaciones.',
-    url: 'https://smart-love.vercel.app',
+    url: 'https://smart-pro.vercel.app',
     siteName: 'Smart Love Hotel',
     images: [
       {
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     ]
   },
   alternates: {
-    canonical: 'https://smart-love.vercel.app'
+    canonical: 'https://smart-pro.vercel.app'
   },
   robots: {
     index: true,

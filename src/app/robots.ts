@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/'
     },
-    sitemap: 'https://smart-love.vercel.app/sitemap.xml'
+    sitemap: 'https://smart-pro.vercel.app/sitemap.xml'
   }
 }
