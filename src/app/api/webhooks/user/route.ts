@@ -1,4 +1,5 @@
-import { createUser } from '@/services/users/setUser.service'
+import { createUser, deleteUser } from '@/services/users/setUser.service'
+import { IUser } from '@/services/users/user.service.types'
 import { USER_WEBHOOK } from '@/shared/constants'
 import { IncomingHttpHeaders } from 'http'
 import { headers } from 'next/headers'
@@ -31,23 +32,20 @@ async function handler(request: Request) {
   if (eventType === 'user.created' || eventType === 'user.updated') {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const { id, first_name, image_url, last_name, email_addresses } = evt.data
-    const sendUserData = {
+    const sendUserData: IUser = {
       id,
       email: email_addresses[0].email_address,
       first_name: first_name ?? '',
       last_name: last_name ?? '',
-      imagen_url: image_url
+      image_url: image_url
     }
     await createUser(sendUserData as any)
   }
   if (eventType === 'user.deleted') {
     const deletedUser = evt.data as unknown as IDeletedUser
-    if (deletedUser.deleted) {
-      console.log('deleted')
-    } else {
-      console.log('error to deleted')
-    }
     console.log(deletedUser)
+    if (!deletedUser.deleted) return Response.json({ status: 'ok' })
+    await deleteUser(deletedUser.id)
   }
 
   return Response.json({ status: 'ok' })
