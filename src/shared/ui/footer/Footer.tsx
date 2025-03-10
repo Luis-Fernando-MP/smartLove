@@ -1,4 +1,4 @@
-import { WHATSAPP_URL } from '@/shared/constants'
+import { SHUN_DEV, WHATSAPP_URL } from '@/shared/constants'
 import { Link } from 'next-view-transitions'
 import type { JSX } from 'react'
 
@@ -18,13 +18,15 @@ function Footer({ className }: { className?: string }): JSX.Element {
           </h5>
         </section>
         <aside className='footer-paths'>
+          <Link href={SHUN_DEV} target='_blank' rel='noopener noreferrer'>
+            <h5 className='gr font3'>Shuni Dev</h5>
+          </Link>
           <h5>
-            <Link href={WHATSAPP_URL} target='_blank'>
+            <Link href={WHATSAPP_URL} target='_blank' rel='noopener noreferrer'>
               Ayuda
             </Link>
           </h5>
-          <Link href='/faq'>FAQ</Link>
-          <Link href='/support'>Soporte</Link>
+          <Link href='/support'>Resumen</Link>
           <Link href='/polices'>Políticas</Link>
         </aside>
       </article>
