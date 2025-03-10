@@ -1,7 +1,7 @@
 'use client'
 
 import { useReservations } from '@/hooks/useReservations'
-import { type JSX, type ReactNode, useEffect, useLayoutEffect } from 'react'
+import { type JSX, type ReactNode, useEffect } from 'react'
 
 import ReservationLoader from './components/Reservation/ReservationLoader'
 import { useReservationsStore } from './store/reservation.store'

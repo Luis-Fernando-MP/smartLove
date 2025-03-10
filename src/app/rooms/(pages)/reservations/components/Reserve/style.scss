@@ -3,6 +3,7 @@
 
 .reserve {
   position: relative;
+  overflow: hidden;
   width: 300px;
   height: 470px;
 
@@ -107,14 +108,6 @@
     @include d.flex($dir: row, $ali: center);
   }
 
-  &-action {
-    border: none;
-
-    &:hover {
-      color: v.$tn1;
-    }
-  }
-
   &-date {
     justify-content: space-evenly;
 
@@ -140,21 +133,32 @@
   }
 
   &-actions {
-    @include d.flex;
+    @include d.flex($ali: center, $dir: row);
 
     position: absolute;
-    top: 50%;
-    left: -0;
-    transform: translateY(-50%);
+    bottom: v.$padding;
+    left: 50%;
+    transform: translateX(-50%);
 
+    justify-content: center;
+
+    width: fit-content;
     padding: v.$padding;
-    border-top: 1.5px solid v.$tn1T;
-    border-right: 1px solid v.$tn1T;
-    border-bottom: 1.5px solid v.$tn1T;
-    border-left: 4px solid v.$tn1T;
-    border-radius: v.$radius * 2;
+    border: 1.5px solid v.$tn1T;
+    border-radius: v.$radius;
 
     background-color: v.$bg1;
+  }
+
+  &-action {
+    padding: v.$padding * 0.5;
+    border: none;
+    border-radius: v.$radius;
+    background-color: v.$bg2;
+
+    &:hover {
+      color: v.$tn1;
+    }
   }
 
   &.active {

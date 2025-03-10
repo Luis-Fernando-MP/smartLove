@@ -6,27 +6,30 @@ import LittleBox from '@/shared/ui/LittleBox'
 import DayBox from '@/shared/ui/dayBox/DayBox'
 import dayjs from 'dayjs'
 import { PanelRightClose } from 'lucide-react'
+import { useMemo } from 'react'
 import { v1 as uuid } from 'uuid'
 
 import { useReservationStore } from '../../store/reservation.store'
-import { littleBoxData } from '../reserve/useReserve'
+import { littleBoxData } from '../Reserve/useReserve'
 import './style.scss'
 
 const Details = () => {
-  const { reservation: r, setReservation } = useReservationStore()
-
-  if (!r) return null
+  const { reservation, setReservation } = useReservationStore()
 
   const handleCloseDetails = (): void => {
     setReservation(null)
   }
 
-  const fromDay = dayjs(r?.checkIn).add(1, 'days')
-  const toDay = dayjs(r?.checkOut).add(1, 'days')
-  const diffDays = toDay.diff(fromDay, 'day') + 1
+  const littleBoxItem = useMemo(() => (reservation ? littleBoxData(reservation) : []), [reservation])
+
+  if (!reservation) return null
+
+  const fromDay = dayjs(reservation.checkIn)
+  const toDay = dayjs(reservation.checkOut)
+  const diffDays = toDay.diff(fromDay, 'day')
 
   return (
-    <article className={`RDetails dashboard-body__details ${switchClass(!!r)}`}>
+    <article className={`RDetails dashboard-body__details ${switchClass(!!reservation)}`}>
       <button className='RDetails-close btn' onClick={handleCloseDetails}>
         <PanelRightClose />
       </button>
@@ -51,13 +54,19 @@ const Details = () => {
         <b>HABITACIÓN</b> reservada:
       </h4>
       <section className='RDImages'>
-        <h3 className={sansitaSwashed.className}>{r?.room.name}</h3>
+        <h3 className={sansitaSwashed.className}>{reservation.room.name}</h3>
         <div className='RDImages-container'>
-          <img className='RDImages-container__background' src={r?.room.images[0].imageUrl} alt={r?.room.name} />
+          {reservation.room.images.length > 0 && (
+            <img
+              className='RDImages-container__background'
+              src={reservation.room.images[0].imageUrl}
+              alt={reservation.room.name}
+            />
+          )}
           <div className='RDImages-container__images'>
-            {r.room.images.slice(1).map((img: any) => {
-              return <img className='RDImages-container__image' src={img.imageUrl} alt={img.imageUrl} key={uuid()} />
-            })}
+            {reservation.room.images.slice(1).map(img => (
+              <img className='RDImages-container__image' src={img.imageUrl} alt={img.imageUrl} key={uuid()} />
+            ))}
           </div>
         </div>
       </section>
@@ -65,11 +74,10 @@ const Details = () => {
         <b>COSTOS</b> por la reserva:
       </h4>
       <section className='RDLittleBoxes'>
-        {!!r &&
-          littleBoxData(r).map(i => {
-            const { Icon, subtitle, title, active } = i
-            return <LittleBox key={i.title} Icon={Icon} subtitle={Number(subtitle)} title={title} active={active} />
-          })}
+        {littleBoxItem.map(i => {
+          const { Icon, subtitle, title } = i
+          return <LittleBox key={i.title} Icon={Icon} subtitle={subtitle} title={title} />
+        })}
       </section>
     </article>
   )

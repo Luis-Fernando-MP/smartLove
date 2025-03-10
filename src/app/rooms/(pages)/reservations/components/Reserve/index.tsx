@@ -1,13 +1,12 @@
 'use client'
 
 import { TClientReservation } from '@/app/api/reservation/by-user/[idUser]/route'
-import { sansitaSwashed } from '@/shared/fonts'
 import { breakDownDate } from '@/shared/helpers/formatDate'
 import { switchClass } from '@/shared/helpers/switchClassName'
 import ToggleLogo from '@/shared/ui/ColorSchemeButton/ToggleLogo'
 import LittleBox from '@/shared/ui/LittleBox'
 import dayjs from 'dayjs'
-import { LoaderCircle, NotebookTabs, Printer, Repeat, XIcon } from 'lucide-react'
+import { ImageIcon, LoaderCircle, NotebookTabs, Printer, XIcon } from 'lucide-react'
 import { type JSX, useCallback, useEffect, useMemo } from 'react'
 
 import './style.scss'
@@ -18,7 +17,7 @@ interface IReserve {
 }
 
 const Reserve = ({ reserve }: IReserve): JSX.Element => {
-  const { handlePrint, loading, refReservePrint, setReservation, isReading } = useReserve({
+  const { handlePrint, handleDownloadImage, loading, refReservePrint, setReservation, isReading } = useReserve({
     reserve
   })
 
@@ -61,8 +60,12 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
   }, [checkOut])
 
   return (
-    <article className={`reserve ${switchClass(!!isReading)}`} ref={refReservePrint}>
-      <button className={`reserve-container ${switchClass(pastDate, 'past')}`} onClick={handleReservationClick}>
+    <article className={`reserve ${switchClass(!!isReading)}`}>
+      <button
+        className={`reserve-container ${switchClass(pastDate, 'past')}`}
+        onClick={handleReservationClick}
+        ref={refReservePrint}
+      >
         <ToggleLogo className='reserve-logo' />
         <h3 className='font3'>{room.name}</h3>
 
@@ -83,8 +86,8 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
 
         <section className='reserve-littleBoxes'>
           {littleBoxItems.map(i => {
-            const { Icon, subtitle, title, active } = i
-            return <LittleBox key={i.title} Icon={Icon} subtitle={subtitle} title={title} active={active} />
+            const { Icon, subtitle, title } = i
+            return <LittleBox key={i.title} Icon={Icon} subtitle={subtitle} title={title} />
           })}
         </section>
 
@@ -107,9 +110,9 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
           </div>
         </section>
       </button>
-      {/* <aside className='reserve-actions'>
-        <button className='reserve-action hidden' title='Repetir reservación'>
-          <Repeat />
+      <aside className='reserve-actions'>
+        <button className='reserve-action' title='Descargar Imagen' onClick={handleDownloadImage}>
+          <ImageIcon />
         </button>
         <button className='reserve-action' title='Detalles' onClick={handleReservationClick}>
           {isReading ? <XIcon /> : <NotebookTabs />}
@@ -117,7 +120,7 @@ const Reserve = ({ reserve }: IReserve): JSX.Element => {
         <button className='reserve-action print' title='Imprimir' onClick={handlePrint}>
           {loading ? <LoaderCircle className='animate-spin' /> : <Printer />}
         </button>
-      </aside> */}
+      </aside>
     </article>
   )
 }

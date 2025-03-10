@@ -7,6 +7,7 @@ import { switchClass } from '@/shared/helpers/switchClassName'
 import { TReservationResolver, reservationResolver } from '@/shared/resolvers/reservation.resolver'
 import Back from '@/shared/ui/back/Back'
 import { useUser } from '@clerk/nextjs'
+import dayjs from 'dayjs'
 import { AlertCircleIcon, AlertTriangleIcon, HashIcon, HotelIcon, InfoIcon, MessageSquareIcon, XCircleIcon } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { type JSX } from 'react'
@@ -33,6 +34,11 @@ const Nav = (): JSX.Element | null => {
     [reservation]
   )
 
+  const isExpiredReservation = useMemo(() => {
+    if (!reservation) return false
+    return dayjs().isAfter(dayjs(reservation.checkOut))
+  }, [reservation])
+
   const hookForm = useForm<TReservationResolver>({
     resolver: reservationResolver,
     values: defaultValues
@@ -51,23 +57,23 @@ const Nav = (): JSX.Element | null => {
 
   const onFormSubmit = useCallback(
     async (data: TReservationResolver) => {
-      toast.loading('Cancelando reserva', { id: toastId })
+      toast.loading(isExpiredReservation ? 'Eliminando registro' : 'Cancelando reserva', { id: toastId })
       mutate(
         { reservationId: data.roomID, userId: user?.id ?? '' },
         {
           onSuccess() {
-            console.log('Reserva cancelada')
-            toast.success('Reserva cancelada', { id: toastId })
+            console.log(isExpiredReservation ? 'Registro eliminado' : 'Reserva cancelada')
+            toast.success(isExpiredReservation ? 'Registro eliminado' : 'Reserva cancelada', { id: toastId })
             setReservation(null)
           },
           onError() {
-            toast.error('Error al cancelar la reserva', { id: toastId })
+            toast.error(isExpiredReservation ? 'Error al eliminar registro' : 'Error al cancelar la reserva', { id: toastId })
           }
         }
       )
       setTimeout(() => toast.dismiss(toastId), 5000)
     },
-    [mutate, setReservation, user?.id]
+    [mutate, setReservation, user?.id, isExpiredReservation]
   )
 
   const onErrors = useCallback(() => {
@@ -98,18 +104,18 @@ const Nav = (): JSX.Element | null => {
   return (
     <NavContainer className='reservationNav'>
       <Back row />
-      <h2 className='font3 gr'>¿Cancelar reserva?</h2>
+      <h2 className='font3 gr'>{isExpiredReservation ? '¿Eliminar registro?' : '¿Cancelar reserva?'}</h2>
       <h4>
         Te agradecemos que hayas leído correctamente nuestras&nbsp;
         <Link href={HOME_PATHS.Polices.link} target='_blank' rel='noopener noreferrer' className='reservationNav-link'>
           políticas
         </Link>
-        &nbsp;para cancelar tu reserva 🤓
+        &nbsp;para {isExpiredReservation ? 'eliminar el registro' : 'cancelar tu reserva'} 🤓
       </h4>
 
       {reservation && (
         <h4 className='reservationNav-selected'>
-          La reserva con el código de
+          {isExpiredReservation ? 'El registro' : 'La reserva'} con el código de
           <br />
           <b className='gr'>Operación: {reservation.id}</b>&nbsp;esta seleccionada
         </h4>
@@ -121,7 +127,7 @@ const Nav = (): JSX.Element | null => {
       >
         <section className={`reservationForm-section ${switchClass(!!roomIdError, 'error')}`}>
           <h5 className='reservationForm-title'>
-            <HashIcon className='inline-icon' /> ID de reserva:
+            <HashIcon className='inline-icon' /> ID de {isExpiredReservation ? 'registro' : 'reserva'}:
           </h5>
           <h4 className='reservationForm-error'>{roomIdError?.message}</h4>
 
@@ -146,7 +152,7 @@ const Nav = (): JSX.Element | null => {
 
         <section className={`reservationForm-section ${switchClass(!!roomNameError, 'error')}`}>
           <h5 className='reservationForm-title'>
-            <HotelIcon className='inline-icon' /> Selecciona la habitación a cancelar:
+            <HotelIcon className='inline-icon' /> Selecciona la habitación a {isExpiredReservation ? 'eliminar' : 'cancelar'}:
           </h5>
           <h4 className='reservationForm-error'>{roomNameError?.message}</h4>
           <span className='reservationForm-caution'>
@@ -185,7 +191,7 @@ const Nav = (): JSX.Element | null => {
           <textarea
             className='reservationForm-area'
             {...register('comment')}
-            placeholder='¿Cuál es el motivo de la cancelación?'
+            placeholder={`¿Cuál es el motivo de la ${isExpiredReservation ? 'eliminación' : 'cancelación'}?`}
           />
         </section>
 
@@ -196,7 +202,7 @@ const Nav = (): JSX.Element | null => {
             </>
           ) : (
             <>
-              <XCircleIcon className='inline-icon' /> Cancelar ahora
+              <XCircleIcon className='inline-icon' /> {isExpiredReservation ? 'Eliminar registro' : 'Cancelar reserva'}
             </>
           )}
         </button>

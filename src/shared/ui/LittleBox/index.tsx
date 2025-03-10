@@ -1,4 +1,3 @@
-import { switchClass } from '@/shared/helpers/switchClassName'
 import { PiIcon } from 'lucide-react'
 import type { JSX, ReactNode } from 'react'
 
@@ -9,12 +8,11 @@ interface Props {
   title: string
   subtitle: string
   Icon: typeof PiIcon
-  active?: boolean
 }
 
-const LittleBox = ({ Icon, subtitle, title, active = false }: Props): JSX.Element => {
+const LittleBox = ({ Icon, subtitle, title }: Props): JSX.Element => {
   return (
-    <section className={`littleBox ${switchClass(active)}`}>
+    <section className={`littleBox`}>
       <Icon className='littleBox-icon' />
       <p className='littleBox-title'>{title}</p>
       <h3>{subtitle}</h3>

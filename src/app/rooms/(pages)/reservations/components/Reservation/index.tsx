@@ -1,11 +1,10 @@
 'use client'
 
 import { newKey } from '@/shared/key'
-import Footer from '@/shared/ui/footer/Footer'
 import type { JSX } from 'react'
 
 import { useReservationsStore } from '../../store/reservation.store'
-import Reserve from '../reserve/Reserve'
+import Reserve from '../Reserve'
 import './style.scss'
 
 const Reservations = (): JSX.Element | null => {
