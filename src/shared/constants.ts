@@ -1,4 +1,4 @@
-import { BadgeInfo, BedDouble, Hotel, LayoutDashboard, Siren } from 'lucide-react'
+import { BadgeInfo, Hotel, LayoutDashboard, Siren } from 'lucide-react'
 
 export const WHATSAPP_URL = 'https://wa.me/message/7HOKZ7Y6O6UBE1'
 export const FACEBOOK_URL = 'https://www.facebook.com/Hotel.Smart.Love'
@@ -38,10 +38,5 @@ export const DASHBOARD_PATHS = [
     name: 'Mis reservas',
     link: 'reservations',
     Icon: Hotel
-  },
-  {
-    name: 'Mis cuartos',
-    link: 'rooms',
-    Icon: BedDouble
   }
 ]
