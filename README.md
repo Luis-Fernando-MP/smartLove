@@ -1,9 +1,9 @@
 # Smart Love Hotel 🏨
 
-<div style="padding: 20px; border: 2px solid #ddd; max-width: 900px; border-radius: 10px; margin: 20px 0;">
-  <img src="./public/assets/1.png" alt="Smart Love Hotel" style="width: 100%; max-width: 900px; margin-bottom: 15px; border-radius: 8px"/>
-  <img src="./public/assets/2.png" alt="Smart Love Hotel" style="width: 100%; max-width: 900px; margin-bottom: 15px; border-radius: 8px"/>
-  <img src="./public/assets/3.png" alt="Smart Love Hotel" style="width: 100%; max-width: 900px; margin-bottom: 15px; border-radius: 8px"/>
+<div style="column-count: 2; margin: 20px 0;">
+  <img src="./public/assets/1.png" alt="Smart Love Hotel" style="width: 100%; max-width: 400px; margin-top: 10px; border-radius: 8px"/>
+  <img src="./public/assets/2.png" alt="Smart Love Hotel" style="width: 100%; max-width: 400px; margin-top: 10px; border-radius: 8px"/>
+  <img src="./public/assets/3.png" alt="Smart Love Hotel" style="width: 100%; max-width: 400px; margin-top: 10px; border-radius: 8px"/>
 </div>
 
 [![Website](https://img.shields.io/badge/Website-smart--pro.vercel.app-blue?style=for-the-badge&logo=vercel)](https://smart-pro.vercel.app)
